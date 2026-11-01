@@ -25,3 +25,6 @@ Source: hostile audit of the frozen statements (see AUDIT_FROZEN.md, MarkovTripl
 | N3 | info | Circle FullMarkovTriple complete incl. `esa`, `semigroup_stable` (`Sanity/CircleFull.lean`, no sorry). | fixed (pending audit) |
 | N4 | LOW | `memLp` ranges over p ∈ [0,1) too; should be 1 ≤ p < ∞. | `memLp : ∀ f ∈ A₀, ∀ p, 1 ≤ p → p ≠ ∞ → MemLp f p μ`; all instances/users updated. Status: fixed (pending re-audit) |
 | N5 | LOW | check_frozen.py anchor lives in same tree. | Open (CI) |
+| M-1 | MEDIUM | (round 4) `poincare_of_CD_infty` is non-vacuous only via the Γ=0 one-point triple; no instance with Γ ≠ 0 and ρ > 0 in Lean. | Build OU on (ℝ,γ), A₀ = C_c^∞, A = C^∞(ℝ). In progress |
+| P4-1 | MEDIUM (design) | LSI needs a mixed/diagonal IBP on A (f,k ∈ A, f,Lf,k,Lk ∈ L², k bounded: Γ(f,k) ∈ L¹, ∫ k Lf = −∫ Γ(f,k)); not derivable from current fields. | Add field `ibp_AA` to FullMarkovTriple; prove for circle/OU. In progress |
+| L-1 | LOW | Frozen `CD` admits 0 < n < 1 (theorem excludes it). | Info |
