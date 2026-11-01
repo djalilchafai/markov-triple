@@ -43,7 +43,7 @@
     {
       "path": "MarkovTriple/Frozen/Fisher.lean",
       "status": "proposed",
-      "sha256": "65f5138f72f38e243f664c952b69dc435a765044dc7b07a70ee8eb3e6fcb0a9e"
+      "sha256": "9262e3b9778d599fbb7e0886c3a9523ff9f6a5d93ffbbf72223edd3ad0cf1ed6"
     },
     {
       "path": "MarkovTriple/Frozen/Semigroup.lean",
@@ -54,6 +54,16 @@
       "path": "MarkovTriple/Frozen/FullMarkovTriple.lean",
       "status": "proposed",
       "sha256": "e019625c8dfc241b52506fae43d93b34029de9fedbac5363f2eb26e0d8f4642d"
+    },
+    {
+      "path": "MarkovTriple/Frozen/Ergodic.lean",
+      "status": "proposed",
+      "sha256": "eb891cda5fb3d525aa15aef1f38b45784f79fcb8757ee099b046896ee39cb261"
+    },
+    {
+      "path": "MarkovTriple/Frozen/CDFull.lean",
+      "status": "proposed",
+      "sha256": "94cb626b0467abe8857f47c104598560ed0734107b6b04e89489b2df87680d78"
     }
   ]
 }

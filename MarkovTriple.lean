@@ -8,6 +8,8 @@ import MarkovTriple.Frozen.Ent
 import MarkovTriple.Frozen.Poincare
 import MarkovTriple.Frozen.LSI
 import MarkovTriple.Frozen.Fisher
+import MarkovTriple.Frozen.Ergodic
+import MarkovTriple.Frozen.CDFull
 import MarkovTriple.Frozen.Semigroup
 import MarkovTriple.Frozen.FullMarkovTriple
 import MarkovTriple.Sanity.Trivial
@@ -24,3 +26,4 @@ import MarkovTriple.Divergences.KLScalarVariational
 import MarkovTriple.Divergences.KLVariational
 import MarkovTriple.Divergences.Varentropy
 import MarkovTriple.Sanity.Circle
+import MarkovTriple.Sanity.Ergodic
