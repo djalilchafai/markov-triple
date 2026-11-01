@@ -56,3 +56,4 @@ import MarkovTriple.FunctionalInequalities.FormDomain
 import MarkovTriple.FunctionalInequalities.EntropyIntegrable
 import MarkovTriple.FunctionalInequalities.AxiomCheck
 import MarkovTriple.Sanity.CircleFull
+import MarkovTriple.Sanity.OU.Full
