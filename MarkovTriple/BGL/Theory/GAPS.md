@@ -63,3 +63,10 @@ inequality, the `f²` and `ε → 0` steps, limit at `∞` (from the gap).
   Note Remark 3.3.15 (CD from `𝒜₀` to `𝒜`) is not needed: the frozen `FullTriple.CD` is already stated on all of `𝒜`.
 * `FullTriple.CD` for the finite-dimensional LSI constant `ρn/(n-1)` (Thm 5.7.4 with `n<∞`, via the integrated
   chain rule (5.7.6)–(5.7.12) for `e^{ag}`): not done (only `n`-independent constant `1/ρ`, from `CD(ρ,n) ⇒ CD(ρ,∞)`).
+
+## Update: compact triples (`Theory/Compact/`)
+
+`compact_gradientInterpolation` and `compact_entropyInterpolation` prove G1 and G3 as theorems for every
+`CompactTriple` (`𝒜 = 𝒜₀`); the gradient bound, Fisher decay and (for `ρ>0`) the log-Sobolev inequality are therefore
+unconditional there, and the circle has `Γ(P_t f) ≤ P_t Γ f`, `e' = -I`, `I' ≤ 0`.  See `Compact/GAPS_COMPACT.md`.
+G1/G3 remain open (hypotheses) for non-compact full triples.

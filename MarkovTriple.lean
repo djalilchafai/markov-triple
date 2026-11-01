@@ -141,3 +141,12 @@ import MarkovTriple.BGL.Instances.OU.LSIMehler
 import MarkovTriple.BGL.Instances.OU.LSIGrad
 import MarkovTriple.BGL.Instances.OU.LSIEnt
 import MarkovTriple.BGL.Instances.OU.LSIMain
+import MarkovTriple.BGL.Theory.Compact.Product
+import MarkovTriple.BGL.Theory.Compact.Flow
+import MarkovTriple.BGL.Theory.Compact.Algebra
+import MarkovTriple.BGL.Theory.Compact.Gradient
+import MarkovTriple.BGL.Theory.Compact.Smooth
+import MarkovTriple.BGL.Theory.Compact.Chain
+import MarkovTriple.BGL.Theory.Compact.Entropy
+import MarkovTriple.BGL.Theory.Compact.Consequences
+import MarkovTriple.BGL.Theory.Compact.AxiomCheck
