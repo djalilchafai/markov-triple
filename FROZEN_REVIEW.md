@@ -111,3 +111,66 @@ R9. **`FullMarkovTriple.ibp_AA`** (ERRATA P4-1) added: `∀ f ∈ A, ∀ k ∈ A
     on `C^∞` with polynomial growth only with extra growth control (OU instance: other agent);
     (iv) non-vacuity: circle (Γ ≠ 0) and trivial. BGL numbering unverified. Manifest updated
     (Frozen/FullMarkovTriple.lean); status still `proposed`.
+
+---
+
+# BGL comparison — checked against the book (Ch. 3, Defs 3.1.1–3.1.15, 3.3.1, 3.3.14, 3.3.25, summary §3.4)
+
+Labels D1–D9, S10–S11, F1–F10 are the book's own labels in its §3.4. Statements below are paraphrases.
+Status: **MATCH** (same content), **STRONGER** (ours implies the book's), **EQUIV** (equivalent under stated conditions),
+**MISSING** (the book requires it, our surface does not), **EXTRA** (ours, not in the book).
+
+## Diffusion Markov Triple (D1–D9)
+
+| Book | Our surface | Status |
+|---|---|---|
+| D1 σ-finite μ (probability if finite) | σ-finite μ; finite μ allowed with any mass (PI/LSI add `IsProbabilityMeasure`) | MATCH (slightly more general) |
+| D2 A₀ an algebra of **bounded** functions, dense in all Lᵖ (1≤p<∞), stable under smooth ψ with ψ(0)=0 | non-unital algebra, `memLp` for 1≤p<∞, `dense`, `comp_mem` | MATCH up to null sets (ours gives essential boundedness, audit N1; the book's boundedness is everywhere) |
+| Def 3.1.1: increasing sequence in A₀ converging a.e. to 1 | not present | **MISSING** (it gives the meaning of "1" when μ is infinite) |
+| D3 Γ symmetric bilinear A₀×A₀→A₀, Γ(f,f)≥0, diffusion property, with the fundamental identity | same, via the pointwise carré-du-champ identity and k-ary chain rule | STRONGER (pointwise identity; the book's identity is a.e.) |
+| D4 continuity of g↦∫Γ(f,g) in L² | follows from L(A₀)⊂A₀⊂L² and ibp | derivable |
+| D5 L defined by integration by parts; chain rule for L follows | L is a field, ibp is a field, chain rule for L is also a field | EXTRA redundancy, consistent |
+| D6 L(A₀)⊂A₀ | `L_mem` | MATCH |
+| D7 D(E), D(L) by completion / Friedrichs | Hilbert layer (`FormData`, Friedrichs) | MATCH |
+| D8 ∫Lf dμ = 0 for f∈A₀ | **not a field of `MarkovTriple`**; derived only for `FullMarkovTriple` (via `ibp_A_symm` with f=1) | **MISSING** from the bare structure |
+| D9 P_t from the self-adjoint L; positivity preserving and sub-Markov | `IsSemigroupOf` characterizes P_t by 8 clauses incl. positivity, sub-Markov, generator extends L; existence proved (`isSemigroupOf_full`) | EQUIV in spirit (characterization instead of construction) |
+
+## Standard triple (S10–S11)
+
+| Book | Our surface | Status |
+|---|---|---|
+| S10 ergodic: f∈D(L), Lf=0 ⇒ constant (equivalently f∈D(E), Γ(f)=0 ⇒ const) | `ErgodicL2` is on the closure of L|A₀ (kernel is constants); `ErgodicΓ` on A₀ only | EQUIV under ESA; `ErgodicΓ` is weaker than the book's second form |
+| S11 conservative: P_t(1)=1, P_t acting on bounded measurable functions, also for infinite μ | clause `P t 1 = 1` in `IsSemigroupOf` (vacuous for infinite μ); `IsConservative` is a separate predicate | **DIFFERENT** — the book notes ESA alone doesn't give conservativeness but ESA+CD(ρ,∞) does (Thm 3.3.23); ours has no such theorem |
+
+## Full triple (F1–F10)
+
+| Book | Our surface | Status |
+|---|---|---|
+| F1 ideal property: f∈A, h∈A₀ ⇒ hf∈A₀ | not present | **MISSING** |
+| F2 positivity detection: f∈A with ∫hf≥0 ∀ positive h∈A₀ ⇒ f≥0 | not present | **MISSING** |
+| F3 A stable under all smooth ψ | `A_comp` | MATCH |
+| F4 L: A→A extends L; Γ on A is given by the carré-du-champ formula | `diffusion_A`, fields for L,Γ on A (pointwise identity) | MATCH/STRONGER |
+| F5 Γ(f)≥0 on A | `Γ_nonneg_A` | MATCH |
+| F6 change-of-variables formulas on A | `diffusion_A` | MATCH |
+| F7 ∫Γ(f,g) = −∫gLf = −∫fLg for **all** f∈A, g∈A₀ | `ibp_A`, `ibp_A_symm` stated only for f, Lf ∈ L² | **DIFFERENT** (weaker hypotheses on the conclusion; the book gets integrability from F1, which we lack) |
+| F8 P_t f ∈ A for f∈A₀ | `semigroup_stable` (for every P with `IsSemigroupOf`) | EQUIV |
+| F9 connexity: f∈A, Γ(f)=0 ⇒ constant | not present (we use `ErgodicL2`) | **MISSING** |
+| F10 ESA | `esa`: Ran(1−L|A₀) dense in L² | EQUIV (standard criterion for a symmetric operator) |
+| — | `ibp_AA` (mixed integration by parts on A with bounded test function) | **EXTRA** — not in the book |
+| CD(ρ,n) defined on all of A (Def 3.3.14), n∈[1,∞] | `CD` on A₀, `CDFull` on A; n>0 allowed (not only n≥1) | DIFFERENT (split; wider n range) |
+
+## How the book proves its theorems (relevant to our extras)
+
+The book does **not** use anything like `ibp_AA`. Under ESA + CD(ρ,∞) it extends Γ₂ and the CD inequality from A₀ to D(L)
+(Prop 3.3.16), identifies Γ₂ on A∩D(L) with the one on D(L) and gets ∫Γ₂(f)=∫(Lf)² there (Prop 3.3.17), then proves the
+strong gradient bound by a spectral argument (Thm 3.3.18, Lemmas 3.3.20–3.3.21), and mass conservation as a *consequence*
+of ESA + CD(ρ,∞) (Thm 3.3.23). Our LSI proof instead uses `ibp_AA` and the hypothesis `BEStable`.
+
+## Conclusions
+
+1. The surface is **not** a faithful transcription of the book. It proves the same classical constants and agrees with the
+   book on the diffusion/standard layer (D1–D9 modulo D8 and the exhaustion sequence), but its Full layer differs.
+2. Missing BGL requirements: exhaustion sequence (Def 3.1.1), D8, F1 (ideal), F2, F9, and the Thm 3.3.23 route to conservativeness.
+3. Extra non-BGL ingredients: `ibp_AA`, the split `CD`/`CDFull`, the L²-restricted `ibp_A`, `ibp_A_symm`, `IsSemigroupOf` as a characterization, and `BEStable`.
+4. Our instances (circle, Lebesgue, OU) do satisfy the book's F1–F10 in spirit (smooth C_c^∞ / C^∞ classes, ideal property holds),
+   so realigning is plausible, but it has NOT been checked in Lean.
