@@ -64,6 +64,91 @@
       "path": "MarkovTriple/Frozen/CDFull.lean",
       "status": "proposed",
       "sha256": "f268388c4a3c189ae1ebb3e823c31650166e05ea034127870a7236afde58d92e"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/CD.lean",
+      "status": "proposed",
+      "sha256": "ee5100546348cc3f1192dc30ca740564fd15b009c0ed8c33a5550a9592cf51f5"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/Classes.lean",
+      "status": "proposed",
+      "sha256": "309471af8c353d21f20c2784ed899a80800ac30290b98354024250d0587f013a"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/CompactTriple.lean",
+      "status": "proposed",
+      "sha256": "645d865566ffd25ef1bfd5ca826a2f06370eb37bff4562d37e3c5b3e9263fc45"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/DiffusionTriple.lean",
+      "status": "proposed",
+      "sha256": "1dc11247263ad7ad9a90154dbe04df87d239c59e1753e8602d00fe8cdd7d14a1"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/Energy.lean",
+      "status": "proposed",
+      "sha256": "0141acbf98c29dd9fe3a3f61455598cb7b6651d1d0eef63150094a640930fd45"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/Ent.lean",
+      "status": "proposed",
+      "sha256": "fc98bbf860b7652bd8490d4b6b58deabfa155b9ad5301742ff6f9e983cf71ec7"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/Exhaustion.lean",
+      "status": "proposed",
+      "sha256": "7ecded301dac1f0d1cc142748362bba148f95598e4e19db47a818f1e0dac8038"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/Fisher.lean",
+      "status": "proposed",
+      "sha256": "7882e2ee9e7890229144da27465c72f5d44496d0c9e3f7b9f608b9963c2f0de9"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/FormDomain.lean",
+      "status": "proposed",
+      "sha256": "dc0cb30fc2a6781725cc8634b4ca7f14415376f3fbdaf2627a85d18b3cc9f6ce"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/FullTriple.lean",
+      "status": "proposed",
+      "sha256": "ff418074961a38ef45ee8ff8bb9ed460745bca25b84b031b8c22bb50282903db"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/Gamma2.lean",
+      "status": "proposed",
+      "sha256": "76510cd032f81b963a6dc293dac0810ef7ec64da4a58146dea8e1f770ed4bdd3"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/GammaA.lean",
+      "status": "proposed",
+      "sha256": "7df4a857c60f8fc7397218819ecda67e46bb0b01e3252e3ed60e7445f922455b"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/LSI.lean",
+      "status": "proposed",
+      "sha256": "65a8586c758c8ca7eb2a1aaaf992ca6e652f0b6251831a5899ec071ffcb1267d"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/PartialDeriv.lean",
+      "status": "proposed",
+      "sha256": "a4401f6e6bfae088bd6dd502724d4f20d77fe28cc04e7dcfbd1f8307fc1914d5"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/Poincare.lean",
+      "status": "proposed",
+      "sha256": "a595b62fa513f792e7be441f0aa562db814fa744d836cd6365d0dad531e08abd"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/Semigroup.lean",
+      "status": "proposed",
+      "sha256": "9245073d2ec21c1696159f398ea18f25c975114eda492866d4df03000f32b09a"
+    },
+    {
+      "path": "MarkovTriple/BGL/Frozen/StandardTriple.lean",
+      "status": "proposed",
+      "sha256": "17668c21aa6e01cc3845e18f38fda7e261eaa1f95f5dc890c7fa59550827f0a4"
     }
   ]
 }
