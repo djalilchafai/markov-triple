@@ -38,3 +38,12 @@
 11. Numbering of BGL results in docstrings is unverified unless checked against the book; never claim otherwise.
 12. (round 3) Keep `comp_mem` for all smooth ψ (BGL-faithful). Consequence: A₀ is of bounded type; Gaussian/Gibbs/OU instances use C_c^∞ or Schwartz-type classes (density in Lᵖ still holds).
 13. `Wip/` holds work-in-progress files that may contain `sorry`; it is never imported by the root and must be empty of `sorry` before any release.
+
+# Amendment (author decision, round 5): realign to BGL D1–D9, S10–S11, F1–F10
+
+14. The canonical surface is `MarkovTriple/BGL/Frozen/` (namespace `MarkovTriple.BGL`), realigned to the book's hypothesis
+    list. The first surface (`MarkovTriple/Frozen/`, fields `ibp_AA`, `IsSemigroupOf`, `BEStable`, split `CD`/`CDFull`,
+    range-criterion `esa`) is legacy: not extended, kept for reused analysis. Do not add theorems to the legacy surface.
+15. The book's own route (Props 3.3.16–3.3.17, Thm 3.3.18, Thm 3.3.23) replaces `ibp_AA`/`BEStable`. Gradient bound and LSI are
+    proved from named regularity structures (`GradientInterpolation`, `EntropyInterpolation`) which are discharged per instance.
+16. The book's PDF is reference material only: it must never be committed or quoted (`.gitignore` has `*.pdf`).
