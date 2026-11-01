@@ -115,4 +115,7 @@ import MarkovTriple.BGL.Calculus.LSIExtend
 import MarkovTriple.BGL.Semigroup.ESA
 import MarkovTriple.BGL.Sanity.Trivial
 import MarkovTriple.BGL.Sanity.Circle
+import MarkovTriple.BGL.Instances.OU.Diffusion
+import MarkovTriple.BGL.Instances.OU.Semigroup
+import MarkovTriple.BGL.Instances.OU.Full
 import MarkovTriple.BGL.AxiomCheck
