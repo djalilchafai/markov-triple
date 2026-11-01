@@ -36,3 +36,5 @@
 10. Concrete test classes: circle → C^∞(𝕋); OU/Gibbs → smooth functions with polynomial-growth derivatives
     (or C_c^∞); Lebesgue on ℝⁿ → C_c^∞ (this is the new infinite-measure sanity instance).
 11. Numbering of BGL results in docstrings is unverified unless checked against the book; never claim otherwise.
+12. (round 3) Keep `comp_mem` for all smooth ψ (BGL-faithful). Consequence: A₀ is of bounded type; Gaussian/Gibbs/OU instances use C_c^∞ or Schwartz-type classes (density in Lᵖ still holds).
+13. `Wip/` holds work-in-progress files that may contain `sorry`; it is never imported by the root and must be empty of `sorry` before any release.
