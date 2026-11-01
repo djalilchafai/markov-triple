@@ -24,7 +24,7 @@ private lemma energy_nonneg (T : MarkovTriple E) {f : E → ℝ} (hf : f ∈ T.A
 
 private lemma Γ_quad (T : MarkovTriple E) {f g : E → ℝ} (hf : f ∈ T.A₀) (hg : g ∈ T.A₀) (t : ℝ) :
     T.Γ (f + t • g) (f + t • g) = T.Γ f f + (2 * t) • T.Γ f g + (t ^ 2) • T.Γ g g := by
-  have htg : t • g ∈ T.A₀ := T.A₀.smul_mem hg t
+  have htg : t • g ∈ T.A₀ := T.A₀.smul_mem t hg
   have hfg : f + t • g ∈ T.A₀ := T.A₀.add_mem hf htg
   have e1 : T.Γ (f + t • g) (f + t • g) = T.Γ f (f + t • g) + t • T.Γ g (f + t • g) := by
     rw [T.Γ_add f hf (t • g) htg _ hfg, T.Γ_smul t g hg _ hfg]
@@ -44,7 +44,7 @@ private lemma cross_zero (T : MarkovTriple E) {f g : E → ℝ} (hf : f ∈ T.A�
   have igg := integrable_of_mem T (T.Γ_mem g hg g hg)
   have key : ∀ t : ℝ, 0 ≤ 2 * t * ∫ x, T.Γ f g x ∂T.μ + t ^ 2 * T.energy g := by
     intro t
-    have hn := energy_nonneg T (T.A₀.add_mem hf (T.A₀.smul_mem hg t))
+    have hn := energy_nonneg T (T.A₀.add_mem hf (T.A₀.smul_mem t hg))
     have : T.energy (f + t • g) = T.energy f + 2 * t * ∫ x, T.Γ f g x ∂T.μ + t ^ 2 * T.energy g := by
       unfold energy
       rw [Γ_quad T hf hg t]
@@ -128,7 +128,7 @@ private lemma bool_ae_const {f : Bool → ℝ} {c : ℝ} (h : f =ᵐ[μ2] fun _ 
 /-- The two-point trivial triple (`L = Γ = 0`) is **not** ergodic (Γ form). -/
 theorem T2_not_ErgodicΓ : ¬ T2.toMarkovTriple.ErgodicΓ := by
   intro h
-  obtain ⟨c, hc⟩ := h (fun b => if b then 1 else 0) Algebra.mem_top
+  obtain ⟨c, hc⟩ := h (fun b => if b then 1 else 0) (Set.mem_univ _)
     (by filter_upwards with x; simp [T2, Sanity.trivialFull, Sanity.trivialTriple])
   have h1 := bool_ae_const hc true
   have h2 := bool_ae_const hc false

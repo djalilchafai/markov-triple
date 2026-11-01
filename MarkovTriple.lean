@@ -1,4 +1,3 @@
-import MarkovTriple.Frozen.Basic
 import MarkovTriple.Frozen.PartialDeriv
 import MarkovTriple.Frozen.MarkovTriple
 import MarkovTriple.Frozen.Gamma2
@@ -26,6 +25,7 @@ import MarkovTriple.Divergences.KLScalarVariational
 import MarkovTriple.Divergences.KLVariational
 import MarkovTriple.Divergences.Varentropy
 import MarkovTriple.Sanity.Circle
+import MarkovTriple.Sanity.Lebesgue
 import MarkovTriple.Sanity.Ergodic
 import MarkovTriple.Hilbert.Complexify
 import MarkovTriple.Hilbert.Friedrichs
@@ -43,6 +43,7 @@ import MarkovTriple.Hilbert.DirBridge
 import MarkovTriple.Hilbert.TripleForm
 import MarkovTriple.Hilbert.Bridge
 import MarkovTriple.Hilbert.Closure
+import MarkovTriple.Hilbert.FullBridge
 import MarkovTriple.Hilbert.MarkovCriterion
 import MarkovTriple.Hilbert.OperatorSquareCompletion
 import MarkovTriple.Hilbert.Sanity

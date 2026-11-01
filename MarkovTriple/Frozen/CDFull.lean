@@ -22,6 +22,6 @@ def CDFull (T : FullMarkovTriple E) (ρ : ℝ) (n : ℝ≥0∞) : Prop :=
 
 theorem CDFull.toCD {T : FullMarkovTriple E} {ρ : ℝ} {n : ℝ≥0∞} (h : T.CDFull ρ n) :
     T.toMarkovTriple.CD ρ n :=
-  ⟨h.1, fun f hf => h.2 f (T.A₀_le hf)⟩
+  ⟨h.1, fun f hf => h.2 f (T.A₀_le f hf)⟩
 
 end FullMarkovTriple

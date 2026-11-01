@@ -29,7 +29,7 @@ private lemma μ2_single (b : Bool) : μ2 {b} = 2⁻¹ := by
 
 theorem T2_not_PI (C : ℝ) : ¬ T2.toMarkovTriple.PoincareIneq C := by
   rintro ⟨-, h⟩
-  have := h (fun b => if b then 1 else 0) Algebra.mem_top
+  have := h (fun b => if b then 1 else 0) (Set.mem_univ _)
   have e : T2.toMarkovTriple.energy (fun b : Bool => if b then (1:ℝ) else 0) = 0 := by
     simp [energy, T2, Sanity.trivialFull, Sanity.trivialTriple]
   rw [e, mul_zero] at this
@@ -44,7 +44,7 @@ theorem T2_not_PI (C : ℝ) : ¬ T2.toMarkovTriple.PoincareIneq C := by
 
 theorem T2_not_LSI (C : ℝ) : ¬ T2.toMarkovTriple.LogSobolevIneq C := by
   rintro ⟨-, h⟩
-  have := h (fun b => if b then 1 else 0) Algebra.mem_top
+  have := h (fun b => if b then 1 else 0) (Set.mem_univ _)
   have e : T2.toMarkovTriple.energy (fun b : Bool => if b then (1:ℝ) else 0) = 0 := by
     simp [energy, T2, Sanity.trivialFull, Sanity.trivialTriple]
   rw [e, mul_zero] at this

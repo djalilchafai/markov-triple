@@ -19,7 +19,13 @@ of the triple `T` (BGL §1.2, §3.2). It is characterised through the `L²`-gene
 
 When `L|𝒜₀` is essentially self-adjoint (see `FullMarkovTriple.esa`) such a `P` is unique, being
 `e^{t L̄}`. Without essential self-adjointness the predicate may have several witnesses (one per
-self-adjoint extension). Existence is not asserted here. -/
+self-adjoint extension). Existence is not asserted here (it is a theorem for full triples:
+`Hilbert.isSemigroupOf_full`).
+
+Note on the Markov clause `P t 1 = 1`: it is only meaningful when `1 ∈ L²(μ)`, i.e. `μ` finite
+(the hypothesis `u =ᵐ 1` with `u ∈ L²` is unsatisfiable for infinite `μ`, and the clause is then
+vacuous). Positivity preservation is the only Markov clause with content for infinite `μ`.
+The `L^∞`-contractivity (`0 ≤ u ≤ 1 ⇒ 0 ≤ P t u ≤ 1`) is NOT part of the frozen surface. -/
 def IsSemigroupOf (T : MarkovTriple E) (P : ℝ≥0 → (Lp ℝ 2 T.μ →L[ℝ] Lp ℝ 2 T.μ)) : Prop :=
   P 0 = ContinuousLinearMap.id ℝ _ ∧
   (∀ s t, P (s + t) = (P s).comp (P t)) ∧

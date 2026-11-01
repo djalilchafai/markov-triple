@@ -10,8 +10,8 @@ namespace MarkovTriple.Sanity.Circle
 noncomputable def ek (k : ℕ) : 𝕋 → ℝ := fun x => (fourier (k : ℤ) x).re
 noncomputable def sk (k : ℕ) : 𝕋 → ℝ := fun x => (fourier (k : ℤ) x).im
 
-lemma cC_mem : (⇑cC : 𝕋 → ℝ) ∈ A₀ := Algebra.subset_adjoin (by simp)
-lemma sC_mem : (⇑sC : 𝕋 → ℝ) ∈ A₀ := Algebra.subset_adjoin (by simp)
+lemma cC_mem : (⇑cC : 𝕋 → ℝ) ∈ A₀ := Atrig_le (Algebra.subset_adjoin (by simp))
+lemma sC_mem : (⇑sC : 𝕋 → ℝ) ∈ A₀ := Atrig_le (Algebra.subset_adjoin (by simp))
 
 lemma ek_succ (k : ℕ) : ek (k + 1) = ek k * ⇑cC + (-1 : ℝ) • (sk k * ⇑sC) := by
   funext x
@@ -36,8 +36,8 @@ lemma ek_sk (k : ℕ) : ek k ∈ A₀ ∧ sk k ∈ A₀ ∧ D (ek k) = (-(2 * π
     have e0 : ek 0 = fun _ => (1 : ℝ) := by funext x; simp [ek]
     have s0 : sk 0 = fun _ => (0 : ℝ) := by funext x; simp [sk]
     refine ⟨?_, ?_, ?_, ?_⟩
-    · rw [e0]; exact A₀.algebraMap_mem 1
-    · rw [s0]; exact A₀.algebraMap_mem 0
+    · rw [e0]; exact Atrig_le (Atrig.algebraMap_mem 1)
+    · rw [s0]; exact Atrig_le (Atrig.algebraMap_mem 0)
     · rw [e0, s0, D_const]; simp
     · rw [e0, s0, D_const]; simp
   | succ k ih =>
@@ -48,9 +48,9 @@ lemma ek_sk (k : ℕ) : ek k ∈ A₀ ∧ sk k ∈ A₀ ∧ D (ek k) = (-(2 * π
     have m3 : ek k * ⇑sC ∈ A₀ := mul_mem he hs'
     have m4 : sk k * ⇑cC ∈ A₀ := mul_mem hs hc
     refine ⟨?_, ?_, ?_, ?_⟩
-    · rw [ek_succ]; exact add_mem m1 (A₀.smul_mem m2 _)
+    · rw [ek_succ]; exact add_mem m1 (A₀.smul_mem _ m2)
     · rw [sk_succ]; exact add_mem m3 m4
-    · rw [ek_succ, D_add (Sm_of_mem m1) (Sm_of_mem (A₀.smul_mem m2 _)),
+    · rw [ek_succ, D_add (Sm_of_mem m1) (Sm_of_mem (A₀.smul_mem _ m2)),
         D_smul _ (Sm_of_mem m2), D_mul' he hc, D_mul' hs hs', hDe, hDs, D_c, D_s]
       funext x
       simp only [Pi.add_apply, Pi.mul_apply, Pi.smul_apply, smul_eq_mul]

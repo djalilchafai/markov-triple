@@ -8,7 +8,7 @@
     {
       "path": "MarkovTriple/Frozen/MarkovTriple.lean",
       "status": "proposed",
-      "sha256": "40c2431d89d6fdee93b5ec303078dbb56facf99fa04101251b815e4b0af18206"
+      "sha256": "de213050158342279ffa4b5733e9370cdaf6cf80b66135591109d5b658deac4a"
     },
     {
       "path": "MarkovTriple/Frozen/Gamma2.lean",
@@ -48,12 +48,12 @@
     {
       "path": "MarkovTriple/Frozen/Semigroup.lean",
       "status": "proposed",
-      "sha256": "218b86a0f19a5e63ad442e14984098fdd517953854f4499cf9edbc30147d46ed"
+      "sha256": "22f2b0acfe73b341f0555b922ec89f97b5caa9a96d6881bef28547cce80f42cf"
     },
     {
       "path": "MarkovTriple/Frozen/FullMarkovTriple.lean",
       "status": "proposed",
-      "sha256": "e019625c8dfc241b52506fae43d93b34029de9fedbac5363f2eb26e0d8f4642d"
+      "sha256": "2b7f38da97c3d6147ae85b1baa7b54d8785ee83272c88f5cccee99409b5a9d57"
     },
     {
       "path": "MarkovTriple/Frozen/Ergodic.lean",
@@ -63,7 +63,7 @@
     {
       "path": "MarkovTriple/Frozen/CDFull.lean",
       "status": "proposed",
-      "sha256": "94cb626b0467abe8857f47c104598560ed0734107b6b04e89489b2df87680d78"
+      "sha256": "f268388c4a3c189ae1ebb3e823c31650166e05ea034127870a7236afde58d92e"
     }
   ]
 }

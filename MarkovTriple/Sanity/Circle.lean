@@ -142,29 +142,77 @@ lemma D_s : D ⇑sC = (2 * π) • ⇑cC := by
     funext t; exact (cs_shift x t).2
   unfold D; rw [e, h.deriv]; simp
 
-/-- the test algebra: real trigonometric polynomials -/
-noncomputable def A₀ : Subalgebra ℝ (𝕋 → ℝ) := Algebra.adjoin ℝ {⇑cC, ⇑sC}
+/-- **the test algebra `𝒜₀ = C^∞(𝕋)`**: smooth functions on the circle, i.e. `f ∘ (↑) : ℝ → ℝ`
+is `C^∞`.  It is a *non-unital* subalgebra (it happens to contain the constants), stable under
+composition with every smooth `ψ` (in particular those with `ψ(0) = 0`).  The old trigonometric
+polynomial algebra is *not* stable under smooth `ψ` and is only used for the density proof
+(`Atrig`). -/
+def A₀ : NonUnitalSubalgebra ℝ (𝕋 → ℝ) where
+  carrier := {f | ContDiff ℝ (⊤ : ℕ∞) (fun t : ℝ => f (t : 𝕋))}
+  add_mem' := fun {f g} (hf : ContDiff ℝ (⊤ : ℕ∞) (fun t : ℝ => f (t : 𝕋)))
+    (hg : ContDiff ℝ (⊤ : ℕ∞) (fun t : ℝ => g (t : 𝕋))) => hf.add hg
+  zero_mem' := (contDiff_const : ContDiff ℝ (⊤ : ℕ∞) (fun _ : ℝ => (0 : ℝ)))
+  mul_mem' := fun {f g} (hf : ContDiff ℝ (⊤ : ℕ∞) (fun t : ℝ => f (t : 𝕋)))
+    (hg : ContDiff ℝ (⊤ : ℕ∞) (fun t : ℝ => g (t : 𝕋))) => hf.mul hg
+  smul_mem' := fun c {f} (hf : ContDiff ℝ (⊤ : ℕ∞) (fun t : ℝ => f (t : 𝕋))) =>
+    hf.const_smul c
 
-lemma A₀_prop {f : 𝕋 → ℝ} (hf : f ∈ A₀) : Sm f ∧ D f ∈ A₀ ∧ Continuous f := by
+lemma mem_A₀ {f : 𝕋 → ℝ} : f ∈ A₀ ↔ ContDiff ℝ (⊤ : ℕ∞) (fun t : ℝ => f (t : 𝕋)) := by
+  constructor <;> intro h <;> exact h
+
+lemma Sm_of_contDiff {f : 𝕋 → ℝ} (hf : f ∈ A₀) : Sm f := by
+  intro x
+  obtain ⟨s, rfl⟩ := QuotientAddGroup.mk_surjective x
+  have : (fun t : ℝ => f ((s : 𝕋) + (t : 𝕋))) = (fun t : ℝ => f (t : 𝕋)) ∘ (fun t => s + t) := by
+    funext t; simp [AddCircle.coe_add]
+  rw [this]
+  exact (mem_A₀.1 hf).comp (contDiff_const.add contDiff_id)
+
+lemma D_coe {f : 𝕋 → ℝ} (hf : f ∈ A₀) (t : ℝ) :
+    D f (t : 𝕋) = deriv (fun u : ℝ => f (u : 𝕋)) t := by
+  have h := (Sm_of_contDiff hf).hasDerivAt 0 t
+  simp only [zero_add] at h
+  exact h.deriv.symm
+
+lemma D_mem_A₀ {f : 𝕋 → ℝ} (hf : f ∈ A₀) : D f ∈ A₀ := by
+  rw [mem_A₀]
+  have : (fun t : ℝ => D f (t : 𝕋)) = deriv (fun u : ℝ => f (u : 𝕋)) := funext (D_coe hf)
+  rw [this]
+  exact (contDiff_infty_iff_deriv.1 (mem_A₀.1 hf)).2
+
+lemma continuous_of_A₀ {f : 𝕋 → ℝ} (hf : f ∈ A₀) : Continuous f := by
+  have hc : Continuous (fun t : ℝ => f (t : 𝕋)) := (mem_A₀.1 hf).continuous
+  exact (QuotientAddGroup.isQuotientMap_mk _).continuous_iff.2 hc
+
+lemma A₀_prop {f : 𝕋 → ℝ} (hf : f ∈ A₀) : Sm f ∧ D f ∈ A₀ ∧ Continuous f :=
+  ⟨Sm_of_contDiff hf, D_mem_A₀ hf, continuous_of_A₀ hf⟩
+
+/-- the trigonometric polynomials (used only for the density proof) -/
+noncomputable def Atrig : Subalgebra ℝ (𝕋 → ℝ) := Algebra.adjoin ℝ {⇑cC, ⇑sC}
+
+lemma cC_coe (t : ℝ) : cC (t : 𝕋) = Real.cos (2 * π * t) := by
+  have := (cs_shift 0 t).1
+  have c0 : cC 0 = 1 := by simp [cC]
+  have s0 : sC 0 = 0 := by simp [sC]
+  simpa [c0, s0] using this
+
+lemma sC_coe (t : ℝ) : sC (t : 𝕋) = Real.sin (2 * π * t) := by
+  have := (cs_shift 0 t).2
+  have c0 : cC 0 = 1 := by simp [cC]
+  have s0 : sC 0 = 0 := by simp [sC]
+  simpa [c0, s0] using this
+
+lemma Atrig_le {f : 𝕋 → ℝ} (hf : f ∈ Atrig) : f ∈ A₀ := by
   induction hf using Algebra.adjoin_induction with
   | mem x hx =>
     rcases hx with rfl | rfl
-    · refine ⟨Sm_c, ?_, cC.continuous⟩
-      rw [D_c]; exact Subalgebra.smul_mem _ (Algebra.subset_adjoin (by simp)) _
-    · refine ⟨Sm_s, ?_, sC.continuous⟩
-      rw [D_s]; exact Subalgebra.smul_mem _ (Algebra.subset_adjoin (by simp)) _
-  | algebraMap r =>
-    refine ⟨Sm.const r, ?_, continuous_const⟩
-    rw [D_algebraMap]; exact zero_mem _
-  | add x y hx hy ihx ihy =>
-    refine ⟨ihx.1.add ihy.1, ?_, ihx.2.2.add ihy.2.2⟩
-    rw [D_add ihx.1 ihy.1]; exact add_mem ihx.2.1 ihy.2.1
-  | mul x y hx hy ihx ihy =>
-    refine ⟨ihx.1.mul ihy.1, ?_, ihx.2.2.mul ihy.2.2⟩
-    rw [D_mul ihx.1 ihy.1]
-    have : (fun a => D x a * y a + x a * D y a) = D x * y + x * D y := rfl
-    rw [this]
-    exact add_mem (mul_mem ihx.2.1 hy) (mul_mem hx ihy.2.1)
+    · rw [mem_A₀]
+      simp only [cC_coe]; fun_prop
+    · rw [mem_A₀]
+      simp only [sC_coe]; fun_prop
+  | algebraMap r => rw [mem_A₀]; exact contDiff_const
+  | add x y hx hy ihx ihy => exact add_mem ihx ihy
+  | mul x y hx hy ihx ihy => exact mul_mem ihx ihy
 
 
 lemma clm_pi_apply {k : ℕ} (Λ : (Fin k → ℝ) →L[ℝ] ℝ) (v : Fin k → ℝ) :
@@ -239,13 +287,14 @@ lemma integral_D {F : 𝕋 → ℝ} (hF : F ∈ A₀) : ∫ x, D F x ∂μ₀ = 
 /-- the same algebra, inside `C(𝕋,ℝ)` -/
 noncomputable def AC : Subalgebra ℝ C(𝕋, ℝ) := Algebra.adjoin ℝ {cC, sC}
 
-lemma AC_map : AC.map (ContinuousMap.coeFnAlgHom ℝ) = A₀ := by
-  unfold AC A₀
+lemma AC_map : AC.map (ContinuousMap.coeFnAlgHom ℝ) = Atrig := by
+  unfold AC Atrig
   rw [AlgHom.map_adjoin, Set.image_insert_eq, Set.image_singleton]
   rfl
 
 lemma AC_mem_A₀ {F : C(𝕋, ℝ)} (hF : F ∈ AC) : (F : 𝕋 → ℝ) ∈ A₀ := by
-  rw [← AC_map]; exact ⟨F, hF, rfl⟩
+  have : (F : 𝕋 → ℝ) ∈ Atrig := by rw [← AC_map]; exact ⟨F, hF, rfl⟩
+  exact Atrig_le this
 
 lemma AC_sep : AC.SeparatesPoints := by
   intro x y hxy
@@ -366,12 +415,15 @@ lemma diffusion_c (k : ℕ) (ψ : (Fin k → ℝ) → ℝ) (hψ : ContDiff ℝ (
       ring
 
 
-/-- The (nontrivial) Markov triple on the circle `ℝ/ℤ`: Haar probability measure, trigonometric
-polynomials, `L f = f''`, `Γ(f,g) = f' g'`. -/
+/-- The (nontrivial) Markov triple on the circle `ℝ/ℤ`: Haar probability measure, smooth functions
+`C^∞(𝕋)` (non-unital algebra, stable under smooth `ψ`), `L f = f''`, `Γ(f,g) = f' g'`. -/
 noncomputable def circleTriple : MarkovTriple 𝕋 where
   μ := μ₀
   sigmaFinite := inferInstance
   A₀ := A₀
+  comp_mem := fun k ψ hψ _ f hf => by
+    rw [mem_A₀]
+    exact hψ.comp (contDiff_pi.2 fun i => mem_A₀.1 (hf i))
   Γ := Gc
   L := Lc
   measurable := fun f hf => (A₀_prop hf).2.2.measurable
@@ -396,7 +448,7 @@ noncomputable def circleTriple : MarkovTriple 𝕋 where
     ring
   ibp := fun f hf g hg => ibp_c hf hg
   dense := fun p hp hp' => dense_Lp p hp'
-  diffusion := fun k ψ hψ f hf _ => diffusion_c k ψ hψ f hf
+  diffusion := fun k ψ hψ _ f hf => diffusion_c k ψ hψ f hf
 
 
 /-- `Γ₂(f) = (Lf)²` on the circle (flat, one-dimensional). -/

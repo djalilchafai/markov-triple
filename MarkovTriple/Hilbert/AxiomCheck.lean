@@ -15,6 +15,7 @@ import MarkovTriple.Hilbert.DirBridge
 import MarkovTriple.Hilbert.TripleForm
 import MarkovTriple.Hilbert.Bridge
 import MarkovTriple.Hilbert.Closure
+import MarkovTriple.Hilbert.FullBridge
 import MarkovTriple.Hilbert.MarkovCriterion
 import MarkovTriple.Hilbert.OperatorSquareCompletion
 import MarkovTriple.Hilbert.Sanity
@@ -56,10 +57,14 @@ open MarkovTriple.Hilbert
 #print axioms formData
 #print axioms inner_formA
 -- (3) bridge
-#print axioms tripleSemigroup_one
+#print axioms FullMarkovTriple.resolvent_eq
+#print axioms FullMarkovTriple.tripleSemigroup_one
+#print axioms isMarkovianForm
+#print axioms isSemigroupOf_full
+#print axioms circle_isMarkovianForm
 #print axioms tripleSemigroup_nonneg
-#print axioms isSemigroupOf_tripleSemigroup
+#print axioms isSemigroupOf_of_markov_conservative
 #print axioms isMarkovianForm_of_approx
 #print axioms FullMarkovTriple.generator_graph_eq_closure
-#print axioms trivialTriple_friedrichs_isSemigroupOf
+#print axioms trivialFull_friedrichs_isSemigroupOf
 #print axioms OperatorSquareCompletion.integratedGammaTwo_of_poincare

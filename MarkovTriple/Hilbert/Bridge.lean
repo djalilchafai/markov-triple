@@ -1,5 +1,5 @@
 import Mathlib
-import MarkovTriple.Frozen.FullMarkovTriple
+import MarkovTriple.Frozen.Semigroup
 import MarkovTriple.Hilbert.TripleForm
 import MarkovTriple.Hilbert.BeurlingDeny
 
@@ -10,18 +10,16 @@ For a Markov triple `T` (`Frozen/MarkovTriple.lean`), `T.formData` (see `TripleF
 form `ℰ(f) = ∫ Γ(f,f)` on `𝒜₀ ⊆ L²(μ)`; `tripleSemigroup T := T.formData.semigroup` is the
 `P_t = e^{tL}` built from its Friedrichs extension.
 
-**Theorem** `isSemigroupOf_tripleSemigroup`: if the closed form is *Markovian* (first
-Beurling–Deny criterion, `IsMarkovianForm T`: `u ∈ Q ⇒ |u| ∈ Q`, `ℰ(|u|) ≤ ℰ(u)`), then
-`IsSemigroupOf T (tripleSemigroup T)`.
+**Theorem** `isSemigroupOf_of_markov_conservative`: if the closed form is *Markovian*
+(`IsMarkovianForm T`) and `P_t` fixes the constant `1` (when `1 ∈ L²`, i.e. `μ` finite), then
+`IsSemigroupOf T (tripleSemigroup T)`; all other clauses are proved with no hypothesis.
 
-The hypothesis `IsMarkovianForm` is the *only* thing not derived from the fields of `MarkovTriple`:
-positivity preservation of `P_t` is not a consequence of the Markov-triple axioms alone, because
-the diffusion property only applies to `ψ(f) ∈ 𝒜₀` (no stability of `𝒜₀` under smooth `ψ`), so
-`|f|` or `ψ_ε(f)` is not known to be in the form domain.  Everything else in `IsSemigroupOf`
-(`P 0 = id`, semigroup law, strong continuity, self-adjointness, `P_t 1 = 1`, generator extends
-`L|𝒜₀`) is proved with no extra hypothesis.  Essential self-adjointness (`FullMarkovTriple.esa`)
-is *not* needed for the existence of a witness; it identifies the generator with the closure of
-`L|𝒜₀` (`FullMarkovTriple.generator_graph_eq_closure`) -- see `Closure.lean`.
+* `IsMarkovianForm` is now a THEOREM for every `MarkovTriple` (`MarkovCriterion.lean`,
+  `isMarkovianForm`), because `𝒜₀` is stable under `ψ_ε(f) = √(f²+ε²) − ε` (ψ_ε(0)=0).
+* Conservativeness `P_t 1 = 1` can NOT be derived from a bare `MarkovTriple` (`1 ∉ 𝒜₀`; e.g.
+  `𝒜₀ = C_c^∞(0,1)` with Lebesgue measure on `(0,1)` gives the Dirichlet semigroup, which is not
+  conservative).  For a `FullMarkovTriple` it is derived from `esa` + `ibp_A_symm`
+  (`FullBridge.lean`, `isSemigroupOf_full`).
 -/
 
 open MeasureTheory Filter Topology
@@ -43,16 +41,6 @@ def IsMarkovianForm : Prop :=
     (v : Lp ℝ 2 T.μ) = |(u : Lp ℝ 2 T.μ)| ∧ (formData T).E v v ≤ (formData T).E u u
 
 section Lemmas
-
-lemma L_one_eq_zero : T.L (1 : E → ℝ) = 0 := by
-  have h := (T.diffusion 0 (fun _ => (1 : ℝ)) contDiff_const (fun i => Fin.elim0 i)
-    (fun i => Fin.elim0 i) T.A₀.one_mem).2
-  show T.L (fun _ => (1 : ℝ)) = fun _ => 0
-  rw [h]
-  funext x
-  simp
-
-lemma one_mem' : (1 : E → ℝ) ∈ T.A₀ := T.A₀.one_mem
 
 lemma norm_abs_eq (u : Lp ℝ 2 T.μ) : ‖|u|‖ = ‖u‖ := by
   have h : inner ℝ |u| |u| = inner ℝ u u := by
@@ -107,38 +95,15 @@ theorem tripleSemigroup_nonneg (hM : IsMarkovianForm T) (t : ℝ≥0) {u : Lp �
       exact abs_nonneg _) t hu
   exact this
 
-/-- The unit class `[1]` is fixed by every `P_t` (no extra hypothesis: `L 1 = 0`). -/
-theorem tripleSemigroup_one (t : ℝ≥0) (u : Lp ℝ 2 T.μ) (hu : (u : E → ℝ) =ᵐ[T.μ] (1 : E → ℝ)) :
-    (tripleSemigroup T t u : E → ℝ) =ᵐ[T.μ] (1 : E → ℝ) := by
-  have hu1 : u = toLp0 T ⟨1, T.A₀.one_mem⟩ := by
-    refine Lp.ext ?_
-    exact hu.trans (coeFn_toLp0 T ⟨1, T.A₀.one_mem⟩).symm
-  set S := formData T with hS
-  set d : S.D := ⟨toLp0 T ⟨1, T.A₀.one_mem⟩, ⟨_, rfl⟩⟩ with hd
-  have hA : S.A d = 0 := by
-    show formA T ⟨toLp0 T ⟨1, T.A₀.one_mem⟩, ⟨_, rfl⟩⟩ = 0
-    rw [formA_apply, Lt0_apply]
-    have : (T.L (1 : E → ℝ)) = 0 := L_one_eq_zero T
-    simp only [this]
-    simp
-  have hR : S.R (u : Lp ℝ 2 T.μ) = (1 + (0 : ℝ))⁻¹ • u := by
-    have := S.R_resolvent ⟨(d : Lp ℝ 2 T.μ), d.2⟩
-    have e : S.emb ⟨(d : Lp ℝ 2 T.μ), d.2⟩ = u := by rw [hu1]; rfl
-    have e2 : S.opA ⟨(d : Lp ℝ 2 T.μ), d.2⟩ = 0 := hA
-    rw [e, e2, add_zero] at this
-    simpa using this
-  have := S.semigroup_eigen (le_refl (0 : ℝ)) hR t
-  have e : tripleSemigroup T t u = u := by
-    have h2 : S.semigroup t u = u := by simpa using this
-    exact h2
-  rw [e]; exact hu
-
-/-- **Bridge.**  For a Markov triple whose Friedrichs form is Markovian
-(`IsMarkovianForm T`), the Friedrichs semigroup satisfies the frozen `IsSemigroupOf`. -/
-theorem isSemigroupOf_tripleSemigroup (hM : IsMarkovianForm T) :
+/-- **Bridge.**  For a Markov triple whose Friedrichs form is Markovian (a theorem, see
+`isMarkovianForm`) and whose semigroup fixes `1` (hypothesis `hone`), the Friedrichs semigroup
+satisfies the frozen `IsSemigroupOf`. -/
+theorem isSemigroupOf_of_markov_conservative (hM : IsMarkovianForm T)
+    (hone : ∀ (t : ℝ≥0) (u : Lp ℝ 2 T.μ), (u : E → ℝ) =ᵐ[T.μ] (1 : E → ℝ) →
+      (tripleSemigroup T t u : E → ℝ) =ᵐ[T.μ] (1 : E → ℝ)) :
     IsSemigroupOf T (tripleSemigroup T) := by
   set S := formData T with hS
-  refine ⟨S.semigroup_zero, S.semigroup_add, ?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨S.semigroup_zero, S.semigroup_add, ?_, ?_, ?_, hone, ?_⟩
   · intro u
     have := ((S.continuous_semigroup_apply u).tendsto (0 : ℝ≥0))
     rw [show S.semigroup 0 u = u by simp [S.semigroup_zero]] at this
@@ -148,8 +113,6 @@ theorem isSemigroupOf_tripleSemigroup (hM : IsMarkovianForm T) :
     exact h u v
   · intro t u hu
     exact tripleSemigroup_nonneg T hM t hu
-  · intro t u hu
-    exact tripleSemigroup_one T t u hu
   · intro f hf u v hu hv
     set f' : T.A₀ := ⟨f, hf⟩
     have hu' : u = toLp0 T f' := Lp.ext (hu.trans (coeFn_toLp0 T f').symm)

@@ -1,11 +1,54 @@
-# FROZEN_REVIEW: Phase 2 frozen definition surface (status: all `proposed`)
+# FROZEN_REVIEW: frozen definition surface (status: all `proposed`; REDESIGNED in round 2)
 
 Files: `MarkovTriple/Frozen/{PartialDeriv,MarkovTriple,Gamma2,CD,Energy,Ent,Poincare,LSI,Fisher,Semigroup,FullMarkovTriple}.lean`.
 Sanity (not frozen): `MarkovTriple/Sanity/Trivial.lean`. Manifest: `frozen-manifest.json`; check with `scripts/check_frozen.py`.
 BGL numbering in docstrings is partly from memory; entries marked "numbering to be verified" must be checked against the book.
-`Frozen/Basic.lean` is the old placeholder, not in the manifest.
+`Frozen/Basic.lean` (old placeholder) was deleted (ERRATA E1). Files now also include `Ergodic`, `CDFull`.
 
-## Design choices
+## Round 2 redesign (DECISIONS 8–11): what changed vs the Phase-2 text below
+
+Items 2, 4, 6 and 12 below describe the superseded Phase-2 design; this section is binding.
+All BGL numbering below ("§3.1", "Def. 3.1.x", "§3.3–3.4") is UNVERIFIED against the book (DECISIONS 11).
+
+R1. **μ σ-finite, not finite.** `A₀ : NonUnitalSubalgebra ℝ (E → ℝ)`; constants no longer in `A₀`
+   (so `1 ∈ Lᵖ` no longer forces `μ` finite). `sigmaFinite` stays a field. Witness: `Sanity/Lebesgue.lean`
+   (`volume` on ℝ, `lebesgueTriple_not_finite : μ univ = ∞`).
+R2. **`comp_mem`**: `A₀` stable under every smooth `ψ : ℝᵏ → ℝ` with `ψ 0 = 0` (BGL's diffusion-algebra
+   hypothesis; unverified whether BGL restricts the class of ψ). The `diffusion` chain rule is now unconditional
+   on `A₀` (guard "ψ(f) ∈ A₀" removed; `ψ 0 = 0` added). Consequence: the OU class "C^∞ with
+   polynomial-growth derivatives" is not admissible (ERRATA G2); C_c^∞ or C^∞(𝕋) are.
+R3. **Carré du champ** stays a pointwise field on `A₀`: `Γ f g x = (L (f*g) x − f x L g x − g x L f x)/2`.
+   Only the product `f*g` (inside the non-unital algebra) is used; no unit. `L 1 = 0` is not visible on `A₀`:
+   it is the case `k = 0`, `ψ ≡ 1` of `diffusion_A` (proved as `FullMarkovTriple.L_one`). `ibp` is symmetric in
+   `(f,g)` on `A₀` (both slots equal by `Γ_symm`).
+R4. **`FullMarkovTriple`**: `A : Subalgebra` (unital) with `A₀_le : ∀ f ∈ A₀, f ∈ A`, **`A_comp`** (stable under
+   all smooth ψ), `diffusion_A` unconditional, Γ/L calculus on `A`, `esa` (unchanged range criterion),
+   `ibp_A` (as before) and the NEW **`ibp_A_symm`** (`∫ f·Lg = −∫Γ(f,g)` for `f ∈ A`, `f,Lf ∈ L²`, `g ∈ A₀`).
+   F6 choice: the field is the identity itself (it is a statement about the instance, provable by
+   integration by parts for circle/ℝ/Gibbs), *not* the abstract conclusion "f ∈ D(L̄)": the conclusion is
+   then DERIVED (`FullMarkovTriple.resolvent_eq`: R([f]−[Lf]) = [f] via ⟨R(u−v)−u,(1−L)g⟩ = 0 for `g ∈ A₀`
+   and density of `(1−L)A₀`). I could not derive `ibp_A_symm` from `ibp_A` (it is the statement that `f` is in
+   the maximal domain and not just a weak solution against `A₀`), hence a field. What the Bakry–Émery semigroup
+   proof additionally needs (Γ(P_t f) ∈ L¹, ∫ L Γ(P_t f) = 0, i.e. integration against the constant 1 ∈ A \ A₀ in
+   infinite measure) is NOT provided; for finite μ it follows from `resolvent_eq` with `f = Γ(P_t f)`
+   (since `1 ∈ D(L̄)`, `L̄1 = 0`). Left to the Bakry–Émery development.
+R5. **Markov property derived.** `Hilbert.isMarkovianForm : ∀ T : MarkovTriple E, IsMarkovianForm T`
+   (the 'explicit hypothesis' of the bridge is removed). Proof: `ψ_δ(t) = √(t²+δ²) − δ` is smooth with
+   `ψ_δ(0)=0`, so `ψ_δ(f) ∈ A₀` (`comp_mem`); chain rule gives `Γ(ψ_δ f) = ψ_δ'(f)² Γ(f) ≤ Γ(f)`; dominated
+   convergence gives `ψ_δ(f) → |f|` in L² (`0 ≤ |f| − ψ_δ(f) ≤ min(δ,|f|)`); then the existing
+   `isMarkovianForm_of_approx` (lower semicontinuity) concludes. Nothing remains open for positivity.
+R6. **Conservativeness.** `IsSemigroupOf` is unchanged. For `FullMarkovTriple`, `P_t 1 = 1` is proved
+   (`tripleSemigroup_one`), hence `Hilbert.isSemigroupOf_full` holds with no extra hypothesis. For a bare
+   `MarkovTriple` it cannot hold in general (C_c^∞(0,1)); `isSemigroupOf_of_markov_conservative` takes it as a
+   hypothesis. For infinite μ the clause is vacuous (ERRATA G1).
+R7. **Unchanged**: `CD`/`CDFull`, `PoincareIneq`/`LogSobolevIneq` (with `IsProbabilityMeasure`), `ErgodicL2`/`ErgodicΓ`,
+   `fisherInfo`/`IsFisherAdmissible`, `IsSemigroupOf`, `energy`, `Ent`, `Γ₂`, `semigroup_stable`.
+R8. **Instances.** `trivialTriple`/`trivialFull` (A₀ = ⊤ non-unital); circle: `A₀ = {f | f∘(↑) : ℝ → ℝ is C^∞}`
+   (trig polynomials are used only for density, `Atrig`); ℝ: `A₀ = C_c^∞(ℝ)`, density from
+   `Lp.dense_hasCompactSupport_contDiff`, ibp from `integral_mul_deriv_eq_deriv_mul_of_integrable`.
+   No `FullMarkovTriple` instance exists for circle or ℝ (needs `esa`, `semigroup_stable`).
+
+## Design choices (Phase 2; items 2, 4, 6, 12 superseded, see above)
 
 1. **`Γ`, `L : (E → ℝ) → (E → ℝ) → ...` total functions constrained only on `A₀`** (PLAN's first option). Alternative: functions out of `A₀` as a subtype (safer, clumsier). Worry: nothing pins `Γ f g` for `f ∉ A₀`; every statement must carry `f ∈ A₀` (CD, PI, LSI, energy do).
 2. **`A₀ : Subalgebra ℝ (E → ℝ)`**: constants are in `A₀`, hence `1 ∈ Lᵖ`, hence **μ is finite** (BGL allows σ-finite, infinite). `sigmaFinite` is kept as a field though redundant. Alternative: `NonUnitalSubalgebra` (Lebesgue-type instances) and `1 ∈ A` only in the full triple. The task asked for constants in `A₀`.

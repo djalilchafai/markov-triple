@@ -24,12 +24,13 @@ noncomputable def trivialTriple (μ : Measure E) [IsFiniteMeasure μ] : MarkovTr
   μ := μ
   sigmaFinite := inferInstance
   A₀ := ⊤
+  comp_mem := fun _ _ _ _ _ _ => Set.mem_univ _
   Γ := fun _ _ _ => 0
   L := fun _ _ => 0
   measurable := fun f _ => Measurable.of_discrete
   memLp := fun f _ p _ => MemLp.of_discrete
-  Γ_mem := fun _ _ _ _ => Algebra.mem_top
-  L_mem := fun _ _ => Algebra.mem_top
+  Γ_mem := fun _ _ _ _ => Set.mem_univ _
+  L_mem := fun _ _ => Set.mem_univ _
   Γ_symm := fun _ _ _ _ => rfl
   Γ_add := fun _ _ _ _ _ _ => by ext; simp
   Γ_smul := fun _ _ _ _ _ => by ext; simp
@@ -39,17 +40,18 @@ noncomputable def trivialTriple (μ : Measure E) [IsFiniteMeasure μ] : MarkovTr
   carre_du_champ := fun _ _ _ _ _ => by simp
   ibp := fun _ _ _ _ => by simp
   dense := fun p _ _ => by
-    have : {u : Lp ℝ p μ | ∃ f ∈ (⊤ : Subalgebra ℝ (E → ℝ)), (u : E → ℝ) =ᵐ[μ] f} = Set.univ :=
-      Set.eq_univ_of_forall fun u => ⟨u, Algebra.mem_top, Filter.EventuallyEq.refl _ _⟩
+    have : {u : Lp ℝ p μ | ∃ f ∈ (⊤ : NonUnitalSubalgebra ℝ (E → ℝ)), (u : E → ℝ) =ᵐ[μ] f} = Set.univ :=
+      Set.eq_univ_of_forall fun u => ⟨u, Set.mem_univ _, Filter.EventuallyEq.refl _ _⟩
     rw [this]; exact dense_univ
-  diffusion := fun k ψ _ f _ _ => by
+  diffusion := fun k ψ _ _ f _ => by
     refine ⟨fun g _ => ?_, ?_⟩ <;> ext x <;> simp
 
 /-- The trivial *full* Markov triple (`𝒜 = 𝒜₀ = ⊤`). Requires `P_t`-stability, here `P_t = id`. -/
 noncomputable def trivialFull (μ : Measure E) [IsFiniteMeasure μ] : FullMarkovTriple E where
   toMarkovTriple := trivialTriple μ
   A := ⊤
-  A₀_le := le_rfl
+  A₀_le := fun _ _ => Algebra.mem_top
+  A_comp := fun _ _ _ _ _ => Algebra.mem_top
   A_measurable := fun f _ => Measurable.of_discrete
   L_mem_A := fun _ _ => Algebra.mem_top
   Γ_mem_A := fun _ _ _ _ => Algebra.mem_top
@@ -60,12 +62,13 @@ noncomputable def trivialFull (μ : Measure E) [IsFiniteMeasure μ] : FullMarkov
   L_add_A := fun _ _ _ _ => by ext; simp [trivialTriple]
   L_smul_A := fun _ _ _ => by ext; simp [trivialTriple]
   carre_du_champ_A := fun _ _ _ _ _ => by simp [trivialTriple]
-  diffusion_A := fun k ψ _ f _ _ => by
+  diffusion_A := fun k ψ _ f _ => by
     refine ⟨fun g _ => ?_, ?_⟩ <;> ext x <;> simp [trivialTriple]
   esa := dense_univ.mono fun u _ =>
-    ⟨u, Algebra.mem_top, by filter_upwards with x; simp [trivialTriple]⟩
+    ⟨u, Set.mem_univ _, by filter_upwards with x; simp [trivialTriple]⟩
   ibp_A := fun f _ _ _ g _ => by
     refine ⟨?_, ?_⟩ <;> simp [trivialTriple]
+  ibp_A_symm := fun f _ _ _ g _ => by simp [trivialTriple]
   semigroup_stable := fun P hP t f _ u hu => by
     exact ⟨_, Algebra.mem_top, Lp.memLp _, by simp [trivialTriple],
       Filter.EventuallyEq.refl _ _⟩

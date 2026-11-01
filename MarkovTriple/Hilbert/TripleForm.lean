@@ -45,12 +45,12 @@ noncomputable def Lt0 : T.A₀ →ₗ[ℝ] Lp ℝ 2 T.μ where
   map_add' f g := by
     have h := MemLp.toLp_add (memLp2 T (T.L_mem f.1 f.2)) (memLp2 T (T.L_mem g.1 g.2))
     have e : T.L (f.1 + g.1) = T.L f.1 + T.L g.1 := T.L_add f.1 f.2 g.1 g.2
-    simp only [Subalgebra.coe_add, e]
+    simp only [NonUnitalSubalgebra.coe_add, e]
     exact h
   map_smul' c f := by
     have h := MemLp.toLp_const_smul (𝕜 := ℝ) c (memLp2 T (T.L_mem f.1 f.2))
     have e : T.L (c • f.1) = c • T.L f.1 := T.L_smul c f.1 f.2
-    simp only [Subalgebra.coe_smul, RingHom.id_apply, e]
+    simp only [NonUnitalSubalgebra.coe_smul, RingHom.id_apply, e]
     exact h
 
 lemma toLp0_apply (f : T.A₀) : toLp0 T f = (memLp2 T f.2).toLp f.1 := rfl
@@ -86,7 +86,7 @@ lemma qf_nonneg (f : T.A₀) : 0 ≤ qf T f f :=
 lemma Γ_expand (f g : T.A₀) (s : ℝ) :
     T.Γ (f.1 + s • g.1) (f.1 + s • g.1) =
       T.Γ f.1 f.1 + (2 * s) • T.Γ f.1 g.1 + (s ^ 2) • T.Γ g.1 g.1 := by
-  have hsg : s • g.1 ∈ T.A₀ := T.A₀.smul_mem g.2 s
+  have hsg : s • g.1 ∈ T.A₀ := T.A₀.smul_mem s g.2
   have hfs : f.1 + s • g.1 ∈ T.A₀ := T.A₀.add_mem f.2 hsg
   have e1 : T.Γ (f.1 + s • g.1) (f.1 + s • g.1) =
       T.Γ f.1 (f.1 + s • g.1) + s • T.Γ g.1 (f.1 + s • g.1) := by
@@ -104,7 +104,7 @@ lemma qf_expand (f g : T.A₀) (s : ℝ) :
     qf T (f + s • g) (f + s • g) = qf T f f + 2 * s * qf T f g + s ^ 2 * qf T g g := by
   unfold qf
   have := Γ_expand T f g s
-  simp only [Subalgebra.coe_add, Subalgebra.coe_smul]
+  simp only [NonUnitalSubalgebra.coe_add, NonUnitalSubalgebra.coe_smul]
   rw [this]
   have i1 := Γ_integrable T f f
   have i2 := Γ_integrable T f g

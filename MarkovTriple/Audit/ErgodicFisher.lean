@@ -38,24 +38,24 @@ theorem T0_not_LSI (C : ℝ) : ¬ T0.LogSobolevIneq C := fun h => by
 
 /-! ## (d) Fisher -/
 
-theorem L_one (T : MarkovTriple E) : T.L 1 = 0 := by
-  have := (T.diffusion 0 (fun _ => (1 : ℝ)) contDiff_const (fun i => Fin.elim0 i) (fun i => i.elim0)
-    (by exact T.A₀.one_mem)).2
+/-- (`1 ∉ 𝒜₀` now, so the constant lives in the extended algebra of a *full* triple.) -/
+theorem L_one (F : FullMarkovTriple E) : F.L 1 = 0 := by
+  have h := (F.diffusion_A 0 (fun _ => (1 : ℝ)) contDiff_const (fun i => Fin.elim0 i)
+    (fun i => Fin.elim0 i)).2
+  show F.L (fun _ => (1 : ℝ)) = fun _ => 0
+  rw [h]
   funext x
-  have h := congrFun this x
-  have h' : T.L 1 x = 0 := by
-    have : T.L (fun _ => (1:ℝ)) x = 0 := by simpa using h
-    exact this
-  simpa using h'
+  simp
 
-theorem Γ_one (T : MarkovTriple E) : T.Γ 1 1 = 0 := by
+theorem Γ_one (F : FullMarkovTriple E) : F.Γ 1 1 = 0 := by
   funext x
-  have := T.carre_du_champ 1 T.A₀.one_mem 1 T.A₀.one_mem x
+  have := F.carre_du_champ_A 1 F.A.one_mem 1 F.A.one_mem x
   rw [mul_one, L_one] at this
   simpa using this
 
-/-- `h = 1` is Fisher-admissible in every triple and `I(1) = 0`. -/
-theorem fisher_one (T : MarkovTriple E) : T.IsFisherAdmissible 1 ∧ T.fisherInfo 1 = 0 := by
+/-- `h = 1` is Fisher-admissible in every full triple and `I(1) = 0`. -/
+theorem fisher_one (F : FullMarkovTriple E) :
+    F.toMarkovTriple.IsFisherAdmissible 1 ∧ F.toMarkovTriple.fisherInfo 1 = 0 := by
   refine ⟨⟨Filter.Eventually.of_forall fun x => by simp, ?_⟩, ?_⟩
   · simp [Γ_one]
   · simp [fisherInfo, Γ_one]

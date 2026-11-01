@@ -29,8 +29,9 @@ for e in manifest["files"]:
     elif sha(e["path"]) != e["sha256"]:
         print("CHANGED", e["path"], "(status %s)" % e["status"]); bad += 1
 fdir = os.path.join(root, "MarkovTriple", "Frozen")
-for n in sorted(os.listdir(fdir)):
-    p = "MarkovTriple/Frozen/" + n
-    if n.endswith(".lean") and p not in listed and n != "Basic.lean":
-        print("UNLISTED", p); bad += 1
+for dp, dn, fn in sorted(os.walk(fdir)):   # E2: scan all subdirectories
+    for n in sorted(fn):
+        p = os.path.relpath(os.path.join(dp, n), root).replace(os.sep, "/")
+        if n.endswith(".lean") and p not in listed:
+            print("UNLISTED", p); bad += 1
 print("OK" if not bad else "FAILED"); sys.exit(1 if bad else 0)
