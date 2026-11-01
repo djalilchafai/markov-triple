@@ -136,3 +136,8 @@ import MarkovTriple.BGL.Theory.LogSobolevMain
 import MarkovTriple.BGL.Theory.Tests
 import MarkovTriple.BGL.Theory.AxiomCheck
 import MarkovTriple.BGL.Instances.Lebesgue.Full
+import MarkovTriple.BGL.Instances.OU.LSIBase
+import MarkovTriple.BGL.Instances.OU.LSIMehler
+import MarkovTriple.BGL.Instances.OU.LSIGrad
+import MarkovTriple.BGL.Instances.OU.LSIEnt
+import MarkovTriple.BGL.Instances.OU.LSIMain
