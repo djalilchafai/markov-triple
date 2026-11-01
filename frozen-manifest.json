@@ -1,0 +1,59 @@
+{
+  "files": [
+    {
+      "path": "MarkovTriple/Frozen/PartialDeriv.lean",
+      "status": "proposed",
+      "sha256": "8fd48bf7efae48860114b5f2fde7e70ebe93cf5d654b808065841ce83cfbb825"
+    },
+    {
+      "path": "MarkovTriple/Frozen/MarkovTriple.lean",
+      "status": "proposed",
+      "sha256": "40c2431d89d6fdee93b5ec303078dbb56facf99fa04101251b815e4b0af18206"
+    },
+    {
+      "path": "MarkovTriple/Frozen/Gamma2.lean",
+      "status": "proposed",
+      "sha256": "c88b019e45fc8148fb9269205b0b1a350517bf17329f4cefd4e2848239ecd42f"
+    },
+    {
+      "path": "MarkovTriple/Frozen/CD.lean",
+      "status": "proposed",
+      "sha256": "260b4e17a16b9ed6254f1fc2136722b427ea7d9e1562e42cec0dc283bf105c3b"
+    },
+    {
+      "path": "MarkovTriple/Frozen/Energy.lean",
+      "status": "proposed",
+      "sha256": "181071bd0dbfd6c0ca0b8fb44305e1c6cb964ac55ebbb0ad871dc30fd77d3225"
+    },
+    {
+      "path": "MarkovTriple/Frozen/Ent.lean",
+      "status": "proposed",
+      "sha256": "94fcfe85b00e8d8a071d3830f7a445f20d03a28668c1e2f07e990ab6a41047f4"
+    },
+    {
+      "path": "MarkovTriple/Frozen/Poincare.lean",
+      "status": "proposed",
+      "sha256": "ba49e3360c164e7c8530fff298dc09e80a17f3fd21159b3aa8b1b16d1d31f7a1"
+    },
+    {
+      "path": "MarkovTriple/Frozen/LSI.lean",
+      "status": "proposed",
+      "sha256": "7b0113e79fdd9a626adedcd6f798bad9a8242960f8f1b96d6b230d47b1c1a492"
+    },
+    {
+      "path": "MarkovTriple/Frozen/Fisher.lean",
+      "status": "proposed",
+      "sha256": "65f5138f72f38e243f664c952b69dc435a765044dc7b07a70ee8eb3e6fcb0a9e"
+    },
+    {
+      "path": "MarkovTriple/Frozen/Semigroup.lean",
+      "status": "proposed",
+      "sha256": "218b86a0f19a5e63ad442e14984098fdd517953854f4499cf9edbc30147d46ed"
+    },
+    {
+      "path": "MarkovTriple/Frozen/FullMarkovTriple.lean",
+      "status": "proposed",
+      "sha256": "e019625c8dfc241b52506fae43d93b34029de9fedbac5363f2eb26e0d8f4642d"
+    }
+  ]
+}

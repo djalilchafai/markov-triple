@@ -1,3 +1,10 @@
 # Errata
 
-(empty)
+Source: hostile audit of the frozen statements (see AUDIT_FROZEN.md, MarkovTriple/Audit/TwoPoint.lean).
+
+| id | severity | finding | resolution |
+|---|---|---|---|
+| F1 | HIGH | Non-ergodic triples (e.g. `Sanity.trivialFull` on `Bool`, L=Γ=0) satisfy `CD ρ ∞` for all ρ but have neither PI nor LSI. `CD(ρ,∞) ⇒ LSI(1/ρ)` is false over the bare structures. | Add a frozen `Ergodic` predicate (Γ f f = 0 ⇒ f const a.e., plus L²-closure form); assume it in the theorems, not in the structure. Status: open |
+| F2 | MEDIUM | `CD` is imposed on A₀ only, but `FullMarkovTriple.semigroup_stable` lands in A; nothing transfers Γ₂ ≥ ρΓ to A. | Add `CD` on A for full triples (or transfer lemma). Status: open |
+| F3 | MEDIUM | Constants in A₀ force μ finite; infinite σ-finite triples excluded. | Scope note; decide with author. Status: open |
+| F4 | LOW | `fisherInfo` has no hypothesis on h (junk value 0 for non-integrable). | Theorems must assume h > 0 and integrability. Status: open |
