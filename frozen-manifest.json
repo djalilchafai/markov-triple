@@ -8,7 +8,7 @@
     {
       "path": "MarkovTriple/Frozen/MarkovTriple.lean",
       "status": "proposed",
-      "sha256": "de213050158342279ffa4b5733e9370cdaf6cf80b66135591109d5b658deac4a"
+      "sha256": "048e2cb4df022ff45a07b3df06872e5c6c51d1c4d84528a3b39af601f05af4da"
     },
     {
       "path": "MarkovTriple/Frozen/Gamma2.lean",
@@ -48,7 +48,7 @@
     {
       "path": "MarkovTriple/Frozen/Semigroup.lean",
       "status": "proposed",
-      "sha256": "22f2b0acfe73b341f0555b922ec89f97b5caa9a96d6881bef28547cce80f42cf"
+      "sha256": "44fca70c026d9108f84c48b3d5c70c23f111e1bdaa3b9a68dba7829628b65f2d"
     },
     {
       "path": "MarkovTriple/Frozen/FullMarkovTriple.lean",

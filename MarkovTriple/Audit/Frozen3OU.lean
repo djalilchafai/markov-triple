@@ -47,7 +47,7 @@ theorem no_identity_in_A0_gaussian (T : MarkovTriple ℝ) (hμ : T.μ = gaussian
     exact (Real.contDiff_exp.comp (this.pow 2)).sub contDiff_const
   have h0 : ψ 0 = 0 := by simp [ψ]
   have hm := T.comp_mem 1 ψ hψ h0 (fun _ => id) (fun _ => hid)
-  have hl := T.memLp _ hm 1 (by simp)
+  have hl := T.memLp _ hm 1 le_rfl (by simp)
   rw [memLp_one_iff_integrable, hμ] at hl
   exact not_integrable_expsq hl
 /-- On an infinite measure space the Markov clause `u =ᵐ 1 → P t u =ᵐ 1` of `IsSemigroupOf` is vacuous

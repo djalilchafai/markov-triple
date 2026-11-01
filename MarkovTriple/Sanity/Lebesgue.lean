@@ -189,7 +189,7 @@ noncomputable def lebesgueTriple : MarkovTriple ℝ where
   Γ := Gf
   L := Lf
   measurable := fun f hf => (smooth hf).continuous.measurable
-  memLp := fun f hf p _ => memLp_of hf p
+  memLp := fun f hf p _ _ => memLp_of hf p
   comp_mem := fun k ψ hψ h0 f hf => comp_mem_A₀ k ψ hψ h0 f hf
   Γ_mem := fun f hf g hg => mul_mem (deriv_mem hf) (deriv_mem hg)
   L_mem := fun f hf => deriv_mem (deriv_mem hf)

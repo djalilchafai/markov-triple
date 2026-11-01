@@ -16,7 +16,7 @@ variable {E : Type*} [MeasurableSpace E]
 
 private lemma integrable_of_mem (T : MarkovTriple E) {f : E → ℝ} (hf : f ∈ T.A₀) :
     Integrable f T.μ :=
-  memLp_one_iff_integrable.1 (T.memLp f hf 1 (by simp))
+  memLp_one_iff_integrable.1 (T.memLp f hf 1 le_rfl (by simp))
 
 private lemma energy_nonneg (T : MarkovTriple E) {f : E → ℝ} (hf : f ∈ T.A₀) :
     0 ≤ T.energy f :=
@@ -91,7 +91,7 @@ theorem ErgodicL2.toErgodicΓ {T : MarkovTriple E} (h : T.ErgodicL2) : T.Ergodic
     have := (integral_eq_zero_iff_of_nonneg (fun x => mul_self_nonneg _) hint).1 h1
     filter_upwards [this] with x hx
     simpa using hx
-  have hmem : MemLp f 2 T.μ := T.memLp f hf 2 (by norm_num)
+  have hmem : MemLp f 2 T.μ := T.memLp f hf 2 (by norm_num) (by simp)
   have key : ∃ f' : ℕ → E → ℝ, (∀ n, f' n ∈ T.A₀) ∧
       Tendsto (fun n => eLpNorm (f' n - (hmem.toLp f : E → ℝ)) 2 T.μ) atTop (𝓝 0) ∧
       Tendsto (fun n => eLpNorm (T.L (f' n)) 2 T.μ) atTop (𝓝 0) := by

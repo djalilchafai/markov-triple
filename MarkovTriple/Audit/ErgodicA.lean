@@ -20,10 +20,10 @@ theorem ker_orth (T : MarkovTriple E) (u : Lp ℝ 2 T.μ) (f : ℕ → E → ℝ
     (h2 : Tendsto (fun n => eLpNorm (T.L (f n)) 2 T.μ) atTop (𝓝 0))
     (g : E → ℝ) (hg : g ∈ T.A₀) :
     ∫ x, (u : E → ℝ) x * T.L g x ∂T.μ = 0 := by
-  have mf : ∀ n, MemLp (f n) 2 T.μ := fun n => T.memLp _ (hf n) 2 (by norm_num)
-  have mLf : ∀ n, MemLp (T.L (f n)) 2 T.μ := fun n => T.memLp _ (T.L_mem _ (hf n)) 2 (by norm_num)
-  have mg : MemLp g 2 T.μ := T.memLp _ hg 2 (by norm_num)
-  have mLg : MemLp (T.L g) 2 T.μ := T.memLp _ (T.L_mem _ hg) 2 (by norm_num)
+  have mf : ∀ n, MemLp (f n) 2 T.μ := fun n => T.memLp _ (hf n) 2 (by norm_num) (by simp)
+  have mLf : ∀ n, MemLp (T.L (f n)) 2 T.μ := fun n => T.memLp _ (T.L_mem _ (hf n)) 2 (by norm_num) (by simp)
+  have mg : MemLp g 2 T.μ := T.memLp _ hg 2 (by norm_num) (by simp)
+  have mLg : MemLp (T.L g) 2 T.μ := T.memLp _ (T.L_mem _ hg) 2 (by norm_num) (by simp)
   set F : ℕ → Lp ℝ 2 T.μ := fun n => (mf n).toLp (f n) with hF
   set G : ℕ → Lp ℝ 2 T.μ := fun n => (mLf n).toLp (T.L (f n)) with hG
   set W : Lp ℝ 2 T.μ := mLg.toLp (T.L g)

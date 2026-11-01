@@ -45,6 +45,11 @@ import MarkovTriple.Hilbert.Bridge
 import MarkovTriple.Hilbert.Closure
 import MarkovTriple.Hilbert.FullBridge
 import MarkovTriple.Hilbert.MarkovCriterion
+import MarkovTriple.Hilbert.SubMarkov
 import MarkovTriple.Hilbert.OperatorSquareCompletion
 import MarkovTriple.Hilbert.Sanity
 import MarkovTriple.Hilbert.AxiomCheck
+import MarkovTriple.FunctionalInequalities.GapFromSquare
+import MarkovTriple.FunctionalInequalities.TripleSquare
+import MarkovTriple.FunctionalInequalities.Poincare
+import MarkovTriple.FunctionalInequalities.AxiomCheck

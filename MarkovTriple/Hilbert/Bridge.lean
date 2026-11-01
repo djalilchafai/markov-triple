@@ -11,7 +11,8 @@ form `ℰ(f) = ∫ Γ(f,f)` on `𝒜₀ ⊆ L²(μ)`; `tripleSemigroup T := T.fo
 `P_t = e^{tL}` built from its Friedrichs extension.
 
 **Theorem** `isSemigroupOf_of_markov_conservative`: if the closed form is *Markovian*
-(`IsMarkovianForm T`) and `P_t` fixes the constant `1` (when `1 ∈ L²`, i.e. `μ` finite), then
+(`IsMarkovianForm T`), `P_t` is sub-Markov (`hsub`, proved for every triple in `SubMarkov.lean`) and
+`P_t` fixes the constant `1` (when `1 ∈ L²`, i.e. `μ` finite), then
 `IsSemigroupOf T (tripleSemigroup T)`; all other clauses are proved with no hypothesis.
 
 * `IsMarkovianForm` is now a THEOREM for every `MarkovTriple` (`MarkovCriterion.lean`,
@@ -96,14 +97,17 @@ theorem tripleSemigroup_nonneg (hM : IsMarkovianForm T) (t : ℝ≥0) {u : Lp �
   exact this
 
 /-- **Bridge.**  For a Markov triple whose Friedrichs form is Markovian (a theorem, see
-`isMarkovianForm`) and whose semigroup fixes `1` (hypothesis `hone`), the Friedrichs semigroup
-satisfies the frozen `IsSemigroupOf`. -/
+`isMarkovianForm`), whose semigroup is sub-Markov (a theorem, `tripleSemigroup_subMarkov` in
+`SubMarkov.lean`, passed as `hsub` here to avoid an import cycle) and fixes `1` (hypothesis `hone`),
+the Friedrichs semigroup satisfies the frozen `IsSemigroupOf`. -/
 theorem isSemigroupOf_of_markov_conservative (hM : IsMarkovianForm T)
+    (hsub : ∀ (t : ℝ≥0) (u : Lp ℝ 2 T.μ), (u : E → ℝ) ≤ᵐ[T.μ] (1 : E → ℝ) →
+      (tripleSemigroup T t u : E → ℝ) ≤ᵐ[T.μ] (1 : E → ℝ))
     (hone : ∀ (t : ℝ≥0) (u : Lp ℝ 2 T.μ), (u : E → ℝ) =ᵐ[T.μ] (1 : E → ℝ) →
       (tripleSemigroup T t u : E → ℝ) =ᵐ[T.μ] (1 : E → ℝ)) :
     IsSemigroupOf T (tripleSemigroup T) := by
   set S := formData T with hS
-  refine ⟨S.semigroup_zero, S.semigroup_add, ?_, ?_, ?_, hone, ?_⟩
+  refine ⟨S.semigroup_zero, S.semigroup_add, ?_, ?_, ?_, hsub, hone, ?_⟩
   · intro u
     have := ((S.continuous_semigroup_apply u).tendsto (0 : ℝ≥0))
     rw [show S.semigroup 0 u = u by simp [S.semigroup_zero]] at this

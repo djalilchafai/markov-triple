@@ -24,10 +24,10 @@ variable {E : Type*} [MeasurableSpace E] (T : _root_.MarkovTriple E)
 
 section Basic
 
-lemma memLp2 {f : E → ℝ} (hf : f ∈ T.A₀) : MemLp f 2 T.μ := T.memLp f hf 2 (by simp)
+lemma memLp2 {f : E → ℝ} (hf : f ∈ T.A₀) : MemLp f 2 T.μ := T.memLp f hf 2 (by norm_num) (by simp)
 
 lemma integrable_of_mem {f : E → ℝ} (hf : f ∈ T.A₀) : Integrable f T.μ :=
-  memLp_one_iff_integrable.1 (T.memLp f hf 1 (by simp))
+  memLp_one_iff_integrable.1 (T.memLp f hf 1 le_rfl (by simp))
 
 /-- Test functions as elements of `L²(μ)`. -/
 noncomputable def toLp0 : T.A₀ →ₗ[ℝ] Lp ℝ 2 T.μ where

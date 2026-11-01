@@ -3,6 +3,7 @@ import MarkovTriple.Frozen.FullMarkovTriple
 import MarkovTriple.Hilbert.Closure
 import MarkovTriple.Hilbert.Bridge
 import MarkovTriple.Hilbert.MarkovCriterion
+import MarkovTriple.Hilbert.SubMarkov
 
 /-!
 # Full Markov triples: closure domain (ERRATA F6), conservativeness, and the unconditional bridge
@@ -16,7 +17,8 @@ For `F : FullMarkovTriple E` (with `S = formData F.toMarkovTriple`, `R = (1 + A_
 * `FullMarkovTriple.tripleSemigroup_one`: `P_t 1 = 1` when `μ` is finite, although `1 ∉ 𝒜₀`
   (`1 ∈ 𝒜`, `L 1 = 0` from the chain rule on `𝒜`).
 * `isSemigroupOf_full`: **for every full Markov triple the Friedrichs semigroup is a witness of
-  `IsSemigroupOf`**, with no extra hypothesis (positivity: `isMarkovianForm`).
+  `IsSemigroupOf`**, with no extra hypothesis (positivity: `isMarkovianForm`; sub-Markov:
+  `tripleSemigroup_subMarkov`, second Beurling–Deny criterion; `P_t 1 = 1`: `tripleSemigroup_one`).
 -/
 
 open MeasureTheory Filter Topology
@@ -116,11 +118,13 @@ theorem _root_.FullMarkovTriple.tripleSemigroup_one (F : FullMarkovTriple E) (t 
   rw [e]; exact hu
 
 /-- **The Friedrichs semigroup of every full Markov triple is a witness of `IsSemigroupOf`.**
-No extra hypothesis: positivity is `isMarkovianForm` (diffusion algebra `𝒜₀`), conservativeness is
+No extra hypothesis: positivity is `isMarkovianForm` (diffusion algebra `𝒜₀`), the sub-Markov
+clause is `tripleSemigroup_subMarkov` (smooth truncations of `t ∧ c`, `Hilbert/SubMarkov.lean`), and
+`P_t 1 = 1` (finite `μ`) is
 `FullMarkovTriple.tripleSemigroup_one` (`esa`, `ibp_A`, `ibp_A_symm`). -/
 theorem isSemigroupOf_full (F : FullMarkovTriple E) :
     MarkovTriple.IsSemigroupOf F.toMarkovTriple (tripleSemigroup F.toMarkovTriple) :=
   isSemigroupOf_of_markov_conservative F.toMarkovTriple (isMarkovianForm F.toMarkovTriple)
-    (fun t u hu => F.tripleSemigroup_one t u hu)
+    (tripleSemigroup_subMarkov F.toMarkovTriple) (fun t u hu => F.tripleSemigroup_one t u hu)
 
 end MarkovTriple.Hilbert

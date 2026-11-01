@@ -427,7 +427,7 @@ noncomputable def circleTriple : MarkovTriple 𝕋 where
   Γ := Gc
   L := Lc
   measurable := fun f hf => (A₀_prop hf).2.2.measurable
-  memLp := fun f hf p _ => memLp_of_mem hf p
+  memLp := fun f hf p _ _ => memLp_of_mem hf p
   Γ_mem := fun f hf g hg => Gc_mem hf hg
   L_mem := fun f hf => Lc_mem hf
   Γ_symm := fun f _ g _ => by funext x; simp [Gc, mul_comm]

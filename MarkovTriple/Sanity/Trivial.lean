@@ -28,7 +28,7 @@ noncomputable def trivialTriple (μ : Measure E) [IsFiniteMeasure μ] : MarkovTr
   Γ := fun _ _ _ => 0
   L := fun _ _ => 0
   measurable := fun f _ => Measurable.of_discrete
-  memLp := fun f _ p _ => MemLp.of_discrete
+  memLp := fun f _ p _ _ => MemLp.of_discrete
   Γ_mem := fun _ _ _ _ => Set.mem_univ _
   L_mem := fun _ _ => Set.mem_univ _
   Γ_symm := fun _ _ _ _ => rfl
@@ -77,7 +77,7 @@ noncomputable def trivialFull (μ : Measure E) [IsFiniteMeasure μ] : FullMarkov
 theorem trivialTriple_isSemigroup (μ : Measure E) [IsFiniteMeasure μ] :
     (trivialTriple μ).IsSemigroupOf (fun _ => ContinuousLinearMap.id ℝ _) := by
   refine ⟨rfl, fun s t => rfl, fun u => ?_, fun t u v => rfl, fun t u hu => hu,
-    fun t u hu => hu, fun f _ u v hu hv => ?_⟩
+    fun t u hu => hu, fun t u hu => hu, fun f _ u v hu hv => ?_⟩
   · exact tendsto_const_nhds
   · have hv0 : v = 0 := Lp.ext (hv.trans (Lp.coeFn_zero ℝ 2 μ).symm)
     simp [hv0]

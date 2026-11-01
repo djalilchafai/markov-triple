@@ -81,3 +81,21 @@ R8. **Instances.** `trivialTriple`/`trivialFull` (A₀ = ⊤ non-unital); circle
 3. `IsSemigroupOf` satisfied by a non-Markov/non-minimal semigroup when `esa` fails; and whether `IsSemigroupOf` is satisfiable at all for nontrivial triples (e.g. `Lp` topology/`nhds 0` on `ℝ≥0` fine).
 4. `CD` with a.e. vs `Γ₂` evaluated on junk off support; `n < 1` allowed.
 5. `Ent`/Fisher junk values for non-integrable or negative `f`.
+
+## Round 4 changes (ERRATA N4, N2, L1)
+
+R7. **`MarkovTriple.memLp`** now quantifies over `1 ≤ p < ∞` only (was `p ≠ ∞`, which included
+    `p ∈ [0,1)` and excluded e.g. classes decaying like `1/(1+x²)` for infinite μ). Instances
+    (Trivial, Circle, Lebesgue) and users (`memLp2`, `integrable_of_mem`, Audit) updated.
+R8. **`IsSemigroupOf`** gained the sub-Markov clause `∀ t (u : L²), u ≤ᵐ 1 → P t u ≤ᵐ 1`, stated on
+    representatives (for infinite μ, `1 ∉ L²` but the hypothesis `u ≤ 1` a.e. is satisfiable); with
+    positivity it is `0 ≤ u ≤ 1 ⇒ 0 ≤ P t u ≤ 1`. The clause `P t 1 = 1` is kept (meaningful for
+    finite μ only). New separate predicate `IsConservative T P` (`P_t g ∈ L¹`, `∫P_t g = ∫g` for
+    `g ∈ L¹ ∩ L²`), NOT part of `IsSemigroupOf`. Docstring uniqueness claim softened (L1).
+    Audit points: (i) the clause is implied by the other clauses for finite μ and conservativeness;
+    (ii) it is proved for the Friedrichs semigroup of every `MarkovTriple`, so `isSemigroupOf_full`
+    is still unconditional; (iii) `semigroup_stable` hypotheses are strengthened (extra clause on P)
+    hence the field is weaker than before, which is harmless (still a field to be proved for the
+    circle, where the Friedrichs semigroup satisfies the clause).
+    Manifest hashes of Frozen/MarkovTriple.lean and Frozen/Semigroup.lean updated (status still
+    `proposed`).

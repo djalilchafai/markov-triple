@@ -60,6 +60,9 @@ open MarkovTriple.Hilbert
 #print axioms FullMarkovTriple.resolvent_eq
 #print axioms FullMarkovTriple.tripleSemigroup_one
 #print axioms isMarkovianForm
+#print axioms tripleSemigroup_subMarkov
+#print axioms isClipForm
+#print axioms isSemigroupOf_of_conservative
 #print axioms isSemigroupOf_full
 #print axioms circle_isMarkovianForm
 #print axioms tripleSemigroup_nonneg

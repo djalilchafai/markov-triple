@@ -42,8 +42,8 @@ structure MarkovTriple (E : Type*) [MeasurableSpace E] where
   L : (E → ℝ) → (E → ℝ)
   /-- test functions are measurable. -/
   measurable : ∀ f ∈ A₀, Measurable f
-  /-- `𝒜₀ ⊆ ⋂_{p<∞} Lᵖ(μ)` (BGL Def. 3.1.1). -/
-  memLp : ∀ f ∈ A₀, ∀ p : ℝ≥0∞, p ≠ ∞ → MemLp f p μ
+  /-- `𝒜₀ ⊆ ⋂_{1 ≤ p < ∞} Lᵖ(μ)` (BGL Def. 3.1.1; only `1 ≤ p < ∞`, ERRATA N4). -/
+  memLp : ∀ f ∈ A₀, ∀ p : ℝ≥0∞, 1 ≤ p → p ≠ ∞ → MemLp f p μ
   /-- `𝒜₀` is stable under composition with smooth `ψ : ℝᵏ → ℝ`, `ψ(0) = 0`
   (BGL Def. 3.1.1/3.1.8; for `k = 0` this only says `0 ∈ 𝒜₀`). -/
   comp_mem : ∀ (k : ℕ) (ψ : (Fin k → ℝ) → ℝ), ContDiff ℝ (⊤ : ℕ∞) ψ → ψ 0 = 0 →
