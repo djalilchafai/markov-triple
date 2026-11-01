@@ -53,7 +53,7 @@
     {
       "path": "MarkovTriple/Frozen/FullMarkovTriple.lean",
       "status": "proposed",
-      "sha256": "2b7f38da97c3d6147ae85b1baa7b54d8785ee83272c88f5cccee99409b5a9d57"
+      "sha256": "1909d06ed88667fc48cbd288c2eefc739a4490c3fca7809280d966325d2467e7"
     },
     {
       "path": "MarkovTriple/Frozen/Ergodic.lean",

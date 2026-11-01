@@ -69,6 +69,8 @@ noncomputable def trivialFull (μ : Measure E) [IsFiniteMeasure μ] : FullMarkov
   ibp_A := fun f _ _ _ g _ => by
     refine ⟨?_, ?_⟩ <;> simp [trivialTriple]
   ibp_A_symm := fun f _ _ _ g _ => by simp [trivialTriple]
+  ibp_AA := fun f _ k _ _ _ _ _ _ => by
+    refine ⟨?_, ?_⟩ <;> simp [trivialTriple]
   semigroup_stable := fun P hP t f _ u hu => by
     exact ⟨_, Algebra.mem_top, Lp.memLp _, by simp [trivialTriple],
       Filter.EventuallyEq.refl _ _⟩

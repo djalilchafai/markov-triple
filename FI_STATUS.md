@@ -7,4 +7,4 @@ Proved, no missing frozen field and no extra hypothesis:
 - `FullMarkovTriple.integral_L`, `integral_Γ₂`, `rho_integral_le(_dim)` (finite mu), `Hilbert.fixed_const` (ErgodicL2 => fixed space of Friedrichs resolvent = constants), `square_all`, `rho_var_le`.
 - `Hilbert.poincare_of_CD_infty` : [IsProbabilityMeasure F.μ], 0<ρ, F.toMarkovTriple.CD ρ ∞, ErgodicL2 ==> PoincareIneq (1/ρ).
 - `Hilbert.poincare_of_CD_dim` : same with CD ρ n, 1<n≤∞ ==> PoincareIneq ((1-(n⁻¹).toReal)/ρ) (= (n-1)/(ρ n)).
-Not done: extension of PI from A₀ to D(L̄) (needs Γ-integrability for f ∈ D(L̄) \ A₀; ibp_A only gives it against A₀).
+Phase 4b (FormDomain.lean, EntropyIntegrable.lean): PI extended from A₀ to the form domain Q (by density in the energy space, no Γ-integrability needed): `rho_variance_le_energy_Q`, `variance_le_energy_Q`; `hasSpectralGap_of_poincare : PoincareIneq C -> HasSpectralGap (1/C)`; `expDecay_of_poincare` (ErgodicL2). Entropy integrability (finite mu): `integrable_sq_mul_log_sq` etc. Not done: converse gap => PI, LSI itself.

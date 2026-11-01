@@ -23,6 +23,14 @@ property making semigroup interpolation legitimate.  All items are fields to be 
   `FullMarkovTriple.mem_generator_graph`).  The second slot is what is needed to see that the
   constant `1 ∈ 𝒜` (when `μ` is finite) is in the closure domain with `L̄ 1 = 0`, i.e. `P_t 1 = 1`
   (`Hilbert/Bridge.lean`), although `1 ∉ 𝒜₀`.
+* `ibp_AA` (ERRATA P4-1; BGL-style mixed integration by parts on `𝒜`, the BGL numbering is
+  UNVERIFIED): for `f, k ∈ 𝒜` with `f, Lf, k, Lk ∈ L²(μ)` and `k` essentially bounded
+  (`MemLp k ∞ μ`): `Γ(f,k) ∈ L¹(μ)` and `∫ k Lf = −∫ Γ(f,k)`.  It is **not derivable** from the other
+  fields (AUDIT_PHASE4.md, "Next step", item 1): `ibp_A`/`ibp_A_symm` only test against `g ∈ 𝒜₀`;
+  `P_t h` and `Φ'(P_t h)` lie in `𝒜 ∖ 𝒜₀`; deriving it from `Γ g = ½L(g²) − gLg` is circular
+  (needs `Γ g ∈ L¹`), and no field ties the pointwise `Γ` on `𝒜` to the closed form.  This is the
+  input of the semigroup interpolation (LSI).  Instances: `circleFull` (`𝒜 = 𝒜₀`, compact),
+  `trivialFull`; OU/Lebesgue are not full triples yet.
 * `semigroup_stable` : for every `P` with `IsSemigroupOf`, `P_t` maps `𝒜₀` classes into classes of
   elements of `𝒜` in the `L²`-domain with `L g ∈ L²` (BGL "stable class" / §3.3-3.4). -/
 structure FullMarkovTriple (E : Type*) [MeasurableSpace E] extends MarkovTriple E where
@@ -70,6 +78,9 @@ structure FullMarkovTriple (E : Type*) [MeasurableSpace E] extends MarkovTriple 
   /-- the symmetric identity (ERRATA F6): `L g` (`g ∈ 𝒜₀`) in the slot of `f ∈ 𝒜`. -/
   ibp_A_symm : ∀ f ∈ A, MemLp f 2 μ → MemLp (L f) 2 μ → ∀ g ∈ A₀,
     ∫ x, f x * L g x ∂μ = -∫ x, Γ f g x ∂μ
+  /-- mixed integration by parts on `𝒜` (ERRATA P4-1): `f, k ∈ 𝒜`, `f, Lf, k, Lk ∈ L²`, `k ∈ L^∞`. -/
+  ibp_AA : ∀ f ∈ A, ∀ k ∈ A, MemLp f 2 μ → MemLp (L f) 2 μ → MemLp k 2 μ → MemLp (L k) 2 μ →
+    MemLp k ∞ μ → Integrable (Γ f k) μ ∧ ∫ x, k x * L f x ∂μ = -∫ x, Γ f k x ∂μ
   /-- stable class: any semigroup of the triple maps `𝒜₀` into (classes of) `𝒜 ∩ D(L)`. -/
   semigroup_stable : ∀ P, MarkovTriple.IsSemigroupOf toMarkovTriple P → ∀ t : NNReal,
     ∀ f ∈ A₀, ∀ u : Lp ℝ 2 μ, (u : E → ℝ) =ᵐ[μ] f →

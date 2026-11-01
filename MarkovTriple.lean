@@ -52,5 +52,7 @@ import MarkovTriple.Hilbert.AxiomCheck
 import MarkovTriple.FunctionalInequalities.GapFromSquare
 import MarkovTriple.FunctionalInequalities.TripleSquare
 import MarkovTriple.FunctionalInequalities.Poincare
+import MarkovTriple.FunctionalInequalities.FormDomain
+import MarkovTriple.FunctionalInequalities.EntropyIntegrable
 import MarkovTriple.FunctionalInequalities.AxiomCheck
 import MarkovTriple.Sanity.CircleFull

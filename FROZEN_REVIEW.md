@@ -99,3 +99,15 @@ R8. **`IsSemigroupOf`** gained the sub-Markov clause `∀ t (u : L²), u ≤ᵐ 
     circle, where the Friedrichs semigroup satisfies the clause).
     Manifest hashes of Frozen/MarkovTriple.lean and Frozen/Semigroup.lean updated (status still
     `proposed`).
+
+R9. **`FullMarkovTriple.ibp_AA`** (ERRATA P4-1) added: `∀ f ∈ A, ∀ k ∈ A, MemLp f 2 → MemLp (L f) 2 →
+    MemLp k 2 → MemLp (L k) 2 → MemLp k ∞ → Integrable (Γ f k) ∧ ∫ k·L f = −∫ Γ f k`.
+    Rationale: `ibp_A`/`ibp_A_symm` only pair against `g ∈ A₀`; semigroup interpolation needs `P_t h`
+    and `Φ'(P_t h)` (both in `A ∖ A₀`) in both slots; derivation from `Γ g = ½L(g²) − gLg` is circular.
+    Audit points: (i) is the L^∞ hypothesis on `k` the right/minimal one (BGL asks for `k` bounded
+    with `k, Lk` in `L²`?); the `MemLp k 2` and `MemLp (L k) 2` hypotheses may be redundant;
+    (ii) it implies `ibp_A` only for `g ∈ A₀` essentially bounded, which `memLp` already gives, so
+    `ibp_A` could become a consequence (not simplified); (iii) true for circle and expected for OU
+    on `C^∞` with polynomial growth only with extra growth control (OU instance: other agent);
+    (iv) non-vacuity: circle (Γ ≠ 0) and trivial. BGL numbering unverified. Manifest updated
+    (Frozen/FullMarkovTriple.lean); status still `proposed`.

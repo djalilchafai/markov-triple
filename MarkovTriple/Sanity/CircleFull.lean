@@ -738,6 +738,9 @@ noncomputable def circleFull : FullMarkovTriple 𝕋 where
     have e2 : Gc g f = Gc f g := by funext x; simp [Gc, mul_comm]
     rw [e2] at e
     exact e
+  ibp_AA := fun f hf k hk _ _ _ _ _ => ⟨integrable_of_cont
+      (A₀_prop (circleTriple.Γ_mem f (mem_Afull.1 hf) k (mem_Afull.1 hk))).2.2,
+      ibp_c (mem_Afull.1 hf) (mem_Afull.1 hk)⟩
   semigroup_stable := fun P hP t f hf u hu => by
     obtain ⟨g, hg, hPg⟩ := circle_semigroup_stable P hP t f hf u hu
     exact ⟨g, mem_Afull.2 hg, memLp_of_mem hg 2, memLp_of_mem (Lc_mem hg) 2, hPg⟩
