@@ -35,3 +35,13 @@ Source: hostile audit of the frozen statements (see AUDIT_FROZEN.md, MarkovTripl
 | BGL-M2 | MEDIUM | (BGL audit) generic `PoincareIneq`/`LogSobolevIneq`/`energy` not tied to a triple; vacuous for `𝒞 = ∅`; junk off `𝒜₀`; density in `𝒟(ℰ)` not shown. | Added `DiffusionTriple.ℰ`, `.PI`, `.LS` (class = `T.A₀`) in `Frozen/{Energy,Poincare,LSI}.lean`; proved `formDomain_approx` (`𝒜₀` dense in `𝒟(ℰ)` in the form norm), `PI.extend`, `LS.extend` (incl. integrability of `u² log u²`), `integrable_sq_mul_log_sq` (`BGL/Calculus/{Density,LSIExtend}.lean`). Status: fixed (pending re-audit) |
 | BGL-M3 | MEDIUM | (BGL audit) S11 over all (signed) exhaustion sequences is the strongest reading. | S11 restricted to nonnegative sequences (`Frozen/StandardTriple.lean`); proved `conservative_transfer` / `StandardTriple.conservative_all`: S11 for one exhaustion sequence ⇒ for all, signed or not; `exists_nonneg_exhaustion`; finite μ: S11 ⇔ `P_t 1 = 1` (`BGL/Semigroup/{Conservative,Mass}.lean`). Status: fixed (pending re-audit) |
 | BGL-L1 | LOW-MED | (BGL audit) fundamental identity, chain rule (3.1.8) on `𝒜₀`, positivity/sub-Markov of `semigroup`, mass conservation, S10 second form, ESA for `𝒜=𝒜₀` not proved. | All proved for a bare `DiffusionTriple` (resp. `StandardTriple`/`CompactTriple`): `BGL/Calculus/Identities.lean`, `BGL/Semigroup/{Markov,Conservative,Mass,Characterization,ESA}.lean`; axioms: propext/choice/Quot.sound only. Status: fixed (pending re-audit) |
+
+## BGL realignment (rounds 5–10) — open items
+| id | severity | finding | status |
+|---|---|---|---|
+| BGL-V1 | MEDIUM (info) | `compact_logSobolev` (ρ>0, compact) has only the degenerate witness (one point, Γ=0); no compact triple with Γ≠0 and ρ>0 yet (round sphere S² needs ~5–10 kloc: spherical-harmonic smoothing, Bochner calculus). | open |
+| BGL-V2 | LOW/MEDIUM | `compact_logSobolev` concludes on A₀ only; `logSobolev_extend_domain` not packaged for compact triples; gradient bound is the weak form only (strong √ form, Thm 3.3.18, not done). | open |
+| BGL-V3 | MEDIUM | Thm 3.3.23 for infinite μ (needs completeness, Def 3.3.9); operator-level Props 3.3.16 (i),(iii)–(viii), 3.3.17; generic (non-compact, non-OU) discharge of GradientInterpolation/EntropyInterpolation. | open |
+| BGL-V4 | LOW | Docstring names in `Compact/Consequences.lean` and "conditional" headers of GradientBound/LogSobolev lack pointers to `Compact/`, OU. | open |
+| BGL-V5 | LOW | check_frozen.py: closure regex misses `import all`/`public import`; manifest/lakefile not hashed; `--update` unguarded. | open |
+| BGL-V6 | — | All BGL frozen statements remain `proposed` (not author-approved). | open |
