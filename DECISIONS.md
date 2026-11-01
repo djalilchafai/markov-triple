@@ -22,3 +22,17 @@
 - No `sorry` outside `Challenge`-style files, no `axiom`, no `maxHeartbeats` increase, files <= 1500 lines.
   Only `propext`, `Classical.choice`, `Quot.sound` allowed.
 - `ERRATA.md` records every flaw found; `CORRESPONDENCE.md` maps BGL numbered results to Lean names + status.
+
+# Amendment (author decision, round 2): follow BGL closely
+
+8. μ is σ-FINITE (not necessarily finite): Lebesgue measure on ℝⁿ must be admissible. Local functional inequalities
+   are in scope later. PI/LSI/Ent-type statements keep `IsProbabilityMeasure` where mathematically required.
+9. The test class A₀ is NOT required to contain constants (non-unital). Follow BGL Def. 3.1.1–3.1.9 / §3.3–3.4:
+   A₀ ⊂ ⋂_{p<∞} Lᵖ(μ) is stable under composition with smooth ψ with ψ(0)=0 (the "diffusion algebra" hypothesis),
+   Γ, L are defined and satisfy the chain rule on A₀, and the EXTENDED algebra A (contains constants and A₀,
+   stable under all smooth ψ) carries the Γ-calculus in `FullMarkovTriple`. Constants belong to A, not to A₀.
+   `ibp` is symmetric (both directions) on the appropriate classes. Positivity of P_t must then be DERIVED
+   (ψ_ε(f)=√(f²+ε²)−ε argument), so `IsMarkovianForm` should become a theorem for full triples.
+10. Concrete test classes: circle → C^∞(𝕋); OU/Gibbs → smooth functions with polynomial-growth derivatives
+    (or C_c^∞); Lebesgue on ℝⁿ → C_c^∞ (this is the new infinite-measure sanity instance).
+11. Numbering of BGL results in docstrings is unverified unless checked against the book; never claim otherwise.
