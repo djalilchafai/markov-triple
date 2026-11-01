@@ -118,4 +118,9 @@ import MarkovTriple.BGL.Sanity.Circle
 import MarkovTriple.BGL.Instances.OU.Diffusion
 import MarkovTriple.BGL.Instances.OU.Semigroup
 import MarkovTriple.BGL.Instances.OU.Full
+import MarkovTriple.BGL.Instances.Circle.Modes
+import MarkovTriple.BGL.Instances.Circle.Semigroup
+import MarkovTriple.BGL.Instances.Circle.Ergodic
+import MarkovTriple.BGL.Instances.Circle.PosDetect
+import MarkovTriple.BGL.Instances.Circle.Triple
 import MarkovTriple.BGL.AxiomCheck
