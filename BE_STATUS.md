@@ -57,16 +57,9 @@ Also used from the frozen fields (not hypotheses): `ibp_AA`, `ibp_A`, `semigroup
   (it needs `ρ > 0`), but the machinery does with `ρ = 0`: `BE.circle_second_order` — along the circle
   heat flow, `q = (d/ds)Ent(ε + P_sφ)` is differentiable with `q' ≥ 0` (Fisher information non-increasing),
   for any non-negative bounded `φ ∈ C^∞(𝕋)` (non-vacuity example with `Γ ≠ 0` included).
-* NOT DONE: `BEStable ouFull` — the only `ρ > 0` instance, hence the end-to-end Gaussian LSI
-  (`LogSobolevIneq 1` for `γ`) is NOT yet obtained.  Exactly what is missing for OU (`𝒜₀ = C_c^∞`,
-  `𝒜 = C^∞`, `L = f'' - x f'`):
-  1. `A₀_bdd`: easy (continuous with compact support).
-  2. `reg`: for `g ∈ C^∞(ℝ)` a.e. equal to `P_sφ` (`φ ∈ C_c^∞`, `s > 0`) and `ψ` smooth:
-     `ψ∘g`, `(ψ∘g)'' - x (ψ∘g)'`, `(ψ∘g)'²` bounded and `L L (ψ∘g)`, `L((ψ∘g)'²) ∈ L²(γ)`.  This needs
-     SUP-NORM bounds `sup_x |x^a g^{(b)}(x)| < ∞` (`a ≤ 3, b ≤ 4`, Mehler decay: `g' = e^{-s}P_sφ'`,
-     Gaussian tails), which the existing Hermite-series proof of `semigroup_stable`
-     (`Sanity/OU/Stable.lean`, only `L²` information, `hh_sq_le ≤ 2e^{x²}`) does not give.  A Mehler-formula
-     lemma `P_sφ(x) = ∫ φ(e^{-s}x + √(1-e^{-2s}) y) dγ(y)` with derivative commutation is the missing piece.
+* PROVED `BEStable ouFull` (`Sanity/OU/BEStable.lean`, `ouFull_BEStable`) and hence the end-to-end
+  Gaussian log-Sobolev inequality `ou_lsi : ouFull.toMarkovTriple.LogSobolevIneq (1/1)` via
+  `BE.logSobolevIneq_of_CD` + `ouFull_CDFull` + `ou_ergodic`.  See `OU_BESTABLE.md`.
 
 ## Other remarks
 

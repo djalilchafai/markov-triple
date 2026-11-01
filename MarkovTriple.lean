@@ -78,3 +78,8 @@ import MarkovTriple.FunctionalInequalities.BECircle
 import MarkovTriple.FunctionalInequalities.AxiomCheck
 import MarkovTriple.Sanity.CircleFull
 import MarkovTriple.Sanity.OU.Full
+import MarkovTriple.Sanity.OU.Mehler
+import MarkovTriple.Sanity.OU.MehlerHermite
+import MarkovTriple.Sanity.OU.MehlerEq
+import MarkovTriple.Sanity.OU.BEReg
+import MarkovTriple.Sanity.OU.BEStable
