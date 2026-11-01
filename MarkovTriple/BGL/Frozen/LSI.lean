@@ -1,6 +1,7 @@
 import Mathlib
 import MarkovTriple.BGL.Frozen.Energy
 import MarkovTriple.BGL.Frozen.Ent
+import MarkovTriple.BGL.Frozen.DiffusionTriple
 
 /-! # Logarithmic Sobolev inequality (BGL Definition 5.1.1) -/
 
@@ -18,5 +19,11 @@ def LogSobolevIneq (μ : Measure E) (Γ : (E → ℝ) → (E → ℝ) → (E →
     (C D : ℝ) : Prop :=
   IsProbabilityMeasure μ ∧ 0 < C ∧ 0 ≤ D ∧
     ∀ f ∈ 𝒞, Ent μ (fun x => f x ^ 2) ≤ 2 * C * energy μ Γ f + D * ∫ x, f x ^ 2 ∂μ
+
+/-- **Triple-bound logarithmic Sobolev inequality** `LS(C, D)` of a diffusion triple (BGL Def. 5.1.1):
+the generic `LogSobolevIneq` for the triple's own `μ`, `Γ`, on the test class `𝒜₀` (bounded functions,
+so `f² log f²` is integrable and `Ent` is a genuine entropy: `DiffusionTriple.integrable_sq_mul_log_sq`). -/
+def DiffusionTriple.LS (T : DiffusionTriple E) (C D : ℝ) : Prop :=
+  LogSobolevIneq T.μ T.Γ (T.A₀ : Set (E → ℝ)) C D
 
 end MarkovTriple.BGL

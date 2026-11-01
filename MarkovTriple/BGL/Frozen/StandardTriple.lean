@@ -18,18 +18,21 @@ and semigroup are ergodic and conservative.
   field (it requires `Γ` on `𝒟(ℰ)`).
 * S11 (`conservative`, Def. 3.1.12): `P_t(1) = 1`.  The book lets `P_t` act on bounded measurable
   functions, so that this makes sense for infinite `μ` (`1 ∉ L²`); `1` is the a.e. limit of the
-  exhaustion sequence of Def. 3.1.1 (cf. the remark after Def. 3.1.9).  Encoding: for **every**
-  exhaustion sequence `u` (`IsExhaustion`), `P_t u_n → 1` a.e. as `n → ∞`, for every `t ≥ 0`.  When
-  `μ` is a probability measure this is `P_t 1 = 1` in `L²`.  Independence of the exhaustion
-  sequence (so that "for every" and "for some" agree) holds as soon as `P_t` is positivity
-  preserving and sub-Markov (to be proved later; see `FROZEN_REVIEW_BGL.md`).
+  exhaustion sequence of Def. 3.1.1 (cf. the remark after Def. 3.1.9).  Encoding: for **every
+  nonnegative** exhaustion sequence `u` (`IsExhaustion`, and `0 ≤ u_n` a.e. for all `n`),
+  `P_t u_n → 1` a.e. as `n → ∞`, for every `t ≥ 0`.  When `μ` is a probability measure this is
+  `P_t 1 = 1` in `L²`.  The restriction to nonnegative sequences is harmless: positivity and the
+  sub-Markov property of `P_t` are theorems (`BGL/Semigroup/Markov.lean`), and then the statement
+  for ONE exhaustion sequence implies it for ALL exhaustion sequences, signed or not
+  (`StandardTriple.conservative_all`, `BGL/Semigroup/Conservative.lean`); nonnegative
+  exhaustion sequences exist (`DiffusionTriple.exists_nonneg_exhaustion`).
 Positivity preservation and sub-Markov are *theorems* about `DiffusionTriple.semigroup`. -/
 structure StandardTriple (E : Type*) [MeasurableSpace E] extends DiffusionTriple E where
   /-- S10: ergodicity. -/
   ergodic : ∀ (u : Lp ℝ 2 μ) (hu : u ∈ toDiffusionTriple.generator.domain),
     toDiffusionTriple.generator ⟨u, hu⟩ = 0 → ∃ c : ℝ, (u : E → ℝ) =ᵐ[μ] fun _ => c
   /-- S11: conservativeness `P_t(1) = 1`, through exhaustion sequences. -/
-  conservative : ∀ (u : ℕ → E → ℝ) (hu : IsExhaustion μ A₀ u) (t : ℝ≥0),
+  conservative : ∀ (u : ℕ → E → ℝ) (hu : IsExhaustion μ A₀ u), (∀ n, 0 ≤ᵐ[μ] u n) → ∀ (t : ℝ≥0),
     ∀ᵐ x ∂μ, Tendsto (fun n => (toDiffusionTriple.semigroup t
       (toDiffusionTriple.cls ⟨u n, hu.1 n⟩) : E → ℝ) x) atTop (𝓝 1)
 

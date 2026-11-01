@@ -88,7 +88,7 @@
     {
       "path": "MarkovTriple/BGL/Frozen/Energy.lean",
       "status": "proposed",
-      "sha256": "0141acbf98c29dd9fe3a3f61455598cb7b6651d1d0eef63150094a640930fd45"
+      "sha256": "e6f0360a79d5b98dcf01381723d24926d117fa27132bbdee098bc501846b7a27"
     },
     {
       "path": "MarkovTriple/BGL/Frozen/Ent.lean",
@@ -128,7 +128,7 @@
     {
       "path": "MarkovTriple/BGL/Frozen/LSI.lean",
       "status": "proposed",
-      "sha256": "65a8586c758c8ca7eb2a1aaaf992ca6e652f0b6251831a5899ec071ffcb1267d"
+      "sha256": "0d3239048216213789f013062195db2f7a5ce80a0ae2266f3ec9659ecca03677"
     },
     {
       "path": "MarkovTriple/BGL/Frozen/PartialDeriv.lean",
@@ -138,7 +138,7 @@
     {
       "path": "MarkovTriple/BGL/Frozen/Poincare.lean",
       "status": "proposed",
-      "sha256": "a595b62fa513f792e7be441f0aa562db814fa744d836cd6365d0dad531e08abd"
+      "sha256": "be0e9aa8a09443ceb3716d60c466ce0bca26b13fd90027f29627c8eb34eb99e0"
     },
     {
       "path": "MarkovTriple/BGL/Frozen/Semigroup.lean",
@@ -148,7 +148,69 @@
     {
       "path": "MarkovTriple/BGL/Frozen/StandardTriple.lean",
       "status": "proposed",
-      "sha256": "17668c21aa6e01cc3845e18f38fda7e261eaa1f95f5dc890c7fa59550827f0a4"
+      "sha256": "a628bf397bdfbf92298366821eb7d105f99185a6e4d6d3100cdf234bab342038"
+    }
+  ],
+  "fenced": [
+    {
+      "path": "MarkovTriple/BGL/FormData.lean",
+      "status": "fenced",
+      "sha256": "dbee6d3a7378075101cf1394be0256cdfb22ab10c22aa342cf809550bcfd580c"
+    },
+    {
+      "path": "MarkovTriple/BGL/Basic.lean",
+      "status": "fenced",
+      "sha256": "2a395c468bce6b74b85e8cb0e6f34b9abedbc7fc6b1993f94fb43f8a45fd7e99"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/Friedrichs.lean",
+      "status": "fenced",
+      "sha256": "295923aeb351052e9e4e0b249b5bca0cade18d675c11e4f5e1b56204e66caa33"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/Resolvent.lean",
+      "status": "fenced",
+      "sha256": "0decc93c0ff56188c1f8826753ea1db3b0b4bfb7e7119aebb515686374664679"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/Generator.lean",
+      "status": "fenced",
+      "sha256": "75c9ae8ff131be5825f1d054f6b629236f5ddabefeebf422ebf1140c72247fd3"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/SemigroupDeriv.lean",
+      "status": "fenced",
+      "sha256": "26c1c1b0c4fe2f1d223b363b018e241784b150ad397431b056cb654a194a1bbd"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/SemigroupSmoothing.lean",
+      "status": "fenced",
+      "sha256": "25c82071f513c9d044355025e1ac02e90d70778b6906a28f32d71783585f2a42"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/CfcSemigroup.lean",
+      "status": "fenced",
+      "sha256": "ffd533ceec3a5a3b1a5b050833ba810b537cb49c7966e5257c624e8f1145c956"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/Complexify.lean",
+      "status": "fenced",
+      "sha256": "4b41b12983b4d28b2fcc66ae4b30bcebb46906eb356d9a39139689f04dc5984d"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/ResolventGenerator.lean",
+      "status": "fenced",
+      "sha256": "1eabe65b093ff6fe5f435b9f7c712c560c04174f4d633e01da59c096f197e0e0"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/Existence.lean",
+      "status": "fenced",
+      "sha256": "70a95395c8b3241754b517544a59cb169a07ad25b125b3e74aef43f6b2798a84"
+    },
+    {
+      "path": "MarkovTriple/Hilbert/SpectralGap.lean",
+      "status": "fenced",
+      "sha256": "17f60cf3f0ef656c491ae7a790dfa359e2d529563f310907d0cd9167e39a2127"
     }
   ]
 }

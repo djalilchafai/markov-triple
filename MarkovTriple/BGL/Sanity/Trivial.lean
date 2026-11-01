@@ -72,7 +72,7 @@ end Diffusion
 noncomputable def trivialCompact : CompactTriple Unit where
   toDiffusionTriple := trivialDiffusion (Measure.dirac ())
   ergodic := fun u _ _ => ⟨u (), Filter.Eventually.of_forall fun x => by cases x; rfl⟩
-  conservative := fun u hu t => by
+  conservative := fun u hu _ t => by
     have h1 : ∀ᵐ x ∂(Measure.dirac ()), ∀ n,
         (((trivialDiffusion (Measure.dirac ())).semigroup t
           ((trivialDiffusion (Measure.dirac ())).cls ⟨u n, hu.1 n⟩) : Lp ℝ 2 _) : Unit → ℝ) x =
