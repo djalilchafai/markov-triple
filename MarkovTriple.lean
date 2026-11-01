@@ -124,3 +124,14 @@ import MarkovTriple.BGL.Instances.Circle.Ergodic
 import MarkovTriple.BGL.Instances.Circle.PosDetect
 import MarkovTriple.BGL.Instances.Circle.Triple
 import MarkovTriple.BGL.AxiomCheck
+import MarkovTriple.BGL.Theory.Gamma2Integral
+import MarkovTriple.BGL.Theory.ESAOne
+import MarkovTriple.BGL.Theory.Poincare
+import MarkovTriple.BGL.Theory.ALevel
+import MarkovTriple.BGL.Theory.GammaCalculus
+import MarkovTriple.BGL.Theory.GradientBound
+import MarkovTriple.BGL.Theory.LogSobolev
+import MarkovTriple.BGL.Theory.Convergence
+import MarkovTriple.BGL.Theory.LogSobolevMain
+import MarkovTriple.BGL.Theory.Tests
+import MarkovTriple.BGL.Theory.AxiomCheck
