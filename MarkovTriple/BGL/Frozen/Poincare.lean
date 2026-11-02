@@ -13,7 +13,10 @@ variable {E : Type*} [MeasurableSpace E]
 /-- Poincaré inequality `P(C)` (BGL Def. 4.2.1), generic in `(μ, Γ)`: `μ` is a probability measure,
 `C > 0`, and `Var_μ(f) ≤ C ℰ(f)` for all `f` in the class `𝒞`.  The book states it on the Dirichlet
 domain `𝒟(ℰ)` and remarks that it suffices to check it on a dense family such as `𝒜₀`; here `𝒞` is
-the family (take `𝒞 = T.A₀`, or `T.A` with `ΓA` for a full triple).  Variance is Mathlib's
+the family (take `𝒞 = T.A₀`, or `T.A` with `ΓA` for a full triple).
+**Hazard (audit R2/L1):** for `𝒞 = ∅`, or any `𝒞` not dense in the form domain, this is true for every
+probability measure and every `Γ`; do not state results with a free `𝒞`.  Use it only through
+`DiffusionTriple.PI` (class `T.A₀`, with `DiffusionTriple.PI.extend`).  Variance is Mathlib's
 `ProbabilityTheory.variance` (for a probability measure `∫ (f − ∫ f)² dμ`). -/
 def PoincareIneq (μ : Measure E) (Γ : (E → ℝ) → (E → ℝ) → (E → ℝ)) (𝒞 : Set (E → ℝ))
     (C : ℝ) : Prop :=

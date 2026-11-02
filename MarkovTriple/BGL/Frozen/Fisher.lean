@@ -9,7 +9,8 @@ namespace MarkovTriple.BGL
 variable {E : Type*} [MeasurableSpace E]
 
 /-- Fisher information `I_μ(h) = ∫ Γ(h,h)/h dμ` (BGL (5.1.6)), generic in `(μ, Γ)`.  Intended for
-`h > 0`; `x/0 = 0` in Lean.  Equals `4 ∫ Γ(√h) dμ` for positive `h` (a theorem, not part of the
+`h > 0` (guard: `IsFisherAdmissible` below, which is NOT a hypothesis of this definition); `x/0 = 0`
+and the Bochner junk `0` for non-integrable integrands in Lean.  Equals `4 ∫ Γ(√h) dμ` for positive `h` (a theorem, not part of the
 surface). -/
 noncomputable def fisherInfo (μ : Measure E) (Γ : (E → ℝ) → (E → ℝ) → (E → ℝ)) (h : E → ℝ) : ℝ :=
   ∫ x, Γ h h x / h x ∂μ

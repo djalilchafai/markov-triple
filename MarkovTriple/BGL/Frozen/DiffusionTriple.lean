@@ -1,6 +1,7 @@
 import Mathlib
 import MarkovTriple.BGL.Frozen.PartialDeriv
 import MarkovTriple.BGL.Frozen.Exhaustion
+import MarkovTriple.BGL.Frozen.GoodMeasure
 
 /-!
 # Diffusion Markov Triples (Bakry–Gentil–Ledoux, Ch. 3, Defs 3.1.1, 3.1.3, 3.1.8; hypotheses D1–D8)
@@ -20,9 +21,12 @@ Everything analytic is a field; nothing is an axiom.  `Γ` and `L` are honest fu
 functions are `μ`-a.e. (the book's convention, Def. 3.1.3), except membership statements, which are
 literal.
 
-* D1: `μ` σ-finite, and a probability measure when finite (`finite_prob`).  The "good measurable
-  space" requirement (countable generation up to null sets, measure decomposition theorem) is NOT
-  encoded; no hypothesis below uses it.
+* D1: `μ` σ-finite, and a probability measure when finite (`finite_prob`), and "good" in the sense
+  `IsGoodMeasure μ` (countable generation of the σ-algebra up to null sets; field `good`, added
+  after audit R2/M1; it has a default value, discharged automatically by
+  `IsGoodMeasure.of_countablyGenerated` whenever `E` is countably generated, e.g. Borel on a second
+  countable space, so existing instances are unchanged).  The measure decomposition theorem half of
+  "good measurable space" (Sect. 1.14) is NOT encoded (take a standard Borel model).
 * D2: `A₀` bounded (everywhere) measurable functions, an algebra (non-unital, a
   `NonUnitalSubalgebra`), dense in every `Lᵖ(μ)`, `1 ≤ p < ∞` (`memLp` is the implicit
   requirement `A₀ ⊂ Lᵖ` needed for the density statement to make sense), stable under every smooth
@@ -44,6 +48,9 @@ structure DiffusionTriple (E : Type*) [MeasurableSpace E] where
   sigmaFinite : SigmaFinite μ
   /-- D1: when `μ` is finite it is assumed to be a probability measure. -/
   finite_prob : IsFiniteMeasure μ → IsProbabilityMeasure μ
+  /-- D1: `μ` is good (countably generated σ-algebra mod null sets, Sect. 1.14).  Default: proved
+  from `MeasurableSpace.CountablyGenerated E` (true for Borel σ-algebras of second countable spaces). -/
+  good : IsGoodMeasure μ := by exact IsGoodMeasure.of_countablyGenerated _
   /-- the test algebra `𝒜₀` (D2), non-unital. -/
   A₀ : NonUnitalSubalgebra ℝ (E → ℝ)
   /-- D2: elements of `𝒜₀` are measurable. -/

@@ -18,7 +18,9 @@ noncomputable def dirichletForm (μ : Measure E) (Γ : (E → ℝ) → (E → �
     (f g : E → ℝ) : ℝ :=
   ∫ x, Γ f g x ∂μ
 
-/-- The energy `ℰ(f) = ℰ(f,f)`. -/
+/-- The energy `ℰ(f) = ℰ(f,f)`.  Generic and unguarded (audit R2/L1): the value is the Bochner junk `0`
+when `Γ f f` is not integrable, and `Γ` is only constrained on `𝒜₀`; prefer `DiffusionTriple.ℰ`
+(on the subtype `𝒜₀`, no junk) or `FormData.E` for the closed form. -/
 noncomputable def energy (μ : Measure E) (Γ : (E → ℝ) → (E → ℝ) → (E → ℝ)) (f : E → ℝ) : ℝ :=
   dirichletForm μ Γ f f
 

@@ -14,12 +14,16 @@ Status: **proved** = Lean theorem, no extra hypothesis beyond the stated ones; *
 | F1–F10, Def 3.3.1, 3.3.25 | `FullTriple` | structure (frozen, proposed) |
 | Def 3.3.26 compact; ESA automatic | `CompactTriple`, `esa_auto` | proved |
 | Def 3.3.12, 3.3.14 | `Γ₂`, `FullTriple.CD` | defined |
-| Prop 3.3.16–3.3.17 (integrated) | `Theory/Gamma2Integral` | proved (operator-level extension not done) |
+| Prop 3.3.16–3.3.17 (integrated) | `Theory/Gamma2Integral` | proved |
+| Prop 3.3.16 (i)–(iii), operator level (`Γ`, `Γ₂` on `𝒟(L)`, `L¹`) | `FullTriple.gamma_limits` (`Theory/Extension/`) | proved; Hessian (iv)–(viii) and Prop 3.3.17 open |
+| (3.3.4) Hessian product rule; (3.3.6) reinforced CD | `FullTriple.Γ₂_mul_left`, `FullTriple.reinforced_cd` (`Theory/Strong/`) | proved |
 | Poincaré, Lichnerowicz | `poincare_of_CD_infty`, `poincare_of_CD_dim` | proved |
-| Thm 3.3.18 (weak form) | `gradient_bound` | cond. on `GradientInterpolation` (discharged: OU) |
+| Cor 3.3.19 (weak form) | `gradient_bound` | cond. on `GradientInterpolation` (discharged: compact, OU); Lebesgue: `Lebesgue.lebesgue_hasGradientBound` |
+| **Thm 3.3.18 (strong form)** | `FullTriple.strong_gradient_bound` | cond. on `StrongInterpolation`, `ρ ≥ 0` (discharged: `CompactTriple.strongInterpolation`, `ouFull_StrongInterpolation`); `compact_strong_gradient_bound`, `ouFull_strong_gradient_bound`, `circle_/ouBCompact_/sphere_strong_gradient_bound`, `lebesgue_strong_gradient_bound` |
 | log-Sobolev from CD(ρ,∞) | `logSobolev_of_CD_infty` | cond. on `EntropyInterpolation` (discharged: OU) |
-| Thm 3.3.23, infinite μ | — | not done (needs completeness, Def 3.3.9) |
-| Instances | `Circle.circleCompact`, `Lebesgue.lebesgueFull`, `OU.ouFull` | proved |
+| Def 3.3.9 completeness, Lebesgue / OU | `lebesgueDiffusion_isComplete`, `ouDiff_isComplete` | proved |
+| Thm 3.3.23, infinite μ | `ExtendedAlgebra.conservative_of_complete`, `isFiniteMeasure_of_complete`; non-compact applications `lebesgue_conservative_of_complete`, `ouFull_conservative_of_complete` | proved (cond. on weak gradient bound, available for compact, OU, Lebesgue) |
+| Instances | `Circle.circleCompact`, `Lebesgue.lebesgueFull`, `OU.ouFull`, `Instances.OUCompact.ouBCompact`, `Instances.Sphere.sCompact` (zonal `S³`, compact `[-1,1]`, `CD(2,3)`: `sphere_CD_two_three`; `sphere_PI'`, `sphere_LS`, `sphere_gradient_bound`, `sphere_fisher_decay`) | proved |
 | Gaussian PI / LSI | `OU.ouFull_LS`, `ouFull_gradient_bound` | proved, unconditional |
 | Friedrichs extension, resolvent, generator, CFC semigroup (D7/D9 machinery) | `MarkovTriple.Hilbert.FormData.*` in `BGL/Analysis/Hilbert/` (fenced by `check_frozen.py`) | proved |
 | Hermite / Mehler analysis behind OU | `MarkovTriple.Sanity.OU.*` in `BGL/Analysis/OU/` (namespace kept from the removed legacy surface) | proved |

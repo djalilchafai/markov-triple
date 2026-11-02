@@ -13,7 +13,10 @@ variable {E : Type*} [MeasurableSpace E]
 
 /-- The curvature-dimension condition `CD(ρ, n)`, `ρ ∈ ℝ`, `n ∈ [1, ∞]` (BGL Def. 3.3.14): for every
 `f ∈ 𝒜`, `Γ₂(f) ≥ ρ Γ(f) + (1/n) (L f)²` (a.e.).  `n : ℝ≥0∞`; `n = ∞` means no `(Lf)²/n` term
-(`∞⁻¹ = 0`); `n < 1` is excluded by the conjunct `1 ≤ n`, as in the book. -/
+(`∞⁻¹ = 0`); `n < 1` is excluded by the conjunct `1 ≤ n`, as in the book
+(so `¬ CD ρ n` for `n < 1` says nothing about curvature).  `Γ₂` is meaningful on `𝒜` only (junk of the
+total function `L` off `𝒜`), whence the quantification over `f ∈ 𝒜`, and `CD` is stated for full
+triples only (audit R2/L3). -/
 def FullTriple.CD (T : FullTriple E) (ρ : ℝ) (n : ℝ≥0∞) : Prop :=
   1 ≤ n ∧ ∀ f ∈ T.A, ∀ᵐ x ∂T.μ,
     ρ * T.toDiffusionTriple.ΓA f f x + (n⁻¹).toReal * (T.L f x) ^ 2 ≤

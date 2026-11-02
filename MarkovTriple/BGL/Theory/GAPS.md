@@ -31,11 +31,10 @@ are integrable and `Φ' = 2∫ k_s Γ₂(g_s)`.  The book obtains this from Lemm
 (c) symmetric integration by parts `∫ Lk·G = ∫ k·LG` for `k = P_s h ∈ 𝒜∖𝒜₀`, `G ∈ 𝒟(ℰ) ∩ 𝒜`
 (Prop. 3.3.17 / (3.3.5)).  For a *compact* triple (`𝒜=𝒜₀`) it should be provable by differentiating in
 the graph norm of `L`; not done.
-**Not done:** the *strong* (√) form `Γ(P_tf) ≤ e^{-2ρt}(P_t√Γf)²` (Thm 3.3.18): needs in addition the
-pointwise inequality (3.2.4)/(3.3.7) `Γ(Γ f) ≤ 4(Γ₂(f)-ρΓ(f))Γ(f)` on `𝒜` (the `ψ(h)`-trick
-of the book on p. 159, a Hessian computation) and the second derivative `∂²_s G_ε` of Lemma 3.3.21 with
-the `ε`-regularisation `G_ε = √(Γ+ε²)-ε`.  The weak form is what mass conservation and Poincaré-type
-applications use.
+**Strong (√) form, Thm 3.3.18: DONE (round 12), see the section "Round 12" below** (`Theory/Strong/*`): the pointwise
+inequality (3.3.6) `Γ(Γ f) ≤ 4(Γ₂(f)-ρΓ(f))Γ(f)` is PROVED on `𝒜` for every full triple with `CD(ρ,n)`
+(`FullTriple.reinforced_cd`), and `√Γ(P_t f) ≤ e^{-ρt} P_t(√Γ f)` is proved for `ρ ≥ 0` from the explicit analytic
+structure `StrongInterpolation` (discharged for compact triples, OU), and for Lebesgue by the heat kernel.
 
 ### G3.  `FullTriple.EntropyInterpolation T`  (de Bruijn + `Φ''`; Prop. 5.7.1, §5.5, `LogSobolev.lean`)
 Proved from it (`ent_le_fisher`, `ent_sq_add_le`, `logSobolev_of_CD_infty`, `logSobolev_extend_domain`):
@@ -51,15 +50,26 @@ inequality, the `f²` and `ε → 0` steps, limit at `∞` (from the gap).
 
 ## Not done / documented only
 
-* **G4.  Mass conservation, infinite `μ` (Thm 3.3.23).**  Finite `μ`: done and stronger (ESA alone).  For infinite `μ`
-  the book needs *completeness* (Def. 3.3.9: `ζ_k ↑ 1` in `𝒜₀`, `Γ(ζ_k) ≤ 1/k`), which is NOT a field of the surface,
-  plus the gradient bound (G1).  Sketch (not formalised): `∫(P_tζ_k-ζ_k)ξ = -∫_0^t∫Γ(P_sζ_k,ξ)`, Cauchy–Schwarz
-  and `Γ(P_sζ_k) ≤ e^{-2ρs}P_sΓ(ζ_k) ≤ e^{-2ρs}/k` give `→ 0`; in infinite measure one needs `√Γ(ξ) ∈ L¹`, available
-  for `ξ = η²`, `η ∈ 𝒜₀`, which suffices by density.  Second claim of Thm 3.3.23 (`ρ>0 ⇒ μ(E)<∞`) likewise not done.
-  Without completeness the statement "ESA + CD ⇒ conservative" is not claimed (the book assumes completeness).
-* **G5.  Props. 3.3.16 (i),(iii)–(viii) and 3.3.17 as operator statements** (extension of `Γ₂`, Hessian to `𝒟(L)`
-  as `L¹`-valued continuous bilinear maps; identification on `𝒜 ∩ 𝒟(L)`; converse under ergodicity).  Only the
-  integrated identities / inequalities (which suffice for Poincaré) are proved.
+* **G4.  Mass conservation, infinite `μ` (Thm 3.3.23): DONE modulo the gradient bound (round 11).**  Finite `μ`: ESA alone
+  (`ESAOne`).  Infinite `μ`: `Theory/Conservation/{Hilbert,ExtAlgebra,Estimate,Mass,Finite,Compact}.lean`.
+  Completeness is `DiffusionTriple.IsComplete` (`Frozen/Complete.lean`).  Proved (no sorry, standard axioms):
+  `ExtendedAlgebra.conservative_of_complete` (complete + weak gradient bound ⇒ S11 for every exhaustion sequence),
+  `ExtendedAlgebra.isFiniteMeasure_of_complete` (`ρ>0` + S10 + complete + gradient bound ⇒ `μ` finite),
+  and the `FullTriple`/`CompactTriple` forms.  They are stated over `ExtendedAlgebra D A` (S11 is a field of `FullTriple`, so
+  the theorem would be vacuous there).  **Remaining exact gap:** the hypothesis `HasGradientBound D A ρ`
+  (`Γ(P_t f) ≤ e^{-2ρt} P_t Γ(f)`, Cor. 3.3.19) is available only for compact triples and for full triples satisfying
+  `GradientInterpolation` (G1, still open for non-compact triples); the book's use of it is exactly this weak form
+  (the strong form 3.3.18 is not needed).  **Round 12:** Lebesgue and OU are PROVED complete (real cutoffs, `Theory/Complete/`),
+  and the theorem has genuine non-compact applications: `ouFull_conservative_of_complete`,
+  `lebesgue_conservative_of_complete` (infinite measure; weak gradient bound from the heat kernel,
+  `lebesgue_hasGradientBound`).  The book's `√Γ ξ ∈ L¹` step is replaced by `2|η|√Γη ≤ η²+Γη`, ξ=η².
+* **G5.  Props. 3.3.16 (i),(iii)–(viii) and 3.3.17 as operator statements.**  PARTIALLY DONE (round 12,
+  `Theory/Extension/*`): `FullTriple.gamma_limits` = Prop 3.3.16 (i), (ii), (iii) for `Γ` and `Γ₂` (extension to `𝒟(L)` as
+  `L¹`-limit along any graph-convergent sequence of test functions, independence of the sequence, `∫Γ₂(u) = ‖Lu‖²`,
+  `∫Γ(u) = −⟪Lu,u⟫`, extended `CD(ρ,n)`).  **Still open (exact):** the Hessian `H(f)(g,h)` and (iv)–(viii)
+  (extension to `𝒟(L) × 𝒟(ℰ) × 𝒜₀`, product rule (vi)–(vii), inequality (3.3.7) extended (viii)); Prop 3.3.17
+  (identification of the `𝒟(L)`-definition of `Γ₂`/`H` with the `𝒜`-definition on `𝒜 ∩ 𝒟(L)` and the converse under ergodicity;
+  it needs the identification of `Γ` on `𝒜 ∩ 𝒟(ℰ)` with the closed-form extension, Props 3.3.5–3.3.6, also not in the surface).
   Note Remark 3.3.15 (CD from `𝒜₀` to `𝒜`) is not needed: the frozen `FullTriple.CD` is already stated on all of `𝒜`.
 * `FullTriple.CD` for the finite-dimensional LSI constant `ρn/(n-1)` (Thm 5.7.4 with `n<∞`, via the integrated
   chain rule (5.7.6)–(5.7.12) for `e^{ag}`): not done (only `n`-independent constant `1/ρ`, from `CD(ρ,n) ⇒ CD(ρ,∞)`).
@@ -70,3 +80,29 @@ inequality, the `f²` and `ε → 0` steps, limit at `∞` (from the gap).
 `CompactTriple` (`𝒜 = 𝒜₀`); the gradient bound, Fisher decay and (for `ρ>0`) the log-Sobolev inequality are therefore
 unconditional there, and the circle has `Γ(P_t f) ≤ P_t Γ f`, `e' = -I`, `I' ≤ 0`.  See `Compact/GAPS_COMPACT.md`.
 G1/G3 remain open (hypotheses) for non-compact full triples.
+
+## Round 12: strong gradient bound, completeness, non-compact applications, Γ₂ extension
+
+| Statement | Lean | Status |
+|---|---|---|
+| Hessian product rule (3.3.4) `Γ₂(hk,g) = hΓ₂(k,g)+kΓ₂(h,g)+Γ(h,Γ(k,g))+Γ(k,Γ(h,g))−Γ(g,Γ(h,k))` | `FullTriple.Γ₂_mul_left` (`Strong/Calculus`) | proved (F6, `k=2`) |
+| Reinforced CD (3.3.6) `Γ(Γf) ≤ 4(Γ₂(f)−ρΓ(f))Γ(f)`, and `Γ(w,Γf)² ≤ 2K(f)(Γ(f)Γ(w)+Γ(f,w)²)` | `FullTriple.reinforced_cd`, `hessian_ineq` (`Strong/Reinforced`) | proved for every `FullTriple` with `CD(ρ,n)`, any `ρ ∈ ℝ` |
+| Lemma 3.3.21 pointwise step, Gronwall, `ε→0` | `FullTriple.strongD_ge`, `strong_integrated`, `strong_eps`, `strong_of_eps` | proved (`ρ ≥ 0`) |
+| **Thm 3.3.18** `√Γ(P_t f) ≤ e^{-ρt}P_t(√Γ f)` | `FullTriple.strong_gradient_bound` | conditional on `StrongInterpolation` (analytic differentiation of `Φ_ε(s)=∫P_sh ψ_ε(Γ P_{t-s}f)`), `ρ ≥ 0` |
+| `StrongInterpolation` for compact triples | `CompactTriple.strongInterpolation` (via `hasDerivAt_ucls`: `L²`-differentiability of `s↦[Γ(P_{t-s}f)]` by the energy estimate `‖Γ(a,b)‖₂² ≤ ‖Γb‖_∞ ℰ(a)`, `ℰ(a) ≤ ‖a‖‖La‖`) | proved; `compact_strong_gradient_bound`, `circle_/ouBCompact_/sphere_strong_gradient_bound` |
+| `StrongInterpolation` for OU | `ouFull_StrongInterpolation`, `ouFull_strong_gradient_bound` (`ρ = 1`) | proved (Mehler calculus + two Gaussian IBPs) |
+| Strong bound for Lebesgue (`ρ = 0`, infinite μ) | `Lebesgue.lebesgue_strong_gradient_bound` | proved by the heat kernel + Jensen (`StrongInterpolation` is not used) |
+| Completeness (Def 3.3.9): Lebesgue, OU | `lebesgueDiffusion_isComplete`, `ouDiff_isComplete` (`Complete/Real`: real cutoffs `χ(x/(M(k+1)))`) | proved |
+| Non-compact applications of Thm 3.3.23 (1st claim) | `ouFull_conservative_of_complete`, `lebesgue_conservative_of_complete`, `lebesgue_hasGradientBound` | proved |
+| Prop 3.3.16 (i)–(iii) for `Γ`, `Γ₂` | `FullTriple.gamma_limits` (`Extension/Main`) | proved (see G5 for what is missing) |
+
+**Not done (exact gaps):**
+* `StrongInterpolation` / `GradientInterpolation` / `EntropyInterpolation` for a *general non-compact* `FullTriple`
+  (they remain hypotheses; discharged only for compact triples and OU, plus `HasGradientBound` and the strong bound for
+  Lebesgue by kernels).  The obstruction is the one of G1: differentiation of `s ↦ ∫ P_s h · Θ(Γ(P_{t-s}f))` needs
+  `L²`/`L¹`-regularity of the orbit in `𝒟(L)` *and* control of `Γ(P_s f)` in `L^∞` that the abstract `𝒜`, F1–F10 do not provide
+  (for compact triples `𝒜 = 𝒜₀` gives it via `Γ(P_τ f) ≤ ‖Γ f‖_∞`).  A generic discharge would need the extended `Γ₂`/Hessian of
+  Props 3.3.16–3.3.17 (above) to run the book's route (Lemmas 3.3.20–3.3.21 with `ε`-regularised `√`).
+* Thm 3.3.18 for `ρ < 0`: the `ε`-form needs the error term `ρ ε ∫ P_s h` (uses `∫P_s h ≤ ∫h`); not done (all instances have `ρ ≥ 0`).
+* Lebesgue `GradientInterpolation`/`EntropyInterpolation` as structures (the entropy one is moot: `ρ = 0` gives no LSI; the
+  gradient one is subsumed by `lebesgue_hasGradientBound`, which is exactly the hypothesis of Thm 3.3.23).

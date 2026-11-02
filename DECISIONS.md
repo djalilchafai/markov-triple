@@ -70,3 +70,15 @@
     `frozen-manifest.json` lists only `BGL/Frozen`; its `fenced` list is the (renamed) Hilbert files plus `BGL/FormData.lean`, `BGL/Basic.lean`;
     the import-closure check of `scripts/check_frozen.py` still guarantees that every project file the frozen surface
     imports is hashed (the only edits to frozen/fenced files were import lines).
+
+# Amendment (round 11): audit R2 fixes and Thm 3.3.23
+
+18. D1 "good": `DiffusionTriple` gets a field `good : IsGoodMeasure μ` WITH A DEFAULT PROOF (`IsGoodMeasure.of_countablyGenerated`), the most faithful non-breaking encoding (no instance edit; the sphere/Jacobi instance, built concurrently, is covered by the default). Frozen files changed: `Frozen/DiffusionTriple.lean` (field, docstring, import), docs-only edits of `CD`, `CompactTriple`, `StandardTriple`, `Energy`, `Ent`, `Fisher`, `Poincare`, `LSI`; new frozen files `GoodMeasure.lean`, `Complete.lean` (status proposed). Manifest regenerated with `scripts/check_frozen.py --update`.
+19. Completeness (Def. 3.3.9) is a predicate on a `DiffusionTriple` (`DiffusionTriple.IsComplete`), not a field. Thm 3.3.23 is proved over `ExtendedAlgebra D A` (a `Prop` bundling the used part of F1–F8) because S11 is a field of `StandardTriple`/`FullTriple` (Thm 3.3.23 would be vacuous there). The gradient bound enters as the hypothesis `HasGradientBound D A ρ`.
+
+# Amendment (round 12): strong gradient bound, completeness of Lebesgue/OU, Γ₂ extension
+
+20. No frozen file was changed (check_frozen OK).  Thm 3.3.18 is proved with `CD ρ n` (book: CD(ρ,∞)), `ρ ≥ 0`, from the
+    Prop-structure `StrongInterpolation` (analytic regularity only; the reinforced CD (3.3.6) is proved, not assumed).  It is
+    discharged for all `CompactTriple`s and OU; Lebesgue by the explicit heat kernel (Jensen).  Strong bound `ρ < 0`, the
+    Hessian part of Props 3.3.16 and Prop 3.3.17, and a generic non-compact discharge are documented gaps (`Theory/GAPS.md`).
