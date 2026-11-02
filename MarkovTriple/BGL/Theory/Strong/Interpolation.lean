@@ -93,7 +93,7 @@ theorem L_comp {ψ : ℝ → ℝ} (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ) {u : E 
     (by intro i; fin_cases i; simpa using hu)
   filter_upwards [key] with x hx
   refine hx.trans ?_
-  simp [Fin.sum_univ_one, pderiv_comp_eval ψ (hψ.differentiable (by simp)),
+  simp [pderiv_comp_eval ψ (hψ.differentiable (by simp)),
     pderiv2_comp_eval ψ hψ]
 
 /-- the exact identity `L(Γ(g)) = 2Γ₂(g) + 2Γ(g, L g)`. -/

@@ -71,7 +71,7 @@ lemma Fcut_bounds {ε : ℝ} (hε : 0 < ε) (B : ℝ) (hB : 0 ≤ B) :
       (∀ y, |deriv (Fcut ε (B + 1)) y| ≤ K1) ∧ (∀ y, |deriv (deriv (Fcut ε (B + 1))) y| ≤ K2) :=
   Compact.smooth_bounds (Fcut_smooth hε _) (Fcut_cs ε (by linarith))
 
-lemma J_eq {ε : ℝ} (hε : 0 < ε) (f h : C.A₀) (t : ℝ≥0) {B : ℝ}
+lemma J_eq {ε : ℝ} (_hε : 0 < ε) (f h : C.A₀) (t : ℝ≥0) {B : ℝ}
     (hB : ∀ r : ℝ, -1 ≤ r → FullTriple.G C.toFullTriple (C.ppt f t r) (C.ppt f t r) ≤ᵐ[C.μ] fun _ => B)
     (hB0 : 0 ≤ B) {r : ℝ} (hr : 0 ≤ r) :
     C.toFullTriple.strongPhi ε f h t r =

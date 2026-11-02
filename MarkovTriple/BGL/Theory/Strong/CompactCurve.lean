@@ -360,7 +360,7 @@ theorem continuousAt_ucls {ρ : ℝ} {n : ℝ≥0∞} (hCD : C.toFullTriple.CD �
     have hE0 := C.int_G_nonneg hρ'
     rw [hnorm]
     refine hrem.trans ?_
-    simp only [zero_pow (by norm_num : (4 : ℕ) ≠ 0), zero_mul, add_zero, mul_zero, zero_pow two_ne_zero]
+    simp only [zero_pow (by norm_num : (4 : ℕ) ≠ 0), zero_mul, add_zero, zero_pow two_ne_zero]
     nlinarith [hE, mul_nonneg hB0 hE0]
   rw [ContinuousAt, tendsto_iff_norm_sub_tendsto_zero]
   have hlim : Tendsto (fun r => Real.sqrt (8 * B * (e1 r * e2 r))) (𝓝 r0) (𝓝 0) := by

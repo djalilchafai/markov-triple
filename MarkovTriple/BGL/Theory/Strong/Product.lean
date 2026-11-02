@@ -44,6 +44,7 @@ section shift
 
 variable {f : E → ℝ} (hf : f ∈ T.A) (a : ℝ)
 
+omit [MeasurableSpace E] in
 lemma shift_eq : (fun x => f x - a) = fun x => f x + (-a) * (fun _ : E => (1 : ℝ)) x := by
   funext x; ring
 
