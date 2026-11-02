@@ -1,71 +1,6 @@
 {
   "files": [
     {
-      "path": "MarkovTriple/Frozen/PartialDeriv.lean",
-      "status": "proposed",
-      "sha256": "8fd48bf7efae48860114b5f2fde7e70ebe93cf5d654b808065841ce83cfbb825"
-    },
-    {
-      "path": "MarkovTriple/Frozen/MarkovTriple.lean",
-      "status": "proposed",
-      "sha256": "048e2cb4df022ff45a07b3df06872e5c6c51d1c4d84528a3b39af601f05af4da"
-    },
-    {
-      "path": "MarkovTriple/Frozen/Gamma2.lean",
-      "status": "proposed",
-      "sha256": "c88b019e45fc8148fb9269205b0b1a350517bf17329f4cefd4e2848239ecd42f"
-    },
-    {
-      "path": "MarkovTriple/Frozen/CD.lean",
-      "status": "proposed",
-      "sha256": "260b4e17a16b9ed6254f1fc2136722b427ea7d9e1562e42cec0dc283bf105c3b"
-    },
-    {
-      "path": "MarkovTriple/Frozen/Energy.lean",
-      "status": "proposed",
-      "sha256": "181071bd0dbfd6c0ca0b8fb44305e1c6cb964ac55ebbb0ad871dc30fd77d3225"
-    },
-    {
-      "path": "MarkovTriple/Frozen/Ent.lean",
-      "status": "proposed",
-      "sha256": "94fcfe85b00e8d8a071d3830f7a445f20d03a28668c1e2f07e990ab6a41047f4"
-    },
-    {
-      "path": "MarkovTriple/Frozen/Poincare.lean",
-      "status": "proposed",
-      "sha256": "ba49e3360c164e7c8530fff298dc09e80a17f3fd21159b3aa8b1b16d1d31f7a1"
-    },
-    {
-      "path": "MarkovTriple/Frozen/LSI.lean",
-      "status": "proposed",
-      "sha256": "7b0113e79fdd9a626adedcd6f798bad9a8242960f8f1b96d6b230d47b1c1a492"
-    },
-    {
-      "path": "MarkovTriple/Frozen/Fisher.lean",
-      "status": "proposed",
-      "sha256": "9262e3b9778d599fbb7e0886c3a9523ff9f6a5d93ffbbf72223edd3ad0cf1ed6"
-    },
-    {
-      "path": "MarkovTriple/Frozen/Semigroup.lean",
-      "status": "proposed",
-      "sha256": "44fca70c026d9108f84c48b3d5c70c23f111e1bdaa3b9a68dba7829628b65f2d"
-    },
-    {
-      "path": "MarkovTriple/Frozen/FullMarkovTriple.lean",
-      "status": "proposed",
-      "sha256": "1909d06ed88667fc48cbd288c2eefc739a4490c3fca7809280d966325d2467e7"
-    },
-    {
-      "path": "MarkovTriple/Frozen/Ergodic.lean",
-      "status": "proposed",
-      "sha256": "eb891cda5fb3d525aa15aef1f38b45784f79fcb8757ee099b046896ee39cb261"
-    },
-    {
-      "path": "MarkovTriple/Frozen/CDFull.lean",
-      "status": "proposed",
-      "sha256": "f268388c4a3c189ae1ebb3e823c31650166e05ea034127870a7236afde58d92e"
-    },
-    {
       "path": "MarkovTriple/BGL/Frozen/CD.lean",
       "status": "proposed",
       "sha256": "ee5100546348cc3f1192dc30ca740564fd15b009c0ed8c33a5550a9592cf51f5"
@@ -143,7 +78,7 @@
     {
       "path": "MarkovTriple/BGL/Frozen/Semigroup.lean",
       "status": "proposed",
-      "sha256": "9245073d2ec21c1696159f398ea18f25c975114eda492866d4df03000f32b09a"
+      "sha256": "0e4c1ebf61161babd5e7ce8742f53880be19603d2ee340de324dd46dff701037"
     },
     {
       "path": "MarkovTriple/BGL/Frozen/StandardTriple.lean",
@@ -155,7 +90,7 @@
     {
       "path": "MarkovTriple/BGL/FormData.lean",
       "status": "fenced",
-      "sha256": "dbee6d3a7378075101cf1394be0256cdfb22ab10c22aa342cf809550bcfd580c"
+      "sha256": "6a8649709a948baec3e037be54c4f54e1637e9a96c9f282d0598426aa9fc3aaa"
     },
     {
       "path": "MarkovTriple/BGL/Basic.lean",
@@ -163,54 +98,54 @@
       "sha256": "2a395c468bce6b74b85e8cb0e6f34b9abedbc7fc6b1993f94fb43f8a45fd7e99"
     },
     {
-      "path": "MarkovTriple/Hilbert/Friedrichs.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/Friedrichs.lean",
       "status": "fenced",
       "sha256": "295923aeb351052e9e4e0b249b5bca0cade18d675c11e4f5e1b56204e66caa33"
     },
     {
-      "path": "MarkovTriple/Hilbert/Resolvent.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/Resolvent.lean",
       "status": "fenced",
-      "sha256": "0decc93c0ff56188c1f8826753ea1db3b0b4bfb7e7119aebb515686374664679"
+      "sha256": "68f58357d94951eefa0aada0adb74fb14f9e5adcee052ef1c93f4a67ee8121d1"
     },
     {
-      "path": "MarkovTriple/Hilbert/Generator.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/Generator.lean",
       "status": "fenced",
-      "sha256": "75c9ae8ff131be5825f1d054f6b629236f5ddabefeebf422ebf1140c72247fd3"
+      "sha256": "2fe80e6b6491618d92d09ace101543a65e451daf607e079358d2f7774060a135"
     },
     {
-      "path": "MarkovTriple/Hilbert/SemigroupDeriv.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/SemigroupDeriv.lean",
       "status": "fenced",
-      "sha256": "26c1c1b0c4fe2f1d223b363b018e241784b150ad397431b056cb654a194a1bbd"
+      "sha256": "7505491e4242bd92179c5306e73a86bd73127b81b3cbdd2c4d42cb394c2e76b9"
     },
     {
-      "path": "MarkovTriple/Hilbert/SemigroupSmoothing.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/SemigroupSmoothing.lean",
       "status": "fenced",
-      "sha256": "25c82071f513c9d044355025e1ac02e90d70778b6906a28f32d71783585f2a42"
+      "sha256": "a2a8c47132e408b547077666598bb620fe927db69d902b7adcec4396aa3d2420"
     },
     {
-      "path": "MarkovTriple/Hilbert/CfcSemigroup.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/CfcSemigroup.lean",
       "status": "fenced",
-      "sha256": "ffd533ceec3a5a3b1a5b050833ba810b537cb49c7966e5257c624e8f1145c956"
+      "sha256": "926ec86f157c78d8ab3b9755d22ed78453de58cb046bbc2e1c530bdd611a4a45"
     },
     {
-      "path": "MarkovTriple/Hilbert/Complexify.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/Complexify.lean",
       "status": "fenced",
       "sha256": "4b41b12983b4d28b2fcc66ae4b30bcebb46906eb356d9a39139689f04dc5984d"
     },
     {
-      "path": "MarkovTriple/Hilbert/ResolventGenerator.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/ResolventGenerator.lean",
       "status": "fenced",
       "sha256": "1eabe65b093ff6fe5f435b9f7c712c560c04174f4d633e01da59c096f197e0e0"
     },
     {
-      "path": "MarkovTriple/Hilbert/Existence.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/Existence.lean",
       "status": "fenced",
-      "sha256": "70a95395c8b3241754b517544a59cb169a07ad25b125b3e74aef43f6b2798a84"
+      "sha256": "20d4e4240f094923e0e25018590a17ff76e58387a8e71cabe7df17def00a1edc"
     },
     {
-      "path": "MarkovTriple/Hilbert/SpectralGap.lean",
+      "path": "MarkovTriple/BGL/Analysis/Hilbert/SpectralGap.lean",
       "status": "fenced",
-      "sha256": "17f60cf3f0ef656c491ae7a790dfa359e2d529563f310907d0cd9167e39a2127"
+      "sha256": "3ce5236197695aaed3788b3e3056d7ba104ad87d0120fd8226fde23cddf6cf42"
     }
   ]
 }

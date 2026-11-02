@@ -3,7 +3,8 @@ import MarkovTriple.BGL.Frozen.Semigroup
 import MarkovTriple.BGL.Frozen.FormDomain
 import MarkovTriple.BGL.SemigroupLemmas
 import MarkovTriple.BGL.Calculus.Identities
-import MarkovTriple.Hilbert.SubMarkov
+import MarkovTriple.BGL.Analysis.Hilbert.Truncation
+import MarkovTriple.BGL.Analysis.Hilbert.Contraction
 
 /-!
 # Positivity and sub-Markov property of the semigroup of a `DiffusionTriple` (BGL §3.1.5–3.1.6)

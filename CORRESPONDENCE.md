@@ -21,3 +21,8 @@ Status: **proved** = Lean theorem, no extra hypothesis beyond the stated ones; *
 | Thm 3.3.23, infinite μ | — | not done (needs completeness, Def 3.3.9) |
 | Instances | `Circle.circleCompact`, `Lebesgue.lebesgueFull`, `OU.ouFull` | proved |
 | Gaussian PI / LSI | `OU.ouFull_LS`, `ouFull_gradient_bound` | proved, unconditional |
+| Friedrichs extension, resolvent, generator, CFC semigroup (D7/D9 machinery) | `MarkovTriple.Hilbert.FormData.*` in `BGL/Analysis/Hilbert/` (fenced by `check_frozen.py`) | proved |
+| Hermite / Mehler analysis behind OU | `MarkovTriple.Sanity.OU.*` in `BGL/Analysis/OU/` (namespace kept from the removed legacy surface) | proved |
+
+Note: the legacy first surface (`Frozen/`, `Sanity/`, `FunctionalInequalities/`) no longer exists; see DECISIONS 17. All names above
+live in `MarkovTriple/BGL/`.

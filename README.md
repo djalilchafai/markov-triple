@@ -15,10 +15,12 @@ every public theorem depends only on `propext`, `Classical.choice`, `Quot.sound`
   * `BGL/Theory` — integrated Γ₂ identity, Poincaré / Lichnerowicz, finite-measure mass conservation, gradient bound and
     log-Sobolev from CD(ρ,∞) (under named regularity structures, discharged for the instances below).
   * `BGL/Instances` — circle (`CompactTriple`), Brownian motion on ℝ (Lebesgue), Ornstein–Uhlenbeck; all hypotheses proved.
-* `MarkovTriple/Divergences`, `MarkovTriple/Hilbert` — entropy/total variation/Wasserstein; Friedrichs form → semigroup.
-* `MarkovTriple/Frozen`, `Sanity`, `FunctionalInequalities` — the *legacy* first surface (superseded by `BGL/`, kept because
-  parts of the instance analysis, e.g. Hermite/Mehler, are reused).
-* `MarkovTriple/*/Audit` — hostile-audit probes (not imported by the root).
+  * `BGL/Analysis` — analysis ported from the removed first surface (statements unchanged): `Hilbert` (Friedrichs form →
+    resolvent → generator → CFC semigroup, spectral gap, Beurling–Deny contraction criterion, truncations), `OU`
+    (Hermite/Mehler, semigroup smoothing), `Circle` (Fourier modes, smoothing), `BE` (Grönwall/cut-off, entropy limit).
+* `MarkovTriple/Divergences` — entropy/total variation/Wasserstein (independent of `BGL/`).
+* The legacy first surface (`MarkovTriple/Frozen`, `Sanity`, `FunctionalInequalities`) was removed (DECISIONS 17).
+* `MarkovTriple/Audit`, `MarkovTriple/BGL/Audit` — hostile-audit probes (not imported by the root).
 
 ## Method (Armstrong style)
 

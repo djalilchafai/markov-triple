@@ -47,3 +47,26 @@
 15. The book's own route (Props 3.3.16–3.3.17, Thm 3.3.18, Thm 3.3.23) replaces `ibp_AA`/`BEStable`. Gradient bound and LSI are
     proved from named regularity structures (`GradientInterpolation`, `EntropyInterpolation`) which are discharged per instance.
 16. The book's PDF is reference material only: it must never be committed or quoted (`.gitignore` has `*.pdf`).
+17. (legacy removal) The first surface is DELETED: `MarkovTriple/Frozen/`, `Sanity/`, `FunctionalInequalities/` and the
+    legacy-structure part of `Hilbert/` (`TripleForm`, `Bridge`, `Closure`, `FullBridge`, `MarkovCriterion`/`SubMarkov`
+    remainders, `Sanity`, `AxiomCheck`), together with the legacy audit probes (`MarkovTriple/Audit/*` except the
+    Divergences and `HilbertDiagonal` ones).  What `BGL/` still used was PORTED to `MarkovTriple/BGL/Analysis/`, statements
+    unchanged, namespaces kept (`MarkovTriple.Hilbert`, `MarkovTriple.Sanity.OU`, `MarkovTriple.Sanity.Circle`, `MarkovTriple.BE`)
+    so that declaration names do not change:
+    * `Analysis/Hilbert`: Friedrichs extension, resolvent, generator, CFC semigroup, spectral gap, `Existence` (these are
+      the fenced definitions of `BGL/Frozen/Semigroup.lean`), `GapFromSquare`, Beurling–Deny / `DirMerge` / `DirBridge`,
+      `Contraction` (`exists_contraction_of_approx`, `resolvent_pairing_nonpos`), `Truncation` (smooth `√(t²+δ²)−δ`, smooth clip,
+      closedness of `{w ≤ 1}`).
+    * `Analysis/OU`: Hermite/Mehler/Gaussian calculus and the abstract semigroup smoothing (`eigen_hL`, `smoothing_ou`, `mehler`).
+    * `Analysis/Circle`: Fourier modes, `IsSG`, circle smoothing.  `Analysis/BE`: Grönwall/cut-off lemmas, `tendsto_Ent_add`
+      (now stated with `BGL.Ent`).
+    Dropped with the legacy structures (nothing in `BGL/` used them): `ouTriple`, `ouFull` (legacy), `ou_CD`, `ou_ergodic`,
+    `ou_poincare`, `ou_semigroup_stable`, `mehler_ae` (BGL has `mehler_of_sg`), `ouFull_BEStable`, the legacy `ou_lsi`,
+    `circleTriple/circleFull`, `circle_semigroup_stable`, `Hilbert.poincare_of_CD_infty` (legacy; the BGL theorem of the same name
+    remains), `BE.logSobolevIneq_of_CD`, `BEStable`, `isMarkovianForm`/`tripleSemigroup` (BGL has its own, `BGL/Semigroup/Markov.lean`),
+    legacy Lebesgue sanity.  The `ou_lsi` ⇔ `ouFull_LS` equivalence of `BGL/Audit/LSIUnfold.lean` was dropped; `concrete_lsi` (the
+    unfolded Gaussian LSI) is kept.  `Divergences/Entropy.lean` now defines `MarkovTriple.Ent` itself (same formula as `BGL.Ent`)
+    instead of importing the legacy `Frozen/Ent.lean`.  `MarkovTriple.pderiv` (legacy) is replaced by the identical `BGL.pderiv`.
+    `frozen-manifest.json` lists only `BGL/Frozen`; its `fenced` list is the (renamed) Hilbert files plus `BGL/FormData.lean`, `BGL/Basic.lean`;
+    the import-closure check of `scripts/check_frozen.py` still guarantees that every project file the frozen surface
+    imports is hashed (the only edits to frozen/fenced files were import lines).

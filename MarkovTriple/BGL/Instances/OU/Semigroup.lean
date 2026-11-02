@@ -2,7 +2,7 @@ import Mathlib
 import MarkovTriple.BGL.Instances.OU.Diffusion
 import MarkovTriple.BGL.Semigroup.ESA
 import MarkovTriple.BGL.Semigroup.Mass
-import MarkovTriple.Sanity.OU.MehlerEq
+import MarkovTriple.BGL.Analysis.OU.MehlerEq
 
 /-!
 # The Friedrichs semigroup of the OU triple: Hermite eigenfunctions, smoothing, Mehler, ESA, S10, S11

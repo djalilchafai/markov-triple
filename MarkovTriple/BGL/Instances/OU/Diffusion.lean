@@ -1,7 +1,7 @@
 import Mathlib
 import MarkovTriple.BGL.Frozen.DiffusionTriple
 import MarkovTriple.BGL.Frozen.GammaA
-import MarkovTriple.Sanity.OU.Stable
+import MarkovTriple.BGL.Analysis.OU.Stable
 
 /-!
 # The Ornstein–Uhlenbeck triple as a BGL `DiffusionTriple` (D1–D8)

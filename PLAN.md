@@ -11,6 +11,11 @@
 
 ---
 
+> **Status note (legacy removal, DECISIONS 17).** The layers `MarkovTriple` (first-surface structures), `FunctionalInequalities`
+> and the legacy `Sanity` instances described in §4.3 no longer exist in the tree: the canonical development is
+> `MarkovTriple/BGL/`.  The reusable analysis was moved to `MarkovTriple/BGL/Analysis/{Hilbert,OU,Circle,BE}` with unchanged
+> statements; `Divergences` is independent.  Read the table below as the original design, not the current layout.
+
 ## 0. Summary
 
 **Findings about the three repositories:**
@@ -393,7 +398,7 @@ Points to decide when sealing these definitions:
 **Sobolev spaces stay out of the core.** In the Markov-triple approach, the Sobolev space is the domain 𝒟(ℰ), obtained abstractly by closure. Identifying it with a concrete space such as H¹(e^{−V}dx) is a theorem about one instance. Unweighted ℝⁿ Sobolev theory and elliptic regularity (CR `DiffSobolevRn*`, `DiffEllipticRn*`) are only needed to construct the Riemannian instance. They should go into an `Instances/Riemann/Regularity` folder, kept small, and be replaced by Mathlib's `MemSobolev` and by the Armstrong / van Doorn–Nuccio material once it settles.
 
 **Dependency rule.**
-- `Divergences`, `Hilbert`, `MarkovTriple` and `FunctionalInequalities` depend only on Mathlib.
+- `Divergences`, `BGL` (including `BGL/Analysis`) depend only on Mathlib (the original `Hilbert`/`MarkovTriple`/`FunctionalInequalities` layers were folded into `BGL`, DECISIONS 17).
 - `Stochastic` and `Bridge` are separate Lake libraries in the same repository, so trouble in either cannot break the core.
 
 ---

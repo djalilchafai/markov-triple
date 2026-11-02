@@ -1,7 +1,6 @@
 import MarkovTriple.BGL.Instances.OU.LSIMain
-import MarkovTriple.Sanity.OU.BEStable
 
-/-! Round-9 audit: unfold `ouFull_LS` to a concrete statement, compare with old `ou_lsi`.
+/-! Round-9 audit: unfold `ouFull_LS` to a concrete statement, (the old-surface `ou_lsi` equivalence was dropped with the legacy surface, DECISIONS 17).
 NOT imported by the root. -/
 open MeasureTheory ProbabilityTheory
 
@@ -35,40 +34,6 @@ theorem concrete_lsi (f : ℝ → ℝ) (hf : ContDiff ℝ (⊤ : ℕ∞) f) (hc 
     ≤ 2 * 1 * (∫ x, (deriv f x) ^ 2 ∂G) + 0 * ∫ x, f x ^ 2 ∂G at h2
   linarith
 
-/-- BGL `ouFull_LS` implies the old surface's `ou_lsi` unfolded. -/
-theorem old_of_new : MarkovTriple.Sanity.OU.ouFull.toMarkovTriple.LogSobolevIneq (1 / 1) := by
-  refine ⟨(inferInstance : IsProbabilityMeasure G), fun f hf => ?_⟩
-  have h := (concrete_lsi f hf.1 hf.2).2
-  have hE : MarkovTriple.Sanity.OU.ouFull.toMarkovTriple.energy f = ∫ x, (deriv f x) ^ 2 ∂G := by
-    show ∫ x, deriv f x * deriv f x ∂G = _
-    simp [sq]
-  rw [hE]
-  change (∫ x, f x ^ 2 * Real.log (f x ^ 2) ∂G) - (∫ x, f x ^ 2 ∂G) * Real.log (∫ x, f x ^ 2 ∂G)
-    ≤ 2 * (1 / 1) * (∫ x, (deriv f x) ^ 2 ∂G)
-  linarith
-
-/-- and conversely (old ⇒ new) so the two agree. -/
-theorem new_of_old (hold : MarkovTriple.Sanity.OU.ouFull.toMarkovTriple.LogSobolevIneq (1 / 1)) :
-    MarkovTriple.BGL.Instances.OU.ouFull.toDiffusionTriple.LS 1 0 := by
-  refine ⟨(inferInstance : IsProbabilityMeasure G), one_pos, le_rfl, fun f hf => ?_⟩
-  have h := hold.2 f hf
-  have hE : MarkovTriple.Sanity.OU.ouFull.toMarkovTriple.energy f = ∫ x, (deriv f x) ^ 2 ∂G := by
-    show ∫ x, deriv f x * deriv f x ∂G = _
-    simp [sq]
-  rw [hE] at h
-  have hE2 : MarkovTriple.BGL.energy MarkovTriple.BGL.Instances.OU.ouFull.toDiffusionTriple.μ MarkovTriple.BGL.Instances.OU.ouFull.toDiffusionTriple.Γ f =
-      ∫ x, (deriv f x) ^ 2 ∂G := by
-    show ∫ x, deriv f x * deriv f x ∂G = _
-    simp [sq]
-  rw [hE2]
-  change (∫ x, f x ^ 2 * Real.log (f x ^ 2) ∂G) - (∫ x, f x ^ 2 ∂G) * Real.log (∫ x, f x ^ 2 ∂G)
-    ≤ 2 * 1 * (∫ x, (deriv f x) ^ 2 ∂G) + 0 * ∫ x, f x ^ 2 ∂G
-  change (∫ x, f x ^ 2 * Real.log (f x ^ 2) ∂G) - (∫ x, f x ^ 2 ∂G) * Real.log (∫ x, f x ^ 2 ∂G)
-    ≤ 2 * (1 / 1) * (∫ x, (deriv f x) ^ 2 ∂G) at h
-  linarith
-
 #print axioms concrete_lsi
-#print axioms old_of_new
-#print axioms new_of_old
 
 end MarkovTriple.BGL.Audit.LSIUnfold

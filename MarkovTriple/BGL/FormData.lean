@@ -1,6 +1,6 @@
 import Mathlib
 import MarkovTriple.BGL.Basic
-import MarkovTriple.Hilbert.Friedrichs
+import MarkovTriple.BGL.Analysis.Hilbert.Friedrichs
 
 /-!
 # The form data of a Diffusion Markov Triple (D7)

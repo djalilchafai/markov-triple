@@ -1,5 +1,5 @@
-import MarkovTriple.Hilbert.Existence
-import MarkovTriple.Hilbert.Resolvent
+import MarkovTriple.BGL.Analysis.Hilbert.Existence
+import MarkovTriple.BGL.Analysis.Hilbert.Resolvent
 /-! Non-vacuity audit (a): a nontrivial `FormData` on `ℝ²` with `A = diag(1,2) ≠ 0`.
 Checks that `exists_semigroup` is not satisfied by the trivial semigroup and that the Friedrichs
 semigroup is `e^{-tA}` on the eigenbasis. Not imported by root. -/

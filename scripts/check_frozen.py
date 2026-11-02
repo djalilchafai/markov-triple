@@ -5,8 +5,8 @@ Usage: scripts/check_frozen.py            check
        scripts/check_frozen.py --update   (re)write hashes (drafter only; keeps statuses)
 
 Two lists in the manifest:
-* "files":  the frozen statements (MarkovTriple/Frozen, MarkovTriple/BGL/Frozen); any new .lean file
-            in those directories must be listed.
+* "files":  the frozen statements (MarkovTriple/BGL/Frozen; the legacy first surface MarkovTriple/Frozen
+            was removed, DECISIONS 17); any new .lean file in that directory must be listed.
 * "fenced": NON-frozen files whose *definitions* the frozen statements unfold to (M1 of the BGL
             audit: e.g. `DiffusionTriple.semigroup` = `(formData T).semigroup`).  They are hashed too,
             so a silent change of the Friedrichs construction is detected.  The check also computes
@@ -38,8 +38,7 @@ for e in manifest["files"]:
         print("MISSING", e["path"]); bad += 1
     elif sha(e["path"]) != e["sha256"]:
         print("CHANGED", e["path"], "(status %s)" % e["status"]); bad += 1
-for fdir in (os.path.join(root, "MarkovTriple", "Frozen"),
-             os.path.join(root, "MarkovTriple", "BGL", "Frozen")):   # E2: scan all subdirectories
+for fdir in (os.path.join(root, "MarkovTriple", "BGL", "Frozen"),):   # E2: scan all subdirectories
     for dp, dn, fn in sorted(os.walk(fdir)):
         for n in sorted(fn):
             p = os.path.relpath(os.path.join(dp, n), root).replace(os.sep, "/")

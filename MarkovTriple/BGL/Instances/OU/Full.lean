@@ -87,7 +87,7 @@ noncomputable def ouFull : FullTriple ℝ where
     refine this.trans ?_
     exact Finset.sum_congr rfl fun i _ => by
       show _ = _ * ouDiff.ΓA (f i) g x
-      rw [key i]; rfl
+      rw [key i]
   diffusion_L_A := fun k ψ hψ f hf => Eventually.of_forall fun x => by
     have hf' : ∀ i, Sm (f i) := fun i => hf i
     have key : ∀ i j, ouDiff.ΓA (f i) (f j) = Go (f i) (f j) :=
@@ -97,7 +97,7 @@ noncomputable def ouFull : FullTriple ℝ where
     congr 1
     exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by
       show _ = _ * ouDiff.ΓA (f i) (f j) x
-      rw [key i j]; rfl
+      rw [key i j]
   ibp_A := fun f hf g hg => by
     have hf' : Sm f := hf
     have e : ouDiff.ΓA f g = Go f g := ouDiff_ΓA hf' hg.1
@@ -144,8 +144,6 @@ lemma ou_Γ₂_eq {f : ℝ → ℝ} (hf : Sm f) (x : ℝ) :
     have c := ouDiff_ΓA (sm_Lo hf) hf
     show (Lo (ouDiff.ΓA f f) x - ouDiff.ΓA f (Lo f) x - ouDiff.ΓA (Lo f) f x) / 2 = _
     rw [ouDiff_ΓA hf hf, b, c]
-  have e2 : ouTriple.Γ₂ f x = (Lo (Go f f) x - 2 * Go f (Lo f) x) / 2 := rfl
-  rw [e2] at h
   rw [e1, ← h]
   have : Go (Lo f) f x = Go f (Lo f) x := by simp [Go, mul_comm]
   rw [this]; ring

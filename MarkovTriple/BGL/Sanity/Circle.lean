@@ -1,6 +1,6 @@
 import Mathlib
 import MarkovTriple.BGL.Frozen.DiffusionTriple
-import MarkovTriple.Sanity.Circle
+import MarkovTriple.BGL.Analysis.Circle.Basic
 
 /-!
 # The circle satisfies the data D1–D8 of a Diffusion Markov Triple (NOT frozen)

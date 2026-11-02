@@ -31,7 +31,8 @@ remark that for compact triples gradient bounds are much easier.
 
 ## Not done
 
-* `ρ > 0` witnesses.  No compact triple with `ρ > 0` is built (the round sphere `S²` would need the whole
+* (Update) `ρ > 0` witness with `CD(1,∞)`: `Instances/OUCompact/` (Ornstein–Uhlenbeck with `𝒜 = 𝒜₀ = ℬ`; space not compact, see ERRATA BGL-V1). Still no genuinely compact space and no finite-`n` witness.
+* (Original note) `ρ > 0` witnesses.  No compact triple with `ρ > 0` is built (the round sphere `S²` would need the whole
   Legendre/`SO(3)` smooth structure and the `𝒜₀`-invariance F8; judged not cheap).  The circle gives only
   `ρ = 0`, so `compact_logSobolev` is not instantiated on a concrete space here (the machinery is proved for all
   compact triples with `CD(ρ,n)`, `ρ>0`).

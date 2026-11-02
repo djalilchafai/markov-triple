@@ -1,11 +1,9 @@
 import Mathlib
-import MarkovTriple.Frozen.Ent
 
 /-!
 # Relative entropy `Ent` and its bridge to Mathlib's `klDiv`
 
-`Ent μ f = ∫ f log f dμ - (∫ f dμ) log (∫ f dμ)` (defined in `MarkovTriple.Frozen.Ent`, which this
-file imports rather than redefining) is the single entropy functional of the library.
+`Ent μ f = ∫ f log f dμ - (∫ f dμ) log (∫ f dμ)` (defined here; formerly in the legacy `MarkovTriple.Frozen.Ent`) is the single entropy functional of the library.
 It unifies `entL` (cutoff-rigidity-diffusions, `Riemann/DiffTight.lean`) and `squareEntropy`
 (ginibre-poincare, `Analysis/GinibreEntropy.lean`), the latter being `Ent μ (f ^ 2)`.
 -/
@@ -14,6 +12,13 @@ open MeasureTheory InformationTheory
 open scoped ENNReal
 
 namespace MarkovTriple
+
+/-- The entropy `Ent_μ(f) = ∫ f log f dμ − (∫ f dμ) log (∫ f dμ)` (BGL (5.1.1)).
+Intended for `f ≥ 0` and `μ` a probability measure; uses the Mathlib conventions `0 log 0 = 0`
+(`Real.log 0 = 0`). Junk value `0` if `f log f` is not integrable (Bochner convention).
+(Same formula as `MarkovTriple.BGL.Ent`.) -/
+noncomputable def Ent {E : Type*} [MeasurableSpace E] (μ : Measure E) (f : E → ℝ) : ℝ :=
+  (∫ x, f x * Real.log (f x) ∂μ) - (∫ x, f x ∂μ) * Real.log (∫ x, f x ∂μ)
 
 variable {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
 

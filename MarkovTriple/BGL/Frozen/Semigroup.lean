@@ -1,6 +1,6 @@
 import Mathlib
 import MarkovTriple.BGL.FormData
-import MarkovTriple.Hilbert.Existence
+import MarkovTriple.BGL.Analysis.Hilbert.Existence
 
 /-!
 # The semigroup `P_t` and the generator `L` of a Diffusion Markov Triple (BGL D7, D9)

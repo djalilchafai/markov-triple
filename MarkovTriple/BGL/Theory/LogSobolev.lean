@@ -6,9 +6,9 @@ import MarkovTriple.BGL.Theory.Poincare
 import MarkovTriple.BGL.Frozen.LSI
 import MarkovTriple.BGL.Frozen.Ent
 import MarkovTriple.BGL.Calculus.LSIExtend
-import MarkovTriple.FunctionalInequalities.BEGronwall
-import MarkovTriple.FunctionalInequalities.BECut
-import MarkovTriple.FunctionalInequalities.BELSI
+import MarkovTriple.BGL.Analysis.BE.Gronwall
+import MarkovTriple.BGL.Analysis.BE.Cut
+import MarkovTriple.BGL.Analysis.BE.EntLimit
 
 /-!
 # Logarithmic Sobolev inequality from `CD(ρ,∞)` (BGL Prop. 5.7.1, Thm 5.7.4 with `n = ∞`)

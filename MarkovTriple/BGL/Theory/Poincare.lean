@@ -1,10 +1,10 @@
 import Mathlib
-import MarkovTriple.FunctionalInequalities.GapFromSquare
+import MarkovTriple.BGL.Analysis.Hilbert.GapFromSquare
 import MarkovTriple.BGL.Theory.Gamma2Integral
 import MarkovTriple.BGL.Theory.ESAOne
 import MarkovTriple.BGL.Frozen.Poincare
 import MarkovTriple.BGL.Calculus.Density
-import MarkovTriple.Hilbert.SpectralGap
+import MarkovTriple.BGL.Analysis.Hilbert.SpectralGap
 
 /-!
 # Poincaré inequality from `CD(ρ,n)` (BGL Prop. 4.8.3, Thm 4.8.4, Lichnerowicz)
