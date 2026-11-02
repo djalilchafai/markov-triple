@@ -170,3 +170,8 @@ import MarkovTriple.Stochastic.KernelRep
 import MarkovTriple.Stochastic.Bridge
 import MarkovTriple.Stochastic.OU
 import MarkovTriple.Stochastic.AxiomCheck
+import MarkovTriple.BGL.Instances.Discrete.Obstruction
+import MarkovTriple.BGL.Instances.Gibbs.Calculus
+import MarkovTriple.BGL.Instances.Gibbs.Diffusion
+import MarkovTriple.BGL.Instances.Gibbs.Convex
+import MarkovTriple.BGL.Instances.AxiomCheck
