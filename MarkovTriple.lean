@@ -166,3 +166,7 @@ import MarkovTriple.BGL.Theory.Extension.Estimates
 import MarkovTriple.BGL.Theory.Extension.Gamma2
 import MarkovTriple.BGL.Theory.Extension.Main
 import MarkovTriple.BGL.Theory.Strong.AxiomCheck
+import MarkovTriple.Stochastic.KernelRep
+import MarkovTriple.Stochastic.Bridge
+import MarkovTriple.Stochastic.OU
+import MarkovTriple.Stochastic.AxiomCheck
