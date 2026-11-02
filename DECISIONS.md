@@ -82,3 +82,44 @@
     Prop-structure `StrongInterpolation` (analytic regularity only; the reinforced CD (3.3.6) is proved, not assumed).  It is
     discharged for all `CompactTriple`s and OU; Lebesgue by the explicit heat kernel (Jensen).  Strong bound `ρ < 0`, the
     Hessian part of Props 3.3.16 and Prop 3.3.17, and a generic non-compact discharge are documented gaps (`Theory/GAPS.md`).
+
+# Closure of the PLAN.md §7 open decisions (round 13)
+
+Each entry records what the implemented canonical surface `MarkovTriple/BGL/Frozen/` already commits to, or, where the
+code is silent, a recommendation.  Entries marked "recommended, pending author approval" are the author's call; nothing
+was renamed.
+
+21. Structure vs class: DECIDED = `structure` (confirms 2).  `DiffusionTriple`, `StandardTriple extends DiffusionTriple`,
+    `FullTriple extends StandardTriple` and `CompactTriple` are all `structure`s taking `E` and `[MeasurableSpace E]`
+    only (`BGL/Frozen/DiffusionTriple.lean:44`, `StandardTriple.lean:31`, `FullTriple.lean:26`); they are passed explicitly
+    (`T : FullTriple E`), e.g. `FullTriple.CD`, `FullTriple.poincare_of_CD_dim`.  Several triples on one space occur
+    in the code (circle/OU/sphere/Lebesgue instances, the OU Gibbs variants `ouBCompact`).
+22. L and Γ: DECIDED = both are fields (confirms 3, with a CORRECTION to 3).  `DiffusionTriple` has `Γ` and `L` as fields
+    and is tied by D5, the integrated identity `ibp : ∫ g * L f ∂μ = -∫ Γ f g ∂μ` for `f g ∈ A₀`, plus `integral_L`,
+    `Γ_symm`, `Γ_add`, `Γ_smul`, `Γ_nonneg`, `diffusion` (`DiffusionTriple.lean:70-96`).  The POINTWISE carré-du-champ identity
+    stated in 3 is NOT a field; it is derived (`fundamental_identity`, `chain_rule_L`, BGL (3.1.1)/(3.1.8)).  Both
+    `Γ` and `L` are total functions `(E → ℝ) → (E → ℝ)` with junk off `A₀`; `ΓA`/`Γ₂` are defined on the extended algebra
+    (`Frozen/GammaA.lean`, `Gamma2.lean`).  Decision 3's pointwise wording is superseded by this entry.
+23. Finite-dimensional CD(ρ,n): DECIDED = in scope (confirms 4).  `FullTriple.CD (T) (ρ : ℝ) (n : ℝ≥0∞)` is
+    `1 ≤ n ∧ ∀ f ∈ A, Γ₂ f f ≥ ρ Γ f f + n⁻¹ (L f)²` a.e. (`BGL/Frozen/CD.lean:20`); `n = ∞` is the BGL CD(ρ,∞).
+    Finite n is used by the proved results `poincare_of_CD_dim` (Lichnerowicz, `Theory/Poincare.lean`), `sphere_CD_two_three`
+    (zonal S³, CD(2,3)), `sphere_PI`, `sphere_LS`, `sphere_gradient_bound` (`Instances/Sphere/Consequences.lean`).
+    Theorems needing only ρ use `n = ∞`/any n (e.g. Thm 3.3.18 takes `CD ρ n`, see 20).  Remaining gaps (Hessian part of
+    Prop 3.3.16, Prop 3.3.17, strong bound for ρ<0, generic non-compact discharge) are in `Theory/GAPS.md`, not scope questions.
+24. MarkovProcess dependency: DECIDED = no dependency (confirms 5).  `lakefile.toml` requires only Mathlib
+    (`v4.35.0-rc2`) and declares a single `lean_lib MarkovTriple`; no `.lean`, `lakefile.toml` or manifest entry refers to
+    `MarkovProcess`.  The semigroup is built inside the repository (`BGL/Analysis/Hilbert`: Friedrichs extension, resolvent,
+    CFC semigroup; `BGL/Semigroup`).  The optional bridge is NOT implemented; if written later it must live in a separate
+    `lean_lib` (e.g. `MarkovTripleBridge`) so that the core stays independent.
+25. Repository / library / namespace name: STATE = `markov-triple` (repo), `MarkovTriple` (lean_lib; lakefile package
+    name `markovTriple`), `MarkovTriple.BGL` (canonical namespace), `MarkovTriple.Hilbert/.Sanity/.BE` (ported
+    analysis, namespaces kept by 17), `MarkovTriple.Ent` (Divergences).  This is what all ~hundreds of files, the
+    frozen manifest hashes, `CORRESPONDENCE.md` and the audit documents use.
+    RECOMMENDED, PENDING AUTHOR APPROVAL: keep these names as they are.  Reasons: (a) `MarkovTriple` is the Armstrong-style
+    descriptive name already used in docs and by the statement `structure`s; (b) the library contains Divergences and
+    non-BGL analysis, so a narrower name like `BakryEmery` would be misleading, while a broader one like
+    `DiffusionOperators` collides in scope with the book's subject; (c) a rename touches every frozen/fenced file and
+    forces a manifest regeneration, which is wasteful before the author has approved any frozen statement.  Caveat for
+    the author: the namespace `MarkovTriple.BGL` bakes the book's initials into declaration names; if the library is ever
+    submitted to Mathlib or Reservoir, a rename of `BGL` (e.g. to `BakryEmery`) is a mechanical, one-time change, best done
+    BEFORE author approval freezes the hashes.  Do not rename until the author decides.

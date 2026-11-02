@@ -55,12 +55,7 @@
 
 The current versions of the projects stay as tagged releases, because the Palomar registration of `ginibre-poincare` is tied to a specific commit.
 
-**Decisions still open** (§7):
-- the name of the repository and the Lean namespace;
-- whether the triple is a structure or a class (structure recommended);
-- whether L is primary and Γ derived, Γ primary and L derived, or both kept as fields tied by integration by parts (both as fields recommended);
-- whether finite-dimension CD(ρ,n) is in scope from the start;
-- whether to depend on `MarkovProcess` directly or only through the optional bridge (bridge recommended).
+**Decisions still open** (§7): **resolved in DECISIONS.md 21-25.** Structure (21), both L and Γ as fields (22), finite-n CD(ρ,n) in scope (23) and no direct `MarkovProcess` dependency (24) are fixed by the implemented code. Only the repository/namespace name (25) remains **author-dependent**: recommended to keep `markov-triple` / `MarkovTriple` / `MarkovTriple.BGL`, pending author approval (consider renaming the `BGL` sub-namespace before frozen statements are approved).
 
 **Next step.** Once these decisions are taken, draft the frozen `MarkovTriple` statement files for the author's review.
 
@@ -465,7 +460,7 @@ Points to decide when sealing these definitions:
 
 ---
 
-## 7. Open decisions for the author
+## 7. Open decisions for the author (closed in DECISIONS.md 21-25, except the name, which awaits author approval)
 
 - **Name** of the repository and of the Lean namespace (e.g. `MarkovTriple`, `BakryEmery`, `DiffusionOperators`).
 - **Whether `MarkovTriple` is a `structure` (data) or a `class` on (E, μ).** A structure is recommended, because several triples on the same space are common: generators at different temperatures, and products.
