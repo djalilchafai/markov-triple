@@ -12,8 +12,8 @@ abbrev H2 := EuclideanSpace ℝ (Fin 2)
 
 noncomputable def Adiag : H2 →ₗ[ℝ] H2 where
   toFun x := WithLp.toLp 2 ![x 0 * 1, x 1 * 2]
-  map_add' x y := by ext i; fin_cases i <;> simp <;> ring
-  map_smul' c x := by ext i; fin_cases i <;> simp <;> ring
+  map_add' x y := by ext i; fin_cases i <;> simp; all_goals ring
+  map_smul' c x := by ext i; fin_cases i <;> simp; all_goals ring
 
 lemma Adiag_apply0 (x : H2) : Adiag x 0 = x 0 * 1 := rfl
 lemma Adiag_apply1 (x : H2) : Adiag x 1 = x 1 * 2 := rfl
