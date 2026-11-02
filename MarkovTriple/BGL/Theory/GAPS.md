@@ -106,3 +106,21 @@ G1/G3 remain open (hypotheses) for non-compact full triples.
 * Thm 3.3.18 for `ρ < 0`: the `ε`-form needs the error term `ρ ε ∫ P_s h` (uses `∫P_s h ≤ ∫h`); not done (all instances have `ρ ≥ 0`).
 * Lebesgue `GradientInterpolation`/`EntropyInterpolation` as structures (the entropy one is moot: `ρ = 0` gives no LSI; the
   gradient one is subsumed by `lebesgue_hasGradientBound`, which is exactly the hypothesis of Thm 3.3.23).
+
+## Gibbs `e^{-V}dx`, `V'' ≥ ρ > 0` (files `Instances/Gibbs/Funct*.lean`; book route only)
+
+Audit (book statements, BGL ch. 3): Thm 3.3.18 / Cor 3.3.19 use a Diffusion Triple + ESA (F10) + extended algebra
+`𝒜` (F1–F8, in particular F8: `P_t 𝒜₀ ⊂ 𝒜`) + CD(ρ,∞); they do not use S10/S11/F9.  ESA for Gibbs: Cor 3.2.2 /
+Prop 3.3.11 (completeness + connexity + weak hypo-ellipticity, Def 3.3.8).  Ergodicity S10: Prop 3.3.10.
+S11: finite μ + ESA (`conservative_of_esa`); Thm 3.3.23 is not needed.  Poincaré: only integrated Γ₂, ESA, S10.
+
+Proved (standard axioms only): `ibp_sm` (F7 on `C^∞`), `cutoff_ineq`/`cutoff_conclusion` (the cut-off computation of
+Prop 3.2.1), `gibbsDiff_esaProp` (needs `WeakHypoEllipticAt 1`), `gibbsDiff_ergodic` (needs `WeakHypoEllipticAt 0`),
+`gibbs_integral_Γ₂` (3.3.8), `gibbs_integrated_CD`, **`gibbs_poincare`** (`PI(1/ρ)`), `gibbs_spectralGap`,
+`gibbs_expDecay` (all under `WeakHypoEllipticAt 0/1` only, no F8, no gradient bound), and `gibbsFull : FullTriple ℝ`
+(under `WeakHypoEllipticAt 0/1` and `GibbsData.F8`) with `gibbsFull_CD`.
+`gibbsFull_logSobolev`, `gibbsFull_gradient_bound` are conditional on `EntropyInterpolation` / `GradientInterpolation`.
+**Exact missing inputs:** (a) weak hypo-ellipticity (elliptic regularity of `f'' - V' f' = λ f`, λ = 0, 1; the book
+cites Sect. 1.12 without proof); (b) F8 (smoothness of the Friedrichs semigroup, Def 3.3.1 (viii), also unproved in the
+book: "very often true"); (c) the non-compact discharge of `GradientInterpolation`/`EntropyInterpolation`
+(Lemmas 3.3.20–3.3.21 with Props 3.3.16 (iv)–(viii), 3.3.17), the open generic gap above.
