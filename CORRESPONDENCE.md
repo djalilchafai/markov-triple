@@ -25,6 +25,7 @@ Status: **proved** = Lean theorem, no extra hypothesis beyond the stated ones; *
 | Thm 3.3.23, infinite μ | `ExtendedAlgebra.conservative_of_complete`, `isFiniteMeasure_of_complete`; non-compact applications `lebesgue_conservative_of_complete`, `ouFull_conservative_of_complete` | proved (cond. on weak gradient bound, available for compact, OU, Lebesgue) |
 | Instances | `Circle.circleCompact`, `Lebesgue.lebesgueFull`, `OU.ouFull`, `Instances.OUCompact.ouBCompact`, `Instances.Sphere.sCompact` (zonal `S³`, compact `[-1,1]`, `CD(2,3)`: `sphere_CD_two_three`; `sphere_PI'`, `sphere_LS`, `sphere_gradient_bound`, `sphere_fisher_decay`) | proved |
 | Gaussian PI / LSI | `OU.ouFull_LS`, `ouFull_gradient_bound` | proved, unconditional |
+| Gibbs `e^{-V}dx` on ℝ (partial); finite-state obstruction | `Instances.Gibbs.GibbsData.gibbsDiff` (`DiffusionTriple`, D1–D8), `gibbsDiff_isComplete`, `gibbsDiff_Γ₂_ge` (`Γ₂ ≥ ρΓ` for `V'' ≥ ρ`), `Gibbs.gibbs_convex`, `ouData_μ` (V=x²/2 gives γ); `Discrete.finite_Γ_ae_zero`, `finite_L_ae_zero`, `finite_standard_const` | proved; Standard/Full/Compact Gibbs triple NOT built (needs S10, S11, F8, F10 for general V); finite-state generators are not diffusions |
 | Friedrichs extension, resolvent, generator, CFC semigroup (D7/D9 machinery) | `MarkovTriple.Hilbert.FormData.*` in `BGL/Analysis/Hilbert/` (fenced by `check_frozen.py`) | proved |
 | Hermite / Mehler analysis behind OU | `MarkovTriple.Sanity.OU.*` in `BGL/Analysis/OU/` (namespace kept from the removed legacy surface) | proved |
 

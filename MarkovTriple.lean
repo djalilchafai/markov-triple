@@ -166,3 +166,8 @@ import MarkovTriple.BGL.Theory.Extension.Estimates
 import MarkovTriple.BGL.Theory.Extension.Gamma2
 import MarkovTriple.BGL.Theory.Extension.Main
 import MarkovTriple.BGL.Theory.Strong.AxiomCheck
+import MarkovTriple.BGL.Instances.Discrete.Obstruction
+import MarkovTriple.BGL.Instances.Gibbs.Calculus
+import MarkovTriple.BGL.Instances.Gibbs.Diffusion
+import MarkovTriple.BGL.Instances.Gibbs.Convex
+import MarkovTriple.BGL.Instances.AxiomCheck
