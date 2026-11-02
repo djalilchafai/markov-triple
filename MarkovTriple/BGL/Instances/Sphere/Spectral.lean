@@ -116,7 +116,7 @@ lemma dL_Utheta (k : ℕ) (θ : ℝ) : dL (Utheta k) θ = -((k : ℝ) * (k + 2))
     · congr 1
       have := Utheta_eigen_aux k θ hs
       unfold dL Dq
-      rw [if_neg hs]
+      rw [ite_eq_right hs]
       exact this
   exact congrFun e θ
 

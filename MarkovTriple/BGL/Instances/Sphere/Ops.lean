@@ -120,7 +120,7 @@ lemma Dq_comp {k : ℕ} (ψ : (Fin k → ℝ) → ℝ) (hψ : ContDiff ℝ (⊤ 
   have e1 : Dq (fun θ => ψ (fun i => F i θ)) =
       fun θ => ∑ i, pderiv ψ i (fun j => F j θ) * Dq (F i) θ := by
     refine eq_of_sin_mul_eq (sm_Dq hc (EP.comp ψ eF)).continuous ?_ fun θ => ?_
-    · refine continuous_finset_sum _ fun i _ => ?_
+    · refine continuous_finsetSum _ fun i _ => ?_
       exact (((contDiff_pderiv ψ hψ i).comp (contDiff_pi.2 hF)).continuous).mul
         (sm_Dq (hF i) (eF i)).continuous
     · have h1 := sin_mul_Dq (hF0 hc (EP.comp ψ eF)) θ
@@ -181,7 +181,7 @@ noncomputable def LZ (f : Zon → ℝ) : Zon → ℝ := mk (dL (ext f))
 
 lemma apply_eq_ext (f : Zon → ℝ) (x : Zon) : f x = ext f (arc x) := by simp [ext, cosZ_arc]
 
-lemma ext_GZ {f g : Zon → ℝ} (hf : f ∈ AZ) (hg : g ∈ AZ) : ext (GZ f g) = dG (ext f) (ext g) :=
+lemma ext_GZ {f g : Zon → ℝ} (_hf : f ∈ AZ) (_hg : g ∈ AZ) : ext (GZ f g) = dG (ext f) (ext g) :=
   ext_mk (ep_dG (ep_ext f) (ep_ext g)).1 (ep_dG (ep_ext f) (ep_ext g)).2
 
 lemma ext_LZ {f : Zon → ℝ} : ext (LZ f) = dL (ext f) :=

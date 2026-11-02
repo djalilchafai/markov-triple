@@ -145,6 +145,6 @@ theorem trivialCompact_LS :
     LogSobolevIneq (Measure.dirac ()) (trivialDiffusion (Measure.dirac ())).Γ
       (trivialDiffusion (Measure.dirac ())).A₀ 1 0 := by
   refine ⟨inferInstance, one_pos, le_refl _, fun f _ => ?_⟩
-  simp [Ent, energy, dirichletForm, trivialDiffusion, integral_dirac]
+  simp [Ent, energy, dirichletForm, trivialDiffusion]
 
 end MarkovTriple.BGL.Sanity

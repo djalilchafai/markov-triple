@@ -16,7 +16,7 @@ variable {X Y : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X] [Second
   [MeasurableSpace Y] [BorelSpace Y]
 
 local instance : IsOrderedAddMonoid C(X×Y,ℝ) where
-  add_le_add_left a b h c := fun z => add_le_add_left (h z) (c z)
+  add_le_add_left _a _b h c := fun z => add_le_add_left (h z) (c z)
 
 def transportMarginalSum : C(X,ℝ) × C(Y,ℝ) →ₗ[ℝ] C(X×Y,ℝ) where
   toFun p := p.1.comp ⟨Prod.fst,continuous_fst⟩+p.2.comp ⟨Prod.snd,continuous_snd⟩
@@ -231,7 +231,7 @@ theorem wassersteinSq_le_of_compact_dual_budget {E : Type*} [MetricSpace E] [Com
       (fun f g h => hDual f g h)
   refine (wassersteinSq_le_cost (⟨π, h1, h2⟩ : Coupling μ ν)).trans ?_
   have hint : Integrable (fun z : E × E => dist z.1 z.2 ^ 2) π := by
-    haveI : IsProbabilityMeasure π := by
+    have : IsProbabilityMeasure π := by
       constructor
       have := congrArg (fun m => m Set.univ) h1
       simpa [Measure.map_apply measurable_fst MeasurableSet.univ] using this

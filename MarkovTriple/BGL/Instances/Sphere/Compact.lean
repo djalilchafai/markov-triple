@@ -52,7 +52,7 @@ lemma pos_detect_aux {f : Zon → ℝ} (hf : f ∈ AZ)
   have := (integral_eq_zero_iff_of_nonneg (fun x => neg_nonneg.2 (hmf x)) hint.neg).1 h0
   filter_upwards [this] with x hx
   by_contra hneg
-  push_neg at hneg
+  push Not at hneg
   have hpos : 0 < m x := Real.smoothTransition.pos_of_pos (by simp only [Pi.zero_apply] at hneg; linarith)
   have : -(m x * f x) = 0 := hx
   have : m x * f x = 0 := by linarith

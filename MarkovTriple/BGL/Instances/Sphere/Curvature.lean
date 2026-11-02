@@ -134,7 +134,7 @@ theorem sphere_Γ_ne_zero : ∃ f ∈ sCompact.A₀, sCompact.Γ f f ≠ 0 := by
   have e : ext (fun x : Zon => x.1) = cos := by funext θ; simp [ext, cosZ]
   have h0 : arc ⟨0, by norm_num, by norm_num⟩ = π / 2 := by simp [arc, Real.arccos_zero]
   have : sT.Γ (fun x : Zon => x.1) (fun x : Zon => x.1) ⟨0, by norm_num, by norm_num⟩ = 0 := this
-  simp only [sT, GZ, mk, dG, e, h0, Real.deriv_cos] at this
+  simp only [GZ, mk, dG, e, h0, Real.deriv_cos] at this
   simp at this
 
 end MarkovTriple.BGL.Instances.Sphere

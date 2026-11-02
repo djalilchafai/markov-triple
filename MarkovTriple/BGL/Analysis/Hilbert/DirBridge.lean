@@ -133,7 +133,7 @@ noncomputable def dirFriedrichs : DirFriedrichs S where
       (hx.inner hy).sub (hf.inner hg)
     have hdite : (if h : u ∈ S.Q ∧ v ∈ S.Q then S.E ⟨u, h.1⟩ ⟨v, h.2⟩ else 0) =
         inner ℝ x y - inner ℝ u v := by
-      rw [dif_pos (show u ∈ S.Q ∧ v ∈ S.Q from ⟨huQ, hvQ⟩)]; exact hE
+      rw [dite_eq_left (show u ∈ S.Q ∧ v ∈ S.Q from ⟨huQ, hvQ⟩)]; exact hE
     rw [hdite]
     exact hlim.congr (fun n => (S.en_eq_inner_sub (f n) (g n)).symm)
 

@@ -45,7 +45,7 @@ theorem domain_of_approx {u y : Lp ℝ 2 (volume : Measure ℝ)} (a : ℕ → �
     hG.mem_of_tendsto (h1.prodMk_nhds h2) (Filter.Eventually.of_forall hmem)
   rw [LinearPMap.mem_graph_iff] at hlim
   obtain ⟨z, hz⟩ := hlim
-  simp only [Prod.mk.injEq] at hz
+  simp only [] at hz
   obtain ⟨hz1, hz2⟩ := hz
   subst hz1
   exact ⟨z.2, hz2⟩

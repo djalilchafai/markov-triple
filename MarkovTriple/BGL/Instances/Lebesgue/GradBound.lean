@@ -58,7 +58,7 @@ theorem lebesgue_hasGradientBound : HasGradientBound lebesgueDiffusion A 0 := by
     simpa [hσ] using this
   filter_upwards [h2] with x hx
   rw [hx, hΓ, hc']
-  simp only [neg_mul, mul_zero, zero_mul, neg_zero, Real.exp_zero, one_mul]
+  simp only [mul_zero, zero_mul, Real.exp_zero, one_mul]
   exact heatM_sq_le (isTest_of (deriv_mem f.2)) σ x
 
 end MarkovTriple.BGL.Lebesgue

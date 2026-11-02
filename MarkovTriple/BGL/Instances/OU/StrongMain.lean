@@ -39,7 +39,7 @@ lemma psi_q_bd (hε : 0 < ε) {f : ℝ → ℝ} (hf : f ∈ OA₀) : ∃ B : ℝ
   rw [abs_mul]
   exact mul_le_mul (hC1 τ hτ x) (hC1 τ hτ x) (abs_nonneg _) hC10
 
-lemma strongPhi_eq (hε : 0 < ε) (f h : ouFull.A₀) (t : ℝ≥0) {s : ℝ} (hs : s ∈ Icc 0 (t : ℝ)) :
+lemma strongPhi_eq (_hε : 0 < ε) (f h : ouFull.A₀) (t : ℝ≥0) {s : ℝ} (hs : s ∈ Icc 0 (t : ℝ)) :
     ouFull.strongPhi ε f h t s = sPhi ε h.1 f.1 t s := by
   have h0 : 0 ≤ s := hs.1
   have h1 : 0 ≤ (t : ℝ) - s := sub_nonneg.2 hs.2

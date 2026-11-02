@@ -39,7 +39,7 @@ lemma semigroup_inner_comm (s t : ℝ≥0) (u : H) :
     u (S.semigroup t u)
   change inner ℝ (S.semigroup s u) (S.semigroup t u) = inner ℝ u (S.semigroup s (S.semigroup t u))
     at hs
-  rw [hs, S.semigroup_add, ContinuousLinearMap.mul_apply]
+  rw [hs, S.semigroup_add, mul_apply_eq_comp]
   exact real_inner_comm _ _
 
 /-- `φ(t) = ‖P_t u‖²`. -/
@@ -71,7 +71,7 @@ theorem cauchySeq_semigroup (u : H) : CauchySeq fun t : ℝ≥0 => S.semigroup t
   have hε2 : 0 < ε ^ 2 / 2 := by positivity
   obtain ⟨T0, hT0⟩ : ∃ T0, φ T0 < m + ε ^ 2 / 2 := by
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     have : m + ε ^ 2 / 2 ≤ m := le_ciInf (fun t => by
       have := hcon t; linarith)
     linarith

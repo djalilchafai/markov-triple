@@ -216,7 +216,7 @@ lemma integrable_pg_mul_bm {F g : ℝ → ℝ} (hF : PG F) (hg : Bm g) :
 
 lemma integrable_pg_mul_bm' {F g : ℝ → ℝ} (hF : PG F) (hg : Bm g) :
     Integrable (fun x => F x * g x) γ :=
-  (integrable_pg_mul_bm hF hg).congr (ae_of_all _ fun x => mul_comm _ _)
+  (integrable_pg_mul_bm hF hg).congr (ae_of_all _ fun _x => mul_comm _ _)
 
 lemma ibp_hh_bm {g : ℝ → ℝ} (hg : Bm g) (m : ℕ) :
     ∫ x, g x * Lo (hh m) x ∂γ = ∫ x, hh m x * Lo g x ∂γ := by

@@ -40,7 +40,7 @@ lemma memLp_exp_mul (t : ℝ) : MemLp (fun x : ℝ => Real.exp (t * x)) 2 γ := 
   rw [memLp_two_iff_integrable_sq (by fun_prop)]
   have := integrable_exp_mul_gaussianReal (μ := 0) (v := 1) (2 * t)
   refine this.congr (ae_of_all _ fun x => ?_)
-  simp only [Pi.pow_apply]
+  simp only []
   rw [sq, ← Real.exp_add]; ring_nf
 
 lemma integrable_exp_withDensity {g : ℝ → ℝ} (hg : MemLp g 2 γ) (hg0 : ∀ x, 0 ≤ g x)

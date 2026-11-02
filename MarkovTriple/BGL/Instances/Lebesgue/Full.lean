@@ -28,7 +28,7 @@ theorem semigroup_eq_heat {f : ℝ → ℝ} (hf : f ∈ A₀) (t : ℝ≥0) :
     have : DiffusionTriple.semigroup lebesgueDiffusion 0 = 1 :=
       (DiffusionTriple.formData lebesgueDiffusion).semigroup_zero
     rw [this]
-    simp only [ContinuousLinearMap.one_apply, NNReal.coe_zero, mul_zero, Real.sqrt_zero]
+    simp only [one_apply_eq_self, NNReal.coe_zero, mul_zero, Real.sqrt_zero]
     exact (heatL2_zero hf).symm
   · rw [← sub_eq_zero]
     refine lebesgueDiffusion.eq_zero_of_orth _ (fun g => ?_)
@@ -57,7 +57,7 @@ theorem conservative_lebesgue (u : ℕ → ℝ → ℝ) (hu : IsExhaustion volum
     have hc : ∀ᵐ x ∂(volume : Measure ℝ), ∀ n, (lebesgueDiffusion.cls ⟨u n, hu.1 n⟩ : ℝ → ℝ) x = u n x :=
       ae_all_iff.2 fun n => lebesgueDiffusion.coeFn_cls ⟨u n, hu.1 n⟩
     filter_upwards [hc, hu.2.2] with x h1 h2
-    simp only [e, ContinuousLinearMap.one_apply]
+    simp only [e, one_apply_eq_self]
     exact h2.congr (fun n => (h1 n).symm)
   · have ha : Real.sqrt (2 * (t : ℝ)) ≠ 0 := by
       have : (0 : ℝ) < t := by exact_mod_cast hpos

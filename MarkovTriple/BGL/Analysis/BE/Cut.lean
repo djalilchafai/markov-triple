@@ -41,7 +41,7 @@ lemma deriv_Θ_eq (hε : 0 < ε) {y : ℝ} (hy : y ∈ Icc ε (ε + M)) :
   rw [(C.hΘeq y hy).deriv_eq]
   exact Real.deriv_mul_log hy0
 
-lemma deriv_Λ_eq (hε : 0 < ε) {y : ℝ} (hy : y ∈ Icc ε (ε + M)) :
+lemma deriv_Λ_eq (_hε : 0 < ε) {y : ℝ} (hy : y ∈ Icc ε (ε + M)) :
     deriv C.Λ y = y⁻¹ := by
   rw [(C.hΛeq y hy).deriv_eq]
   exact Real.deriv_log y

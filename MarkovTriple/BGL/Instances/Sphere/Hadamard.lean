@@ -151,15 +151,15 @@ lemma contDiffAt_Dq_kpi {F : ℝ → ℝ} (hF : ContDiff ℝ (⊤ : ℕ∞) F)
     · have hθe : θ = θ₀ := by rw [hθφ, h0, zero_add]
       have hs0 : Real.sin θ = 0 := by rw [hθe, hθ₀]; exact Real.sin_int_mul_pi k
       have hc : Real.cos θ = (-1) ^ k := by rw [hθe, hθ₀]; exact Real.cos_int_mul_pi k
-      unfold Dq; rw [if_pos hs0, hc]
-      simp only [h0, hS0', mul_one, hGd, hθe, sub_self]
+      unfold Dq; rw [ite_eq_left hs0, hc]
+      simp only [h0, hS0', mul_one, hGd, hθe]
     · have hsne : Real.sin θ ≠ 0 := by
         rw [hsin]; exact mul_ne_zero hsign (sin_ne_zero_of_abs_lt h0 hφ)
       have hSφ := hSne φ hφ
       have h1 : deriv F θ = φ * G φ := by
         have := hGe φ
         rw [show θ = θ₀ + φ by rw [hθ₀]; linarith]; exact this
-      unfold Dq; rw [if_neg hsne, h1, hsin, hSe]
+      unfold Dq; rw [ite_eq_right hsne, h1, hsin, hSe]
       field_simp
   have hK' : ContDiffAt ℝ (⊤ : ℕ∞) (fun θ => (fun φ => G φ / ((-1 : ℝ) ^ k * S φ)) (θ - θ₀)) θ₀ := by
     have hsub : ContDiffAt ℝ (⊤ : ℕ∞) (fun θ : ℝ => θ - θ₀) θ₀ :=
@@ -190,7 +190,7 @@ lemma sin_mul_Dq {F : ℝ → ℝ} (hF0 : ∀ k : ℤ, deriv F (k * π) = 0) (θ
   by_cases hs : Real.sin θ = 0
   · obtain ⟨n, hn⟩ := Real.sin_eq_zero_iff.1 hs
     rw [hs, zero_mul, ← hn, hF0 n]
-  · simp only [Dq, if_neg hs]; field_simp
+  · simp only [Dq, ite_eq_right hs]; field_simp
 
 /-! ### Even, periodic functions -/
 
@@ -214,7 +214,7 @@ lemma deriv_even_of_odd {G : ℝ → ℝ} (ho : ∀ θ, G (-θ) = -G θ) (θ : �
   simp only [deriv_comp_neg, deriv.fun_neg] at this
   linarith
 
-lemma deriv_zero_of_even_periodic {F : ℝ → ℝ} (hF : ContDiff ℝ (⊤ : ℕ∞) F)
+lemma deriv_zero_of_even_periodic {F : ℝ → ℝ} (_hF : ContDiff ℝ (⊤ : ℕ∞) F)
     (he : ∀ θ, F (-θ) = F θ) (hp : ∀ θ, F (θ + 2 * π) = F θ) (k : ℤ) :
     deriv F (k * π) = 0 := by
   have ho := deriv_odd he
@@ -236,11 +236,11 @@ lemma Dq_even {F : ℝ → ℝ} (he : ∀ θ, F (-θ) = F θ) (θ : ℝ) : Dq F 
   have h2 := deriv_even_of_odd (deriv_odd he) θ
   by_cases hs : Real.sin θ = 0
   · have hs' : Real.sin (-θ) = 0 := by rw [Real.sin_neg, hs, neg_zero]
-    unfold Dq; rw [if_pos hs, if_pos hs', h2, Real.cos_neg]
+    unfold Dq; rw [ite_eq_left hs, ite_eq_left hs', h2, Real.cos_neg]
   · have hs' : Real.sin (-θ) ≠ 0 := by rw [Real.sin_neg]; exact neg_ne_zero.2 hs
-    unfold Dq; rw [if_neg hs, if_neg hs', h1, Real.sin_neg, neg_div_neg_eq]
+    unfold Dq; rw [ite_eq_right hs, ite_eq_right hs', h1, Real.sin_neg, neg_div_neg_eq]
 
-lemma Dq_periodic {F : ℝ → ℝ} (he : ∀ θ, F (-θ) = F θ) (hp : ∀ θ, F (θ + 2 * π) = F θ)
+lemma Dq_periodic {F : ℝ → ℝ} (_he : ∀ θ, F (-θ) = F θ) (hp : ∀ θ, F (θ + 2 * π) = F θ)
     (θ : ℝ) : Dq F (θ + 2 * π) = Dq F θ := by
   have h1 := deriv_periodic hp θ
   have h2 := deriv_periodic (fun x => deriv_periodic hp x) θ

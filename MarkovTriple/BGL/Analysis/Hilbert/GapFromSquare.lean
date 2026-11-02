@@ -108,8 +108,8 @@ lemma gap_of_square_range {R : H →L[ℝ] H} (hR : UnitOp R) (ρ : ℝ)
     rw [this, ← real_inner_self_eq_norm_sq, ← sa_inner hVsa]; rfl
   have b2 : inner ℝ ((z - R z) - R (z - R z)) (R (z - R z)) = inner ℝ ((V * W) z) z := by
     have e : (z - R z) - R (z - R z) = W z := by
-      simp only [hWdef, ContinuousLinearMap.mul_apply, ContinuousLinearMap.sub_apply,
-        ContinuousLinearMap.one_apply]
+      simp only [hWdef, mul_apply_eq_comp, sub_apply,
+        one_apply_eq_self]
     have e' : R (z - R z) = V z := rfl
     rw [e, e', ← sa_inner hVsa]; rfl
   rw [b1, b2]

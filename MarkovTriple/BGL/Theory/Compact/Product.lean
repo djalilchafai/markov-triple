@@ -31,7 +31,7 @@ lemma tri_integrable {M : ℝ} {c : Lp ℝ 2 μ} (hc : Bdd M c) (a b : Lp ℝ 2 
   (integrable_mul_L2 a b).mul_bdd (c := M) (Lp.aestronglyMeasurable c)
     (hc.mono fun x hx => by simpa using hx)
 
-lemma tri_abs_le {M : ℝ} (hM : 0 ≤ M) {c : Lp ℝ 2 μ} (hc : Bdd M c) (a b : Lp ℝ 2 μ) :
+lemma tri_abs_le {M : ℝ} (_hM : 0 ≤ M) {c : Lp ℝ 2 μ} (hc : Bdd M c) (a b : Lp ℝ 2 μ) :
     |tri a b c| ≤ M * ‖a‖ * ‖b‖ := by
   have hbc : MemLp (fun x => (b : E → ℝ) x * (c : E → ℝ) x) 2 μ := by
     refine MemLp.of_le_mul (c := M) (Lp.memLp b) ((Lp.aestronglyMeasurable b).mul
@@ -73,7 +73,7 @@ lemma tri_sub_left {M : ℝ} {c : Lp ℝ 2 μ} (hc : Bdd M c) (a a' b : Lp ℝ 2
   filter_upwards [Lp.coeFn_sub a a'] with x hx
   rw [hx]; simp only [Pi.sub_apply]; ring
 
-lemma tri_smul_left {M : ℝ} {c : Lp ℝ 2 μ} (hc : Bdd M c) (r : ℝ) (a b : Lp ℝ 2 μ) :
+lemma tri_smul_left {M : ℝ} {c : Lp ℝ 2 μ} (_hc : Bdd M c) (r : ℝ) (a b : Lp ℝ 2 μ) :
     tri (r • a) b c = r * tri a b c := by
   unfold tri
   rw [← integral_const_mul]

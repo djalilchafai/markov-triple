@@ -71,7 +71,7 @@ theorem exists_contraction_of_approx (Tm : H → H) (L : ℝ)
   have hE : ∀ (a b : H) (ha : a ∈ S.Q) (hb : b ∈ S.Q), T.E a b = S.E ⟨a, ha⟩ ⟨b, hb⟩ := by
     intro a b ha hb
     show (if h : a ∈ S.Q ∧ b ∈ S.Q then S.E ⟨a, h.1⟩ ⟨b, h.2⟩ else 0) = _
-    rw [dif_pos (show a ∈ S.Q ∧ b ∈ S.Q from ⟨ha, hb⟩)]
+    rw [dite_eq_left (show a ∈ S.Q ∧ b ∈ S.Q from ⟨ha, hb⟩)]
   rw [hE _ _ hmem hmem, hE _ _ u.2 u.2] at e1
   exact e1
 

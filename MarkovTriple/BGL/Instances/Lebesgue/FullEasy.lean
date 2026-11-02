@@ -32,7 +32,7 @@ lemma F2 {f : ℝ → ℝ} (hf : f ∈ A)
   have hall : ∀ x, 0 ≤ f x := by
     intro x0
     by_contra hneg
-    push_neg at hneg
+    push Not at hneg
     have hopen : IsOpen {x | f x < 0} := isOpen_lt hfc continuous_const
     obtain ⟨r, hr, hball⟩ := Metric.isOpen_iff.1 hopen x0 hneg
     let b : ContDiffBump x0 := ⟨r / 2, r, by positivity, by linarith⟩

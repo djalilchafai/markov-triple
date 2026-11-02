@@ -162,7 +162,7 @@ lemma Sm_of_contDiff {f : 𝕋 → ℝ} (hf : f ∈ A₀) : Sm f := by
   intro x
   obtain ⟨s, rfl⟩ := QuotientAddGroup.mk_surjective x
   have : (fun t : ℝ => f ((s : 𝕋) + (t : 𝕋))) = (fun t : ℝ => f (t : 𝕋)) ∘ (fun t => s + t) := by
-    funext t; simp [AddCircle.coe_add]
+    funext t; simp []
   rw [this]
   exact (mem_A₀.1 hf).comp (contDiff_const.add contDiff_id)
 

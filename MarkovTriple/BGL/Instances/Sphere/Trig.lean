@@ -111,7 +111,7 @@ lemma recurrence_succ (k : ℕ) (θ : ℝ) :
       calc Real.sin θ * (2 * Real.cos θ * Utheta (k + 1) θ)
           = 2 * Real.cos θ * (Real.sin θ * Utheta (k + 1) θ) := by ring
         _ = Real.sin θ * (Utheta (k + 2) θ + Utheta k θ) := by
-          rw [h1, h3, mul_add, h2, h0]; push_cast; ring_nf)) θ
+          rw [h1, h3, mul_add, h2, h0]; ring_nf)) θ
   exact this
 
 /-! ### Derivatives -/
@@ -236,7 +236,7 @@ lemma integral_cos_mul_pi (c : ℤ) :
   by_cases hc : c = 0
   · subst hc; simp
   · have hc' : (c : ℝ) ≠ 0 := by exact_mod_cast hc
-    rw [if_neg hc, intervalIntegral.integral_comp_mul_left (fun x => Real.cos x) hc']
+    rw [ite_eq_right hc, intervalIntegral.integral_comp_mul_left (fun x => Real.cos x) hc']
     simp [Real.sin_int_mul_pi]
 
 lemma integral_sin_mul_sin (a b : ℕ) :
@@ -257,7 +257,7 @@ lemma integral_sin_mul_sin (a b : ℕ) :
   rw [intervalIntegral.integral_div, intervalIntegral.integral_sub i1 i2,
     integral_cos_mul_pi, integral_cos_mul_pi]
   have h0 : ((a : ℤ) + b + 2) ≠ 0 := by omega
-  rw [if_neg h0]
+  rw [ite_eq_right h0]
   by_cases hab : a = b
   · subst hab; simp
   · have : ((a : ℤ) - b) ≠ 0 := by omega

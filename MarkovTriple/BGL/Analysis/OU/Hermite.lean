@@ -15,7 +15,7 @@ lemma pf_sm (p : ℝ[X]) : Sm (pf p) := by
   have := Polynomial.contDiff_aeval (𝕜 := ℝ) p (⊤ : ℕ∞)
   simpa [pf, Polynomial.aeval_def] using this
 
-lemma deriv_pf (p : ℝ[X]) : deriv (pf p) = pf (derivative p) := funext fun x => p.deriv
+lemma deriv_pf (p : ℝ[X]) : deriv (pf p) = pf (derivative p) := funext fun _x => p.deriv
 
 lemma pf_PG (p : ℝ[X]) : PG (pf p) := by
   induction p using Polynomial.induction_on' with
@@ -122,7 +122,6 @@ lemma derivative_He (n : ℕ) : derivative (He (n + 1)) = C ((n : ℝ) + 1) * He
       rw [ih, derivative_mul, derivative_C, zero_mul, zero_add]
     rw [h2, ih, He_succ n]
     simp only [C_add, C_1, map_natCast, Nat.cast_add, Nat.cast_one]
-    push_cast
     ring
 
 lemma Lpoly_He (n : ℕ) :
@@ -132,7 +131,6 @@ lemma Lpoly_He (n : ℕ) :
   | succ n =>
     rw [derivative_He, derivative_mul, derivative_C, zero_mul, zero_add, He_succ n]
     simp only [C_neg, Nat.cast_add, Nat.cast_one]
-    push_cast
     simp only [C_add, C_1]
     ring
 
@@ -204,13 +202,13 @@ lemma integral_He_He (n m : ℕ) :
   · obtain ⟨j, rfl⟩ := Nat.exists_eq_add_of_lt h
     have := integral_He_He_le n (j + 1)
     rw [show n + j + 1 = (j + 1) + n by ring]
-    rw [this]; simp [show ¬ (n = j + 1 + n) by omega]
+    rw [this]; simp
   · subst h; have := integral_He_He_le n 0; simpa using this
   · obtain ⟨j, rfl⟩ := Nat.exists_eq_add_of_lt h
     have := integral_He_He_le m (j + 1)
     rw [show m + j + 1 = (j + 1) + m by ring]
     simp_rw [mul_comm ((He (j + 1 + m)).eval _)]
-    rw [this]; simp [show ¬ (m + (j + 1) = m) by omega]
+    rw [this]; simp
 
 /-- normalised Hermite function -/
 noncomputable def hh (n : ℕ) : ℝ → ℝ := fun x => (√(n.factorial : ℝ))⁻¹ * (He n).eval x

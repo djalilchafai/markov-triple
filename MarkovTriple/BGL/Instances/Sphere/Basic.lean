@@ -166,8 +166,8 @@ lemma integrable_of_cont {f : Zon → ℝ} (hf : Continuous f) : Integrable f μ
 /-- the subalgebra of `C(Zon, ℝ)` of zonal smooth functions. -/
 def AC : Subalgebra ℝ C(Zon, ℝ) where
   carrier := {g | (g : Zon → ℝ) ∈ AZ}
-  add_mem' := fun {f g} hf hg => add_mem (show (f : Zon → ℝ) ∈ AZ from hf) hg
-  mul_mem' := fun {f g} hf hg => mul_mem (show (f : Zon → ℝ) ∈ AZ from hf) hg
+  add_mem' := fun {f _g} hf hg => add_mem (show (f : Zon → ℝ) ∈ AZ from hf) hg
+  mul_mem' := fun {f _g} hf hg => mul_mem (show (f : Zon → ℝ) ∈ AZ from hf) hg
   algebraMap_mem' := fun r => AZ.algebraMap_mem r
 
 lemma AC_sep : AC.SeparatesPoints := by

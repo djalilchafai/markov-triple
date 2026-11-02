@@ -358,7 +358,7 @@ theorem resolvent_le_one (g : Lp ℝ 2 T.μ) (hg : (g : E → ℝ) ≤ᵐ[T.μ] 
     have : min (u x) lam⁻¹ = u x := by linarith
     exact min_eq_left_iff.1 this
   show (((lam • S.resolvent lam) g : Lp ℝ 2 T.μ) : E → ℝ) x ≤ 1
-  rw [ContinuousLinearMap.smul_apply, h6]
+  rw [smul_apply, h6]
   simp only [Pi.smul_apply, smul_eq_mul]
   have : lam * u x ≤ lam * lam⁻¹ := by gcongr
   rw [mul_inv_cancel₀ hlam.ne'] at this
@@ -369,7 +369,7 @@ theorem semigroup_le_one (t : ℝ≥0) (u : Lp ℝ 2 T.μ) (hu : (u : E → ℝ)
     (T.semigroup t u : E → ℝ) ≤ᵐ[T.μ] (1 : E → ℝ) :=
   (formData T).semigroup_mapsTo {w : Lp ℝ 2 T.μ | (w : E → ℝ) ≤ᵐ[T.μ] (1 : E → ℝ)}
     (Hilbert.isClosed_ae_le_one T.μ)
-    (fun lam hlam x hx => resolvent_le_one T x hx hlam) t hu
+    (fun _lam hlam x hx => resolvent_le_one T x hx hlam) t hu
 
 end DiffusionTriple
 

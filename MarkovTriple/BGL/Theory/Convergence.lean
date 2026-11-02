@@ -18,7 +18,7 @@ namespace MarkovTriple.BGL
 
 variable {E : Type*} [MeasurableSpace E]
 
-lemma lipschitz_mul_log {ε M a b : ℝ} (hε : 0 < ε) (hM : 0 ≤ M) (ha : a ∈ Icc ε (ε + M))
+lemma lipschitz_mul_log {ε M a b : ℝ} (hε : 0 < ε) (_hM : 0 ≤ M) (ha : a ∈ Icc ε (ε + M))
     (hb : b ∈ Icc ε (ε + M)) :
     |a * Real.log a - b * Real.log b| ≤
       (|Real.log ε| + |Real.log (ε + M)| + 1) * |a - b| := by

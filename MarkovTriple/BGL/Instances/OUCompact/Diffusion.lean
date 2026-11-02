@@ -20,19 +20,19 @@ namespace MarkovTriple.BGL.Instances.OUCompact
 /-- `ℬ` as a non-unital subalgebra. -/
 def Bsub : NonUnitalSubalgebra ℝ (ℝ → ℝ) where
   carrier := {f | Bm f}
-  add_mem' := fun {f g} hf hg => Bm.add hf hg
+  add_mem' := fun {_f _g} hf hg => Bm.add hf hg
   zero_mem' := bm_const 0
-  mul_mem' := fun {f g} hf hg => Bm.mul hf hg
-  smul_mem' := fun c {f} hf => Bm.smul c hf
+  mul_mem' := fun {_f _g} hf hg => Bm.mul hf hg
+  smul_mem' := fun c {_f} hf => Bm.smul c hf
 
 lemma mem_Bsub {f : ℝ → ℝ} : f ∈ Bsub ↔ Bm f := Iff.rfl
 
 /-- `ℬ` as a unital subalgebra (it contains the constants). -/
 def Bfull : Subalgebra ℝ (ℝ → ℝ) where
   carrier := {f | Bm f}
-  add_mem' := fun {f g} hf hg => Bm.add hf hg
+  add_mem' := fun {_f _g} hf hg => Bm.add hf hg
   zero_mem' := bm_const 0
-  mul_mem' := fun {f g} hf hg => Bm.mul hf hg
+  mul_mem' := fun {_f _g} hf hg => Bm.mul hf hg
   one_mem' := bm_const 1
   algebraMap_mem' := fun r => bm_const r
 

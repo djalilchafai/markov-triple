@@ -41,7 +41,7 @@ lemma one_sub_pos {s : ℝ} (hs : 0 < s) : 0 < 1 - Real.exp (-s) ^ 2 := by
 
 lemma ec_pos {s : ℝ} (hs : 0 < s) : 0 < ec s := Real.sqrt_pos.2 (one_sub_pos hs)
 
-lemma ec_mono {s t : ℝ} (hs : 0 < s) (hst : s ≤ t) : ec s ≤ ec t := by
+lemma ec_mono {s t : ℝ} (_hs : 0 < s) (hst : s ≤ t) : ec s ≤ ec t := by
   unfold ec
   apply Real.sqrt_le_sqrt
   have h1 : Real.exp (-t) ≤ Real.exp (-s) := Real.exp_le_exp.2 (by linarith)

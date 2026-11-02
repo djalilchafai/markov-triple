@@ -32,6 +32,7 @@ lemma bdd_cmp (F : ℝ → ℝ) (hF : Continuous F) {K : ℝ} (hb : ∀ y, |F y|
   filter_upwards [coeFn_cmp F hF hb u] with x hx
   rw [hx]; exact hb _
 
+omit [IsFiniteMeasure μ] in
 lemma integral_sq_eq (u : Lp ℝ 2 μ) : ∫ x, ((u : E → ℝ) x) ^ 2 ∂μ = ‖u‖ ^ 2 := by
   rw [← real_inner_self_eq_norm_sq, L2.inner_def]
   refine integral_congr_ae (Eventually.of_forall fun x => ?_)
@@ -45,7 +46,7 @@ lemma integrable_Lp_mul_bdd {M : ℝ} {c : Lp ℝ 2 μ} (hc : Bdd M c) (a : Lp �
 theorem hasDerivAt_pair {F F' : ℝ → ℝ} {K0 K1 K2 M : ℝ} (hFc : Continuous F)
     (hF'c : Continuous F') (hb0 : ∀ y, |F y| ≤ K0) (hb1 : ∀ y, |F' y| ≤ K1) (hK2 : 0 ≤ K2)
     (htay : ∀ x y, |F y - F x - F' x * (y - x)| ≤ K2 * (y - x) ^ 2) (hM : 0 ≤ M)
-    (hK1 : 0 ≤ K1) {G V : ℝ → Lp ℝ 2 μ} {G' V' : Lp ℝ 2 μ} {s : ℝ}
+    (_hK1 : 0 ≤ K1) {G V : ℝ → Lp ℝ 2 μ} {G' V' : Lp ℝ 2 μ} {s : ℝ}
     (hG : HasDerivAt G G' s) (hV : HasDerivAt V V' s) (hVb : ∀ r, Bdd M (V r)) :
     HasDerivAt (fun r => ∫ x, F ((G r : E → ℝ) x) * (V r : E → ℝ) x ∂μ)
       (∫ x, F' ((G s : E → ℝ) x) * (G' : E → ℝ) x * (V s : E → ℝ) x ∂μ +

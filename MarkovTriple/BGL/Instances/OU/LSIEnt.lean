@@ -36,13 +36,13 @@ section range
 variable {φ : ℝ → ℝ} {ε M : ℝ} {S : Set ℝ}
 
 lemma m0_nonneg (h0 : ∀ x, 0 ≤ φ x) (s x : ℝ) : 0 ≤ m0 φ s x :=
-  integral_nonneg fun y => h0 _
+  integral_nonneg fun _y => h0 _
 
 lemma m0_le (h0 : ∀ x, 0 ≤ φ x) (hM : ∀ x, φ x ≤ M) (s x : ℝ) : m0 φ s x ≤ M := by
   have := Uf_bound (φ := φ) (B := M) (fun y => by rw [abs_of_nonneg (h0 y)]; exact hM y) s x
   exact (le_abs_self _).trans this
 
-lemma g_range (h0 : ∀ x, 0 ≤ φ x) (hM : ∀ x, φ x ≤ M) (hε : 0 < ε) (s x : ℝ) :
+lemma g_range (h0 : ∀ x, 0 ≤ φ x) (hM : ∀ x, φ x ≤ M) (_hε : 0 < ε) (s x : ℝ) :
     ε + m0 φ s x ∈ Icc ε (ε + M) :=
   ⟨by linarith [m0_nonneg h0 s x], by linarith [m0_le h0 hM s x]⟩
 

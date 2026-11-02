@@ -29,7 +29,7 @@ lemma ae_eq_of_hasSum (c : ℕ → ℝ) (g : ℝ → ℝ) (hg : ∀ x, HasSum (f
     induction N with
     | zero =>
       filter_upwards [Lp.coeFn_zero ℝ 2 γ] with x h1
-      simp [hS, h1]
+      simp [hS]
     | succ N ih =>
       filter_upwards [ih, Lp.coeFn_add (S N) (c N • hL N), hterm N] with x h1 h2 h3
       have : S (N + 1) = S N + c N • hL N := by

@@ -105,7 +105,7 @@ theorem ouFull_EntropyInterpolation : ouFull.EntropyInterpolation where
 /-- **The Gaussian logarithmic Sobolev inequality, in the BGL-aligned framework, unconditionally**:
 `Ent_γ(f²) ≤ 2 ∫ Γ(f) dγ = 2 ∫ f'² dγ` for every `f ∈ C_c^∞(ℝ)` (`LS 1 0` for the OU triple). -/
 theorem ouFull_LS : ouFull.toDiffusionTriple.LS 1 0 := by
-  haveI : IsProbabilityMeasure ouFull.μ := (inferInstance : IsProbabilityMeasure γ)
+  have : IsProbabilityMeasure ouFull.μ := (inferInstance : IsProbabilityMeasure γ)
   have := FullTriple.logSobolev_of_CD_infty ouFull ouFull_EntropyInterpolation (ρ := 1) one_pos
     ouFull_CD
   simpa using this
@@ -117,7 +117,7 @@ theorem ouFull_LS_domain (u : ouFull.toDiffusionTriple.formDomain) :
       Ent ouFull.μ (fun x => ((u : Lp ℝ 2 ouFull.μ) : ℝ → ℝ) x ^ 2) ≤
         2 * (1 / 1) * ouFull.toDiffusionTriple.closedForm u u +
           0 * ∫ x, ((u : Lp ℝ 2 ouFull.μ) : ℝ → ℝ) x ^ 2 ∂ouFull.μ := by
-  haveI : IsProbabilityMeasure ouFull.μ := (inferInstance : IsProbabilityMeasure γ)
+  have : IsProbabilityMeasure ouFull.μ := (inferInstance : IsProbabilityMeasure γ)
   exact FullTriple.logSobolev_extend_domain ouFull ouFull_EntropyInterpolation (ρ := 1) one_pos
     ouFull_CD u
 

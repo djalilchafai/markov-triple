@@ -14,7 +14,7 @@ open MarkovTriple.BGL (pderiv pderiv₂)
 namespace MarkovTriple.BGL.Instances.Sphere
 
 lemma vec_eq_ext {k : ℕ} (f : Fin k → Zon → ℝ) (x : Zon) :
-    (fun j => f j x) = fun j => ext (f j) (arc x) := funext fun j => apply_eq_ext _ x
+    (fun j => f j x) = fun j => ext (f j) (arc x) := funext fun _j => apply_eq_ext _ x
 
 lemma comp_mem_AZ {k : ℕ} (ψ : (Fin k → ℝ) → ℝ) (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ) {f : Fin k → Zon → ℝ}
     (hf : ∀ i, f i ∈ AZ) : (fun x => ψ (fun i => f i x)) ∈ AZ := by

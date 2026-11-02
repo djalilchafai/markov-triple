@@ -105,7 +105,7 @@ structure EntropyInterpolation : Prop where
 lemma entG_mem_A (φ : T.A₀) (ε s : ℝ) : T.entG φ ε s ∈ T.A :=
   T.A.add_mem (const_mem_A T ε) (T.Pt_mem_A _ φ)
 
-lemma entG_range (φ : T.A₀) {ε M : ℝ} (hε : 0 < ε) (hM : 0 < M) (h0 : 0 ≤ᵐ[T.μ] φ.1)
+lemma entG_range (φ : T.A₀) {ε M : ℝ} (_hε : 0 < ε) (hM : 0 < M) (h0 : 0 ≤ᵐ[T.μ] φ.1)
     (hφ : ∀ x, φ.1 x ≤ M) (s : ℝ) :
     ∀ᵐ x ∂T.μ, T.entG φ ε s x ∈ Icc ε (ε + M) := by
   filter_upwards [T.Pt_nonneg s.toNNReal φ h0, T.Pt_le φ hM hφ s.toNNReal] with x h1 h2

@@ -116,7 +116,7 @@ lemma abs_x_dcut_le {K c : ℝ} (hK : ∀ x, |deriv ψ0 x| ≤ K) (x : ℝ) :
   by_cases h : 2 < |c * x|
   · simp [dψ0_zero_of_gt h]
     have := hK 0; have := abs_nonneg (deriv ψ0 0); linarith
-  · push_neg at h
+  · push Not at h
     have e : x * (c * deriv ψ0 (c * x)) = (c * x) * deriv ψ0 (c * x) := by ring
     rw [e, abs_mul]
     exact mul_le_mul h (hK _) (abs_nonneg _) (by norm_num)

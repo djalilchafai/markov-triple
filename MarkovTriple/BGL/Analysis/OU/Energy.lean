@@ -95,7 +95,7 @@ lemma energy_identity {h : ℝ → ℝ} (hh : Sm h) (k : ℕ) :
   linarith
 
 lemma energy_le {h : ℝ → ℝ} (hh : Sm h) (h0 : MemLp h 2 γ) (h2 : MemLp (Lo h) 2 γ) {K : ℝ}
-    (hK0 : 0 ≤ K) (hK : ∀ x, |deriv ψ0 x| ≤ K ∧ |deriv (deriv ψ0) x| ≤ K) (k : ℕ) :
+    (_hK0 : 0 ≤ K) (hK : ∀ x, |deriv ψ0 x| ≤ K ∧ |deriv (deriv ψ0) x| ≤ K) (k : ℕ) :
     ∫ x, cut (cc k) x ^ 2 * deriv h x ^ 2 ∂γ ≤
       (1 + 4 * K ^ 2) * ∫ x, h x ^ 2 ∂γ + ∫ x, Lo h x ^ 2 ∂γ := by
   have i1 : Integrable (fun x => cut (cc k) x ^ 2 * deriv h x ^ 2) γ := by

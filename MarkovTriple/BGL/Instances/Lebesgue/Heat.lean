@@ -83,7 +83,7 @@ theorem IsTest.heatM_contDiff {φ : ℝ → ℝ} (hφ : IsTest φ) (a : ℝ) :
     exact ih hφ.dtest
 
 theorem heatM_nonneg {φ : ℝ → ℝ} (hφ : ∀ x, 0 ≤ φ x) (a x : ℝ) : 0 ≤ heatM a φ x :=
-  integral_nonneg fun z => hφ _
+  integral_nonneg fun _z => hφ _
 
 
 lemma integrable_prod_comp {φ : ℝ → ℝ} (hc : Continuous φ) (hi : Integrable φ volume) (a : ℝ) :
@@ -124,7 +124,7 @@ lemma memLp_two_heatM_gen {φ : ℝ → ℝ} (hc : Continuous φ) (hi : Integrab
   refine Integrable.mono' (hint.norm.const_mul C) (hint.aestronglyMeasurable.pow 2)
     (ae_of_all _ fun x => ?_)
   have h0 := abs_heatM_le hC a x
-  simp only [Real.norm_eq_abs, Pi.pow_apply, abs_pow, sq_abs]
+  simp only [Real.norm_eq_abs, abs_pow, sq_abs]
   nlinarith [abs_nonneg (heatM a φ x), sq_abs (heatM a φ x)]
 
 theorem IsTest.integrable {φ : ℝ → ℝ} (hφ : IsTest φ) : Integrable φ volume :=
@@ -170,7 +170,7 @@ theorem IsTest.integral_mul_heatM_comm {φ ψ : ℝ → ℝ} (hφ : IsTest φ) (
     refine Integrable.mono' ((hψ.integrable.norm.comp_fst (gaussianReal 0 1)).const_mul C)
       ((hψ.cont.comp continuous_fst).mul (hφ.cont.comp (by fun_prop))).aestronglyMeasurable
       (ae_of_all _ fun p => ?_)
-    simp only [Function.uncurry, norm_mul, Real.norm_eq_abs, mul_one]
+    simp only [Function.uncurry, norm_mul, Real.norm_eq_abs]
     rw [mul_comm C]
     exact mul_le_mul_of_nonneg_left (hC _) (abs_nonneg _)
   have hint2 : Integrable (Function.uncurry fun (z y : ℝ) => φ y * ψ (y + a * z))
@@ -310,7 +310,7 @@ lemma integrable_id_gauss : Integrable (fun z : ℝ => z) (gaussianReal 0 1) :=
 
 lemma integrable_abs_pow_gauss (n : ℕ) : Integrable (fun z : ℝ => |z| ^ n) (gaussianReal 0 1) := by
   by_cases hn : n = 0
-  · subst hn; simpa using integrable_const (1 : ℝ)
+  · subst hn; simp
   have := (memLp_id_gaussianReal (μ := 0) (v := 1) (n : NNReal)).integrable_norm_pow
     (by simpa using hn)
   simpa using this
@@ -408,7 +408,7 @@ lemma rho_integrable {φ : ℝ → ℝ} (hφ : IsTest φ) {C₂ : ℝ} (hC₂ : 
     · rw [Real.norm_of_nonneg (integral_nonneg fun x => norm_nonneg _)]
       simpa using integral_abs_rho_le hφ hC₂ a hR0 hR hh0 hh z
 
-lemma integral_rho {φ : ℝ → ℝ} (hφ : IsTest φ) (a : ℝ) {h : ℝ} (hh0 : h ≠ 0) (x : ℝ) :
+lemma integral_rho {φ : ℝ → ℝ} (hφ : IsTest φ) (a : ℝ) {h : ℝ} (_hh0 : h ≠ 0) (x : ℝ) :
     ∫ z, rho φ a h x z ∂(gaussianReal 0 1) =
       (heatM (a + h) φ x - heatM a φ x) / h - a * heatM a (deriv (deriv φ)) x := by
   obtain ⟨C, -, hC⟩ := hφ.bdd

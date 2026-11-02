@@ -86,7 +86,7 @@ theorem Pt_memLp (t : ℝ≥0) (f : T.A₀) : MemLp (T.Pt t f) 2 T.μ :=
 theorem Pt_zero (f : T.A₀) : T.Pt 0 f =ᵐ[T.μ] f.1 := by
   have h := T.Pt_ae 0 f
   rw [DiffusionTriple.semigroup_zero] at h
-  simp only [ContinuousLinearMap.one_apply] at h
+  simp only [one_apply_eq_self] at h
   exact h.symm.trans (DiffusionTriple.coeFn_cls T.toDiffusionTriple f)
 
 theorem Pt_nonneg (t : ℝ≥0) (f : T.A₀) (hf : 0 ≤ᵐ[T.μ] f.1) : 0 ≤ᵐ[T.μ] T.Pt t f := by

@@ -246,7 +246,7 @@ variable (S : StandardTriple E)
 
 lemma abs_max_mul_le (σ a : ℝ) (hσ : |σ| ≤ 1) : |max (σ * a) 0| ≤ |a| := by
   rcases le_total (σ * a) 0 with h | h
-  · rw [max_eq_right h]; simpa using abs_nonneg a
+  · rw [max_eq_right h]; simp
   · rw [max_eq_left h, abs_mul]; exact mul_le_of_le_one_left (abs_nonneg _) hσ
 
 lemma memLp_posPart {μ : Measure E} {f : E → ℝ} (hf : MemLp f 2 μ) (σ : ℝ) (hσ : |σ| ≤ 1) :
