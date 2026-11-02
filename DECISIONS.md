@@ -115,11 +115,12 @@ was renamed.
     name `markovTriple`), `MarkovTriple.BGL` (canonical namespace), `MarkovTriple.Hilbert/.Sanity/.BE` (ported
     analysis, namespaces kept by 17), `MarkovTriple.Ent` (Divergences).  This is what all ~hundreds of files, the
     frozen manifest hashes, `CORRESPONDENCE.md` and the audit documents use.
-    RECOMMENDED, PENDING AUTHOR APPROVAL: keep these names as they are.  Reasons: (a) `MarkovTriple` is the Armstrong-style
+    DECIDED (author, 2026-11-03): keep these names as they are (repo `markov-triple`, library `MarkovTriple`, namespace
+    `MarkovTriple.BGL`; no rename of the `BGL` sub-namespace).  Rationale recorded before the decision: (a) `MarkovTriple` is the Armstrong-style
     descriptive name already used in docs and by the statement `structure`s; (b) the library contains Divergences and
     non-BGL analysis, so a narrower name like `BakryEmery` would be misleading, while a broader one like
     `DiffusionOperators` collides in scope with the book's subject; (c) a rename touches every frozen/fenced file and
     forces a manifest regeneration, which is wasteful before the author has approved any frozen statement.  Caveat for
     the author: the namespace `MarkovTriple.BGL` bakes the book's initials into declaration names; if the library is ever
     submitted to Mathlib or Reservoir, a rename of `BGL` (e.g. to `BakryEmery`) is a mechanical, one-time change, best done
-    BEFORE author approval freezes the hashes.  Do not rename until the author decides.
+    BEFORE author approval freezes the hashes.  (Caveat retained for the record; the author chose not to rename.)

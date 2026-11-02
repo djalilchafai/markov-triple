@@ -55,7 +55,7 @@
 
 The current versions of the projects stay as tagged releases, because the Palomar registration of `ginibre-poincare` is tied to a specific commit.
 
-**Decisions still open** (§7): **resolved in DECISIONS.md 21-25.** Structure (21), both L and Γ as fields (22), finite-n CD(ρ,n) in scope (23) and no direct `MarkovProcess` dependency (24) are fixed by the implemented code. Only the repository/namespace name (25) remains **author-dependent**: recommended to keep `markov-triple` / `MarkovTriple` / `MarkovTriple.BGL`, pending author approval (consider renaming the `BGL` sub-namespace before frozen statements are approved).
+**Decisions still open** (§7): **resolved in DECISIONS.md 21-25.** Structure (21), both L and Γ as fields (22), finite-n CD(ρ,n) in scope (23) and no direct `MarkovProcess` dependency (24) are fixed by the implemented code. The repository/library/namespace name (25) was decided by the author on 2026-11-03: keep `markov-triple` / `MarkovTriple` / `MarkovTriple.BGL`.
 
 **Next step.** Once these decisions are taken, draft the frozen `MarkovTriple` statement files for the author's review.
 
