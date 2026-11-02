@@ -35,7 +35,7 @@ namespace Cx
 /-- Operator inequality `1 - B^k ≤ k (1 - B)` for `B = g(R)`, `0 ≤ g ≤ 1`. -/
 lemma UnitOp.inner_one_sub_pow_le (hR : UnitOp R) {g : ℝ → ℝ}
     (hg : ContinuousOn g (Icc 0 1)) (h0 : ∀ x ∈ Icc (0 : ℝ) 1, 0 ≤ g x)
-    (h1 : ∀ x ∈ Icc (0 : ℝ) 1, g x ≤ 1) (k : ℕ) (u : H) :
+    (_h1 : ∀ x ∈ Icc (0 : ℝ) 1, g x ≤ 1) (k : ℕ) (u : H) :
     inner ℝ (u - (rcfc g R ^ k) u) u ≤ k * inner ℝ (u - rcfc g R u) u := by
   have hc1 : ContinuousOn (fun x => (1 : ℝ) - g x) (Icc 0 1) := continuousOn_const.sub hg
   have hc2 : ContinuousOn (fun x => (1 : ℝ) - g x ^ k) (Icc 0 1) :=
@@ -53,8 +53,8 @@ lemma UnitOp.inner_one_sub_pow_le (hR : UnitOp R) {g : ℝ → ℝ}
       hR.rcfc_one, hR.rcfc_pow hg]
   rw [hR.rcfc_sub (hc1.const_smul (k : ℝ) |>.congr (fun x _ => by simp)) hc2, hR.rcfc_smul _ hc1,
     e1, e2] at hnn
-  simp only [ContinuousLinearMap.sub_apply, ContinuousLinearMap.smul_apply,
-    ContinuousLinearMap.one_apply, inner_sub_left, inner_smul_left, RCLike.conj_to_real] at hnn ⊢
+  simp only [sub_apply, smul_apply,
+    one_apply_eq_self, inner_sub_left, inner_smul_left, RCLike.conj_to_real] at hnn ⊢
   linarith
 
 end Cx
@@ -95,7 +95,7 @@ lemma OrthFixed.resolvent {u : H} (hu : S.OrthFixed u) {mu : ℝ} (hmu : 0 < mu)
   rw [this, S.resolvent_fixed hn hmu, inner_smul_right, hu n hn, mul_zero]
 
 /-- The Euler step contracts at rate `μ/(λ+μ)` on `(ker G)^⊥` under a gap. -/
-lemma norm_resolvent_orth_le {lam : ℝ} (hlam : 0 ≤ lam) (hgap : S.HasSpectralGap lam)
+lemma norm_resolvent_orth_le {lam : ℝ} (_hlam : 0 ≤ lam) (hgap : S.HasSpectralGap lam)
     {mu : ℝ} (hmu : 0 < mu) {u : H} (hu : S.OrthFixed u) :
     (lam + mu) * ‖S.resolvent mu u‖ ≤ ‖u‖ := by
   set w := S.resolvent mu u with hw
@@ -133,10 +133,10 @@ theorem hasExpDecay_of_hasSpectralGap {lam : ℝ} (hlam : 0 ≤ lam) (hgap : S.H
       refine ⟨?_, ?_⟩
       · have := hv.resolvent S hmu
         intro m hm
-        simp only [ContinuousLinearMap.smul_apply, inner_smul_left, RCLike.conj_to_real]
+        simp only [smul_apply, inner_smul_left, RCLike.conj_to_real]
         rw [this m hm, mul_zero]
       · have h1 := S.norm_resolvent_orth_le hlam hgap hmu hv
-        simp only [ContinuousLinearMap.smul_apply, norm_smul, Real.norm_eq_abs, abs_of_pos hmu]
+        simp only [smul_apply, norm_smul, Real.norm_eq_abs, abs_of_pos hmu]
         have hq' : mu / (lam + mu) = q := by
           rw [hq, hmudef]
           have h2 : (lam + ((n : ℝ) + 1) / t) ≠ 0 := by positivity
@@ -159,8 +159,8 @@ theorem hasExpDecay_of_hasSpectralGap {lam : ℝ} (hlam : 0 ≤ lam) (hgap : S.H
         obtain ⟨h1, h2⟩ := ih
         obtain ⟨h3, h4⟩ := hstep _ h1
         refine ⟨?_, ?_⟩
-        · rw [pow_succ', ContinuousLinearMap.mul_apply]; exact h3
-        · rw [pow_succ', ContinuousLinearMap.mul_apply]
+        · rw [pow_succ', mul_apply_eq_comp]; exact h3
+        · rw [pow_succ', mul_apply_eq_comp]
           calc _ ≤ q * ‖((mu • S.resolvent mu) ^ k) u‖ := h4
             _ ≤ q * (q ^ k * ‖u‖) := mul_le_mul_of_nonneg_left h2 hqpos.le
             _ = q ^ (k + 1) * ‖u‖ := by ring

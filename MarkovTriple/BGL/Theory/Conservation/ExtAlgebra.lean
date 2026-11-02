@@ -128,7 +128,7 @@ theorem ΓA_cs {f g : E → ℝ} (hf : f ∈ A) (hg : g ∈ A) :
 
 /-- `Γ(f, η²) = 2 η Γ(η, f)`-type bound: if `Γ(f) ≤ B` (`B ≥ 0`) then
 `|Γ(f, η²)| ≤ √B (η² + Γ(η))` a.e. -/
-theorem ΓA_sq_bound {f η : E → ℝ} (hf : f ∈ A) (hη : η ∈ A) {B : ℝ} (hB0 : 0 ≤ B)
+theorem ΓA_sq_bound {f η : E → ℝ} (hf : f ∈ A) (hη : η ∈ A) {B : ℝ} (_hB0 : 0 ≤ B)
     (hB : D.ΓA f f ≤ᵐ[D.μ] fun _ => B) :
     ∀ᵐ x ∂D.μ, |D.ΓA f (fun x => η x ^ 2) x| ≤
       Real.sqrt B * (η x ^ 2 + D.ΓA η η x) := by

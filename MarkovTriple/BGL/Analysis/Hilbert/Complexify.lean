@@ -110,7 +110,7 @@ lemma inner_im (v w : Cx H) : (⟪v, w⟫_ℂ).im = inner ℝ v.re w.im - inner 
 
 noncomputable instance : InnerProductSpace ℂ (Cx H) where
   norm_sq_eq_re_inner v := by
-    rw [norm_sq, RCLike.re_to_complex, inner_re]; simp [real_inner_self_eq_norm_sq]
+    rw [norm_sq, RCLike.re_to_complex, inner_re]; simp []
   conj_inner_symm v w := by
     apply Complex.ext
     · simp [inner_re, real_inner_comm]
@@ -265,7 +265,7 @@ lemma Fixed.add {X Y : Cx H →L[ℂ] Cx H} (hX : Fixed X) (hY : Fixed Y) : Fixe
 lemma Fixed.algebraMap (c : ℝ) : Fixed (algebraMap ℝ (Cx H →L[ℂ] Cx H) c) := by
   intro v
   rw [Algebra.algebraMap_eq_smul_one]
-  simp only [ContinuousLinearMap.smul_apply, ContinuousLinearMap.one_apply]
+  simp only [smul_apply, one_apply_eq_self]
   exact (sig_smul_real c v).symm
 
 lemma Fixed.star {X : Cx H →L[ℂ] Cx H} (hX : Fixed X) : Fixed (Star.star X) := by
@@ -385,7 +385,7 @@ lemma cx_rcfc (R : H →L[ℝ] H) (f : ℝ → ℝ) :
     exact cfc_mem (𝕜' := ℝ) (s := (fixedSub (H := H))) f (cx_fixed R)
   have hex : ∃ T : H →L[ℝ] H, cx T = cfc f (cx R) := exists_of_fixed hmem
   unfold rcfc
-  rw [dif_pos hex]
+  rw [dite_eq_left hex]
   exact hex.choose_spec
 
 /-- `R` is self-adjoint with `0 ≤ R ≤ 1`. -/
@@ -409,7 +409,7 @@ lemma UnitOp.spectrum_subset {R : H →L[ℝ] H} (hR : UnitOp R) :
   have h0 := (isPositive_cx hR.selfAdjoint hR.nonneg).spectrumRestricts
   have hsa1 : IsSelfAdjoint (1 - R) := (IsSelfAdjoint.one _).sub hR.selfAdjoint
   have h1 := (isPositive_cx hsa1 (fun x => by
-    simp only [ContinuousLinearMap.sub_apply, ContinuousLinearMap.one_apply, inner_sub_left,
+    simp only [sub_apply, one_apply_eq_self, inner_sub_left,
       sub_nonneg]
     exact hR.le_one x)).spectrumRestricts
   rw [SpectrumRestricts.nnreal_iff] at h0 h1

@@ -51,7 +51,7 @@ lemma hfun_add (s t : ℝ≥0) (r : ℝ) : hfun (s + t) r = hfun s r * hfun t r 
   · simp [hs, hfun_zero]
   by_cases ht : t = 0
   · simp [ht, hfun_zero]
-  have hst : s + t ≠ 0 := fun h => hs (by simpa [ht] using h)
+  have hst : s + t ≠ 0 := fun h => hs (by simp [ht] at h)
   by_cases hr : 0 < r
   · rw [hfun_of_pos hs hr, hfun_of_pos ht hr, hfun_of_pos hst hr, ← Real.exp_add]
     congr 1
@@ -290,7 +290,7 @@ lemma resolventLam_isSelfAdjoint (lam : ℝ) : IsSelfAdjoint (resolventLam R lam
 
 lemma resolventLam_inner_nonneg {lam : ℝ} (hlam : 0 < lam) (x : H) :
     0 ≤ inner ℝ (resolventLam R lam x) x :=
-  hR.rcfc_inner_nonneg (fun r hr => div_nonneg hr.1 (den_pos hlam hr).le) x
+  hR.rcfc_inner_nonneg (fun _r hr => div_nonneg hr.1 (den_pos hlam hr).le) x
 
 lemma norm_resolventLam_le {lam : ℝ} (hlam : 0 < lam) : ‖resolventLam R lam‖ ≤ 1 / lam :=
   hR.norm_rcfc_le (by positivity) (fun r hr => by
@@ -418,7 +418,7 @@ lemma resolventLam_apply_eigen {lam a : ℝ} (hlam : 0 < lam) (ha : 0 < a) (ha1 
   have hd : 0 < 1 + (lam - 1) * a := den_pos hlam ⟨ha.le, ha1⟩
   have h := congrArg (fun T => T u) (resolventLam_mul hR hlam)
   simp only [mul_apply_eq_comp, add_apply, smul_apply, one_apply_eq_self, hu,
-    Function.comp_apply] at h
+    ] at h
   have h2 : ((lam - 1) • (a • u) + u) = (1 + (lam - 1) * a) • u := by
     rw [smul_smul, add_smul, one_smul, add_comm]
   rw [h2, map_smul] at h

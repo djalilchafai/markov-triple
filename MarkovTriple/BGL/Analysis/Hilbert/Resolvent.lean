@@ -95,7 +95,7 @@ theorem resolvent_apply_D {lam : ℝ} (hlam : 0 < lam) (f : S.D) :
     simp only [add_apply, smul_apply, one_apply_eq_self, hf]
     rw [sub_smul, one_smul]; abel
   have h2 := congrArg (fun T => T ((f : H) + S.A f)) (resolventLam_mul hU hlam)
-  simp only [mul_apply_eq_comp, Function.comp_apply, hf] at h2
+  simp only [mul_apply_eq_comp, hf] at h2
   rw [h1]
   exact h2
 
