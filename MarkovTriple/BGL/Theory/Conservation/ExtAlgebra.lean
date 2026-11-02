@@ -50,6 +50,7 @@ namespace ExtendedAlgebra
 variable {D : DiffusionTriple E} {A : Subalgebra ℝ (E → ℝ)} (h : ExtendedAlgebra D A)
 include h
 
+omit [MeasurableSpace E] h in
 lemma pderiv_lin_zero (s : ℝ) (z : Fin 2 → ℝ) :
     pderiv (fun z : Fin 2 → ℝ => z 0 + s * z 1) 0 z = 1 := by
   have hd : HasFDerivAt (fun z : Fin 2 → ℝ => z 0 + s * z 1)
@@ -61,6 +62,7 @@ lemma pderiv_lin_zero (s : ℝ) (z : Fin 2 → ℝ) :
   rw [hd.fderiv]
   simp
 
+omit [MeasurableSpace E] h in
 lemma pderiv_lin_one (s : ℝ) (z : Fin 2 → ℝ) :
     pderiv (fun z : Fin 2 → ℝ => z 0 + s * z 1) 1 z = s := by
   have hd : HasFDerivAt (fun z : Fin 2 → ℝ => z 0 + s * z 1)
@@ -85,7 +87,7 @@ theorem ΓA_lin_left {f g : E → ℝ} (hf : f ∈ A) (hg : g ∈ A) (s : ℝ) {
   rw [e] at key
   filter_upwards [key] with x hx
   rw [hx]
-  simp [Fin.sum_univ_two, pderiv_lin_zero h, pderiv_lin_one h]
+  simp [Fin.sum_univ_two, pderiv_lin_zero, pderiv_lin_one]
 
 /-- **Cauchy–Schwarz for `ΓA` on `𝒜`**: `Γ(f,g)² ≤ Γ(f) Γ(g)` a.e. -/
 theorem ΓA_cs {f g : E → ℝ} (hf : f ∈ A) (hg : g ∈ A) :

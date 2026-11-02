@@ -42,7 +42,7 @@ theorem fisher_deriv_le {ρ : ℝ} {n : ℝ≥0∞} (hCD : C.toFullTriple.CD ρ 
       q' ≤ -2 * ρ * C.toFullTriple.entI φ ε s := by
   obtain ⟨M, hM, hφ, ⟨K⟩⟩ := C.exists_data φ hε
   refine ⟨_, C.entI_hasDerivAt φ hε hM h0 hφ K hs, ?_⟩
-  obtain ⟨i1, i2⟩ := C.entJ_integrable φ hε hM h0 hφ K s
+  obtain ⟨i1, i2⟩ := C.entJ_integrable φ K s
   have hAg := C.entG_mem φ ε s
   have hΛA := C.comp_mem_A K.hΛ (C.A₀_le _ hAg)
   have hcd := hCD.2 _ hΛA

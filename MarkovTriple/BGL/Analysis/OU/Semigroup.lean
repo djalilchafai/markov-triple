@@ -23,6 +23,7 @@ lemma toNNReal_nhdsGT (x : ℝ) : Tendsto (fun s : ℝ => s - x) (𝓝[>] x) (�
   · filter_upwards [self_mem_nhdsWithin] with s hs
     exact sub_pos.2 (show x < s from hs)
 
+omit [CompleteSpace H] in
 /-- the orbit of a generator-domain vector has right derivative `P x v` -/
 lemma hasDerivWithinAt_orbit (hP : IsSG P) {u v : H}
     (hgen : Tendsto (fun t : ℝ≥0 => (t : ℝ)⁻¹ • (P t u - u)) (𝓝[>] 0) (𝓝 v))

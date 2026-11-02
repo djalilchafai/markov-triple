@@ -252,6 +252,7 @@ variable {ε M : ℝ} (hε : 0 < ε) (K : BE.Cut ε M)
 
 include hε
 
+omit hε in
 lemma deriv_deriv_Λ {y : ℝ} (hy : y ∈ Icc ε (ε + M)) :
     deriv (deriv K.Λ) y = -(y ^ 2)⁻¹ := by
   have h : deriv K.Λ =ᶠ[𝓝 y] fun x => x⁻¹ := by
@@ -288,7 +289,7 @@ theorem fisher_alg {g : E → ℝ} (hg0 : g ∈ C.A₀) (hr : ∀ᵐ x ∂C.μ, 
     field_simp
   have f5 : ∀ᵐ x ∂C.μ, deriv K.Λ (g x) ^ 2 + deriv (deriv K.Λ) (g x) = 0 := by
     filter_upwards [hr] with x hx
-    rw [K.deriv_Λ_eq hε hx, deriv_deriv_Λ hε K hx, inv_pow]; ring
+    rw [K.deriv_Λ_eq hε hx, deriv_deriv_Λ K hx, inv_pow]; ring
   -- (i) ∫ g L Y = ∫ a² X Lg
   have s1 : ∫ x, g x * C.L (C.toDiffusionTriple.ΓA (fun x => K.Λ (g x)) (fun x => K.Λ (g x))) x ∂C.μ
       = ∫ x, deriv K.Λ (g x) ^ 2 * C.toDiffusionTriple.ΓA g g x * C.L g x ∂C.μ := by
@@ -394,6 +395,7 @@ theorem entI_hasDerivAt {s : ℝ} (hs : 0 < s) :
   unfold FullTriple.entJ
   ring
 
+omit hε hM h0 hφ in
 theorem entJ_integrable (s : ℝ) :
     Integrable (fun x => C.toFullTriple.entG φ ε s x * C.toDiffusionTriple.Γ₂
       (fun y => K.Λ (C.toFullTriple.entG φ ε s y)) (fun y => K.Λ (C.toFullTriple.entG φ ε s y)) x)
@@ -425,7 +427,7 @@ theorem entropyInterpolation : C.toFullTriple.EntropyInterpolation where
     obtain ⟨M, hM, hφ, ⟨K⟩⟩ := C.exists_data φ hε
     exact C.entE_hasDerivAt φ hε hM h0 hφ K hs
   hasDerivAt_I := fun φ ε M hε hM h0 hφ K s hs =>
-    ⟨(C.entJ_integrable φ hε hM h0 hφ K s).1, (C.entJ_integrable φ hε hM h0 hφ K s).2,
+    ⟨(C.entJ_integrable φ K s).1, (C.entJ_integrable φ K s).2,
       C.entI_hasDerivAt φ hε hM h0 hφ K hs⟩
 
 end CompactTriple
