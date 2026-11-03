@@ -203,6 +203,7 @@ import MarkovTriple.Stochastic.RieszKernel
 import MarkovTriple.Stochastic.RieszRep
 import MarkovTriple.Stochastic.RieszMarkov
 import MarkovTriple.Stochastic.MarkovProcessInterface
+import MarkovTriple.Stochastic.FellerKernel
 import MarkovTriple.Stochastic.AxiomCheckR15
 import MarkovTriple.BGL.Instances.Discrete.Obstruction
 import MarkovTriple.BGL.Instances.Gibbs.Calculus
