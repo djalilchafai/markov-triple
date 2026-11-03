@@ -173,6 +173,15 @@ import MarkovTriple.Stochastic.KernelRep
 import MarkovTriple.Stochastic.Bridge
 import MarkovTriple.Stochastic.OU
 import MarkovTriple.Stochastic.AxiomCheck
+import MarkovTriple.Stochastic.RepExtend
+import MarkovTriple.Stochastic.OUFull
+import MarkovTriple.Stochastic.Circle
+import MarkovTriple.Stochastic.RieszFunctional
+import MarkovTriple.Stochastic.RieszKernel
+import MarkovTriple.Stochastic.RieszRep
+import MarkovTriple.Stochastic.RieszMarkov
+import MarkovTriple.Stochastic.MarkovProcessInterface
+import MarkovTriple.Stochastic.AxiomCheckR15
 import MarkovTriple.BGL.Instances.Discrete.Obstruction
 import MarkovTriple.BGL.Instances.Gibbs.Calculus
 import MarkovTriple.BGL.Instances.Gibbs.Diffusion
