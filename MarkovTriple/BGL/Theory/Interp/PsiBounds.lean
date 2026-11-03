@@ -59,6 +59,7 @@ lemma psiS_rem (hε : 0 < ε) {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
   have habs : |b - a| = |Sb - Sa| * (Sb + Sa) := by rw [hba, abs_mul, abs_of_pos hsum]
   have hd2 : (Sb - Sa) ^ 2 * (Sb + Sa) ^ 2 = |b - a| ^ 2 := by
     rw [sq_abs, hba]; ring
+  rw [mul_min_of_nonneg _ _ (abs_nonneg (b - a))]
   apply le_min
   · -- (Sb-Sa)^2/(2 Sa) ≤ |b-a| * (1/(8 ε³) |b-a|)
     have h4 : 4 * ε ^ 2 ≤ (Sb + Sa) ^ 2 := by nlinarith
