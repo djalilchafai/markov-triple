@@ -73,7 +73,7 @@ inequality, the `f²` and `ε → 0` steps, limit at `∞` (from the gap).
   Note Remark 3.3.15 (CD from `𝒜₀` to `𝒜`) is not needed: the frozen `FullTriple.CD` is already stated on all of `𝒜`.
 * **Finite-dimensional LSI constant `(n-1)/(ρ n)` (Thm 5.7.4, `1 < n < ∞`): DONE (round 14), conditional on a named structure.**
   `Theory/LogSobolevDimChain.lean`: (5.7.6) `Γ₂_exp`, (5.7.7)-(5.7.12) `integral_exp_L_Γ`, `integral_exp_sq_L`,
-  `integral_exp_Γ₂_ge`, `integral_exp_Γ₂_ge'` (for `g ∈ 𝒜₀` with `e^{g/2} ∈ 𝒜₀`).  `Theory/LogSobolevDim.lean`:
+  `integral_exp_Γ₂_ge`, `integral_exp_Γ₂_ge'` (for `g ∈ 𝒜₀` **under the extra hypothesis `e^{g/2} ∈ 𝒜₀`**, which the book obtains from Prop. 3.3.17 without stating it; discharged on compact triples).  `Theory/LogSobolevDim.lean`:
   `FullTriple.logSobolev_of_CD_dim` (conditional on `EntropyInterpolation` and `FiniteDimInterpolation`), and unconditional
   `CompactTriple.compact_logSobolev_dim`; `Instances/Sphere/LogSobolevDim.lean`: `sphere_LS_dim : LS(1/3, 0)` on the zonal `S³`.
   **Exact missing input for non-compact triples** (`FiniteDimInterpolation`): book p. 270 (boundedness of `Γ(P_t f)`, `L P_t f`) and

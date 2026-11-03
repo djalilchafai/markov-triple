@@ -11,7 +11,9 @@ Prop. 5.7.3 (criterion (5.7.5), "should be used for `P_t f`", p. 270), Thm 5.7.4
 
 **Theorem 5.7.4.** Under `CD(ρ,n)`, `ρ > 0`, `n > 1` the triple satisfies `LS(C)` with `C = (n-1)/(ρ n)`.
 
-Route (the book's): Prop. 5.7.3 reduces `LS(C)` to the inequality `∫ f Γ₂(log f) ≥ C⁻¹ ∫ f Γ(log f)`
+Route (the book's, as used here): the criterion (5.7.5) of Prop. 5.7.3, `∫ f Γ₂(log f) ≥ C⁻¹ ∫ f Γ(log f)`, enters in the form of the
+Fisher-information decay `I' ≤ -2κ I` inside the Prop. 5.7.1 argument (`BE.ent_le_of_decay`, Gronwall, `ε → 0`); audit R14 (documentation).
+The criterion reads
 (for `f = P_t f₀`, p. 270), obtained by (5.7.6)-(5.7.12) as `∫ e^g Γ₂(g) ≥ ρ n/(n-1) ∫ e^g Γ(g)`
 (`Theory/LogSobolevDimChain.lean`, `integral_exp_Γ₂_ge'`, for `g ∈ 𝒜₀`).  In the proof of Prop. 5.7.1 the
 decay `I' ≤ -2ρ I` (from `CD(ρ,∞)`) is replaced by `I' ≤ -2κ I`, `κ = ρ n/(n-1)`, and everything else
@@ -196,7 +198,9 @@ theorem ent_sq_add_le_dim [IsProbabilityMeasure T.μ] (hE : T.EntropyInterpolati
     field_simp; ring
   rw [this]; exact hint
 
-/-- `LS(1/κ, 0)` from `CD(ρ,n)` (`ρ > 0`) and `FiniteDimInterpolation T κ`, `κ > 0`. -/
+/-- `LS(1/κ, 0)` from `CD(ρ,n)` (`ρ > 0`) and `FiniteDimInterpolation T κ`, `κ > 0`.
+Note (audit R14-3): `κ` is arbitrary here; for `κ > ρ n/(n-1)` the structure is false on nontrivial triples, so the statement is then
+vacuous.  The headline `logSobolev_of_CD_dim` pins `κ = ρ n/(n-1)`. -/
 theorem logSobolev_of_finiteDim [IsProbabilityMeasure T.μ] (hE : T.EntropyInterpolation)
     {ρ κ : ℝ} {n : ℝ≥0∞} (hρ : 0 < ρ) (hCD : T.CD ρ n) (hκ : 0 < κ)
     (hD : T.FiniteDimInterpolation κ) : T.toDiffusionTriple.LS (1 / κ) 0 := by
