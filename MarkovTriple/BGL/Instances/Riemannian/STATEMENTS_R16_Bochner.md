@@ -29,5 +29,25 @@ Written BEFORE any proof (Armstrong step (a)).  Source: BGL Sect. 1.16 ((1.16.4)
 * **T4 (hand checks)** `d = 1`: `ricci = 0`; flat metric `ofGibbs`: `chr = 0`, `ricci = 0`, `hess = ∂∂`.
 * **T5 (non-flat inhabitant)**: see `AUDIT_R16_BOCHNER_SELF.md` and the status at the end of this file.
 
-## Status
-(filled at the end of the round)
+## Addendum (written after the proofs; no target above was changed)
+
+Lean names (all in `MarkovTriple/BGL/Instances/Riemannian/`, namespace `MarkovTriple.BGL.Instances.Riemannian.RiemData`
+unless noted; `R : RiemData d`):
+
+| Target | Lean declaration (file) |
+| --- | --- |
+| definitions `gl`, `chr1`, `chr`, `hess`, `riem`, `ricci`, `beRicci` | `Curvature.lean`, `CurvInv.lean` (`gl`) |
+| T1 symmetry / compatibility | `chr_symm`, `pderiv_g_chr` (`Curvature.lean`) |
+| T1 `Σ γ_{ib}^b = ∂ log w_g`, Jacobi | `trace_chr`, `pderiv_log_wg`, `pderiv_detg` (`CurvLap.lean`, `CurvInv.lean`) |
+| T1 `L u = Σ g^{ij}∇_i∇_ju − Σ g^{ij}∂_iW∂_ju` | `L_eq_hess` (`CurvLap.lean`) |
+| T1 `∂_kΓ(u,v)` | `pderiv_GamF`, `pderiv_GamF_self` (`CurvCov.lean`) |
+| Ricci identity, antisymmetry of lowered `R` | `cov3_ricci` (`CurvCov.lean`), `riem_antisymm` (`CurvRiem.lean`) |
+| T2 Bochner (1.16.4) | `riem_bochner` (`BochnerRiem.lean`); right side `‖H‖²_HS + Σ BE_{ij} ∇^if ∇^jf`, `∇^if = grad f i` |
+| T3 criterion (1.16.8) | `riem_curv_of_ricci` (`BochnerCrit.lean`), `hessNorm_nonneg` |
+| T4 | `ricci_fin_one`, `ofGibbs_chr`, `ofGibbs_ricci`, `ofGibbs_bochner` (`BochnerChecks.lean`) |
+| T5 | `confRiem`, `confRiem.ricci_eq`, `confRiem.hess_W`, `confRiem.curv`, `confRiem_poincare`, ... (`BochnerExample.lean`) |
+
+T2 form used in Lean: `∑ i j k l, g i k * g j l * hess f i j * hess f k l + ∑ i j, beRicci i j * grad f i * grad f j`.
+T5 content: `confRiem : RiemData 2`, `g^{ij} = e^{-|x|²}δ`, `W = 2e^{|x|²}`; `Ric = −2δ`, `∇∇W = 4e^{|x|²}(1+|x|²)δ`,
+`Curv 2` unconditionally; Poincaré/gap/decay/`CD` only under the named hypotheses `WeakHypo` (and `F8`).
+Status: T1-T5 proved, no `sorry`, standard axioms only.  Not proved: `WeakHypo`, `F8` (unchanged from earlier rounds).
