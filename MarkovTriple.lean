@@ -171,6 +171,9 @@ import MarkovTriple.BGL.Theory.Extension.ClosedProd
 import MarkovTriple.BGL.Theory.Extension.ClosedIdent
 import MarkovTriple.BGL.Theory.Extension.ClosedDetect
 import MarkovTriple.BGL.Theory.Extension.Hessian
+import MarkovTriple.BGL.Theory.Extension.HessLin
+import MarkovTriple.BGL.Theory.Extension.HessExt
+import MarkovTriple.BGL.Theory.Extension.HessExt2
 import MarkovTriple.BGL.Theory.Extension.AxiomCheckR14
 import MarkovTriple.BGL.Theory.Strong.AxiomCheck
 import MarkovTriple.Stochastic.KernelRep
