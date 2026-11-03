@@ -64,3 +64,15 @@ Batch 2 (`EllipticLocal.lean`), localisation, Evans §5.8.2 proof of Thm 3(ii) +
      (`cut R` of `Cutoff.lean`: smooth, compact support, `= 1` on `{|x|² ≤ R²}`).
  R2b `weakDeriv_of_local_dq`: `LocL2 f`, `hₙ → 0`, `hₙ ≠ 0`, `∀ K compact ∃ C, ∀ n, eLpNorm (dq i (hₙ n) f) 2 (vol.restrict K) ≤ ofReal C`
      ⇒ `∃ g, LocL2 g ∧ WeakDeriv f g i`.
+
+Batch 3 (`EllipticMollify.lean`): mollifiers (Evans §5.3.1 Thm 1 (iii)-(iv) / §C.5 Thm 7; G–T Lemma 7.2, 7.3, 7.4).
+ `moll ρ f x := ∫ t, ρ t * f (x − t)`, kernels `ρ n` smooth, compactly supported, ≥ 0, `∫ρ n = 1`, support ⊆ ball(0,1/(n+1)).
+ M0 `exists_mollifier`; M1 `moll` smooth (f loc. integrable), compactly supported when `f` is;
+ M2 `WeakDeriv f g j → pderiv (moll ρ f) j = moll ρ g`;
+ M3a `MemLp f 2 → MemLp (moll ρ f) 2 ∧ ∫ (moll ρ f)² ≤ ∫ f²` (Jensen + `integral_convolution`);
+ M3b `MemLp f 2 → ∫ (moll (ρ n) f − f)² → 0`  (density of `C_c` + uniform continuity);
+ M4 `tendsto_integral_mul_of_l2`: `k, v ∈ L²`, `∫ (aₙ − v)² → 0`, `aₙ ∈ L²` ⇒ `∫ k aₙ → ∫ k v`.
+Batch 4 (`EllipticWeakForm.lean`): weak form on `H¹_c` test functions (R4).
+ WF `EllData`, `u, gᵢ` with `WeakDeriv u gᵢ i` (`LocL2`), `h` `LocL2`, `W(E,u,h)`:
+ (a) `weakForm_of_veryWeak`: `∀ a ∈ A₀, ∫ w Σᵢⱼ aᵢⱼ gᵢ ∂ⱼa = −∫ h a w`;
+ (b) `weakForm_extend`: for `v` compactly supported, `MemLp v 2`, `WeakDeriv v vⱼ j`, `MemLp vⱼ 2`: `∫ w Σᵢⱼ aᵢⱼ gᵢ vⱼ = −∫ h v w`.

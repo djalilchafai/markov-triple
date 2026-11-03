@@ -3,6 +3,7 @@ import MarkovTriple.BGL.Instances.GibbsRd.EllipticDiffQuot
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticCaccioppoli
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticQ3
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticLocal
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticMollify
 
 /-! Axiom audit of the R16 elliptic half (only `propext`, `Classical.choice`, `Quot.sound`). -/
 open MarkovTriple.BGL.Instances.GibbsRd
@@ -38,3 +39,10 @@ open MarkovTriple.BGL.Instances.GibbsRd
 #print axioms Elliptic.weakDeriv_of_local
 #print axioms Elliptic.weakDeriv_of_local_dq
 #print axioms Elliptic.abs_dq_le
+#print axioms Elliptic.exists_mollifier
+#print axioms Elliptic.moll_contDiff
+#print axioms Elliptic.moll_hasCompactSupport
+#print axioms Elliptic.pderiv_moll
+#print axioms Elliptic.moll_memLp_norm_le
+#print axioms Elliptic.moll_tendsto
+#print axioms Elliptic.tendsto_integral_mul
