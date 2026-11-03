@@ -217,7 +217,7 @@ Statements `Instances/SphereOpen/STATEMENTS_R17_Noncompact.md`; audit `BGL/AUDIT
 
 ## Round 17 merge: net status after independent hostile audits
 Closed: joint time-measurability and `MarkovProcessBridge` for Feller kernels (circle, zonal S³); sharp Sobolev `k > m + d/2` (all `d`; chain shortening only for `d ≥ 3`); converse of (1.16.8) and relaxed completeness (`a_exh`/`g_exh`), hyperbolic plane with `Curv ρ ↔ ρ ≤ 1`.
-Partial: `Core2` for 1-D Gibbs with bounded `V',V'',V'''` — only `ρ ≤ 0` (hypotheses contradict for `ρ > 0`, ERRATA R17-M1); **Round 18 (stream A2) extends this to `|V''|,|V'''| ≤ C(1+|V'|)` (`GrowHess`), any `ρ`, including `ρ > 0` (`x²/2 + ½cos x`, `x⁴/4 + x²/2`), see below**; still open for `V` outside `GrowHess`, general smooth `V`, `R^d`. Exact Chapman–Kolmogorov without Feller: countable times only.
+[SUPERSEDED by Round 18 below: `Core2` now holds for 1-D Gibbs under `GrowHess` and for `ℝ^d` Gibbs under `BddHess3`, both with `ρ>0` witnesses] Partial (Round 17): `Core2` for 1-D Gibbs with bounded `V',V'',V'''` — only `ρ ≤ 0` (hypotheses contradict for `ρ > 0`, ERRATA R17-M1); **Round 18 (stream A2) extends this to `|V''|,|V'''| ≤ C(1+|V'|)` (`GrowHess`), any `ρ`, including `ρ > 0` (`x²/2 + ½cos x`, `x⁴/4 + x²/2`), see below**; still open for `V` outside `GrowHess`, general smooth `V`, `R^d`. Exact Chapman–Kolmogorov without Feller: countable times only.
 NOT closed: non-compact finite-`n` CD instance (SphereOpen is cosmetic, ERRATA R17-M2/M3); non-compact Riesz–Markov extension; `ρ < 0` finite-`n` LSI (no such BGL theorem); multi-chart manifolds.
 
 ## Round 18, Stream A3: `Core2` and the unconditional converse of Prop 3.3.17 for Gibbs measures on `ℝ^d`

@@ -1,3 +1,5 @@
+> **Note (Round 18 merge):** the body below was written before the proofs; where it says `x⁴` is "Not claimed" or lists the older `BddHess` signatures, it is SUPERSEDED by the Status section (R18-D1..D3): the final hypothesis is `GrowHess` and `quarGibbs` is proved.
+
 # Round 18, Stream A2 (Gibbs `Core2` without bounded `V'`): statements fixed BEFORE the proofs.
 
 Change only by a logged deviation in the `Status` section below and an erratum in `ERRATA.md` (prefix `R18-`).
