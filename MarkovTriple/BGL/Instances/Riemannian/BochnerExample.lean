@@ -5,7 +5,7 @@ import MarkovTriple.BGL.Instances.Riemannian.BochnerChecks
 # A genuinely non-flat example: the conformal plane `g_{ij} = e^{|x|²} δ_{ij}` with weight `W = 2 e^{|x|²}`
 
 `confRiem : RiemData 2`: co-metric `g^{ij} = e^{-|x|²} δ_{ij}` on `ℝ²` (so `φ = |x|²/2`, `g_{ij} = e^{2φ} δ_{ij}`), weight
-`W(x) = 2 e^{|x|²}` (`e^{-W} dμ_g = e^{-2e^{|x|²} + |x|²} dx`).  All fields of `RiemData` are proved (bounded co-metric
+`W(x) = 2 e^{|x|²}` (`e^{-W} dμ_g = e^{-2e^{|x|²} + |x|²} dx`).  All fields of `RiemData` are proved (bounded co-metric, hence `g_exh` via `exh_of_bdd`
 `≤ 1`, integrability by Gaussian domination).  The coordinate formulas of `Curvature.lean` give, for every `x`,
 
 * `γ_{ij}^k = δ_{jk} x_i + δ_{ik} x_j − δ_{ij} x_k` (the conformal Christoffel symbols),

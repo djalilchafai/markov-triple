@@ -8,9 +8,9 @@ import MarkovTriple.BGL.Instances.Riemannian.BochnerExample
 Global chart `ℝ² ∋ (x,t) ↦ (x, e^t)` of the half-plane model: `(dx² + dy²)/y² = e^{-2t} dx² + dt²`.  Co-metric
 `g^{11} = e^{2t}` (UNBOUNDED), `g^{22} = 1`, `w_g = det(g^{ij})^{-1/2} = e^{-t}`; `K = -1`.
 With `u = cosh t + x² e^{-t}/2 = cosh d((x,t),(0,0))` and the weight `W = 2u`, the coordinate formulas of `Curvature.lean` give
-`Ric = -g` (`hypRiem_ricci`), `∇∇W = 2u g` (`hypRiem_hess_W`), hence `Ric + ∇∇W = (2u - 1) g ≥ g` and `Curv 1`
-(`hypRiem_curv`) by `riem_curv_of_ricci`; `Curv ρ` fails for `ρ > 1` (`hypRiem_not_curv`) by the converse `riem_ricci_of_curv`.
-The completeness field `g_exh` is verified with `ψ = log(1 + u)` (`Γψ = (u-1)/(u+1) ≤ 1`); the old bounded co-metric hypothesis
+`Ric = -g` (`hypRiem.ricci_eq`), `∇∇W = 2u g` (`hypRiem.hess_W`), hence `Ric + ∇∇W = (2u - 1) g ≥ g` and `Curv 1`
+(`hypRiem.curv`) by `riem_curv_of_ricci`; `Curv ρ` fails for `ρ > 1` (`hypRiem_not_curv_gt`) by the converse `riem_ricci_of_curv`.
+The completeness field `g_exh` is verified with `ψ = log(1 + V)` with `V = 2u` (`Γψ = (V²-4)/(1+V)² ≤ 1`; ERRATA R17-4); the old bounded co-metric hypothesis
 would FAIL here (`g^{11} = e^{2t}`).
 -/
 

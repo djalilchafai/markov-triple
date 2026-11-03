@@ -6,3 +6,5 @@ Independent auditor. **Result: no soundness defect, misformalization or vacuity.
 Structural: frozen OK; lakefile/manifest/toolchain unchanged; 5 modules recompiled from scratch, 30 axiom lines standard.
 Findings: (1) `set_option linter.unusedSectionVars false` in four new files suppressed warnings: REMOVED, 15 resulting warnings fixed with `omit … in`; (2) 'cannot be obtained by textbook arguments' (Route B) softened to 'does not give exactness at all x without Feller/regularity';
 (3) cosmetic headers. Open (ERRATA R16-2): no exact kernel semigroup without Feller; no non-compact extension; no joint measurability in t (so no `MarkovProcessBridge` for these kernels); Feller not automatic.
+
+> **Note (Round 17 merge):** the statements above that joint time-measurability / `MarkovProcessBridge` for Feller kernels are unproved are SUPERSEDED: proved in `FellerProcessBridge.lean` (ERRATA R17-M5).

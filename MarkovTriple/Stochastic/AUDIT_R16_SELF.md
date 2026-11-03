@@ -62,3 +62,5 @@
 * Circle: the instance `IsOpenPosMeasure cT.μ` transferred from Haar; `circle_rep_full` applied to continuous `f` (bounded, measurable).
 * Whether `KernelBridge`'s equality `invariant` is too strong for the sub-Markov case (design of R15, unchanged).
 * The "full fix" is conditional on (F)+(S) and on compactness: the unconditional general statement is NOT proved.
+
+> **Note (Round 17 merge):** the statements above that joint time-measurability / `MarkovProcessBridge` for Feller kernels are unproved are SUPERSEDED: proved in `FellerProcessBridge.lean` (ERRATA R17-M5).

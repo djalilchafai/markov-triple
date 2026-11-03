@@ -3,7 +3,7 @@ import MarkovTriple.BGL.Instances.GibbsRd.SobCm
 /-!
 # Sobolev embedding for weak derivatives: main theorems (R16 Sob)
 
-Interior (local) embedding `W^{m+d,1}_loc ⊂ C^m` (mixed-derivative route; NOT the sharp index `m + ⌊d/2⌋ + 1`),
+Interior (local) embedding `W^{m+d,1}_loc ⊂ C^m` (mixed-derivative route; NOT the sharp index `m + ⌊d/2⌋ + 1`; the sharp `d + 2m < 2k` version for `HasSobL2` is in `SobSharpMain.lean`, Round 17),
 for `L¹_loc` and (a fortiori) `L²_loc` weak derivatives; and the all-orders interface
 `smooth_of_weak_all_orders`.  Smoothness `C^∞` is `ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞)` (NOT `ω`).
 -/
