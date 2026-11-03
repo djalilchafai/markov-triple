@@ -5,7 +5,7 @@ import MarkovTriple.BGL.Theory.Extension.Ident
 # Prop. 3.3.16 (v), first statement (BGL p. 160): for `g, h ∈ 𝒜₀`, `a_k → f` in `𝒟(L)` ⇒ `H(a_k)(g,h)` converges in `L²`
 
 `hess2_exists`: the `L²`-limit exists and is independent of the sequence (bound
-`∫ H(a)(g,h)² ≤ ‖Γ g‖_∞ ‖Γ h‖_∞ ∫ (Γ₂(a) − ρΓ(a))`, from (3.3.7)); `hess2_eq_hessE`: it coincides a.e. with `hessE`.
+`∫ H(a)(g,h)² ≤ ‖Γ g‖_∞ ‖Γ h‖_∞ ∫ (Γ₂(a) − ρΓ(a))`, from (3.3.7)); its limit coincides a.e. with `hessE` (second conjunct of `hess2_exists`; the name `hess2_eq_hessE` of STATEMENTS_R14.md never existed, see ERRATA E5).
 -/
 
 open MeasureTheory Filter Topology Set

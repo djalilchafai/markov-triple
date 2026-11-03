@@ -95,3 +95,36 @@ Setting for everything: `T : FullTriple E` (F1–F10: in particular `𝒜₀ ⊂
 * Erratum E4: the book's `Γ₂` identification in Prop. 3.3.17 is "along the same lines" as for `H` (chain rule + IBP).  Our proof
   (`Γ₂_ext_eq`) does not use the chain rule (vii); it uses the integrated identity `int_m_Γ₂` instead.  Recorded as a difference of route,
   not of statement.
+
+* E5 (round 15, documentation erratum; see `ERRATA.md` E5 and `STATEMENTS_R15_Gaps.md`).  The status table "Status at the end of
+  round 14" above is STALE: it predates round 14b and is inconsistent with the "Status of round 14b" section (it lists 3.3.16 (vii) and
+  the `Γ₂` identification of 3.3.17 as OPEN, although they are proved; it lists (iv)/(v) as proved "see E1" although E1 is withdrawn).
+  Also, the names `gammaE_spec` (S1), `Hess1`, `hessE_spec` (S4) and `hess2_eq_hessE` (T1) never existed as declarations: the actual
+  declarations are `gammaE_exists`/`gammaE_tendsto` (`ClosedGamma`), `hessE_exists`/`hessE_tendsto` (`HessExt`) and the second conjunct
+  of `hess2_exists` (`HessL2`).  The statements S1, S4, T1 themselves are NOT changed.  S1 promised bilinearity, symmetry and
+  Cauchy–Schwarz for `gammaE`, and S4 (iv) bilinearity/boundedness of `hessE`: these were not in the round-14 code and are added
+  in round 15 (`SeqLin`, `HessExtLin`, `Gamma2ELin`, `GammaELin`).  The table below supersedes the earlier table.
+
+### Status as of round 15 (supersedes "Status at the end of round 14" and "Status of round 14b"; the old text is kept for the record)
+
+| Item | Lean (module) | Status |
+|---|---|---|
+| S1 `gammaE` existence/independence of sequences | `gammaE_exists`, `gammaE_tendsto` (`ClosedGamma`) | proved |
+| S1 `∫ gammaE u v = ℰ(u,v)`; `gammaE (cls a)(cls b) = [Γ(a,b)]`; symmetry | `gammaE_integral`, `gammaE_cls`, `gammaE_comm` | proved |
+| S1 bilinearity, bound `‖Γ(u,v)‖₁ ≤ ‖u‖_E‖v‖_E`, `Γ(u) ≥ 0`, Cauchy–Schwarz | `gammaE_lin_left/right`, `gammaE_bound`, `gammaE_self_nonneg`, `gammaE_cs` (`GammaELin`) | proved (R15) |
+| S1 Leibniz `Γ(ku,h) = kΓ(u,h)+uΓ(k,h)` | `gammaE_mulE` (`ClosedProd`) | proved |
+| 3.3.5 (i), (ii), (iii) | `adjoint_eq_L`; `gammaE_eq_ΓA`, `gammaE_self_eq_ΓA`; `mem_domain_of_formDomain` | proved |
+| 3.3.6 (i), (ii) | `mem_domain_of_ESA`, `mem_formDomain_of_ESA` | proved |
+| S3 Hessian algebra, (3.3.4), (3.3.7), (3.3.5) IBP | `Hessian`, `HessLin`, `IdentIBP` | proved |
+| 3.3.16 (iv) existence of `hessE` on `𝒟(L)×𝒟(ℰ)×𝒜₀` | `hessE_exists`, `hessE_tendsto` (`HessExt`) | proved |
+| 3.3.16 (iv) linearity in each slot, bound, identification on `𝒜₀` | `hessE_lin_left/mid/right`, `hessE_bound`, `hessE_cls` (`HessExtLin`) | proved (R15) |
+| 3.3.16 (v) `L¹` joint convergence along `𝒜₀`-approximants | `hessE_tendsto` | proved |
+| 3.3.16 (v) 1st statement (`L²`) | `hess2_exists` (`HessL2`; identification with `hessE` is its second conjunct); E1 withdrawn | proved |
+| 3.3.16 (v) 2nd, 3rd statements (general `f_ℓ → f`, `g_ℓ → g`) | `hessE_tendsto_left`, `hessE_tendsto_mid` (`HessExtLin`) | proved (R15) |
+| 3.3.16 (vi) | `hessE_mulE` (`HessExt2`) | proved |
+| 3.3.16 (viii) | `hessE_ineq` (`HessExt2`; E2) | proved |
+| 3.3.16 (vii) | `mulE_mem_domain`, `gamma2E_mulE` | proved |
+| bilinear `Γ₂`: existence, bilinearity, symmetry, bound, `GG2 a a = G2cls a`, link with `Γ₂_ext_eq` | `gamma2E_exists`, `gamma2E_tendsto`; `gamma2E_lin_left/right`, `gamma2E_comm`, `gamma2E_bound`, `gamma2E_cls`, `GG2_self`, `gamma2E_self_tendsto`, `Γ₂_ext_eq_gamma2E` (`Gamma2E`, `Gamma2ELin`) | proved (R15 for all but existence) |
+| 3.3.17 `H` identification | `hessE_eq_Hess`, `hessE_eq_Hess'` (`Ident`) | proved |
+| 3.3.17 `Γ₂` identification (E4: different route), `Γ(f), Γ₂(f) ∈ L¹`, `∫Γ₂ = ∫(Lf)²` | `Γ₂_ext_eq`, `integrable_Γ₂_of_domain` (`Gamma2Ident`) | proved |
+| 3.3.17 converse under ergodicity (T3) | - | OPEN (exact statement: `AUDIT_R14_SELF.md` §4) |

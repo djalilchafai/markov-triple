@@ -77,6 +77,7 @@ inequality, the `f²` and `ε → 0` steps, limit at `∞` (from the gap).
   `hessE_eq_Hess'`) and of `Γ₂` (`Γ₂_ext_eq`), `Γ(f), Γ₂(f) ∈ L¹`, `∫Γ₂(f) = ∫(Lf)²` (`integrable_Γ₂_of_domain`), and the symmetric
   IBP `ibp_of_domain` (input (c) for Lemmas 3.3.20–3.3.21).  3.3.16 (vii) (`gamma2E`, `mulE_mem_domain`, `gamma2E_mulE`) and the `L²` form of (v) (`hess2_exists`) are also done (round 14b).
   **Still open:** only the converse of 3.3.17 under ergodicity (spectral argument).
+  **Round 15 update (gap closure after the independent audit; `Extension/{SeqLin,HessExtLin,Gamma2ELin,GammaELin}.lean`, `STATEMENTS_R15_Gaps.md`, `BGL/AUDIT_R15_GAPS_SELF.md`, ERRATA E5):** added bilinearity/boundedness/identification of `hessE` (3.3.16 (iv)), the general 2nd/3rd statements of (v), bilinearity/symmetry/bound of `gamma2E` and `gammaE`, `gammaE` Cauchy–Schwarz, and the link `GG2 a a = G2cls a` with `Γ₂_ext_eq_gamma2E`.  Still open: converse of 3.3.17 only.
   Note Remark 3.3.15 (CD from `𝒜₀` to `𝒜`) is not needed: the frozen `FullTriple.CD` is already stated on all of `𝒜`.
 * **Finite-dimensional LSI constant `(n-1)/(ρ n)` (Thm 5.7.4, `1 < n < ∞`): DONE (round 14), conditional on a named structure.**
   `Theory/LogSobolevDimChain.lean`: (5.7.6) `Γ₂_exp`, (5.7.7)-(5.7.12) `integral_exp_L_Γ`, `integral_exp_sq_L`,

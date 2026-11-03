@@ -185,6 +185,11 @@ import MarkovTriple.BGL.Theory.Extension.Gamma2E
 import MarkovTriple.BGL.Theory.Extension.MulDomain
 import MarkovTriple.BGL.Theory.Extension.Gamma2Mul
 import MarkovTriple.BGL.Theory.Extension.AxiomCheckR14
+import MarkovTriple.BGL.Theory.Extension.SeqLin
+import MarkovTriple.BGL.Theory.Extension.HessExtLin
+import MarkovTriple.BGL.Theory.Extension.Gamma2ELin
+import MarkovTriple.BGL.Theory.Extension.GammaELin
+import MarkovTriple.BGL.Theory.Extension.AxiomCheckR15
 import MarkovTriple.BGL.Theory.Strong.AxiomCheck
 import MarkovTriple.Stochastic.KernelRep
 import MarkovTriple.Stochastic.Bridge
