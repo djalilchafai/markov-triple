@@ -129,6 +129,11 @@
       "path": "MarkovTriple/BGL/Instances/Riemannian/STATEMENTS_R17_Riem.md",
       "status": "proposed",
       "sha256": "54f73c3f4fe14543ba6a8900e1b6a8059b111f43e74735fd6a8df11b10f6bb6c"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/GibbsRd/STATEMENTS_R18_Core2Rd.md",
+      "status": "proposed",
+      "sha256": "1de98f646f6035351b1a5730c8d7b8ed7c648b5dc2656efb730a67c9f167a746"
     }
   ],
   "fenced": [
