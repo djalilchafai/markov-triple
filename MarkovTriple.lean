@@ -274,6 +274,11 @@ import MarkovTriple.BGL.Instances.GibbsRd.EllipticE2C
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticE2D
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticE2E
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16E2
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticE3A
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticE3B
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticE3C
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticE3D
+import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16E3
 import MarkovTriple.BGL.Instances.Riemannian.Data
 import MarkovTriple.BGL.Instances.Riemannian.Main
 import MarkovTriple.BGL.Instances.Riemannian.AxiomCheck
