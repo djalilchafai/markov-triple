@@ -151,7 +151,12 @@ book: "very often true"); (c) the non-compact discharge of `GradientInterpolatio
 `FullTriple.mem_domain_of_Γ₂` (converse, p. 162) is conditional on `FullTriple.Core2` (ERRATA R15-1).  Status (`Extension/STATEMENTS_R15_Core2.md`,
 `BGL/AUDIT_R15_CORE2_SELF.md`): `core2_of_dense` reduces `Core2` to density of `(1−L)²𝒜₀` in `L²`; **unconditional converse** for
 compact triples (`CompactTriple.mem_domain_of_A`, trivial), OU (`ou_mem_domain_of_Γ₂`) and the Brownian triple (`lebesgue_mem_domain_of_Γ₂`).
-**Open (exact):** `Core2` for a general `FullTriple` and for the Gibbs triple (`gibbsFull_unconditional`).
+**Open (exact):** `Core2` for a general `FullTriple`.  **Round 17 (Stream A, `Instances/Gibbs/Core2*.lean`, `STATEMENTS_R17_Core2.md`, `BGL/AUDIT_R17_GIBBSCORE2.md`):**
+`Core2` and hence the UNCONDITIONAL converse of 3.3.17 are PROVED for 1-D Gibbs triples with bounded `V', V'', V'''` (`GibbsData.gibbsFull_core2`,
+`GibbsData.gibbs_mem_domain_of_Γ₂`; non-vacuous: `V = √(1+x²)`, `sqrtGibbs_bddJet`).  **Still open (exact):** `Core2` for 1-D Gibbs with unbounded jets
+(e.g. `V = x⁴`; the natural next class, `|V'|,|V'''| ≲ 1+|x|`, `V''` bounded, needs a cut-off Bochner estimate for `v''`), for arbitrary smooth `V`
+(equivalent to e.s.a. of `L²` on `C_c^∞`, possibly false), and for `EllData`/`GibbsRdData` on `ℝ^d` (needs `∇²v ∈ L²(μ)` by a cut-off Bochner estimate and the
+`d`-dimensional commutators of `L²` with cut-offs).
 
 ## Round 15 "Interp": the non-compact discharge of `StrongInterpolation` (files `Theory/Interp/*`, `Instances/Gibbs/InterpMain`, `Instances/OU/InterpGeneric`)
 Statements: `Theory/Interp/STATEMENTS_R15_Interp.md`; self-audit: `BGL/AUDIT_R15_INTERP_SELF.md`.

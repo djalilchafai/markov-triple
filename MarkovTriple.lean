@@ -365,3 +365,9 @@ import MarkovTriple.BGL.Instances.SphereOpen.Full
 import MarkovTriple.BGL.Instances.SphereOpen.Support
 import MarkovTriple.BGL.Instances.SphereOpen.Main
 import MarkovTriple.BGL.Instances.SphereOpen.AxiomCheck
+import MarkovTriple.BGL.Instances.Gibbs.Core2Resolvent
+import MarkovTriple.BGL.Instances.Gibbs.Core2Calc
+import MarkovTriple.BGL.Instances.Gibbs.Core2Cut
+import MarkovTriple.BGL.Instances.Gibbs.Core2Main
+import MarkovTriple.BGL.Instances.Gibbs.Core2Example
+import MarkovTriple.BGL.Instances.Gibbs.AxiomCheckR17Core2
