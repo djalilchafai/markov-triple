@@ -47,3 +47,9 @@ dominated convergence along an a.e.-convergent subsequence.  (Records a justific
 `P_s h`, `P_{t-s} f` are only a.e.-classes (no pointwise `s`-regularity).
 
 ## Out of scope / reported if not reached: G3, G3', weak-form Jensen, Gibbs corollaries (depend on T1 only).
+
+## Status (appended after the proofs; statements above unchanged, see ERRATA E6)
+* T1 `FullTriple.strongInterpolation` (`StrongMain.lean`): PROVED.  T3 `FullTriple.ibp_bdd` (`IbpBdd.lean`): PROVED.  T4 `hasDerivAt_integral_comp`, `hasDerivAt_pair`,
+  `continuous_pair` (`Nemytskii.lean`, `Pairing.lean`): PROVED.  Supporting: `Orbit`, `Curve` (K-differentiability, `GB`), `PsiBounds`, `Lemma3320`, `Setup`.
+* T2 strong bound `strong_gradient_bound_unconditional` (`Main.lean`): PROVED; Gibbs and OU corollaries: PROVED.  T2 weak form (Jensen): NOT done.
+* G1, G3, G3': not discharged (see AUDIT_R15_INTERP_SELF.md §4).
