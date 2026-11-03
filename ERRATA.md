@@ -157,3 +157,9 @@ Source: hostile audit of the frozen statements (see AUDIT_FROZEN.md, formerly Ma
 | R16-E2 | INFO (scope) | Final form of E3: `FullTriple.entropyInterpolation (T) (hCD : T.CD ρ n) (hρ : 0 ≤ ρ) [IsFiniteMeasure T.μ] : T.EntropyInterpolation` (any `n`). Hypotheses `IsFiniteMeasure` and `0 ≤ ρ` are necessary for the method; for infinite `μ` and `ε ≠ 1` the Bochner integral `entE` is the junk value `0` (the integrand `g log g` is not integrable), so the field `hasDerivAt_E` of the frozen structure can fail; not claimed. | AUDIT §2 |
 | R16-E3 | INFO (scope, exact remainder) | `FiniteDimInterpolation κ`: field `bdd` PROVED (`FullTriple.finiteDim_bdd`); field `ext` (BGL p. 272, extension of (5.7.12) from `𝒜₀` to bounded `f ∈ 𝒜`) NOT proved. Delivered: `finiteDimInterpolation_of_ext` and `logSobolev_dim_of_ext` (Thm 5.7.4 for non-compact triples, hypothesis = the single `ext` statement). | GAPS.md R16 |
 | R16-E4 | INFO (doc) | The prescribed `AUDIT`/`STATEMENTS` file names and the Armstrong order were followed; the statement file was written before the proofs. | |
+
+## Round 16 "Ext": the field `ext` of `FiniteDimInterpolation` proved (no frozen file changed)
+| id | severity | finding | resolution |
+|---|---|---|---|
+| R16-X1 | INFO (supersedes R16-E3) | R16-E3 / GAPS / `LogSobolevDim.lean` docstrings say `ext` is open. | PROVED: `FullTriple.finiteDimExt`, `finiteDimInterpolation_of_CD` (finite `mu`, `CD(rho,n)`, `rho >= 0`, `1<n<infinity`), `logSobolev_dim_unconditional` (probability measure, `rho>0`). Old docstrings left (frozen/old files not edited). |
+| R16-X2 | INFO (scope) | `STATEMENTS_R16_Ext.md` was written before the proofs; all targets E1-E7 are proved as stated. The two integrability hypotheses of the frozen `ext` are unused; the proof needs the extra standing hypothesis `IsFiniteMeasure`. | `AUDIT_R16_EXT_SELF.md` |

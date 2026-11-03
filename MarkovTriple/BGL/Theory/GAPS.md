@@ -176,3 +176,10 @@ Statements: `Theory/Interp/STATEMENTS_R16_Entropy.md`; audit: `BGL/AUDIT_R16_ENT
   `GibbsData.gibbsFull_logSobolev_unconditional` (`V'' ≥ ρ > 0`).  Finite `μ` is necessary (otherwise `entE` is junk), `ρ ≥ 0` used for `Γ(P_tφ)` bounded.
 * **G3' (`FiniteDimInterpolation κ`)**: field `bdd` PROVED (`finiteDim_bdd`).  Field `ext` (BGL p. 272) still open; `finiteDimInterpolation_of_ext`, `logSobolev_dim_of_ext`
   reduce Thm 5.7.4 for non-compact triples to that single statement.  Exact remainder: AUDIT_R16_ENTROPY_SELF.md §4.
+
+## Round 16 "Ext": G3' discharged (files `Theory/Interp/Ext*.lean`)
+Statements `Theory/Interp/STATEMENTS_R16_Ext.md`; audit `BGL/AUDIT_R16_EXT_SELF.md`; errata R16-X1, X2.
+* **`FiniteDimInterpolation` field `ext` PROVED** (`FullTriple.finiteDimExt`): bounded `f in A` -> `[f] in D(L)` (Prop 3.3.6), `Gamma_2` integrable and
+  `int Gamma_2 = int (Lf)^2` (Prop 3.3.17), (5.7.7)-(5.7.12) redone for bounded `g in A` (`ibp_of_domain`; `Gamma(Gamma g) in L^1` by (3.3.6)).
+  Hence `FullTriple.finiteDimInterpolation_of_CD` and **unconditional Thm 5.7.4 for every FullTriple of finite measure**: `FullTriple.logSobolev_dim_unconditional`.
+* Still open: `rho < 0`, infinite `mu`, `n = 1`.

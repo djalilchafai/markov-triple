@@ -311,3 +311,7 @@ import MarkovTriple.BGL.Theory.Interp.EntropyIdentity
 import MarkovTriple.BGL.Theory.Interp.EntropyMain
 import MarkovTriple.BGL.Theory.Interp.EntropyApplications
 import MarkovTriple.BGL.Theory.Interp.EntropyAxiomCheck
+import MarkovTriple.BGL.Theory.Interp.ExtBdd
+import MarkovTriple.BGL.Theory.Interp.ExtChain
+import MarkovTriple.BGL.Theory.Interp.ExtMain
+import MarkovTriple.BGL.Theory.Interp.ExtAxiomCheck
