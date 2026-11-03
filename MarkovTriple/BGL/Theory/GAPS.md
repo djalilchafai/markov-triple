@@ -151,3 +151,13 @@ book: "very often true"); (c) the non-compact discharge of `GradientInterpolatio
 `BGL/AUDIT_R15_CORE2_SELF.md`): `core2_of_dense` reduces `Core2` to density of `(1−L)²𝒜₀` in `L²`; **unconditional converse** for
 compact triples (`CompactTriple.mem_domain_of_A`, trivial), OU (`ou_mem_domain_of_Γ₂`) and the Brownian triple (`lebesgue_mem_domain_of_Γ₂`).
 **Open (exact):** `Core2` for a general `FullTriple` and for the Gibbs triple (`gibbsFull_unconditional`).
+
+## Round 15 "Interp": the non-compact discharge of `StrongInterpolation` (files `Theory/Interp/*`, `Instances/Gibbs/InterpMain`, `Instances/OU/InterpGeneric`)
+Statements: `Theory/Interp/STATEMENTS_R15_Interp.md`; self-audit: `BGL/AUDIT_R15_INTERP_SELF.md`.
+* **G1' DISCHARGED for every `FullTriple`**: `FullTriple.strongInterpolation : T.CD ρ n → T.StrongInterpolation` (any `ρ`, `n`; no compactness, no converse of 3.3.17),
+  hence `FullTriple.strong_gradient_bound_unconditional` (Thm 3.3.18, `ρ ≥ 0`), `gibbsFull_strong_gradient_bound_unconditional` (`V'' ≥ ρ ≥ 0`),
+  `ouFull_strongInterpolation_generic`.  Route = book's Lemmas 3.3.20–3.3.21 with the "justified" differentiation made explicit (`L¹`/`L²` calculus).
+* **G1 (`GradientInterpolation`, `Φ' = 2∫P_sh Γ₂`)**: NOT a statement of the book (the book never differentiates `∫P_sh Γ(P_{t-s}f)`: `Γ(P_{t-s}f) ∈ L¹` only, not in `𝒟(ℰ)`);
+  it stays a hypothesis for non-compact triples.  The weak gradient bound (Cor. 3.3.19) for `ρ ≥ 0` would follow from `strong_gradient_bound_unconditional` + Jensen
+  `(P_t w)² ≤ P_t(w²)` (sub-Markov `P_t`): the Jensen lemma is NOT yet in the library (see AUDIT §4), so `HasGradientBound` for general non-compact triples is still open.
+* **G3, G3'**: not attempted in this stage (see `AUDIT_R15_INTERP_SELF.md` §4 for the exact missing analytic content: `L¹`-differentiation of `I(s) = ∫Γ(g_s)/g_s` and `I' = -2J`).
