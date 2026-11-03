@@ -8,6 +8,7 @@ import MarkovTriple.BGL.Theory.LogSobolev
 import MarkovTriple.BGL.Theory.Convergence
 import MarkovTriple.BGL.Theory.LogSobolevMain
 import MarkovTriple.BGL.Theory.Tests
+import MarkovTriple.BGL.Theory.LogSobolevDim
 
 /-! Axiom audit of `BGL/Theory` (the build log must show only `propext`, `Classical.choice`,
 `Quot.sound`). -/
@@ -47,3 +48,17 @@ import MarkovTriple.BGL.Theory.Tests
 #print axioms MarkovTriple.BGL.Sanity.TT_GradientInterpolation
 #print axioms MarkovTriple.BGL.Sanity.TT_EntropyInterpolation
 #print axioms MarkovTriple.BGL.Sanity.TT_PI
+-- (6) LSI under CD(ρ,n), n < ∞ (BGL Thm 5.7.4); Part A unconditional, Part B conditional on the named structures
+#print axioms MarkovTriple.BGL.FullTriple.Γ₂_exp
+#print axioms MarkovTriple.BGL.FullTriple.integral_exp_L_Γ
+#print axioms MarkovTriple.BGL.FullTriple.integral_exp_sq_L
+#print axioms MarkovTriple.BGL.FullTriple.integral_exp_Γ₂_ge
+#print axioms MarkovTriple.BGL.FullTriple.integral_exp_Γ₂_ge'
+#print axioms MarkovTriple.BGL.dimLSConst_lt
+#print axioms MarkovTriple.BGL.dimLSConst_eq
+#print axioms MarkovTriple.BGL.dimLSConst_tendsto
+#print axioms MarkovTriple.BGL.FullTriple.ent_le_fisher_dim
+#print axioms MarkovTriple.BGL.FullTriple.logSobolev_of_finiteDim
+#print axioms MarkovTriple.BGL.FullTriple.logSobolev_of_CD_dim
+#print axioms MarkovTriple.BGL.CompactTriple.finiteDimInterpolation
+#print axioms MarkovTriple.BGL.CompactTriple.compact_logSobolev_dim

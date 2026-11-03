@@ -132,6 +132,9 @@ import MarkovTriple.BGL.Instances.Sphere.Semi
 import MarkovTriple.BGL.Instances.Sphere.Compact
 import MarkovTriple.BGL.Instances.Sphere.Curvature
 import MarkovTriple.BGL.Instances.Sphere.Consequences
+import MarkovTriple.BGL.Theory.LogSobolevDimChain
+import MarkovTriple.BGL.Theory.LogSobolevDim
+import MarkovTriple.BGL.Instances.Sphere.LogSobolevDim
 import MarkovTriple.BGL.Frozen.GoodMeasure
 import MarkovTriple.BGL.Frozen.Complete
 import MarkovTriple.BGL.Guards

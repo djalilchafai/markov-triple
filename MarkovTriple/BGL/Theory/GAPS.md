@@ -71,8 +71,14 @@ inequality, the `f²` and `ε → 0` steps, limit at `∞` (from the gap).
   (identification of the `𝒟(L)`-definition of `Γ₂`/`H` with the `𝒜`-definition on `𝒜 ∩ 𝒟(L)` and the converse under ergodicity;
   it needs the identification of `Γ` on `𝒜 ∩ 𝒟(ℰ)` with the closed-form extension, Props 3.3.5–3.3.6, also not in the surface).
   Note Remark 3.3.15 (CD from `𝒜₀` to `𝒜`) is not needed: the frozen `FullTriple.CD` is already stated on all of `𝒜`.
-* `FullTriple.CD` for the finite-dimensional LSI constant `ρn/(n-1)` (Thm 5.7.4 with `n<∞`, via the integrated
-  chain rule (5.7.6)–(5.7.12) for `e^{ag}`): not done (only `n`-independent constant `1/ρ`, from `CD(ρ,n) ⇒ CD(ρ,∞)`).
+* **Finite-dimensional LSI constant `(n-1)/(ρ n)` (Thm 5.7.4, `1 < n < ∞`): DONE (round 14), conditional on a named structure.**
+  `Theory/LogSobolevDimChain.lean`: (5.7.6) `Γ₂_exp`, (5.7.7)-(5.7.12) `integral_exp_L_Γ`, `integral_exp_sq_L`,
+  `integral_exp_Γ₂_ge`, `integral_exp_Γ₂_ge'` (for `g ∈ 𝒜₀` with `e^{g/2} ∈ 𝒜₀`).  `Theory/LogSobolevDim.lean`:
+  `FullTriple.logSobolev_of_CD_dim` (conditional on `EntropyInterpolation` and `FiniteDimInterpolation`), and unconditional
+  `CompactTriple.compact_logSobolev_dim`; `Instances/Sphere/LogSobolevDim.lean`: `sphere_LS_dim : LS(1/3, 0)` on the zonal `S³`.
+  **Exact missing input for non-compact triples** (`FiniteDimInterpolation`): book p. 270 (boundedness of `Γ(P_t f)`, `L P_t f`) and
+  p. 272 (extension of (5.7.12) from `e^g`, `g ∈ 𝒜₀` to `f ∈ 𝒜` bounded with `Γ(f)`, `Lf`, "by Prop. 3.3.6 and Lemma 3.3.16");
+  the extension needs the operator-level Props 3.3.16 (iv)-(viii)/3.3.17 (G5).  Not done: `n = 1` (torus, p. 272), optimality.
 
 ## Update: compact triples (`Theory/Compact/`)
 
