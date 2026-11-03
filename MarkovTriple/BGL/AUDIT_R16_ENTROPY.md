@@ -1,0 +1,7 @@
+# Hostile audit: round 16, `EntropyInterpolation` discharged for finite-measure FullTriples (branch HEAD c8e5d41)
+
+Independent auditor. **Result: no soundness defect, misformalization, vacuity or overstatement.** `FullTriple.entropyInterpolation (hCD : T.CD ρ n) (hρ : 0 ≤ ρ) [IsFiniteMeasure T.μ] : T.EntropyInterpolation` has the frozen structure type with all four fields unmodified;
+OU cross-check: `ouFull.EntropyInterpolation` and `ouFull.LS (1/1) 0` follow from the new generic theorems (the structure is non-vacuous: the OU-specific discharge was proved independently). Finite μ is genuinely necessary (for infinite μ and ε ≠ 1 the integral ∫g log g is junk 0), not hiding an issue;
+for finite μ, `entE_eq` rewrites e as ∫Θ(g) with Θ compactly supported smooth. Re-derived: signs and the factor 2 (I' = −2J, `fisher_alg`), `Γ₂_comp` (ψ''' cancels), `Lam.values`, `Γ_Pt_bdd` (ρ ≥ 0 used only for e^{−ρt} ≤ 1 and Thm 3.3.18), `orb_bdd`; `LS(1/ρ,0)` is BGL Thm 5.7.1's (2/ρ)∫Γ(f) with the OU constant C = 1.
+D2 ('A0 bounded') and `Γ_mem` are frozen fields of `DiffusionTriple`. Structural: frozen OK; 10 Entropy modules recompiled from scratch; axioms standard. Not re-derived line by line: every Green-formula step in `fisher_alg`, `EntropyQuot`/`EntropyAnalysis` internals (compile-verified).
+Findings (ERRATA R16-Entropy-audit): integration (older main base; stale GAPS lines), superseded `BddGamma` in the statements body. Open: `FiniteDimInterpolation.ext` (new agent), ρ<0, infinite μ.
