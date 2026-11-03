@@ -254,4 +254,5 @@ import MarkovTriple.BGL.Instances.Riemannian.CurvRiem
 import MarkovTriple.BGL.Instances.Riemannian.BochnerRiem
 import MarkovTriple.BGL.Instances.Riemannian.BochnerCrit
 import MarkovTriple.BGL.Instances.Riemannian.BochnerChecks
+import MarkovTriple.BGL.Instances.Riemannian.BochnerExample
 import MarkovTriple.BGL.Instances.Riemannian.BochnerAxiomCheck

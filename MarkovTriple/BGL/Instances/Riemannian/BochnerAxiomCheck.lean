@@ -1,4 +1,5 @@
 import MarkovTriple.BGL.Instances.Riemannian.BochnerChecks
+import MarkovTriple.BGL.Instances.Riemannian.BochnerExample
 
 /-! Axiom audit of the Round-16 Bochner stage (the build log must show only `propext`, `Classical.choice`,
 `Quot.sound`). -/
@@ -20,3 +21,10 @@ import MarkovTriple.BGL.Instances.Riemannian.BochnerChecks
 #print axioms MarkovTriple.BGL.Instances.Riemannian.RiemData.riem_curv_of_ricci
 #print axioms MarkovTriple.BGL.Instances.Riemannian.ricci_fin_one
 #print axioms MarkovTriple.BGL.Instances.Riemannian.RiemData.ofGibbs_bochner
+#print axioms MarkovTriple.BGL.Instances.Riemannian.confRiem
+#print axioms MarkovTriple.BGL.Instances.Riemannian.confRiem.ricci_eq
+#print axioms MarkovTriple.BGL.Instances.Riemannian.confRiem.ricci_00
+#print axioms MarkovTriple.BGL.Instances.Riemannian.confRiem.hess_W
+#print axioms MarkovTriple.BGL.Instances.Riemannian.confRiem.curv
+#print axioms MarkovTriple.BGL.Instances.Riemannian.confRiem_poincare
+#print axioms MarkovTriple.BGL.Instances.Riemannian.confRiem_CD
