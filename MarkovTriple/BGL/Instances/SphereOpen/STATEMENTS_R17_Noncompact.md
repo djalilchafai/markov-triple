@@ -1,4 +1,4 @@
-# STATEMENTS R17 "Noncompact" (Armstrong method): finite-dimensional CD(rho,n) on a non-compact state space
+# STATEMENTS R17 "Noncompact" (Armstrong method): finite-dimensional CD(rho,n) on a topologically non-compact space (COSMETIC instance: zonal S^3 minus its poles; see ERRATA R17-M2)
 
 Written BEFORE any proof.  Namespace `MarkovTriple.BGL.Instances.SphereOpen`, files `MarkovTriple/BGL/Instances/SphereOpen/*.lean`.
 Do not weaken while proving; deviations go to the "Status" section and to `ERRATA.md` (prefix `R17-`).
@@ -13,7 +13,7 @@ BGL was available in the sandbox) the intrinsic metric `d_Gamma` is BOUNDED.  Th
   infinite diameter) is therefore EXCLUDED: for it `CD(rho,n)` with `rho > 0`, `n < infty` is impossible;
 * Laguerre `L = x f'' + (a-x) f'` on `(0,infty)`: `d_Gamma = 2 sqrt x` unbounded, only `n = infty`; Hermite/OU: `n = infty`;
   Cauchy/Student-type `V = c log(1+x^2)`: curvature `rho <= 0` (the Riccati condition `V'' >= rho + V'^2/(n-1)` fails at infinity for `rho > 0`);
-* the ONLY BGL examples with `rho > 0`, `n < infty` are the Jacobi/Gegenbauer family on the interval `(-1,1)` (sphere `S^n`,
+* [CORRECTED, ERRATA R17-M3: the original text said these were the ONLY BGL examples; that is false -- compact weighted manifolds (`S^n`, `SO(n)`, `CP^n`), other Jacobi parameters and simplex diffusions also qualify; and Bonnet-Myers bounds `d_Gamma` but does not by itself force a compact state space.]  The BGL examples with `rho > 0`, `n < infty` considered here are the Jacobi/Gegenbauer family on the interval `(-1,1)` (sphere `S^n`,
   `CD(n-1,n)`; Sect. 2.7 / Sect. 5.7 p. 272 "Theorem 5.7.4 applies to `S^n`").  Their state space is the open interval, not complete
   for `d_Gamma` (bounded), with finite measure.
 

@@ -4,11 +4,15 @@ import MarkovTriple.BGL.Instances.SphereOpen.Support
 import MarkovTriple.BGL.Theory.Interp.ExtMain
 
 /-!
-# Finite-`n` logarithmic Sobolev inequality on a non-compact state space (R17 Noncompact, N7-N9)
+# Finite-`n` logarithmic Sobolev inequality on the zonal `S³` minus its poles (R17 Noncompact, N7-N9)
 
-`oFull` (Full triple on `ZonO = (-1,1)`, not compact, finite measure) satisfies `CD(2,3)` (`oFull_CD`);
+`oFull` (Full triple on `ZonO = (-1,1)`, topologically non-compact, finite measure) satisfies `CD(2,3)` (`oFull_CD`);
 BGL Thm 5.7.4 (`FullTriple.logSobolev_dim_unconditional`, no compactness) then gives `LS(1/3, 0)`,
 `C = (n-1)/(ρ n) = 1/3 < 1/ρ = 1/2`.  Statements: `STATEMENTS_R17_Noncompact.md`.
+
+**Scope (audit, ERRATA R17-M2).**  This is a COSMETIC non-compact instance: `FullTriple` carries no topology,
+`oFull.A = oFull.A₀` (so the extension step is vacuous), and `oFull_LS` is `sphere_LS_dim` transported along
+`L²(μO) ≅ L²(μZ)`.  It does NOT close the open item "non-compact finite-`n` CD instance with `A ≠ A₀`".
 -/
 
 open MeasureTheory Real Set Filter Topology
@@ -24,7 +28,7 @@ theorem oFull_finiteDimInterpolation :
     oFull.FiniteDimInterpolation (2 * ((3 : ℝ≥0∞).toReal / ((3 : ℝ≥0∞).toReal - 1))) :=
   oFull.finiteDimInterpolation_of_CD oFull_CD (by norm_num) (by norm_num) (by simp)
 
-/-- **N8: BGL Thm 5.7.4 on a non-compact state space.**  `LS(1/3, 0)`: `Ent(f²) ≤ (2/3) ∫ Γ(f)` for
+/-- **N8: BGL Thm 5.7.4 on the zonal sphere minus its poles (topologically non-compact; cosmetic, see header).**  `LS(1/3, 0)`: `Ent(f²) ≤ (2/3) ∫ Γ(f)` for
 `f ∈ 𝒜₀` on the open zonal sphere `(-1,1)` (`CD(2,3)`, constant `(n-1)/(ρ n) = 1/3`). -/
 theorem oFull_LS : oFull.toDiffusionTriple.LS (1 / 3) 0 := by
   have h := oFull.logSobolev_dim_unconditional (n := 3) (ρ := 2) (by norm_num)

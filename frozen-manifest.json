@@ -118,7 +118,7 @@
     {
       "path": "MarkovTriple/BGL/Instances/SphereOpen/STATEMENTS_R17_Noncompact.md",
       "status": "proposed",
-      "sha256": "1aafd4aa4db794702c50596e687d2875d7761903adca43d3f3f7dd7ba7857961"
+      "sha256": "bf503407672dff336f6411fcaab81b4e872c4e09166b44d5a9a6e63b90a29947"
     },
     {
       "path": "MarkovTriple/BGL/Instances/Gibbs/STATEMENTS_R17_Core2.md",

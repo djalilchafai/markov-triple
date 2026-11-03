@@ -36,8 +36,9 @@ Mathematical proof that `BEStable ouFull` is TRUE (so no vacuity; I tried to ref
   This is exactly `BEReg`. So `BEStable ouFull` holds.  (It also gives the unconditional Gaussian LSI.)
 * Independent reassurance: any compact full triple with `𝒜 ⊆ L^∞` satisfies `BEStable` (proof of
   `of_A_eq_A₀` only uses boundedness).  With ρ > 0: round spheres `S^n` (n ≥ 2), `𝒜 = 𝒜₀ = C^∞`, Ric = n-1 > 0,
-  `CD(n-1,n) ⇒ CDFull(n-1,∞)`, ergodic.  (Bonnet–Myers: finite-dimensional ρ>0 forces compactness, so the
-  boundedness regime is the generic one; OU is the infinite-dimensional case, handled by Mehler decay.)
+  `CD(n-1,n) ⇒ CDFull(n-1,∞)`, ergodic.  (Bonnet–Myers: finite-dimensional ρ>0 bounds the intrinsic distance, and on a proper complete space such as the
+  Riemannian charts this gives compactness (corrected in Round 17, ERRATA R17-M3: it does NOT force a compact state space in general), so the
+  boundedness regime is the typical one; OU is the infinite-dimensional case, handled by Mehler decay.)
 * The Fisher-type clause `L Γ(ψ∘g) ∈ L²` is not incompatible with ρ > 0: nothing in 𝒦 conflicts with CD(1,∞)
   (Γ₂(u) = u''² + u'² ≥ Γ(u)); BEStable only bounds smooth bounded quantities and says nothing on the sign of Γ₂.
 * Does `BEStable` force `A₀` bounded and contradict CD(ρ,∞)? It forces `A₀ ⊂ L^∞`; consistent (OU: C_c^∞; sphere: C^∞).
