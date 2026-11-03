@@ -309,3 +309,5 @@ import MarkovTriple.BGL.Instances.Riemannian.BochnerCrit
 import MarkovTriple.BGL.Instances.Riemannian.BochnerChecks
 import MarkovTriple.BGL.Instances.Riemannian.BochnerExample
 import MarkovTriple.BGL.Instances.Riemannian.BochnerAxiomCheck
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticFriedrichsEll
+import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Friedrichs
