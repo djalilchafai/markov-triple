@@ -12,8 +12,8 @@ BGL Defs. 3.1.1, 3.1.3, 3.1.8 (D1–D8) and Def. 3.3.9.  For `E : EllData d`:
   sequence is `u_n = cut (n+1)`; `ibp` is the master integration by parts `ibp_master` (divergence theorem for compactly
   supported `C^∞` vector fields, via Mathlib's `integral_mul_fderiv_eq_neg_fderiv_mul_of_integrable`).
 * `E.ΓA_eq`: the `Γ` defined from `L` by `½(L(fg) − fLg − gLf)` (Def. 3.3.1 (iv)) is `E.Γ` on `C^∞` (everywhere).
-* `E.diff_isComplete`: completeness (Def. 3.3.9) from the upper bound `a_bdd` on the co-metric, with
-  `ζ_k = cut (M (k+1))`.
+* `E.diff_isComplete`: completeness (Def. 3.3.9) from the exhaustion function `a_exh` (round 17; was: the upper bound `a_bdd`), with
+  `ζ_k = s(2 − ψ/(M (k+1)))`.
 -/
 
 open MeasureTheory Filter Topology
@@ -142,54 +142,95 @@ lemma ΓA_eq {f g : Rd d → ℝ} (hf : Sm f) (hg : Sm g) : E.diff.ΓA f g = E.�
 
 /-! ### Completeness -/
 
-/-- `Γ(f,f) ≤ Λ Σ (∂ᵢ f)²` from the bound `a_bdd`. -/
-lemma Γ_le {Λ : ℝ} (hΛ : ∀ (x v : Rd d), ∑ i, ∑ j, E.a i j x * v i * v j ≤ Λ * ∑ i, v i ^ 2)
-    (f : Rd d → ℝ) (x : Rd d) : E.Γ f f x ≤ Λ * ∑ i, pderiv f i x ^ 2 :=
-  hΛ x (fun i => pderiv f i x)
+/-- the cut-offs `ζ_R = s(2 − ψ/R)` of a proper function `ψ ≥ 0` -/
+noncomputable def cutPsi (ψ : Rd d → ℝ) (R : ℝ) (x : Rd d) : ℝ :=
+  Real.smoothTransition (2 - ψ x / R)
 
-/-- **Completeness** (BGL Def. 3.3.9) of the weighted elliptic triple: Euclidean cut-offs
-`ζ_k = cut (M (k+1))`, `M ≥ max (1, 8 |Λ| C²)`; `Γ(ζ_k) ≤ Λ · 8 C² / (M (k+1))² ≤ 1/(k+1)²`. -/
+lemma pderiv_cutPsi {ψ : Rd d → ℝ} (hψ : Sm ψ) (R : ℝ) (j : Fin d) (x : Rd d) :
+    pderiv (cutPsi ψ R) j x = deriv Real.smoothTransition (2 - ψ x / R) * (-(pderiv ψ j x / R)) := by
+  have hq := hψ.hasFDerivAt' x
+  have h2 : HasFDerivAt (fun y : Rd d => 2 - ψ y / R) (-(R⁻¹ • fderiv ℝ ψ x)) x := by
+    have := (hq.const_mul R⁻¹).const_sub 2
+    simpa [div_eq_inv_mul] using this
+  have h3 : HasDerivAt Real.smoothTransition (deriv Real.smoothTransition (2 - ψ x / R))
+      (2 - ψ x / R) :=
+    ((Real.smoothTransition.contDiff (n := 1)).differentiable (by simp) _).hasDerivAt
+  have h4 := h3.comp_hasFDerivAt x h2
+  unfold pderiv cutPsi
+  rw [show (fun x : Rd d => Real.smoothTransition (2 - ψ x / R)) =
+    Real.smoothTransition ∘ fun y : Rd d => 2 - ψ y / R from rfl, h4.fderiv]
+  show deriv Real.smoothTransition (2 - ψ x / R) * (-(R⁻¹ * (fderiv ℝ ψ x) (Pi.single j 1))) = _
+  simp [div_eq_inv_mul]
+
+/-- **Completeness** (BGL Def. 3.3.9) of the weighted elliptic triple from the exhaustion function `a_exh`:
+cut-offs `ζ_k = s(2 − ψ/(M(k+1)))`, `M = max 1 C`, `C ≥ |s'|`; `Γ(ζ_k) = s'² Γ(ψ)/(M(k+1))² ≤ 1/(k+1)²`. -/
 theorem diff_isComplete : E.diff.IsComplete := by
-  obtain ⟨Λ, hΛ⟩ := E.a_bdd
+  obtain ⟨ψ, hψ, hψ0, hψb, hψΓ⟩ := E.a_exh
   obtain ⟨C, hC0, hC⟩ := sT_deriv_bound
-  set M : ℝ := 1 + 8 * |Λ| * C ^ 2 with hM
-  have hM1 : 1 ≤ M := by
-    have : 0 ≤ 8 * |Λ| * C ^ 2 := by positivity
-    linarith
+  set M : ℝ := 1 + C with hM
+  have hM1 : 1 ≤ M := by linarith
   have hMpos : 0 < M := by linarith
   have hR : ∀ k : ℕ, 0 < M * ((k : ℝ) + 1) := fun k => by positivity
-  refine ⟨fun k => cut (M * ((k : ℝ) + 1)), fun k => ⟨sm_cut _, hcs_cut (hR k)⟩,
-    fun k => Eventually.of_forall fun x => cut_nonneg _ x,
-    fun k => Eventually.of_forall fun x => cut_mono (hR k) ?_ x, Eventually.of_forall fun x => ?_,
+  have hsm : ∀ R : ℝ, Sm (cutPsi ψ R) := fun R =>
+    Real.smoothTransition.contDiff.comp (contDiff_const.sub (hψ.div_const _))
+  refine ⟨fun k => cutPsi ψ (M * ((k : ℝ) + 1)), fun k => ⟨hsm _, ?_⟩,
+    fun k => Eventually.of_forall fun x => Real.smoothTransition.nonneg _,
+    fun k => Eventually.of_forall fun x => ?_, Eventually.of_forall fun x => ?_,
     fun k => Eventually.of_forall fun x => ?_⟩
-  · push_cast; nlinarith
+  · -- compact support: contained in the closed bounded set `{ψ ≤ 2R}`
+    have hK : IsCompact {x : Rd d | ψ x ≤ 2 * (M * ((k : ℝ) + 1))} :=
+      Metric.isCompact_of_isClosed_isBounded (isClosed_le hψ.continuous continuous_const)
+        (hψb _)
+    refine HasCompactSupport.intro hK fun x hx => ?_
+    unfold cutPsi
+    apply Real.smoothTransition.zero_of_nonpos
+    have : ¬ ψ x ≤ 2 * (M * ((k : ℝ) + 1)) := hx
+    have h2 : 2 ≤ ψ x / (M * ((k : ℝ) + 1)) := (le_div_iff₀ (hR k)).2 (by linarith [not_le.1 this])
+    linarith
+  · unfold cutPsi
+    apply Real.smoothTransition.monotone
+    have h1 : M * ((k : ℝ) + 1) ≤ M * (((k + 1 : ℕ) : ℝ) + 1) := by push_cast; nlinarith
+    have : ψ x / (M * (((k + 1 : ℕ) : ℝ) + 1)) ≤ ψ x / (M * ((k : ℝ) + 1)) :=
+      div_le_div_of_nonneg_left (hψ0 x) (hR k) h1
+    linarith
   · refine tendsto_const_nhds.congr' ?_
-    obtain ⟨N, hN⟩ := exists_nat_gt (qd x)
+    obtain ⟨N, hN⟩ := exists_nat_gt (ψ x)
     filter_upwards [eventually_ge_atTop N] with n hn
     symm
-    apply cut_eq_one (hR n)
+    unfold cutPsi
+    apply Real.smoothTransition.one_of_one_le
     have : (N : ℝ) ≤ n := by exact_mod_cast hn
     have h2 : (n : ℝ) + 1 ≤ M * ((n : ℝ) + 1) := by nlinarith [(Nat.cast_nonneg n : (0 : ℝ) ≤ n)]
-    have h3 : ((n : ℝ) + 1) ^ 2 ≤ (M * ((n : ℝ) + 1)) ^ 2 :=
-      pow_le_pow_left₀ (by positivity) h2 2
-    nlinarith [qd_nonneg x, (Nat.cast_nonneg n : (0 : ℝ) ≤ n)]
-  · show E.Γ (cut (M * ((k : ℝ) + 1))) (cut (M * ((k : ℝ) + 1))) x ≤ (1 / ((k : ℝ) + 1)) ^ 2
-    have h1 := E.Γ_le hΛ (cut (M * ((k : ℝ) + 1))) x
-    have h2 := sum_sq_pderiv_cut_le (hR k) hC x
+    have h3 : ψ x / (M * ((n : ℝ) + 1)) ≤ 1 := by
+      rw [div_le_one (hR n)]; linarith
+    linarith
+  · show E.Γ (cutPsi ψ (M * ((k : ℝ) + 1))) (cutPsi ψ (M * ((k : ℝ) + 1))) x ≤ (1 / ((k : ℝ) + 1)) ^ 2
     set R := M * ((k : ℝ) + 1) with hRdef
     have hRpos : 0 < R := hR k
-    have h3 : Λ * ∑ i, pderiv (cut R) i x ^ 2 ≤ |Λ| * (8 * C ^ 2 / R ^ 2) := by
-      calc Λ * ∑ i, pderiv (cut R) i x ^ 2 ≤ |Λ| * ∑ i, pderiv (cut R) i x ^ 2 :=
-            mul_le_mul_of_nonneg_right (le_abs_self Λ) (Finset.sum_nonneg fun _ _ => sq_nonneg _)
-        _ ≤ |Λ| * (8 * C ^ 2 / R ^ 2) := mul_le_mul_of_nonneg_left h2 (abs_nonneg Λ)
-    refine h1.trans (h3.trans ?_)
-    have hk : (0 : ℝ) < (k : ℝ) + 1 := by positivity
-    have h5 : 8 * |Λ| * C ^ 2 ≤ M ^ 2 := by nlinarith [abs_nonneg Λ, sq_nonneg C]
-    calc |Λ| * (8 * C ^ 2 / R ^ 2) = (8 * |Λ| * C ^ 2 / M ^ 2) * (1 / ((k : ℝ) + 1) ^ 2) := by
-          rw [hRdef]; field_simp
-      _ ≤ 1 * (1 / ((k : ℝ) + 1) ^ 2) :=
-          mul_le_mul_of_nonneg_right (div_le_one_of_le₀ h5 (sq_nonneg M)) (by positivity)
-      _ = (1 / ((k : ℝ) + 1)) ^ 2 := by rw [one_mul, one_div_pow]
+    set s' := deriv Real.smoothTransition (2 - ψ x / R) with hs'
+    have e : E.Γ (cutPsi ψ R) (cutPsi ψ R) x =
+        (s' / R) ^ 2 * ∑ i, ∑ j, E.a i j x * pderiv ψ i x * pderiv ψ j x := by
+      unfold Γ
+      rw [Finset.mul_sum]
+      refine Finset.sum_congr rfl fun i _ => ?_
+      rw [Finset.mul_sum]
+      refine Finset.sum_congr rfl fun j _ => ?_
+      rw [pderiv_cutPsi hψ, pderiv_cutPsi hψ]
+      ring
+    rw [e]
+    have h1 : s' ^ 2 ≤ C ^ 2 := by
+      have := hC (2 - ψ x / R)
+      nlinarith [abs_nonneg s', sq_abs s']
+    have h2 : (s' / R) ^ 2 ≤ (1 / ((k : ℝ) + 1)) ^ 2 := by
+      rw [div_pow, one_div_pow, div_le_div_iff₀ (by positivity) (by positivity)]
+      have hk : (0 : ℝ) ≤ (k : ℝ) + 1 := by positivity
+      have : R ^ 2 = M ^ 2 * ((k : ℝ) + 1) ^ 2 := by rw [hRdef]; ring
+      rw [this, one_mul]
+      have hCM : C ^ 2 ≤ M ^ 2 := by nlinarith
+      nlinarith [mul_le_mul_of_nonneg_right hCM (sq_nonneg ((k : ℝ) + 1)), sq_nonneg ((k : ℝ) + 1)]
+    calc (s' / R) ^ 2 * ∑ i, ∑ j, E.a i j x * pderiv ψ i x * pderiv ψ j x
+        ≤ (s' / R) ^ 2 * 1 := mul_le_mul_of_nonneg_left (hψΓ x) (sq_nonneg _)
+      _ ≤ _ := by rw [mul_one]; exact h2
 
 end EllData
 

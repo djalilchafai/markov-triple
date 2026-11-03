@@ -80,7 +80,7 @@ variable (E : EllData d)
 
 /-- **pointwise main estimate**: the leading term `qf(A(y)) (ξ, ξ + 2η) ≥ (λm/2)|ξ|² − 2WΛ|η|²`. -/
 lemma pw_main {S : Set (Rd d)} {lam m W Λ : ℝ} (hlam : ∀ y ∈ S, ∀ ξ : Rd d, lam * ∑ i, ξ i ^ 2 ≤ ∑ i, ∑ j, E.a i j y * ξ i * ξ j)
-    (hm : ∀ y ∈ S, m ≤ E.w y) (hW : ∀ y ∈ S, E.w y ≤ W) (hΛ : ∀ y (v : Rd d), ∑ i, ∑ j, E.a i j y * v i * v j ≤ Λ * ∑ i, v i ^ 2)
+    (hm : ∀ y ∈ S, m ≤ E.w y) (hW : ∀ y ∈ S, E.w y ≤ W) (hΛ : ∀ y ∈ S, ∀ (v : Rd d), ∑ i, ∑ j, E.a i j y * v i * v j ≤ Λ * ∑ i, v i ^ 2)
     (hlam0 : 0 ≤ lam)
     (y : Rd d) (ξ η : Rd d) (hy : y ∈ S ∨ ((∀ i, ξ i = 0) ∧ ∀ j, η j = 0)) :
     (lam * m / 2) * ∑ i, ξ i ^ 2 - 2 * W * Λ * ∑ i, η i ^ 2 ≤
@@ -104,7 +104,7 @@ lemma pw_main {S : Set (Rd d)} {lam m W Λ : ℝ} (hlam : ∀ y ∈ S, ∀ ξ : 
     have heta : qf M η η ≤ W * Λ * ∑ i, η i ^ 2 := by
       rw [hqM]
       have hq0 := E.quad_nonneg η y
-      have h1 := hΛ y η
+      have h1 := hΛ y hy η
       have h2 := hW y hy
       calc E.w y * ∑ i, ∑ j, E.a i j y * η i * η j ≤ W * ∑ i, ∑ j, E.a i j y * η i * η j :=
             mul_le_mul_of_nonneg_right h2 hq0

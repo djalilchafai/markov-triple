@@ -57,7 +57,7 @@ noncomputable def toEll : EllData d where
       by_contra h; push Not at h; exact hv (funext h)
     exact lt_of_lt_of_le (by positivity : 0 < v i ^ 2) (Finset.single_le_sum
       (f := fun j => v j ^ 2) (fun j _ => sq_nonneg _) (Finset.mem_univ i))
-  a_bdd := ⟨1, fun x v => by
+  a_exh := exh_of_bdd _ ⟨1, fun x v => by
     have : ∑ i, ∑ j, (if i = j then (1 : ℝ) else 0) * v i * v j = ∑ i, v i ^ 2 := by
       refine Finset.sum_congr rfl fun i _ => ?_
       simp [sq]

@@ -180,4 +180,79 @@ lemma sum_sq_pderiv_cut_le {R C : ℝ} (hR : 0 < R) (hC : ∀ y, |deriv Real.smo
     simp only [ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, zero_pow, Finset.sum_const_zero]
     positivity
 
+/-! ### The completeness criterion by a proper function of bounded gradient -/
+
+/-- the radial exhaustion function `ψ(x) = √((1 + |x|²)/L)` -/
+noncomputable def expsi (L : ℝ) (x : Rd d) : ℝ := Real.sqrt ((1 + qd x) / L)
+
+lemma expsi_arg_pos {L : ℝ} (hL : 0 < L) (x : Rd d) : 0 < (1 + qd x) / L :=
+  div_pos (by linarith [qd_nonneg x]) hL
+
+lemma sm_expsi {L : ℝ} (hL : 0 < L) : Sm (expsi L : Rd d → ℝ) :=
+  ((contDiff_const.add sm_qd).div_const L).sqrt fun x => (expsi_arg_pos hL x).ne'
+
+lemma pderiv_expsi {L : ℝ} (hL : 0 < L) (j : Fin d) (x : Rd d) :
+    pderiv (expsi L) j x = (1 / (2 * Real.sqrt ((1 + qd x) / L))) * (2 * x j / L) := by
+  have hq : HasFDerivAt (qd : Rd d → ℝ) (fderiv ℝ qd x) x := (sm_qd.differentiableAt x).hasFDerivAt
+  have h2 : HasFDerivAt (fun y : Rd d => (1 + qd y) / L) (L⁻¹ • fderiv ℝ qd x) x := by
+    have := (hq.const_add 1).const_mul L⁻¹
+    simpa [div_eq_inv_mul] using this
+  have h3 := h2.sqrt (expsi_arg_pos hL x).ne'
+  unfold pderiv expsi
+  rw [h3.fderiv]
+  have := pderiv_qd j x
+  unfold pderiv at this
+  simp only [smul_apply, smul_eq_mul, this]
+  ring
+
+/-- **A bounded co-metric admits a proper exhaustion function of bounded `a`-gradient** (so the old completeness
+hypothesis `a ≤ Λ` implies the exhaustion hypothesis `a_exh` of `EllData`). -/
+theorem exh_of_bdd (a : Fin d → Fin d → Rd d → ℝ)
+    (hb : ∃ Λ : ℝ, ∀ (x v : Rd d), ∑ i, ∑ j, a i j x * v i * v j ≤ Λ * ∑ i, v i ^ 2) :
+    ∃ ψ : Rd d → ℝ, Sm ψ ∧ (∀ x, 0 ≤ ψ x) ∧ (∀ c : ℝ, Bornology.IsBounded {x : Rd d | ψ x ≤ c}) ∧
+      ∀ x, ∑ i, ∑ j, a i j x * pderiv ψ i x * pderiv ψ j x ≤ 1 := by
+  obtain ⟨Λ, hΛ⟩ := hb
+  set L : ℝ := max Λ 1 with hLdef
+  have hL : 0 < L := lt_of_lt_of_le one_pos (le_max_right _ _)
+  refine ⟨expsi L, sm_expsi hL, fun x => Real.sqrt_nonneg _, fun c => ?_, fun x => ?_⟩
+  · refine (Metric.isBounded_closedBall (x := (0 : Rd d)) (r := Real.sqrt (L * c ^ 2) + 1)).subset ?_
+    intro x hx
+    have hx : Real.sqrt ((1 + qd x) / L) ≤ c := hx
+    rw [mem_closedBall_zero_iff, pi_norm_le_iff_of_nonneg (by positivity)]
+    intro i
+    rw [Real.norm_eq_abs]
+    have hc : 0 ≤ c := (Real.sqrt_nonneg _).trans hx
+    have h1 : (1 + qd x) / L ≤ c ^ 2 := by
+      have := Real.sq_sqrt (expsi_arg_pos hL x).le
+      have h2 := pow_le_pow_left₀ (Real.sqrt_nonneg _) hx 2
+      linarith
+    have h3 : qd x ≤ L * c ^ 2 := by
+      rw [div_le_iff₀ hL] at h1; nlinarith
+    have h4 : x i ^ 2 ≤ qd x := by
+      unfold qd
+      exact Finset.single_le_sum (f := fun j => x j ^ 2) (fun j _ => sq_nonneg _) (Finset.mem_univ i)
+    have h5 : |x i| ≤ Real.sqrt (L * c ^ 2) := Real.abs_le_sqrt (h4.trans h3)
+    linarith
+  · have hs : ∀ y : Rd d, ∑ i, pderiv (expsi L) i y ^ 2 ≤ 1 / L := by
+      intro y
+      have hp : Real.sqrt ((1 + qd y) / L) ^ 2 = (1 + qd y) / L := Real.sq_sqrt (expsi_arg_pos hL y).le
+      have hne : Real.sqrt ((1 + qd y) / L) ≠ 0 := (Real.sqrt_pos.2 (expsi_arg_pos hL y)).ne'
+      have e : ∑ i, pderiv (expsi L) i y ^ 2 = qd y / (L * (1 + qd y)) := by
+        simp only [pderiv_expsi hL, mul_pow, div_pow]
+        rw [hp]
+        have h1 : 0 < 1 + qd y := by linarith [qd_nonneg y]
+        unfold qd at h1 ⊢
+        rw [Finset.sum_div]
+        refine Finset.sum_congr rfl fun i _ => ?_
+        field_simp
+      rw [e, div_le_div_iff₀ (by have := qd_nonneg y; positivity) hL]
+      nlinarith [qd_nonneg y]
+    have h1 := hΛ x (fun i => pderiv (expsi L) i x)
+    have h2 : Λ * ∑ i, pderiv (expsi L) i x ^ 2 ≤ L * ∑ i, pderiv (expsi L) i x ^ 2 :=
+      mul_le_mul_of_nonneg_right (le_max_left _ _) (Finset.sum_nonneg fun _ _ => sq_nonneg _)
+    have h3 : L * ∑ i, pderiv (expsi L) i x ^ 2 ≤ 1 := by
+      calc _ ≤ L * (1 / L) := mul_le_mul_of_nonneg_left (hs x) hL.le
+        _ = 1 := by field_simp
+    exact h1.trans (h2.trans h3)
+
 end MarkovTriple.BGL.Instances.GibbsRd

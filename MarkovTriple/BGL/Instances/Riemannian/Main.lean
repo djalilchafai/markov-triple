@@ -14,7 +14,7 @@ For `R : RiemData d` (`Riemannian/Data.lean`) the generic theory of `GibbsRd/Ell
 
 UPDATE (round 16, audit R16-Bochner): the identification `Γ₂(f) = |∇∇f|² + (Ric_g + ∇∇W)(∇f,∇f)` (BGL (1.16.4), Thm C.3.3) for a variable
 co-metric IS now proved (`riem_bochner`, `Riemannian/BochnerRiem.lean`) and gives the IMPLICATION `Ric_g + ∇∇W ≥ ρ g ⇒ Curv ρ`
-(`riem_curv_of_ricci`, (1.16.8) one direction); the converse `Curv ρ ⇒ Ric_g + ∇∇W ≥ ρ g` is NOT proved.  Mathlib (this
+(`riem_curv_of_ricci`, (1.16.8) one direction); the converse `Curv ρ ⇒ Ric_g + ∇∇W ≥ ρ g` IS now proved too (round 17, `riem_ricci_of_curv`, `riem_curv_iff_ricci` in `Riemannian/BochnerConverse.lean`).  Mathlib (this
 version) has the Levi-Civita connection and the Riemannian distance on manifolds, but no Riemann/Ricci curvature
 tensor, no Hessian, no Laplace–Beltrami operator and no Riemannian volume measure (our curvature objects are the book's coordinate formulas).
 -/
@@ -118,7 +118,7 @@ noncomputable def diagRiem (d : ℕ) : RiemData d where
     intro i
     have := Real.neg_one_le_sin (x i)
     linarith
-  g_bdd := ⟨3, fun x v => by
+  g_exh := exh_of_bdd _ ⟨3, fun x v => by
     have : ∑ i, ∑ j, diagCoMetric i j x * v i * v j = ∑ i, (2 + Real.sin (x i)) * v i ^ 2 := by
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [Finset.sum_eq_single i]
