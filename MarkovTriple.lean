@@ -185,3 +185,8 @@ import MarkovTriple.BGL.Instances.Gibbs.FunctAlgebra
 import MarkovTriple.BGL.Instances.Gibbs.FunctPI
 import MarkovTriple.BGL.Instances.Gibbs.FunctFull
 import MarkovTriple.BGL.Instances.AxiomCheck
+import MarkovTriple.BGL.Theory.LSToPI
+import MarkovTriple.BGL.Theory.LogSobolevDimOne
+import MarkovTriple.BGL.Instances.Sphere.LSOptimal
+import MarkovTriple.BGL.Instances.Circle.Poincare
+import MarkovTriple.BGL.Instances.Circle.LSOne

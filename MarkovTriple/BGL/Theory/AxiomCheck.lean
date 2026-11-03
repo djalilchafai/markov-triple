@@ -9,6 +9,8 @@ import MarkovTriple.BGL.Theory.Convergence
 import MarkovTriple.BGL.Theory.LogSobolevMain
 import MarkovTriple.BGL.Theory.Tests
 import MarkovTriple.BGL.Theory.LogSobolevDim
+import MarkovTriple.BGL.Theory.LSToPI
+import MarkovTriple.BGL.Theory.LogSobolevDimOne
 
 /-! Axiom audit of `BGL/Theory` (the build log must show only `propext`, `Classical.choice`,
 `Quot.sound`). -/
@@ -62,3 +64,19 @@ import MarkovTriple.BGL.Theory.LogSobolevDim
 #print axioms MarkovTriple.BGL.FullTriple.logSobolev_of_CD_dim
 #print axioms MarkovTriple.BGL.CompactTriple.finiteDimInterpolation
 #print axioms MarkovTriple.BGL.CompactTriple.compact_logSobolev_dim
+-- (7) R15: LS => PI (BGL Prop. 5.1.3), case n = 1 of Thm 5.7.4 (BGL p. 272-273)
+#print axioms MarkovTriple.BGL.log_sq_lower
+#print axioms MarkovTriple.BGL.DiffusionTriple.Γ_one_left
+#print axioms MarkovTriple.BGL.DiffusionTriple.sq_integral_le_of_LS
+#print axioms MarkovTriple.BGL.DiffusionTriple.PI_of_LS
+#print axioms MarkovTriple.BGL.DiffusionTriple.not_PI_of_eigen_pos
+#print axioms MarkovTriple.BGL.DiffusionTriple.not_PI_of_eigen
+#print axioms MarkovTriple.BGL.CompactTriple.PI_of_LS
+#print axioms MarkovTriple.BGL.FullTriple.integral_Γ_le_of_PI
+#print axioms MarkovTriple.BGL.FullTriple.integral_exp_Γ₂_ge_one
+#print axioms MarkovTriple.BGL.FullTriple.tendsto_entE_of_PI
+#print axioms MarkovTriple.BGL.FullTriple.ent_le_fisher_of_PI
+#print axioms MarkovTriple.BGL.FullTriple.logSobolev_of_PI_finiteDim
+#print axioms MarkovTriple.BGL.CompactTriple.finiteDimInterpolation_one
+#print axioms MarkovTriple.BGL.CompactTriple.compact_logSobolev_one
+#print axioms MarkovTriple.BGL.CompactTriple.compact_LS_iff_PI_of_CD_zero_one
