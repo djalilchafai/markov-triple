@@ -1,0 +1,8 @@
+# Hostile audit: round 16, higher interior regularity (E3) and the `EllReg` glue (branch commits 1f302d8, 6cc337f)
+
+Independent auditor. **Result: no soundness defect, vacuity or misformalization.** C^∞ vs ω checked hard: `Sm` is the `∞` class; both `WeakDeriv` definitions use `((⊤:ℕ∞):WithTop ℕ∞)`; `EllReg`, `WeakHypo`, `F8` assert the `∞` class. `EllReg` (∀m ∃n ∀chain, n = m+d, chain equation ∫x_k·La dμ = ∫(x_k−x_{k+1})·a dμ) is neither too weak nor vacuous
+(`weakHypo_of_reg` takes x_k = (1−λ)^k f: algebra recomputed; `f8_of_reg` takes x_k = R^{n−k}Φ with `resolvent_weak`: real chains). `chain_sobolev` is checked line by line: P(j) ∧ Q(j) induction, `k+j ≤ n`, no circularity (the brief's naive Sobolev(2j) induction would have been circular; the author corrected it).
+E3: `comm_identity`, `hprime` re-derived by hand (differentiating wL u = ∂ᵢ(Pᵢ u)); signs forced by the Lean proof of `veryWeakSol_deriv`; `interior_sobolev` induction and witness bookkeeping; `sobolev_iff_hasSobL2` (`Iff.rfl` + induction); `veryWeakSol_of_smooth` (non-vacuity).
+`veryWeakSol_of_mu` (Z factor, `integral_μ`), a.e.-volume to a.e.-μ via `withDensity_absolutelyContinuous`; `IsProbabilityMeasure` is a real instance. Unconditional corollaries carry no residual WeakHypo/F8 argument; hypotheses are exactly `HessGe G.V ρ`/`Curv ρ`, `0<ρ` (LS), `0≤ρ` (gradient bound).
+Structural: frozen OK; no conflict markers; E3 and glue modules recompiled from scratch (0 errors/warnings); 32 axiom lines standard.
+Not checked in depth: previously audited modules; explicit d=1 comparison with the 1-D `GibbsData.weakHypo`/`f8` (only the shared generic definition and `Compat1D` checks). Findings: documentation/integration only (ERRATA R16-Glue-audit).

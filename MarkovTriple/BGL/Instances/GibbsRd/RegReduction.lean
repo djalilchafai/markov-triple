@@ -7,7 +7,7 @@ import MarkovTriple.BGL.Instances.Gibbs.RegSemigroup
 
 `EllData.EllReg` is the classical interior elliptic regularity of the weighted operator `L = w⁻¹ div (w a ∇ ·)`,
 in the Sobolev-free form of finite resolvent chains.  It is a **`Prop`** (a named hypothesis of the theorems below,
-never an axiom) and is **not proved here for `d ≥ 1`** (Mathlib has no Sobolev spaces / elliptic regularity;
+never an axiom) and is **not proved in this file** (UPDATE round 16: it IS proved for every `EllData d` in `EllRegProof.lean`, `ellReg`) (Mathlib has no Sobolev spaces / elliptic regularity;
 see `STATEMENTS_R16_Reg.md`).  Proved:
 
 * `weakHypo_of_reg : E.EllReg → E.WeakHypo` (BGL Def. 3.3.8);
@@ -31,7 +31,7 @@ variable (E : EllData d)
 /-- **Interior elliptic regularity, resolvent-chain form** (Evans §6.3 / Gilbarg–Trudinger Ch. 8 + Sobolev embedding).
 For every `m` there is a chain length `n` such that any `L²(μ)` chain `x₀,…,xₙ` with weak equations
 `(1 − L) x_k = x_{k+1}` (`k < n`, tested against `C_c^∞`) has a `C^m` representative of `x₀`.
-Named hypothesis (a `Prop`); NOT proved for `d ≥ 1`. -/
+Named hypothesis (a `Prop`) in this file; proved for every `d` in `EllRegProof.lean` (`ellReg`, round 16). -/
 def EllReg : Prop :=
   ∀ m : ℕ, ∃ n : ℕ, ∀ x : ℕ → (Rd d → ℝ), (∀ k ≤ n, MemLp (x k) 2 E.μ) →
     (∀ k < n, ∀ a ∈ A₀ d, ∫ y, x k y * E.L a y ∂E.μ = ∫ y, (x k y - x (k + 1) y) * a y ∂E.μ) →

@@ -27,10 +27,10 @@ namespace EllData
 variable (E : EllData d)
 
 /-- **Weak hypo-ellipticity** (BGL Def. 3.3.8) with `𝒜 = C^∞(ℝ^d)`: elliptic regularity of weak solutions of
-`L f = λ f` (quoted, not proved, by the book; Sect. 1.12).  Named hypothesis. -/
+`L f = λ f` (quoted, not proved, by the book; Sect. 1.12).  Named hypothesis here; proved for every `EllData d` as `weakHypo_unconditional` in `EllRegProof.lean` (round 16). -/
 def WeakHypo : Prop := E.diff.WeakHypoElliptic (Afull d)
 
-/-- **F8** (BGL Def. 3.3.1 (viii)): `P_t f ∈ 𝒜 = C^∞` (has a smooth representative) for `f ∈ 𝒜₀`.  Named hypothesis. -/
+/-- **F8** (BGL Def. 3.3.1 (viii)): `P_t f ∈ 𝒜 = C^∞` (has a smooth representative) for `f ∈ 𝒜₀`.  Named hypothesis here; proved for every `EllData d` as `f8_unconditional` in `EllRegProof.lean` (round 16). -/
 def F8 : Prop :=
   ∀ (t : ℝ≥0) (f : E.diff.A₀), ∃ g ∈ Afull d,
     (E.diff.semigroup t (E.diff.cls f) : Rd d → ℝ) =ᵐ[E.μ] g

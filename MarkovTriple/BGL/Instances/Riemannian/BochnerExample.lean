@@ -15,7 +15,7 @@ import MarkovTriple.BGL.Instances.Riemannian.BochnerChecks
 hence `Ric + ∇∇W = (4 e^{|x|²}(1+|x|²) − 2) δ ≥ 2 g` and, by `riem_curv_of_ricci`, `confRiem.Curv 2`
 (`confRiem_curv`): `CD(2,∞)` for the formula-defined `Γ₂` on a non-flat weighted Riemannian manifold.
 Under the named hypothesis `WeakHypo` the Poincaré inequality, spectral gap and `L²` decay follow
-(`confRiem_poincare` ...).  NOT claimed: `WeakHypo` itself, `F8`.
+(`confRiem_poincare` ...).  (UPDATE round 16: `WeakHypo` and `F8` are now proved for every `EllData d`, so the unconditional versions are in `Riemannian/Unconditional.lean`, e.g. `confRiem_poincare_unconditional`.)
 -/
 
 open MeasureTheory Filter Topology
@@ -219,7 +219,7 @@ end confRiem
 /-! ### The conditional Riemannian theorems on the non-flat example -/
 
 /-- **Poincaré inequality** for `(ℝ², e^{|x|²}δ, e^{-2e^{|x|²}} dμ_g)` with constant `1/2`, under the named hypothesis
-`WeakHypo` (Def. 3.3.8; not proved here). -/
+`WeakHypo` (Def. 3.3.8; not proved here, proved for every `EllData d` in `GibbsRd/EllRegProof.lean`, round 16). -/
 theorem confRiem_poincare (hH : confRiem.WeakHypo) : confRiem.riemDiff.PI (1 / 2) := by
   have := confRiem.riem_poincare (ρ := 2) (by norm_num) confRiem.curv hH
   simpa using this
