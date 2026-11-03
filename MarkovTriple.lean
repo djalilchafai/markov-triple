@@ -347,3 +347,13 @@ import MarkovTriple.BGL.Instances.GibbsRd.EllRegProof
 import MarkovTriple.BGL.Instances.GibbsRd.Unconditional
 import MarkovTriple.BGL.Instances.Riemannian.Unconditional
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Glue
+import MarkovTriple.BGL.Instances.GibbsRd.SobSharpML2
+import MarkovTriple.BGL.Instances.GibbsRd.SobSharpFourier
+import MarkovTriple.BGL.Instances.GibbsRd.SobSharpHat
+import MarkovTriple.BGL.Instances.GibbsRd.SobSharpBound
+import MarkovTriple.BGL.Instances.GibbsRd.SobSharpWeak
+import MarkovTriple.BGL.Instances.GibbsRd.SobSharpWgt
+import MarkovTriple.BGL.Instances.GibbsRd.SobSharpCore
+import MarkovTriple.BGL.Instances.GibbsRd.SobSharpMain
+import MarkovTriple.BGL.Instances.GibbsRd.EllRegSharp
+import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR17SobSharp
