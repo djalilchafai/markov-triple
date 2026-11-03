@@ -332,3 +332,5 @@ import MarkovTriple.BGL.Theory.Interp.EntropyIdentity
 import MarkovTriple.BGL.Theory.Interp.EntropyMain
 import MarkovTriple.BGL.Theory.Interp.EntropyApplications
 import MarkovTriple.BGL.Theory.Interp.EntropyAxiomCheck
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticFriedrichsEll
+import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Friedrichs
