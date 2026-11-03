@@ -130,3 +130,9 @@ Source: hostile audit of the frozen statements (see AUDIT_FROZEN.md, formerly Ma
 | id | severity | finding | resolution |
 |---|---|---|---|
 | E6 (R15-I) | INFO (scope/refinement) | `Theory/Interp/STATEMENTS_R15_Interp.md` fixed T1 (`strongInterpolation`), T2, T3 (`ibp_bdd`), T4 before the proofs.  Refinements recorded here, no statement weakened: (a) T1/T3/T4 are proved exactly as stated; (b) the auxiliary lemma `integrable_L_psi` carries the extra hypothesis `L g ∈ 𝒟(ℰ)` (`hLg2`, `hQLg`), satisfied by `g = P_τ f`; (c) T2 weak form (Jensen) NOT proved; (d) the targets G1 (`GradientInterpolation`), G3, G3' were NOT attempted/are not book statements (reasons in the statements file and `AUDIT_R15_INTERP_SELF.md`). | documented; pending independent audit |
+
+## Round 16 "Jensen": weak gradient bound (no frozen file changed)
+| id | severity | finding | resolution |
+|---|---|---|---|
+| R16-J1 | INFO (process) | `STATEMENTS_R16_Jensen.md` was written with the plan fixed but saved after the first compiling draft of `Jensen.lean`; statements were not changed afterwards. | Recorded here; the hostile audit should compare statements with the Lean theorems (identical hypotheses). |
+| R16-J2 | INFO (scope) | OU and Lebesgue weak bounds were already proved by their own routes; not re-derived through Jensen.  Gibbs `R^d` keeps explicit `WeakHypo`/`F8`.  `rho < 0` open. | See GAPS.md Round 16. |

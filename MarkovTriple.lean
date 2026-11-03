@@ -283,3 +283,7 @@ import MarkovTriple.BGL.Theory.Interp.Main
 import MarkovTriple.BGL.Instances.Gibbs.InterpMain
 import MarkovTriple.BGL.Instances.OU.InterpGeneric
 import MarkovTriple.BGL.Theory.Interp.AxiomCheck
+import MarkovTriple.BGL.Theory.Interp.Jensen
+import MarkovTriple.BGL.Theory.Interp.JensenGrad
+import MarkovTriple.BGL.Instances.Gibbs.JensenMain
+import MarkovTriple.BGL.Theory.Interp.AxiomCheckR16Jensen
