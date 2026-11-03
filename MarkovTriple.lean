@@ -216,6 +216,10 @@ import MarkovTriple.Stochastic.FellerKernel
 import MarkovTriple.Stochastic.CircleFeller
 import MarkovTriple.Stochastic.SphereFeller
 import MarkovTriple.Stochastic.FellerStandard
+import MarkovTriple.Stochastic.FellerMeasurable
+import MarkovTriple.Stochastic.FellerProcessBridge
+import MarkovTriple.Stochastic.ExactCK
+import MarkovTriple.Stochastic.AxiomCheckR17
 import MarkovTriple.Stochastic.AxiomCheckR16
 import MarkovTriple.Stochastic.AxiomCheckR15
 import MarkovTriple.BGL.Instances.Discrete.Obstruction
