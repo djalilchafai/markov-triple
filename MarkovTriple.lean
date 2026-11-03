@@ -246,6 +246,7 @@ import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Reg
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticDefs
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticDiffQuot
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticCaccioppoli
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticQ3
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Elliptic
 import MarkovTriple.BGL.Instances.Riemannian.Data
 import MarkovTriple.BGL.Instances.Riemannian.Main

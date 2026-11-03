@@ -50,3 +50,10 @@ OPEN (exact statements in `AUDIT_R16_ELLIPTIC_SELF.md`, section "What remains"):
 Q2 to `L²_loc`, density of `C_c^∞` in `H¹_c` (mollifiers), extension of the weak form to `H¹_c` test functions, E1 (weak Caccioppoli),
 E2 (`H²_loc`), E3 (higher regularity, differentiating the equation), E4 (`interior_regularity_step`, from `L²_loc` only: also the
 Friedrichs step `L²_loc ⇒ H¹_loc`).  `interior_regularity_step` is therefore NOT delivered.
+
+# CONTINUATION (coordinator request: full fix). Exact targets per batch, written before the proofs.
+Batch 1 (`EllipticQ3.lean`), Evans §5.8.2 Thm 3(i):
+ Q3a `abs_integral_mul_le`: `MemLp u 2, MemLp v 2 → |∫ u v| ≤ ‖u‖₂ ‖v‖₂` (as `(eLpNorm · 2 volume).toReal`).
+ Q3b `weakDeriv_translate`: `WeakDeriv f g i`, φ ∈ C_c^∞, c: `∫ f z · ∂ᵢφ(z−c) = −∫ g z · φ(z−c)`.
+ Q3c `norm_le_of_dual_bound`: `MemLp G 2`, `∀ φ ∈ C_c^∞, |∫ G φ| ≤ M ‖φ‖₂ → ‖G‖₂ ≤ M` (density `Lp.dense_hasCompactSupport_contDiff`).
+ Q3  `eLpNorm_dq_le`: `MemLp f 2, MemLp g 2, WeakDeriv f g i → eLpNorm (dq i h f) 2 volume ≤ eLpNorm g 2 volume` (all `h`).

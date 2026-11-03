@@ -1,6 +1,7 @@
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticDefs
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticDiffQuot
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticCaccioppoli
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticQ3
 
 /-! Axiom audit of the R16 elliptic half (only `propext`, `Classical.choice`, `Quot.sound`). -/
 open MarkovTriple.BGL.Instances.GibbsRd
@@ -28,3 +29,8 @@ open MarkovTriple.BGL.Instances.GibbsRd
 #print axioms EllData.caccioppoli
 #print axioms Elliptic.WeakDeriv.congr_ae
 #print axioms Elliptic.Sobolev.congr_ae
+#print axioms Elliptic.abs_integral_mul_le
+#print axioms Elliptic.weakDeriv_translate
+#print axioms Elliptic.norm_le_of_dual_bound
+#print axioms Elliptic.hasDerivAt_shift_integral
+#print axioms Elliptic.eLpNorm_dq_le
