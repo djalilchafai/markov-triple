@@ -10,3 +10,11 @@ G3 `EllData.ellReg : E.EllReg` (n := m + d; Sobolev embedding `sob_contDiff_rep`
    a.e. volume ⇒ a.e. μ by `withDensity_absolutelyContinuous`).
 G4 `EllData.weakHypo_unconditional : E.WeakHypo`, `EllData.f8_unconditional : E.F8`.
 No change to `EllReg`/`WeakHypo`/`F8` definitions.
+
+## (vi) Unconditional corollaries (files `GibbsRd/Unconditional.lean`, `Riemannian/Unconditional.lean`)
+Gibbs (`G : GibbsRdData d`, `HessGe G.V ρ`): `gibbsRd_poincare_unconditional (0<ρ) : PI (1/ρ)`, `gibbsRd_spectralGap_unconditional`,
+`gibbsRd_expDecay_unconditional`, `gibbsRdFull_unconditional : FullTriple (Rd d)`, `gibbsRdFull_CD_unconditional : CD ρ ∞`,
+`gibbsRdFull_poincare_unconditional`, `gibbsRdFull_logSobolev_unconditional (0<ρ) : LS (1/ρ) 0` (via `FullTriple.logSobolev_unconditional`),
+`gibbsRdFull_gradient_bound_noHyp (0 ≤ ρ)`, `gibbsRdFull_hasGradientBound_unconditional`.
+Riemannian (`R : RiemData d`, `R.Curv ρ`): `riem*_unconditional` same list; `confRiem_*_unconditional` with ρ = 2
+(PI (1/2), spectral gap 2, exp decay 2, CD 2 ∞, LS (1/2) 0, HasGradientBound 2).

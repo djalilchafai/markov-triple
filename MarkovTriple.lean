@@ -335,4 +335,6 @@ import MarkovTriple.BGL.Theory.Interp.EntropyAxiomCheck
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticFriedrichsEll
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Friedrichs
 import MarkovTriple.BGL.Instances.GibbsRd.EllRegProof
+import MarkovTriple.BGL.Instances.GibbsRd.Unconditional
+import MarkovTriple.BGL.Instances.Riemannian.Unconditional
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Glue
