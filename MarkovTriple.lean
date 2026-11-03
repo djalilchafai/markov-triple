@@ -189,6 +189,15 @@ import MarkovTriple.BGL.Theory.Extension.SeqLin
 import MarkovTriple.BGL.Theory.Extension.HessExtLin
 import MarkovTriple.BGL.Theory.Extension.Gamma2ELin
 import MarkovTriple.BGL.Theory.Extension.GammaELin
+import MarkovTriple.BGL.Theory.Extension.Converse
+import MarkovTriple.BGL.Theory.Extension.Core2Reduce
+import MarkovTriple.BGL.Instances.OU.Core2Tail
+import MarkovTriple.BGL.Instances.OU.Core2Cut
+import MarkovTriple.BGL.Instances.OU.Core2
+import MarkovTriple.BGL.Instances.Lebesgue.Core2Cut
+import MarkovTriple.BGL.Instances.Lebesgue.Core2
+import MarkovTriple.BGL.Instances.AxiomCheckCore2
+import MarkovTriple.BGL.Theory.Extension.AxiomCheckR15Converse
 import MarkovTriple.BGL.Theory.Extension.AxiomCheckR15
 import MarkovTriple.BGL.Theory.Strong.AxiomCheck
 import MarkovTriple.Stochastic.KernelRep
