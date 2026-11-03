@@ -51,5 +51,31 @@ Setting for everything: `T : FullTriple E` (F1–F10: in particular `𝒜₀ ⊂
 * `f ∈ 𝒜 ∩ 𝒟(L)` ⇒ `Γ₂^𝒜(f), Γ_𝒜(f) ∈ L¹`, `∫Γ₂^𝒜(f) = ∫(Lf)²`.
 * Converse (ergodicity S10): `f ∈ 𝒜 ∩ L²`, `Γ₂^𝒜(f), Γ_𝒜(f) ∈ L¹` ⇒ `[f] ∈ 𝒟(L)`.
 
+## Status at the end of round 14 (see also `BGL/AUDIT_R14_SELF.md`)
+
+| Item | Lean | Status |
+|---|---|---|
+| S1 `gammaE`, `gammaE_integral`, `gammaE_cls`, Leibniz `gammaE_mulE` | `ClosedGamma`, `ClosedProd` | proved |
+| 3.3.5 (i) | `adjoint_eq_L` (`ClosedDetect`) | proved |
+| 3.3.5 (ii) | `gammaE_eq_ΓA`, `gammaE_self_eq_ΓA` (`ClosedIdent`) | proved |
+| 3.3.5 (iii) | `mem_domain_of_formDomain` | proved |
+| 3.3.6 (i), (ii) | `mem_domain_of_ESA`, `mem_formDomain_of_ESA` (core: `mem_domain_of_adjoint`) | proved |
+| S3 Hessian algebra, (3.3.4), (3.3.7), (3.3.5) IBP | `Hessian`, `HessLin`, `IdentIBP` | proved |
+| 3.3.16 (iv), (v) (`L¹`) | `hessE_exists`, `hessE_tendsto` (`HessExt`) | proved (see E1) |
+| 3.3.16 (vi) | `hessE_mulE` | proved |
+| 3.3.16 (viii) | `hessE_ineq` | proved (see E2) |
+| 3.3.16 (vii) | - | OPEN |
+| 3.3.17 Hessian identification (`g,h ∈ 𝒜₀`; `g ∈ 𝒜∩𝒟(ℰ)`) | `hessE_eq_Hess`, `hessE_eq_Hess'` (`Ident`) | proved |
+| 3.3.17 `Γ(f) ∈ L¹`, `∫Γ(f) = −⟪Lf,f⟫` | `integrable_ΓA_of_domain` | proved |
+| 3.3.17 `Γ₂` identification, `Γ₂(f) ∈ L¹`, `∫Γ₂ = ∫(Lf)²`, converse under ergodicity | - | OPEN |
+
 ## Errata log
-(none yet)
+* E1 (round 14, weakening, recorded honestly).  S4 (iv)/(v): only the `L¹` convergence statement (jointly in
+  `f ∈ 𝒟(L)` graph-convergent and `g ∈ 𝒟(ℰ)` form-convergent, `h ∈ 𝒜₀`) is proved.  The `L²` statement of the first
+  bullet of (v) (for `g, h ∈ 𝒜₀`) is NOT proved (it follows the same route with the `L²` bound
+  `∫H(a)(g,h)² ≤ ‖Γ g‖_∞‖Γ h‖_∞ ∫(Γ₂(a) − ρΓ(a))`; not needed for 3.3.17 as formalized).
+* E2 (round 14, reformulation).  S4 (viii) is stated with explicit `L¹`-limits `γ₁, γ₂` of `Γ(a_k)`, `Γ₂(a_k)` along a
+  graph-convergent sequence (these are the `Γ, Γ₂` of Prop. 3.3.16 (i)–(iii) given by `gamma_limits`), and `Γ(g)` is
+  `gammaE g g`; no named extended `Γ₂/Γ` on `𝒟(L)` as a function was introduced.
+* E3 (round 14, equivalent formulation).  `FormConv` is convergence in the Hilbert space `K` of `𝒟(ℰ)` (norm
+  `(‖·‖₂² + ℰ)^{1/2}`), equivalent to "`cls a_k → u` in `L²` and `ℰ(u − a_k) → 0`".
