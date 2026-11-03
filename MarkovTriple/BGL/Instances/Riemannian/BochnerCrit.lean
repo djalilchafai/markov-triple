@@ -6,7 +6,7 @@ import MarkovTriple.BGL.Instances.Riemannian.BochnerRiem
 
 * `hessNorm_nonneg`: `‖H‖²_HS = Σ g^{ik} g^{jl} H_{ij} H_{kl} ≥ 0` for every array `H` (positive definiteness of `g^{ij}`:
   Gram decomposition `g^{ik} = Σ_s S_{si} S_{sk}` through the matrix square root);
-* `riem_curv_of_ricci` (the IMPLICATION only; the converse `Curv ρ ⇒ Ric+∇∇W ≥ ρ g` is open): if `ρ Σ g_{ij} ξ^iξ^j ≤ Σ (Ric + ∇∇W)_{ij} ξ^iξ^j` for all `x` and `ξ ∈ ℝ^d`, then `R.Curv ρ`,
+* `riem_curv_of_ricci` (the implication; the converse is `riem_ricci_of_curv`, round 17, `BochnerConverse.lean`): if `ρ Σ g_{ij} ξ^iξ^j ≤ Σ (Ric + ∇∇W)_{ij} ξ^iξ^j` for all `x` and `ξ ∈ ℝ^d`, then `R.Curv ρ`,
   i.e. `CD(ρ,∞)` on smooth functions (Def. 3.3.14) for the formula-defined `Γ₂`.
 -/
 

@@ -28,8 +28,8 @@ open MarkovTriple.BGL (pderiv pderiv₂ DiffusionTriple)
 variable {d : ℕ}
 
 /-- Data of a weighted elliptic diffusion operator in global coordinates on `ℝ^d`:
-`a = (g^{ij})` smooth, symmetric, positive definite, bounded above (so that the Euclidean cut-offs have bounded
-`Γ`: completeness), `w` smooth positive and integrable. -/
+`a = (g^{ij})` smooth, symmetric, positive definite, admitting a proper smooth function of `a`-gradient `≤ 1`
+(completeness; automatic if `a` is bounded above, `exh_of_bdd`), `w` smooth positive and integrable. -/
 structure EllData (d : ℕ) where
   /-- the matrix of second-order coefficients (the co-metric `g^{ij}`) -/
   a : Fin d → Fin d → Rd d → ℝ
@@ -38,7 +38,11 @@ structure EllData (d : ℕ) where
   a_smooth : ∀ i j, Sm (a i j)
   a_symm : ∀ i j x, a i j x = a j i x
   a_pos : ∀ (x v : Rd d), v ≠ 0 → 0 < ∑ i, ∑ j, a i j x * v i * v j
-  a_bdd : ∃ Λ : ℝ, ∀ (x v : Rd d), ∑ i, ∑ j, a i j x * v i * v j ≤ Λ * ∑ i, v i ^ 2
+  /-- **completeness criterion** (replaces, since round 17, the bound `a ≤ Λ`, which implies it: `exh_of_bdd`):
+  a smooth nonnegative proper function `ψ` (bounded sublevel sets) with `Γ(ψ) = Σ aᵢⱼ ∂ᵢψ ∂ⱼψ ≤ 1`
+  (a smoothed Riemannian distance from a point); BGL Def. 3.3.9 cut-offs are `s(2 − ψ/R)` -/
+  a_exh : ∃ ψ : Rd d → ℝ, Sm ψ ∧ (∀ x, 0 ≤ ψ x) ∧ (∀ c : ℝ, Bornology.IsBounded {x : Rd d | ψ x ≤ c}) ∧
+    ∀ x, ∑ i, ∑ j, a i j x * pderiv ψ i x * pderiv ψ j x ≤ 1
   w_smooth : Sm w
   w_pos : ∀ x, 0 < w x
   integrable : Integrable w volume

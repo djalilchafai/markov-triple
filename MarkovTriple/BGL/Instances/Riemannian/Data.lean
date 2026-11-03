@@ -8,8 +8,8 @@ BGL Sect. 1.11.3 (pp. 46–47) works with the **co-metric** `g = (g^{ij}(x))`, t
 `w_g = det(g)^{-1/2}` with respect to Lebesgue measure, the Laplace–Beltrami operator
 `Δ_g f = (1/w_g) Σᵢⱼ ∂ᵢ(w_g g^{ij} ∂ⱼ f)` and the weighted Laplacian `L = Δ_g − ∇W·∇` symmetric for
 `dμ = e^{-W} dμ_g` ((1.11.10)).  `RiemData d` records exactly this data in the single global chart `ℝ^d`:
-a smooth symmetric positive definite co-metric, bounded above (so the Riemannian metric `g_{ij} = (g^{ij})⁻¹` is
-bounded below by a multiple of the Euclidean one, which makes the chart complete) and a smooth weight `W` with
+a smooth symmetric positive definite co-metric admitting a proper smooth function of `g`-gradient `≤ 1` (the
+completeness criterion `g_exh`; round 17: this replaces the earlier hypothesis that `g^{ij}` be bounded above, which implies it) and a smooth weight `W` with
 `e^{-W} w_g` integrable.  `toEll` is the weighted elliptic data `a = g^{ij}`, `w = e^{-W} w_g` of
 `GibbsRd/Ell*`; hence `riemDiff := toEll.diff` and all of its theory.
 
@@ -37,8 +37,11 @@ structure RiemData (d : ℕ) where
   g_smooth : ∀ i j, Sm (g i j)
   g_symm : ∀ i j x, g i j x = g j i x
   g_posDef : ∀ x, (Matrix.of fun i j => g i j x).PosDef
-  /-- bounded above co-metric (metric bounded below by a multiple of the Euclidean one): completeness -/
-  g_bdd : ∃ Λ : ℝ, ∀ (x v : Rd d), ∑ i, ∑ j, g i j x * v i * v j ≤ Λ * ∑ i, v i ^ 2
+  /-- **completeness criterion** (round 17: replaces the former bound `g ≤ Λ`, which implies it, `exh_of_bdd`): a smooth
+  nonnegative proper function `ψ` (bounded sublevel sets) of `g`-gradient `Σ gᵢⱼ ∂ᵢψ ∂ⱼψ ≤ 1`, i.e. a smoothed
+  Riemannian distance; the standard criterion for completeness of the chart -/
+  g_exh : ∃ ψ : Rd d → ℝ, Sm ψ ∧ (∀ x, 0 ≤ ψ x) ∧ (∀ c : ℝ, Bornology.IsBounded {x : Rd d | ψ x ≤ c}) ∧
+    ∀ x, ∑ i, ∑ j, g i j x * pderiv ψ i x * pderiv ψ j x ≤ 1
   W_smooth : Sm W
   /-- the measure `e^{-W} dμ_g` is finite -/
   integrable : Integrable (fun x => Real.exp (-W x) *
@@ -93,7 +96,7 @@ noncomputable def toEll : EllData d where
   a_smooth := R.g_smooth
   a_symm := R.g_symm
   a_pos := R.quad_pos
-  a_bdd := R.g_bdd
+  a_exh := R.g_exh
   w_smooth := R.sm_wt
   w_pos := fun x => mul_pos (Real.exp_pos _) (R.wg_pos x)
   integrable := R.integrable
@@ -241,7 +244,7 @@ noncomputable def ofGibbs (G : GibbsRdData d) : RiemData d where
   g_symm := fun i j x => by simp [eq_comm]
   g_posDef := fun x => by
     rw [matrix_of_delta]; exact Matrix.PosDef.one
-  g_bdd := G.toEll.a_bdd
+  g_exh := G.toEll.a_exh
   W_smooth := G.smooth
   integrable := by
     simpa [matrix_of_delta] using G.integrable

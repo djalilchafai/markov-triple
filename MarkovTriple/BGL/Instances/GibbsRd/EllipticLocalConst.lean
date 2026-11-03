@@ -102,6 +102,46 @@ theorem local_ellipticity {K : Set (Rd d)} (hK : IsCompact K) :
               _ ≤ _ := mul_le_mul_of_nonneg_left h3 (sq_nonneg _)
   · exact ⟨1, one_pos, fun x hx => absurd ⟨x, hx⟩ hne⟩
 
+/-- **local upper bound** of the co-metric on compact sets (automatic from continuity; replaces the former global
+bound `a ≤ Λ`): for `K` compact there is `Λ` with `Σ aᵢⱼ vᵢ vⱼ ≤ Λ Σ vᵢ²` on `K`. -/
+theorem local_upper {K : Set (Rd d)} (hK : IsCompact K) :
+    ∃ Λ : ℝ, 0 ≤ Λ ∧ ∀ x ∈ K, ∀ v : Rd d, ∑ i, ∑ j, E.a i j x * v i * v j ≤ Λ * ∑ i, v i ^ 2 := by
+  classical
+  have hb : ∀ i j : Fin d, ∃ Bij : ℝ, ∀ x ∈ K, ‖E.a i j x‖ ≤ Bij := fun i j =>
+    hK.exists_bound_of_continuousOn (E.a_smooth i j).continuous.continuousOn
+  choose Bij hBij using hb
+  set B : ℝ := ∑ i, ∑ j, |Bij i j| with hB
+  have hB0 : 0 ≤ B := Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => abs_nonneg _
+  have hab : ∀ x ∈ K, ∀ i j, |E.a i j x| ≤ B := by
+    intro x hx i j
+    have h1 : |E.a i j x| ≤ |Bij i j| := by
+      have := hBij i j x hx
+      rw [Real.norm_eq_abs] at this
+      exact this.trans (le_abs_self _)
+    refine h1.trans ?_
+    have h2 : |Bij i j| ≤ ∑ j, |Bij i j| :=
+      Finset.single_le_sum (f := fun j => |Bij i j|) (fun _ _ => abs_nonneg _) (Finset.mem_univ j)
+    have h3 : ∑ j, |Bij i j| ≤ B :=
+      Finset.single_le_sum (f := fun i => ∑ j, |Bij i j|)
+        (fun _ _ => Finset.sum_nonneg fun _ _ => abs_nonneg _) (Finset.mem_univ i)
+    linarith
+  refine ⟨B * d, by positivity, fun x hx v => ?_⟩
+  calc ∑ i, ∑ j, E.a i j x * v i * v j ≤ ∑ i, ∑ j, B * (|v i| * |v j|) :=
+        Finset.sum_le_sum fun i _ => Finset.sum_le_sum fun j _ => by
+          calc E.a i j x * v i * v j ≤ |E.a i j x * v i * v j| := le_abs_self _
+            _ = |E.a i j x| * (|v i| * |v j|) := by rw [abs_mul, abs_mul]; ring
+            _ ≤ B * (|v i| * |v j|) :=
+              mul_le_mul_of_nonneg_right (hab x hx i j) (mul_nonneg (abs_nonneg _) (abs_nonneg _))
+    _ = B * (∑ i, |v i|) ^ 2 := by
+        rw [sq, Finset.sum_mul_sum, Finset.mul_sum]
+        exact Finset.sum_congr rfl fun i _ => by rw [Finset.mul_sum]
+    _ ≤ B * (d * ∑ i, |v i| ^ 2) := by
+        refine mul_le_mul_of_nonneg_left ?_ hB0
+        have := sq_sum_le_card_mul_sum_sq (s := (Finset.univ : Finset (Fin d))) (f := fun i => |v i|)
+        simpa using this
+    _ = B * d * ∑ i, v i ^ 2 := by
+        simp only [sq_abs]; ring
+
 end EllData
 
 end MarkovTriple.BGL.Instances.GibbsRd

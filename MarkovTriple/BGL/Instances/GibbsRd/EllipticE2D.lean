@@ -43,7 +43,7 @@ theorem energy_step {u h : Rd d → ℝ} {g : Fin d → Rd d → ℝ} (hu : LocL
     {lam m Wc Λ : ℝ} (hlam0 : 0 < lam) (hm0 : 0 < m)
     (hlam : ∀ y ∈ S, ∀ ξ : Rd d, lam * ∑ i, ξ i ^ 2 ≤ ∑ i, ∑ j, E.a i j y * ξ i * ξ j)
     (hm : ∀ y ∈ S, m ≤ E.w y) (hWc : ∀ y ∈ S, E.w y ≤ Wc)
-    (hΛ : ∀ y (v : Rd d), ∑ i, ∑ j, E.a i j y * v i * v j ≤ Λ * ∑ i, v i ^ 2)
+    (hΛ : ∀ y ∈ S, ∀ (v : Rd d), ∑ i, ∑ j, E.a i j y * v i * v j ≤ Λ * ∑ i, v i ^ 2)
     (hWΛ : 0 ≤ 2 * Wc * Λ)
     {Bz B : ℝ} (hB0 : 0 ≤ B) (hBz0 : 0 ≤ Bz) (hzb : ∀ x, |ζ x| ≤ Bz) (hzdb : ∀ j x, |pderiv ζ j x| ≤ Bz)
     (hDm : ∀ x ∈ tsupport ζ, ∀ i j, |dq k t (fun y => E.w y * E.a i j y) x| ≤ B)

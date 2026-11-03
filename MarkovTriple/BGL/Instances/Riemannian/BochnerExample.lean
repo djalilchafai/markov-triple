@@ -69,7 +69,7 @@ noncomputable def confRiem : RiemData 2 where
     rw [confG_diag, Matrix.posDef_diagonal_iff]
     intro i
     exact Real.exp_pos _
-  g_bdd := ⟨1, fun x v => by
+  g_exh := exh_of_bdd _ ⟨1, fun x v => by
     have : ∑ i, ∑ j, confG i j x * v i * v j = ∑ i, Real.exp (-qd x) * v i ^ 2 := by
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [Finset.sum_eq_single i]

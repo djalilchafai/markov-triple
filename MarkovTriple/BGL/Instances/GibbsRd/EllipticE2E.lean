@@ -49,15 +49,15 @@ theorem energy_bound {u h : Rd d → ℝ} {g : Fin d → Rd d → ℝ} (hu : Loc
   obtain ⟨lam, hlam0, hlam⟩ := E.local_ellipticity hSc
   obtain ⟨m0, hm0, hm0S⟩ := E.exists_dens_lower hSc
   obtain ⟨Wb, hWb⟩ := hSc.exists_bound_of_continuousOn E.w_smooth.continuous.continuousOn
-  obtain ⟨Λ0, hΛ0⟩ := E.a_bdd
+  obtain ⟨Λ0, hΛ00, hΛ0⟩ := E.local_upper hSc
   have hm : ∀ y ∈ S, E.Z * m0 ≤ E.w y := fun y hy => by
     have h1 := mul_le_mul_of_nonneg_left (hm0S y hy) E.Z_pos.le
     have h2 : E.Z * E.dens y = E.w y := by unfold EllData.dens; field_simp [E.Z_pos.ne']
     linarith
   have hWc : ∀ y ∈ S, E.w y ≤ max Wb 0 := fun y hy =>
     ((le_abs_self _).trans (by simpa using hWb y hy)).trans (le_max_left _ _)
-  have hΛ : ∀ y (v : Rd d), ∑ i, ∑ j, E.a i j y * v i * v j ≤ max Λ0 0 * ∑ i, v i ^ 2 := fun y v =>
-    (hΛ0 y v).trans (mul_le_mul_of_nonneg_right (le_max_left _ _)
+  have hΛ : ∀ y ∈ S, ∀ (v : Rd d), ∑ i, ∑ j, E.a i j y * v i * v j ≤ max Λ0 0 * ∑ i, v i ^ 2 :=
+    fun y hy v => (hΛ0 y hy v).trans (mul_le_mul_of_nonneg_right (le_max_left _ _)
       (Finset.sum_nonneg fun i _ => sq_nonneg _))
   have hWΛ : 0 ≤ 2 * max Wb 0 * max Λ0 0 :=
     mul_nonneg (mul_nonneg zero_le_two (le_max_right _ _)) (le_max_right _ _)
