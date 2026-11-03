@@ -184,4 +184,10 @@ import MarkovTriple.BGL.Instances.Gibbs.FunctESA
 import MarkovTriple.BGL.Instances.Gibbs.FunctAlgebra
 import MarkovTriple.BGL.Instances.Gibbs.FunctPI
 import MarkovTriple.BGL.Instances.Gibbs.FunctFull
+import MarkovTriple.BGL.Instances.Gibbs.RegAnalysis
+import MarkovTriple.BGL.Instances.Gibbs.RegCore
+import MarkovTriple.BGL.Instances.Gibbs.RegBridge
+import MarkovTriple.BGL.Instances.Gibbs.RegHypo
+import MarkovTriple.BGL.Instances.Gibbs.RegSemigroup
+import MarkovTriple.BGL.Instances.Gibbs.RegMain
 import MarkovTriple.BGL.Instances.AxiomCheck
