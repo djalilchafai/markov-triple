@@ -70,6 +70,13 @@ inequality, the `f²` and `ε → 0` steps, limit at `∞` (from the gap).
   (extension to `𝒟(L) × 𝒟(ℰ) × 𝒜₀`, product rule (vi)–(vii), inequality (3.3.7) extended (viii)); Prop 3.3.17
   (identification of the `𝒟(L)`-definition of `Γ₂`/`H` with the `𝒜`-definition on `𝒜 ∩ 𝒟(L)` and the converse under ergodicity;
   it needs the identification of `Γ` on `𝒜 ∩ 𝒟(ℰ)` with the closed-form extension, Props 3.3.5–3.3.6, also not in the surface).
+  **Round 14 update (`Theory/Extension/{Closed*,Hess*,Ident*,Gamma2Ident}.lean`, `Extension/STATEMENTS_R14.md`, `BGL/AUDIT_R14_SELF.md`):**
+  DONE (no `sorry`, standard axioms): `Γ` on `𝒟(ℰ)` (`gammaE`) with Leibniz rule; Props 3.3.5 (i)–(iii), 3.3.6 (i)–(ii); the
+  Hessian on `𝒜`, (3.3.4), (3.3.7) for all `f,g,h ∈ 𝒜` (`hessian_general_ineq`), (3.3.5) IBP; Prop 3.3.16 (iv), (v) (`L¹` form),
+  (vi), (viii) (`hessE`, `hessE_tendsto`, `hessE_mulE`, `hessE_ineq`); Prop 3.3.17: identification of `H` (`hessE_eq_Hess`,
+  `hessE_eq_Hess'`) and of `Γ₂` (`Γ₂_ext_eq`), `Γ(f), Γ₂(f) ∈ L¹`, `∫Γ₂(f) = ∫(Lf)²` (`integrable_Γ₂_of_domain`), and the symmetric
+  IBP `ibp_of_domain` (input (c) for Lemmas 3.3.20–3.3.21).  3.3.16 (vii) (`gamma2E`, `mulE_mem_domain`, `gamma2E_mulE`) and the `L²` form of (v) (`hess2_exists`) are also done (round 14b).
+  **Still open:** only the converse of 3.3.17 under ergodicity (spectral argument).
   Note Remark 3.3.15 (CD from `𝒜₀` to `𝒜`) is not needed: the frozen `FullTriple.CD` is already stated on all of `𝒜`.
 * **Finite-dimensional LSI constant `(n-1)/(ρ n)` (Thm 5.7.4, `1 < n < ∞`): DONE (round 14), conditional on a named structure.**
   `Theory/LogSobolevDimChain.lean`: (5.7.6) `Γ₂_exp`, (5.7.7)-(5.7.12) `integral_exp_L_Γ`, `integral_exp_sq_L`,
