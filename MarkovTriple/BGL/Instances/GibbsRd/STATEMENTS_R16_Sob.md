@@ -29,3 +29,9 @@ analysis) proves the embedding with `k = d` (resp. `k = m + d`): `W^{d,1}_loc �
 Plancherel/Fourier or the Gagliardo–Nirenberg `L²` interpolation; NOT done here (open, stated in the report).  Since the
 core interface `smooth_of_weak_all_orders` quantifies over all orders, and `EllReg` has `∃ n` depending on `m`, the weaker
 index suffices for the glue (`2n ≥ m + d`).
+
+## Status (end of round)
+All of S1-S5 proved, no `sorry`, standard axioms only.  Lean names: `abs_le_integral_mixD` (S1), `pd_mol_weak`, `iterD_mol`
+(S2), `sob_core` / `sob_core_contDiff` (core, compact support), `sob_continuous_rep`, `sob_contDiff_rep`, `sob_contDiff_rep_L2`
+(S3/S4), `smooth_of_weak_all_orders` (+ `_L1`) (S5; conclusion `ContDiff ℝ ((⊤:ℕ∞):WithTop ℕ∞)`).  Open: sharp index.
+Erratum R16-Sob-E1 (ω vs ∞) logged in ERRATA.md.

@@ -107,3 +107,9 @@ Source: hostile audit of the frozen statements (see AUDIT_FROZEN.md, formerly Ma
 | id | severity | finding | resolution |
 |---|---|---|---|
 | R16-1 | INFO (scope) | Goal was `EllData.WeakHypo`/`F8` as theorems for all `d`. Delivered: reduction of both to one Prop `EllData.EllReg` (finite resolvent-chain interior elliptic regularity), proved only for `d = 0`. Open: `EllReg` for `d >= 1` (needs Sobolev theory absent from Mathlib). | `GibbsRd/RegReduction.lean`, `STATEMENTS_R16_Reg.md`; `WeakHypo`/`F8` definitions untouched. |
+
+## Round 16 Sob: Sobolev embedding (parallel agent)
+| id | severity | finding | resolution |
+|---|---|---|---|
+| R16-Sob-E1 | HIGH (vacuity, caught before use) | The prescribed shared `WeakDeriv` wrote `ContDiff ℝ ⊤ φ`; in this Mathlib `⊤ : WithTop ℕ∞` is `ω` (analytic), and an analytic compactly supported function on `ℝ^d`, `d ≥ 1`, is 0, so the definition would be vacuous. | `GibbsRd/SobDefs.lean` uses `ContDiff ℝ ∞` (`∞ = ((⊤:ℕ∞):WithTop ℕ∞)`), same as the elliptic agent (erratum R16-E1); the `C^∞` conclusions (`smooth_of_weak_all_orders`) are stated with `((⊤:ℕ∞):WithTop ℕ∞)`. |
+| R16-Sob-E2 | INFO (scope) | Sharp Sobolev index (`k > d/2`, `k ≥ m+⌊d/2⌋+1`) NOT proved; proved `k = d`, resp. `m + d` (mixed-derivative `W^{d,1} ⊂ L^∞`), for `L¹_loc`, hence `L²_loc`. | `STATEMENTS_R16_Sob.md` (honest scope), `AUDIT_R16_SOB_SELF.md`. |

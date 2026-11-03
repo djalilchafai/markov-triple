@@ -246,3 +246,12 @@ import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Reg
 import MarkovTriple.BGL.Instances.Riemannian.Data
 import MarkovTriple.BGL.Instances.Riemannian.Main
 import MarkovTriple.BGL.Instances.Riemannian.AxiomCheck
+import MarkovTriple.BGL.Instances.GibbsRd.SobDefs
+import MarkovTriple.BGL.Instances.GibbsRd.SobOrthant
+import MarkovTriple.BGL.Instances.GibbsRd.SobWeak
+import MarkovTriple.BGL.Instances.GibbsRd.SobMollify
+import MarkovTriple.BGL.Instances.GibbsRd.SobConv
+import MarkovTriple.BGL.Instances.GibbsRd.SobCore
+import MarkovTriple.BGL.Instances.GibbsRd.SobCm
+import MarkovTriple.BGL.Instances.GibbsRd.SobMain
+import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Sob
