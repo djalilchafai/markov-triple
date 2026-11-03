@@ -103,7 +103,7 @@ G1/G3 remain open (hypotheses) for non-compact full triples.
 | Hessian product rule (3.3.4) `Γ₂(hk,g) = hΓ₂(k,g)+kΓ₂(h,g)+Γ(h,Γ(k,g))+Γ(k,Γ(h,g))−Γ(g,Γ(h,k))` | `FullTriple.Γ₂_mul_left` (`Strong/Calculus`) | proved (F6, `k=2`) |
 | Reinforced CD (3.3.6) `Γ(Γf) ≤ 4(Γ₂(f)−ρΓ(f))Γ(f)`, and `Γ(w,Γf)² ≤ 2K(f)(Γ(f)Γ(w)+Γ(f,w)²)` | `FullTriple.reinforced_cd`, `hessian_ineq` (`Strong/Reinforced`) | proved for every `FullTriple` with `CD(ρ,n)`, any `ρ ∈ ℝ` |
 | Lemma 3.3.21 pointwise step, Gronwall, `ε→0` | `FullTriple.strongD_ge`, `strong_integrated`, `strong_eps`, `strong_of_eps` | proved (`ρ ≥ 0`) |
-| **Thm 3.3.18** `√Γ(P_t f) ≤ e^{-ρt}P_t(√Γ f)` | `FullTriple.strong_gradient_bound` | conditional on `StrongInterpolation` (analytic differentiation of `Φ_ε(s)=∫P_sh ψ_ε(Γ P_{t-s}f)`), `ρ ≥ 0` |
+| **Thm 3.3.18** `√Γ(P_t f) ≤ e^{-ρt}P_t(√Γ f)` | `FullTriple.strong_gradient_bound` | now UNCONDITIONAL via `FullTriple.strongInterpolation` (round 15, `Theory/Interp`; was conditional on `StrongInterpolation`) (analytic differentiation of `Φ_ε(s)=∫P_sh ψ_ε(Γ P_{t-s}f)`), `ρ ≥ 0` |
 | `StrongInterpolation` for compact triples | `CompactTriple.strongInterpolation` (via `hasDerivAt_ucls`: `L²`-differentiability of `s↦[Γ(P_{t-s}f)]` by the energy estimate `‖Γ(a,b)‖₂² ≤ ‖Γb‖_∞ ℰ(a)`, `ℰ(a) ≤ ‖a‖‖La‖`) | proved; `compact_strong_gradient_bound`, `circle_/ouBCompact_/sphere_strong_gradient_bound` |
 | `StrongInterpolation` for OU | `ouFull_StrongInterpolation`, `ouFull_strong_gradient_bound` (`ρ = 1`) | proved (Mehler calculus + two Gaussian IBPs) |
 | Strong bound for Lebesgue (`ρ = 0`, infinite μ) | `Lebesgue.lebesgue_strong_gradient_bound` | proved by the heat kernel + Jensen (`StrongInterpolation` is not used) |
@@ -112,8 +112,9 @@ G1/G3 remain open (hypotheses) for non-compact full triples.
 | Prop 3.3.16 (i)–(iii) for `Γ`, `Γ₂` | `FullTriple.gamma_limits` (`Extension/Main`) | proved (see G5 for what is missing) |
 
 **Not done (exact gaps):**
+* **Update (round 15, `Theory/Interp`):** `StrongInterpolation` IS now discharged for every `FullTriple` (`FullTriple.strongInterpolation`, Lemmas 3.3.20–3.3.21).  The text below is the earlier state; what remains open is `GradientInterpolation` (not a book statement), `EntropyInterpolation` and `FiniteDimInterpolation` (and the weak Cor. 3.3.19 via Jensen).
 * `StrongInterpolation` / `GradientInterpolation` / `EntropyInterpolation` for a *general non-compact* `FullTriple`
-  (they remain hypotheses; discharged only for compact triples and OU, plus `HasGradientBound` and the strong bound for
+  (they remained hypotheses at the time of writing; discharged only for compact triples and OU, plus `HasGradientBound` and the strong bound for
   Lebesgue by kernels).  The obstruction is the one of G1: differentiation of `s ↦ ∫ P_s h · Θ(Γ(P_{t-s}f))` needs
   `L²`/`L¹`-regularity of the orbit in `𝒟(L)` *and* control of `Γ(P_s f)` in `L^∞` that the abstract `𝒜`, F1–F10 do not provide
   (for compact triples `𝒜 = 𝒜₀` gives it via `Γ(P_τ f) ≤ ‖Γ f‖_∞`).  A generic discharge would need the extended `Γ₂`/Hessian of
@@ -151,3 +152,12 @@ book: "very often true"); (c) the non-compact discharge of `GradientInterpolatio
 `BGL/AUDIT_R15_CORE2_SELF.md`): `core2_of_dense` reduces `Core2` to density of `(1−L)²𝒜₀` in `L²`; **unconditional converse** for
 compact triples (`CompactTriple.mem_domain_of_A`, trivial), OU (`ou_mem_domain_of_Γ₂`) and the Brownian triple (`lebesgue_mem_domain_of_Γ₂`).
 **Open (exact):** `Core2` for a general `FullTriple` and for the Gibbs triple (`gibbsFull_unconditional`).
+## Round 15 "Interp": the non-compact discharge of `StrongInterpolation` (files `Theory/Interp/*`, `Instances/Gibbs/InterpMain`, `Instances/OU/InterpGeneric`)
+Statements: `Theory/Interp/STATEMENTS_R15_Interp.md`; self-audit: `BGL/AUDIT_R15_INTERP_SELF.md`.
+* **G1' DISCHARGED for every `FullTriple`**: `FullTriple.strongInterpolation : T.CD ρ n → T.StrongInterpolation` (any `ρ`, `n`; no compactness, no converse of 3.3.17),
+  hence `FullTriple.strong_gradient_bound_unconditional` (Thm 3.3.18, `ρ ≥ 0`), `gibbsFull_strong_gradient_bound_unconditional` (`V'' ≥ ρ ≥ 0`),
+  `ouFull_strongInterpolation_generic`.  Route = book's Lemmas 3.3.20–3.3.21 with the "justified" differentiation made explicit (`L¹`/`L²` calculus).
+* **G1 (`GradientInterpolation`, `Φ' = 2∫P_sh Γ₂`)**: NOT a statement of the book (the book never differentiates `∫P_sh Γ(P_{t-s}f)`: `Γ(P_{t-s}f) ∈ L¹` only, not in `𝒟(ℰ)`);
+  it stays a hypothesis for non-compact triples.  The weak gradient bound (Cor. 3.3.19) for `ρ ≥ 0` would follow from `strong_gradient_bound_unconditional` + Jensen
+  `(P_t w)² ≤ P_t(w²)` (sub-Markov `P_t`): the Jensen lemma is NOT yet in the library (see AUDIT §4), so `HasGradientBound` for general non-compact triples is still open.
+* **G3, G3'**: not attempted in this stage (see `AUDIT_R15_INTERP_SELF.md` §4 for the exact missing analytic content: `L¹`-differentiation of `I(s) = ∫Γ(g_s)/g_s` and `I' = -2J`).
