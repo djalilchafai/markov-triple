@@ -283,3 +283,7 @@ import MarkovTriple.BGL.Theory.Interp.Main
 import MarkovTriple.BGL.Instances.Gibbs.InterpMain
 import MarkovTriple.BGL.Instances.OU.InterpGeneric
 import MarkovTriple.BGL.Theory.Interp.AxiomCheck
+import MarkovTriple.BGL.Theory.Interp.EntropyAnalysis
+import MarkovTriple.BGL.Theory.Interp.EntropyQuot
+import MarkovTriple.BGL.Theory.Interp.EntropyDeBruijn
+import MarkovTriple.BGL.Theory.Interp.EntropyAxiomCheck
