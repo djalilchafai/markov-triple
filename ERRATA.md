@@ -214,3 +214,11 @@ Source: hostile audit of the frozen statements (see AUDIT_FROZEN.md, formerly Ma
 | R18-2 | LOW (naming, statement unchanged) | B2 is proved as `cut_bounds` (uniform `K`) + `cut_vanish`; B4 as `memLp_grad_resolvent`, `memLp_hess_resolvent` (extra explicit args `hv ha hv2 hL`); `BddHess3.hessGe` shows `BddHess3 ⇒ ∃ ρ, HessGe V ρ`, so `gibbsRd_core2` needs ONLY `BddHess3`. `Core2Rd Cut`'s helper `final_arith` was renamed `core2rd_final_arith` (name clash with `EllipticE2C`). | none |
 | R18-3 | INFO (process) | Statements registered `proposed` in `frozen-manifest.json` before the proofs; a Status section was appended afterwards (manifest hash of this entry refreshed). | `check_frozen.py` OK |
 
+
+## Round 18 (stream A2): `Core2` for Gibbs without bounded `V'` (`MarkovTriple/BGL/Instances/Gibbs/STATEMENTS_R18_Core2.md`, audit `MarkovTriple/BGL/AUDIT_R18_CORE2.md`)
+| id | severity | finding | resolution |
+|---|---|---|---|
+| R18-1 | MEDIUM (supersedes R17-M1/R17-2 scope) | R17 proved `Core2` only under `BddJet` (`V'` bounded), where `V'' ≥ ρ` forces `ρ ≤ 0`; the converse of Prop. 3.3.17 was vacuous for `ρ > 0`. | `GibbsData.gibbsFull_core2_of_growHess` / `gibbs_mem_domain_of_Γ₂_growHess` (and `_bddHess`) hold under `GrowHess`: `|V''|, |V'''| ≤ C(1+|V'|)` (`V'` arbitrary), any `ρ`. Witnesses with `ρ > 0`: `cosGibbs` (`x²/2 + ½cos x`, `ρ = ½`, `¬BddJet`) and `quarGibbs` (`x⁴/4 + x²/2`, `ρ = 1`, `¬BddHess`). R17 theorems and files unchanged. Still open: `V''`, `V'''` outside `GrowHess`, general smooth `V`, `ℝ^d`. |
+| R18-2 | INFO (route) | The R17 audit's guess that a cut-off Bochner estimate is needed was right: it is (BE) `memLp_of_BE` (`f, f' - V'f ∈ L² ⇒ V'f ∈ L²`, uses `V'' ≥ -C(1+|V'|)`) and (Hardy) `memLp_of_hardy` (uses `V'' ≤ V'²/4 + B`), via the exact IBP `∫(P' - V'P)dμ = 0`, `P = η²V'f²`. | `Core2Weighted.lean`, `Core2WCut.lean`. |
+| R18-3 | LOW (statement generalisation, logged) | `STATEMENTS_R18_Core2.md` B0-B6 were stated for `BddHess` (`V'', V'''` bounded) and B1/B2 with constants; proved for the more general `GrowHess` with quantitative hypotheses (Status R18-D1/D2). | `BddHess`-versions kept as corollaries; no statement weakened. |
+| R18-4 | INFO (scope) | `Core2` for an arbitrary smooth `V` (equivalently ESA of `L²` on `C_c^∞`) is neither proved nor refuted. | documented in `AUDIT_R18_CORE2.md`, `Theory/GAPS.md`. |
