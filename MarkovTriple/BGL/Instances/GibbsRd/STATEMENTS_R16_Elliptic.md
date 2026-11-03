@@ -1,0 +1,89 @@
+# STATEMENTS R16 Elliptic (Armstrong method): elliptic half of interior regularity — written BEFORE the proofs
+
+Namespace `MarkovTriple.BGL.Instances.GibbsRd.Elliptic`; files `EllipticDefs.lean`, `EllipticDiffQuot.lean`, ...
+Textbook: Evans PDE §6.3 Thm 1 (interior H^2), Thm 2 (higher regularity), §5.8.2 Thm 3 (difference quotients);
+Gilbarg–Trudinger Thm 8.8, 8.10, Lemma 7.24.  `d` arbitrary (d = 0 allowed: ℝ^0 is a point).
+
+## D. Definitions
+D1 `WeakDeriv f g i` (shared text with the Sobolev agent): `LocallyIntegrable f ∧ LocallyIntegrable g ∧
+   ∀ φ, ContDiff ℝ (⊤:ℕ∞) φ → HasCompactSupport φ → ∫ f · ∂ᵢφ = −∫ g · φ`.
+   **Deviation (erratum R16-E1)**: the shared text writes `ContDiff ℝ ⊤ φ`; in current Mathlib `⊤ : WithTop ℕ∞` is `ω`
+   (ANALYTIC), and a compactly supported analytic function on ℝ^d (d ≥ 1) is 0, so the text as given makes the test clause
+   vacuous (every locally integrable g would be a weak derivative of every locally integrable f).  We use `C^∞`,
+   i.e. `ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) φ` (= `Sm φ` of `Calculus.lean`, Mathlib's `∞`).
+D2 `LocL2 f := ∀ K compact, MemLp f 2 (volume.restrict K)`.
+D3 `Sobolev : ℕ → (ℝ^d → ℝ) → Prop`: `Sobolev 0 f := LocL2 f`;
+   `Sobolev (k+1) f := LocL2 f ∧ ∀ i, ∃ g, WeakDeriv f g i ∧ Sobolev k g`  (all iterated weak partials up to order k+1 exist, are LocL2).
+
+## B. Basic calculus of D (proved in `EllipticDefs.lean`)
+B1 `LocL2 f → LocallyIntegrable f`.   B2 uniqueness `WeakDeriv f g i → WeakDeriv f g' i → g =ᵐ g'`.
+B3 `Sm f → WeakDeriv f (pderiv f i) i`.   B4 `WeakDeriv` is stable under a.e. modification, sums, scalars.
+B5 product rule: `Sm ψ → WeakDeriv f g i → WeakDeriv (ψ f) (ψ g + ∂ᵢψ f) i`.
+B6 `Sobolev` mono in k, closed under sums, scalars, `Sm` (all k), products with `Sm ψ`.
+
+## Q. Difference quotients (`EllipticDiffQuot.lean`)  [Evans §5.8.2 Thm 3(i)–(ii)]
+Q1 `dq i h f x := (f (x + h e_i) − f x)/h`; IBP `∫ dq i h f · φ = −∫ f · dq i (−h) φ` (f locally integrable, φ continuous compactly supp.).
+Q2 (global criterion) f ∈ L²(ℝ^d), hₙ → 0, hₙ ≠ 0, ‖dq i hₙ f‖₂ ≤ C ⇒ ∃ g ∈ L², WeakDeriv f g i, ‖g‖₂ ≤ C
+   (Hilbert-space weak sequential compactness; Evans Thm 3(ii)).
+Q3 (converse, if time) `WeakDeriv`-L² ⇒ ‖dq i h f‖₂ ≤ ‖∂ᵢf‖₂ (Evans Thm 3(i)).
+
+## E. Elliptic regularity — TARGET (NOT claimed delivered; see "Status")
+E0 Weak equation (`resolvent_weak`/`EllReg` form, μ = Z⁻¹ w dx, so the factor Z⁻¹ drops):
+   `WeakSol E u h := ∀ a ∈ A₀ d, ∫ u · (E.L a) · w dx = ∫ h · a · w dx`, `u`, `h` `LocL2`.
+E1 (interior H¹) hypothesis `Sobolev 1 u` (energy class) added: then for every smooth compactly supported ζ,
+   Caccioppoli `∫ ζ² Γ(u) w ≤ C(∫_{supp ζ} (u² + h²) w)`.
+E2 (interior H², Evans Thm 1): `WeakSol E u h`, `Sobolev 1 u`, `Sobolev 0 h` ⇒ `Sobolev 2 u`.
+E3 (Evans Thm 2): `Sobolev k h`, `Sobolev 1 u`, `WeakSol E u h` ⇒ `Sobolev (k+2) u`.
+E4 = `interior_regularity_step` (assignment): same with `Sobolev 1 u` REPLACED by `LocL2 u` only.
+   E4 needs in addition the L²_loc ⇒ H¹_loc step (Friedrichs mollifier commutator; see audit): NOT in Evans (Evans assumes u ∈ H¹).
+
+## C. Caccioppoli, SMOOTH solutions only (`EllipticCaccioppoli.lean`) — added during the work, same Armstrong discipline
+C1 `EllData.caccioppoli_identity`: `u, ζ` smooth, `ζ` compact support: `∫ w Γ(ζu,ζu) = −∫ w ζ² u Lu + ∫ w u² Γ(ζ,ζ)`.
+C2 `EllData.caccioppoli`: `∫ w ζ² Γ(u,u) ≤ −2 ∫ w ζ² u Lu + 4 ∫ w u² Γ(ζ,ζ)`   (Evans §6.3.1 Thm 1 Step 1; G–T (8.28)).
+   NOT claimed for `H¹_loc` weak solutions (needs density of `C_c^∞` in `H¹_c`).
+
+## Status at end of the round (honest)
+PROVED (Lean, 0 sorry, axioms propext/choice/Quot.sound): D1–D3, B1, B2, B3, B4 (add, const_mul only; no a.e.-congruence lemma),
+B5, B6 (`Sobolev.mono/add/of_smooth/smooth_mul`, `LocL2.*`), Q1 (`dq_ibp`, `dq_tendsto`, `memLp_dq`), Q2
+(`weakDeriv_of_bounded_dq`, with `weak_subseq`), C1, C2.
+OPEN (exact statements in `AUDIT_R16_ELLIPTIC_SELF.md`, section "What remains"): Q3 (derivative ⇒ bounded quotients), localisation/gluing of
+Q2 to `L²_loc`, density of `C_c^∞` in `H¹_c` (mollifiers), extension of the weak form to `H¹_c` test functions, E1 (weak Caccioppoli),
+E2 (`H²_loc`), E3 (higher regularity, differentiating the equation), E4 (`interior_regularity_step`, from `L²_loc` only: also the
+Friedrichs step `L²_loc ⇒ H¹_loc`).  `interior_regularity_step` is therefore NOT delivered.
+
+# CONTINUATION (coordinator request: full fix). Exact targets per batch, written before the proofs.
+Batch 1 (`EllipticQ3.lean`), Evans §5.8.2 Thm 3(i):
+ Q3a `abs_integral_mul_le`: `MemLp u 2, MemLp v 2 → |∫ u v| ≤ ‖u‖₂ ‖v‖₂` (as `(eLpNorm · 2 volume).toReal`).
+ Q3b `weakDeriv_translate`: `WeakDeriv f g i`, φ ∈ C_c^∞, c: `∫ f z · ∂ᵢφ(z−c) = −∫ g z · φ(z−c)`.
+ Q3c `norm_le_of_dual_bound`: `MemLp G 2`, `∀ φ ∈ C_c^∞, |∫ G φ| ≤ M ‖φ‖₂ → ‖G‖₂ ≤ M` (density `Lp.dense_hasCompactSupport_contDiff`).
+ Q3  `eLpNorm_dq_le`: `MemLp f 2, MemLp g 2, WeakDeriv f g i → eLpNorm (dq i h f) 2 volume ≤ eLpNorm g 2 volume` (all `h`).
+(Batch 1 erratum-note: `norm_le_of_dual_bound` takes the extra hypothesis `0 ≤ M`; without it the statement is false for `M < 0`, `G = 0`.)
+
+Batch 2 (`EllipticLocal.lean`), localisation, Evans §5.8.2 proof of Thm 3(ii) + cut-off exhaustion:
+ R2a `weakDeriv_of_local`: `LocL2 f`, `(∀ N, ∃ g, LocL2 g ∧ WeakDeriv (cut(N+1)·f) g i)` ⇒ `∃ g, LocL2 g ∧ WeakDeriv f g i`
+     (`cut R` of `Cutoff.lean`: smooth, compact support, `= 1` on `{|x|² ≤ R²}`).
+ R2b `weakDeriv_of_local_dq`: `LocL2 f`, `hₙ → 0`, `hₙ ≠ 0`, `∀ K compact ∃ C, ∀ n, eLpNorm (dq i (hₙ n) f) 2 (vol.restrict K) ≤ ofReal C`
+     ⇒ `∃ g, LocL2 g ∧ WeakDeriv f g i`.
+
+Batch 3 (`EllipticMollify.lean`): mollifiers (Evans §5.3.1 Thm 1 (iii)-(iv) / §C.5 Thm 7; G–T Lemma 7.2, 7.3, 7.4).
+ `moll ρ f x := ∫ t, ρ t * f (x − t)`, kernels `ρ n` smooth, compactly supported, ≥ 0, `∫ρ n = 1`, support ⊆ ball(0,1/(n+1)).
+ M0 `exists_mollifier`; M1 `moll` smooth (f loc. integrable), compactly supported when `f` is;
+ M2 `WeakDeriv f g j → pderiv (moll ρ f) j = moll ρ g`;
+ M3a `MemLp f 2 → MemLp (moll ρ f) 2 ∧ ∫ (moll ρ f)² ≤ ∫ f²` (Jensen + `integral_convolution`);
+ M3b `MemLp f 2 → ∫ (moll (ρ n) f − f)² → 0`  (density of `C_c` + uniform continuity);
+ M4 `tendsto_integral_mul_of_l2`: `k, v ∈ L²`, `∫ (aₙ − v)² → 0`, `aₙ ∈ L²` ⇒ `∫ k aₙ → ∫ k v`.
+Batch 4 (`EllipticWeakForm.lean`): weak form on `H¹_c` test functions (R4).
+ WF `EllData`, `u, gᵢ` with `WeakDeriv u gᵢ i` (`LocL2`), `h` `LocL2`, `W(E,u,h)`:
+ (a) `weakForm_of_veryWeak`: `∀ a ∈ A₀, ∫ w Σᵢⱼ aᵢⱼ gᵢ ∂ⱼa = −∫ h a w`;
+ (b) `weakForm_extend`: for `v` compactly supported, `MemLp v 2`, `WeakDeriv v vⱼ j`, `MemLp vⱼ 2`: `∫ w Σᵢⱼ aᵢⱼ gᵢ vⱼ = −∫ h v w`.
+
+Batch 5 (`EllipticE2Pre.lean`, `EllipticLocalConst.lean`): preliminaries of H² and glue items (targets fixed before proving).
+ D1 `weakDeriv_dq`: `WeakDeriv f g j → WeakDeriv (dq k t f) (dq k t g) j`.
+ D2 `dq_ibp_L2`: `LocL2 F, MemLp Ψ 2, cs Ψ → ∫ dq_h F · Ψ = −∫ F · dq_{−h} Ψ`;  `dq_local_bound`: `LocL2 f, LocL2 g, WeakDeriv f g i`, `K` compact ⇒ `∃ C, ∀ |t| ≤ 1, eLpNorm (dq i t f) 2 (vol.restrict K) ≤ ofReal C`.
+ G1 `EllData.locL2_of_memLp : MemLp f 2 E.μ → LocL2 f`;  G2 `EllData.local_ellipticity`: `K` compact ⇒ `∃ λ>0, ∀ x∈K, ∀ ξ, λ Σξᵢ² ≤ Σ aᵢⱼ ξᵢ ξⱼ`.
+
+## Status at end of the continuation (honest)
+PROVED additionally: Q3 (`eLpNorm_dq_le`), R2a/R2b (`weakDeriv_of_local`, `weakDeriv_of_local_dq`), M0-M4 (mollifiers incl. L² convergence),
+WF(a) `weakForm_of_veryWeak`, WF(b) `weakForm_extend` (weak form on compactly supported H¹ test functions), D1, D2, G1, G2.
+NOT DONE: E1 (weak Caccioppoli; only its smooth version), E2, E3, the L²_loc ⇒ H¹_loc step, `interior_regularity_step`.
+Exact plan and remaining statements: `AUDIT_R16_ELLIPTIC_SELF.md`, section 9.
