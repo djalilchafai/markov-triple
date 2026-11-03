@@ -217,3 +217,10 @@ Statements `Instances/SphereOpen/STATEMENTS_R17_Noncompact.md`; audit `BGL/AUDIT
 Closed: joint time-measurability and `MarkovProcessBridge` for Feller kernels (circle, zonal S³); sharp Sobolev `k > m + d/2` (all `d`; chain shortening only for `d ≥ 3`); converse of (1.16.8) and relaxed completeness (`a_exh`/`g_exh`), hyperbolic plane with `Curv ρ ↔ ρ ≤ 1`.
 Partial: `Core2` for 1-D Gibbs with bounded `V',V'',V'''` — only `ρ ≤ 0` (hypotheses contradict for `ρ > 0`, ERRATA R17-M1); open for general `V`, `R^d`, and for `ρ > 0` beyond OU. Exact Chapman–Kolmogorov without Feller: countable times only.
 NOT closed: non-compact finite-`n` CD instance (SphereOpen is cosmetic, ERRATA R17-M2/M3); non-compact Riesz–Markov extension; `ρ < 0` finite-`n` LSI (no such BGL theorem); multi-chart manifolds.
+
+## Round 18, Stream A3: `Core2` and the unconditional converse of Prop 3.3.17 for Gibbs measures on `ℝ^d`
+PROVED (`Instances/GibbsRd/Core2Rd*.lean`, `STATEMENTS_R18_Core2Rd.md`, `BGL/AUDIT_R18_CORE2RD.md`): for `G : GibbsRdData d` with `G.BddHess3` (`∂ᵢ∂ⱼV`, `∂ᵢ∂ⱼ∂ₖV` bounded; `∇V` NOT assumed bounded) `GibbsRdData.gibbsRd_core2 : G.gibbsRdFull_unconditional.Core2`, hence
+`gibbsRd_mem_domain_of_Γ₂` (converse of Prop 3.3.17) for every `ρ ∈ ℝ` with `HessGe V ρ`.  This class contains `ρ > 0` (it supersedes the vacuity of the 1-D `BddJet` class for `ρ > 0`, ERRATA R17-M1, but only in `ℝ^d`): `gaussData d` (`ρ=1`) and the non-Gaussian `cosData d`, `V = |x|²/2 + cos(x₀)/2` (`ρ = 1/2`).
+Proof: smooth resolvent solution via `ellReg`; `∇v, ∇²v ∈ L²` by cut-off Caccioppoli / cut-off Bochner (only `Hess V ≥ ρ` and `|Lχ_n| ≤ K` used); commutator expansions `L(χv)`, `L²(χv)` with uniformly bounded coefficients (scaling of `cut` + linear growth of `∇V`).
+**Still open (exact):** `Core2` for `GibbsRdData` with unbounded `Hess V` or `∇³V` (e.g. `V = |x|⁴`); for arbitrary `EllData d` / `RiemData d` (commutators involve `∂a` and `a` itself; not attempted); for arbitrary smooth `V` (≡ e.s.a. of `L²` on `C_c^∞`).  The 1-D case without `BddJet` is Stream A2's (not touched here).
+
