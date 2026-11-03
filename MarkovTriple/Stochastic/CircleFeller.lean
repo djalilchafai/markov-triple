@@ -17,7 +17,6 @@ open MeasureTheory ProbabilityTheory AddCircle
 
 open scoped NNReal ENNReal
 
-set_option linter.unusedSectionVars false
 
 namespace MarkovTriple.Stochastic.Circle
 

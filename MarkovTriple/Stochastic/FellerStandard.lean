@@ -13,7 +13,6 @@ For a `StandardTriple` (S10 ergodicity, S11 conservativeness) with finite `μ`, 
 open MeasureTheory ProbabilityTheory
 open scoped NNReal ENNReal
 
-set_option linter.unusedSectionVars false
 
 namespace MarkovTriple.Stochastic
 

@@ -25,7 +25,6 @@ without the Feller property (`AUDIT_R16_SELF.md`, item 7).
 open MeasureTheory ProbabilityTheory Filter Topology
 open scoped NNReal ENNReal
 
-set_option linter.unusedSectionVars false
 
 namespace MarkovTriple.Stochastic
 
@@ -41,12 +40,14 @@ lemma measure_ext_C {m n : Measure X} [IsFiniteMeasure m] [IsFiniteMeasure n]
     (h : ∀ f : C(X, ℝ), ∫ x, f x ∂m = ∫ x, f x ∂n) : m = n :=
   ext_of_forall_integral_eq_of_IsFiniteMeasure fun f => h f.toContinuousMap
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma integrable_cont (m : Measure X) [IsFiniteMeasure m] (f : C(X, ℝ)) : Integrable f m :=
   Integrable.of_bound f.continuous.aestronglyMeasurable ‖f‖
     (Filter.Eventually.of_forall fun x => ContinuousMap.norm_coe_le_norm f x)
 
 variable {μ : Measure X} [μ.IsOpenPosMeasure]
 
+omit [CompactSpace X] [T2Space X] [SecondCountableTopology X] [BorelSpace X] in
 lemma cont_bound_of_ae {g : C(X, ℝ)} {c : ℝ} (h : ∀ᵐ x ∂μ, |g x| ≤ c) : ∀ x, |g x| ≤ c := by
   by_contra hx
   push Not at hx
@@ -58,6 +59,7 @@ lemma cont_bound_of_ae {g : C(X, ℝ)} {c : ℝ} (h : ∀ᵐ x ∂μ, |g x| ≤ 
     simpa [not_le] using this
   exact absurd hnull hpos.ne'
 
+omit [CompactSpace X] [T2Space X] [SecondCountableTopology X] [BorelSpace X] in
 lemma cont_nonneg_of_ae {g : C(X, ℝ)} (h : ∀ᵐ x ∂μ, 0 ≤ g x) : ∀ x, 0 ≤ g x := by
   by_contra hx
   push Not at hx
@@ -80,12 +82,14 @@ variable {X : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X] [SecondCo
 def IsFeller : Prop :=
   ∀ (t : ℝ≥0) (f : C(X, ℝ)), ∃ g : C(X, ℝ), (T.semigroup t (clsC T.μ f) : X → ℝ) =ᵐ[T.μ] ⇑g
 
+omit [T2Space X] [SecondCountableTopology X] in
 /-- `|P_t [f]| ≤ ‖f‖` a.e. (positivity + sub-Markov). -/
 lemma semigroup_cls_abs_le (t : ℝ≥0) (f : C(X, ℝ)) :
     ∀ᵐ x ∂T.μ, |(T.semigroup t (clsC T.μ f) : X → ℝ) x| ≤ ‖f‖ :=
   psiOf_abs_le (P := T.semigroup t) (fun _ hu => T.semigroup_nonneg t hu)
     (fun u hu => T.semigroup_le_one t u hu) f
 
+omit [SecondCountableTopology X] in
 /-- **Feller criterion**: if a sup-norm dense set of continuous functions has continuous `P_t`-images
 (a.e.), then `P_t` is Feller (`P_t` is a sup-norm contraction on classes of continuous functions). -/
 theorem isFeller_of_dense [T.μ.IsOpenPosMeasure] (D : Set C(X, ℝ)) (hD : Dense D)
@@ -136,6 +140,7 @@ theorem isFeller_of_dense [T.μ.IsOpenPosMeasure] (D : Set C(X, ℝ)) (hD : Dens
   obtain ⟨g, hg⟩ := hf
   exact ⟨g, by rw [hg]; exact coeFn_clsC g⟩
 
+omit [TopologicalSpace X] [CompactSpace X] [T2Space X] [SecondCountableTopology X] [BorelSpace X] in
 /-- Mass identity: if `P_t 1 = 1` then `∫ P_t u = ∫ u` (symmetry of `P_t`). -/
 theorem integral_semigroup_eq (t : ℝ≥0) (h1 : T.semigroup t T.one2 = T.one2) (u : Lp ℝ 2 T.μ) :
     ∫ x, (T.semigroup t u : X → ℝ) x ∂T.μ = ∫ x, (u : X → ℝ) x ∂T.μ := by
@@ -161,10 +166,12 @@ variable [T.μ.IsOpenPosMeasure] (hF : IsFeller T)
 /-- The continuous representative of `P_t [f]`. -/
 noncomputable def fellerOp (t : ℝ≥0) (f : C(X, ℝ)) : C(X, ℝ) := Classical.choose (hF t f)
 
+omit [T2Space X] [SecondCountableTopology X] [T.μ.IsOpenPosMeasure] in
 lemma fellerOp_ae (t : ℝ≥0) (f : C(X, ℝ)) :
     (T.semigroup t (clsC T.μ f) : X → ℝ) =ᵐ[T.μ] ⇑(fellerOp hF t f) :=
   Classical.choose_spec (hF t f)
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma clsC_injective : Function.Injective (fun f : C(X, ℝ) => clsC T.μ f) := by
   intro f g hfg
   have h1 : (clsC T.μ f : X → ℝ) =ᵐ[T.μ] (clsC T.μ g : X → ℝ) := by
@@ -173,33 +180,40 @@ lemma clsC_injective : Function.Injective (fun f : C(X, ℝ) => clsC T.μ f) := 
     (coeFn_clsC f).symm.trans (h1.trans (coeFn_clsC g))
   exact DFunLike.coe_injective ((f.continuous.ae_eq_iff_eq T.μ g.continuous).1 h2)
 
+omit [T2Space X] [SecondCountableTopology X] [T.μ.IsOpenPosMeasure] in
 lemma fellerOp_cls (t : ℝ≥0) (f : C(X, ℝ)) :
     T.semigroup t (clsC T.μ f) = clsC T.μ (fellerOp hF t f) :=
   Lp.ext ((fellerOp_ae hF t f).trans (coeFn_clsC _).symm)
 
+omit [T2Space X] [SecondCountableTopology X] [T.μ.IsOpenPosMeasure] in
 lemma clsC_add (f g : C(X, ℝ)) : clsC T.μ (f + g) = clsC T.μ f + clsC T.μ g :=
   map_add (ContinuousMap.toLp 2 T.μ ℝ) _ _
 
+omit [T2Space X] [SecondCountableTopology X] [T.μ.IsOpenPosMeasure] in
 lemma clsC_smul (c : ℝ) (f : C(X, ℝ)) : clsC T.μ (c • f) = c • clsC T.μ f :=
   map_smul (ContinuousMap.toLp 2 T.μ ℝ) _ _
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma fellerOp_add (t : ℝ≥0) (f g : C(X, ℝ)) :
     fellerOp hF t (f + g) = fellerOp hF t f + fellerOp hF t g := by
   apply clsC_injective (T := T)
   show clsC T.μ _ = clsC T.μ _
   rw [← fellerOp_cls hF, clsC_add, map_add, fellerOp_cls hF, fellerOp_cls hF, clsC_add]
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma fellerOp_smul (t : ℝ≥0) (c : ℝ) (f : C(X, ℝ)) :
     fellerOp hF t (c • f) = c • fellerOp hF t f := by
   apply clsC_injective (T := T)
   show clsC T.μ _ = clsC T.μ _
   rw [← fellerOp_cls hF, clsC_smul, map_smul, fellerOp_cls hF, clsC_smul]
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma fellerOp_zero (f : C(X, ℝ)) : fellerOp hF 0 f = f := by
   apply clsC_injective (T := T)
   show clsC T.μ _ = clsC T.μ _
   rw [← fellerOp_cls hF, DiffusionTriple.semigroup_zero]; rfl
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma fellerOp_add_time (s t : ℝ≥0) (f : C(X, ℝ)) :
     fellerOp hF (s + t) f = fellerOp hF s (fellerOp hF t f) := by
   apply clsC_injective (T := T)
@@ -208,6 +222,7 @@ lemma fellerOp_add_time (s t : ℝ≥0) (f : C(X, ℝ)) :
   show T.semigroup s (T.semigroup t (clsC T.μ f)) = _
   rw [fellerOp_cls hF t f, fellerOp_cls hF]
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma fellerOp_nonneg (t : ℝ≥0) {f : C(X, ℝ)} (hf : 0 ≤ f) : ∀ x, 0 ≤ fellerOp hF t f x := by
   have hu : 0 ≤ᵐ[T.μ] (clsC T.μ f : X → ℝ) := by
     filter_upwards [coeFn_clsC (μ := T.μ) f] with x hx
@@ -217,6 +232,7 @@ lemma fellerOp_nonneg (t : ℝ≥0) {f : C(X, ℝ)} (hf : 0 ≤ f) : ∀ x, 0 �
   filter_upwards [this, fellerOp_ae hF t f] with x h1 h2
   rw [← h2]; exact h1
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma fellerOp_abs_le (t : ℝ≥0) (f : C(X, ℝ)) (x : X) : |fellerOp hF t f x| ≤ ‖f‖ := by
   refine cont_bound_of_ae (μ := T.μ) ?_ x
   filter_upwards [semigroup_cls_abs_le T t f, fellerOp_ae hF t f] with x h1 h2
@@ -231,11 +247,14 @@ noncomputable def fellerFun (t : ℝ≥0) (x : X) : C(X, ℝ) →L[ℝ] ℝ :=
     (fun f => by
       simpa [Real.norm_eq_abs] using fellerOp_abs_le hF t f x)
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma fellerFun_apply (t : ℝ≥0) (x : X) (f : C(X, ℝ)) : fellerFun hF t x f = fellerOp hF t f x := rfl
 
+omit [T2Space X] [SecondCountableTopology X] in
 lemma fellerFun_pos (t : ℝ≥0) (x : X) : ∀ f : C(X, ℝ), 0 ≤ f → 0 ≤ fellerFun hF t x f :=
   fun _ hf => fellerOp_nonneg hF t hf x
 
+omit [SecondCountableTopology X] in
 private lemma fellerMeasure_exists (t : ℝ≥0) (x : X) :
     ∃ m : Measure X, IsFiniteMeasure m ∧ ∀ f : C(X, ℝ), ∫ y, f y ∂m = fellerFun hF t x f :=
   exists_measure_of_pos _ (fellerFun_pos hF t x)
@@ -247,6 +266,7 @@ noncomputable def fellerMeasure (t : ℝ≥0) (x : X) : Measure X :=
 instance fellerMeasure_finite (t : ℝ≥0) (x : X) : IsFiniteMeasure (fellerMeasure hF t x) :=
   (Classical.choose_spec (fellerMeasure_exists hF t x)).1
 
+omit [SecondCountableTopology X] in
 lemma integral_fellerMeasure (t : ℝ≥0) (x : X) (f : C(X, ℝ)) :
     ∫ y, f y ∂(fellerMeasure hF t x) = fellerOp hF t f x :=
   (Classical.choose_spec (fellerMeasure_exists hF t x)).2 f
@@ -368,6 +388,7 @@ section Conservative
 variable (hcons : ∀ t, T.semigroup t T.one2 = T.one2)
 include hcons
 
+omit [T2Space X] [SecondCountableTopology X] in
 theorem fellerOp_one (t : ℝ≥0) : fellerOp hF t 1 = 1 := by
   apply clsC_injective (T := T)
   show clsC T.μ _ = clsC T.μ _

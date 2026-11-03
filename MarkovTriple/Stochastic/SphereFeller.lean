@@ -20,7 +20,6 @@ No heat-kernel formula is claimed: the kernels are the abstract Riesz-Markov ker
 open MeasureTheory ProbabilityTheory Set
 open scoped NNReal ENNReal Real
 
-set_option linter.unusedSectionVars false
 
 namespace MarkovTriple.Stochastic.Sphere
 
