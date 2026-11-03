@@ -37,6 +37,16 @@ E3 (Evans Thm 2): `Sobolev k h`, `Sobolev 1 u`, `WeakSol E u h` ⇒ `Sobolev (k+
 E4 = `interior_regularity_step` (assignment): same with `Sobolev 1 u` REPLACED by `LocL2 u` only.
    E4 needs in addition the L²_loc ⇒ H¹_loc step (Friedrichs mollifier commutator; see audit): NOT in Evans (Evans assumes u ∈ H¹).
 
-## Status (honest)
-Delivered targets: D, B1–B6, Q1, Q2 (as capacity permits; the final report lists what compiles).
-OPEN: E1–E4, Q3, localisation of Q2 (cutoff + gluing).
+## C. Caccioppoli, SMOOTH solutions only (`EllipticCaccioppoli.lean`) — added during the work, same Armstrong discipline
+C1 `EllData.caccioppoli_identity`: `u, ζ` smooth, `ζ` compact support: `∫ w Γ(ζu,ζu) = −∫ w ζ² u Lu + ∫ w u² Γ(ζ,ζ)`.
+C2 `EllData.caccioppoli`: `∫ w ζ² Γ(u,u) ≤ −2 ∫ w ζ² u Lu + 4 ∫ w u² Γ(ζ,ζ)`   (Evans §6.3.1 Thm 1 Step 1; G–T (8.28)).
+   NOT claimed for `H¹_loc` weak solutions (needs density of `C_c^∞` in `H¹_c`).
+
+## Status at end of the round (honest)
+PROVED (Lean, 0 sorry, axioms propext/choice/Quot.sound): D1–D3, B1, B2, B3, B4 (add, const_mul only; no a.e.-congruence lemma),
+B5, B6 (`Sobolev.mono/add/of_smooth/smooth_mul`, `LocL2.*`), Q1 (`dq_ibp`, `dq_tendsto`, `memLp_dq`), Q2
+(`weakDeriv_of_bounded_dq`, with `weak_subseq`), C1, C2.
+OPEN (exact statements in `AUDIT_R16_ELLIPTIC_SELF.md`, section "What remains"): Q3 (derivative ⇒ bounded quotients), localisation/gluing of
+Q2 to `L²_loc`, density of `C_c^∞` in `H¹_c` (mollifiers), extension of the weak form to `H¹_c` test functions, E1 (weak Caccioppoli),
+E2 (`H²_loc`), E3 (higher regularity, differentiating the equation), E4 (`interior_regularity_step`, from `L²_loc` only: also the
+Friedrichs step `L²_loc ⇒ H¹_loc`).  `interior_regularity_step` is therefore NOT delivered.

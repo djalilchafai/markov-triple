@@ -202,4 +202,25 @@ theorem Sobolev.smooth_mul : ∀ {k : ℕ} {f ψ : (Fin d → ℝ) → ℝ}, Sob
         Sobolev.add (Sobolev.smooth_mul hS hψ) (Sobolev.smooth_mul hf.mono (hψ.pderiv i))⟩⟩
 
 
+/-! ### B4': invariance under a.e. modification (needed to pass to continuous representatives) -/
+
+theorem WeakDeriv.congr_ae {f g f' g' : (Fin d → ℝ) → ℝ} {i : Fin d} (h : WeakDeriv f g i)
+    (hf : f =ᵐ[volume] f') (hg : g =ᵐ[volume] g') : WeakDeriv f' g' i := by
+  refine ⟨h.1.congr hf, h.2.1.congr hg, fun φ hφ hs => ?_⟩
+  have e1 : ∫ x, f' x * fderiv ℝ φ x (Pi.single i 1) = ∫ x, f x * fderiv ℝ φ x (Pi.single i 1) :=
+    integral_congr_ae (by filter_upwards [hf] with x hx; rw [hx])
+  have e2 : ∫ x, g' x * φ x = ∫ x, g x * φ x :=
+    integral_congr_ae (by filter_upwards [hg] with x hx; rw [hx])
+  rw [e1, e2]; exact h.2.2 φ hφ hs
+
+lemma LocL2.congr_ae {f f' : (Fin d → ℝ) → ℝ} (h : LocL2 f) (hf : f =ᵐ[volume] f') : LocL2 f' :=
+  fun K hK => (h K hK).ae_eq (ae_restrict_of_ae hf)
+
+theorem Sobolev.congr_ae :
+    ∀ {k : ℕ} {f f' : (Fin d → ℝ) → ℝ}, Sobolev k f → f =ᵐ[volume] f' → Sobolev k f'
+  | 0, _, _, h, hf => LocL2.congr_ae h hf
+  | k + 1, _, _, h, hf => ⟨LocL2.congr_ae h.1 hf, fun i => by
+      obtain ⟨g, hg, hS⟩ := h.2 i
+      exact ⟨g, hg.congr_ae hf (Filter.EventuallyEq.refl _ _), hS⟩⟩
+
 end MarkovTriple.BGL.Instances.GibbsRd.Elliptic

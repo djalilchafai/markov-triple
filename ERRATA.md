@@ -107,3 +107,8 @@ Source: hostile audit of the frozen statements (see AUDIT_FROZEN.md, formerly Ma
 | id | severity | finding | resolution |
 |---|---|---|---|
 | R16-1 | INFO (scope) | Goal was `EllData.WeakHypo`/`F8` as theorems for all `d`. Delivered: reduction of both to one Prop `EllData.EllReg` (finite resolvent-chain interior elliptic regularity), proved only for `d = 0`. Open: `EllReg` for `d >= 1` (needs Sobolev theory absent from Mathlib). | `GibbsRd/RegReduction.lean`, `STATEMENTS_R16_Reg.md`; `WeakHypo`/`F8` definitions untouched. |
+
+## Round 16 (elliptic half, `GibbsRd/Elliptic*.lean`)
+| id | severity | finding | resolution |
+|---|---|---|---|
+| R16-E1 | HIGH (for the shared definition) | The shared text `WeakDeriv` prescribed by the task uses `ContDiff ℝ ⊤ φ`. With current Mathlib `⊤ : WithTop ℕ∞` is `ω` (real-analytic; checked with `pp.all`: `Top.top (WithTop ENat)`), and a compactly supported real-analytic function on `ℝ^d`, `d ≥ 1`, is `0`; the test clause is then vacuous and every locally integrable `g` would be a weak derivative of every locally integrable `f`. | `Elliptic.WeakDeriv` uses `ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) φ` (= Mathlib `∞`, = `Sm φ`); otherwise the text is identical. The Sobolev-embedding agent / glue agent must use the same corrected form. |
