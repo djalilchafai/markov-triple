@@ -153,8 +153,10 @@ book: "very often true"); (c) the non-compact discharge of `GradientInterpolatio
 compact triples (`CompactTriple.mem_domain_of_A`, trivial), OU (`ou_mem_domain_of_Γ₂`) and the Brownian triple (`lebesgue_mem_domain_of_Γ₂`).
 **Open (exact):** `Core2` for a general `FullTriple`.  **Round 17 (Stream A, `Instances/Gibbs/Core2*.lean`, `STATEMENTS_R17_Core2.md`, `BGL/AUDIT_R17_GIBBSCORE2.md`):**
 `Core2` and hence the UNCONDITIONAL converse of 3.3.17 are PROVED for 1-D Gibbs triples with bounded `V', V'', V'''` (`GibbsData.gibbsFull_core2`,
-`GibbsData.gibbs_mem_domain_of_Γ₂`; non-vacuous: `V = √(1+x²)`, `sqrtGibbs_bddJet`).  **Still open (exact):** `Core2` for 1-D Gibbs with unbounded jets
-(e.g. `V = x⁴`; the natural next class, `|V'|,|V'''| ≲ 1+|x|`, `V''` bounded, needs a cut-off Bochner estimate for `v''`), for arbitrary smooth `V`
+`GibbsData.gibbs_mem_domain_of_Γ₂`; non-vacuous: `V = √(1+x²)`, `sqrtGibbs_bddJet`).  **Round 18 (Stream A2, `Instances/Gibbs/Core2W*.lean`, `STATEMENTS_R18_Core2.md`, `BGL/AUDIT_R18_CORE2.md`):** the cut-off Bochner/Hardy estimates
+`memLp_of_BE`, `memLp_of_hardy` give `Core2` and the UNCONDITIONAL converse of 3.3.17 for 1-D Gibbs with `|V''|,|V'''| ≤ C(1+|V'|)` (`GrowHess`; `V'` arbitrary, any `ρ`,
+including uniformly convex non-Gaussian: `GibbsData.gibbsFull_core2_of_growHess`, `gibbs_mem_domain_of_Γ₂_growHess`; witnesses `cosGibbs`, `quarGibbs`).
+**Still open (exact):** `Core2` for 1-D Gibbs outside `GrowHess` (e.g. `V''/|V'|` unbounded, as `e^{x²}`-type), for arbitrary smooth `V`
 (equivalent to e.s.a. of `L²` on `C_c^∞`, possibly false), and for `EllData`/`GibbsRdData` on `ℝ^d` (needs `∇²v ∈ L²(μ)` by a cut-off Bochner estimate and the
 `d`-dimensional commutators of `L²` with cut-offs).
 
@@ -215,5 +217,5 @@ Statements `Instances/SphereOpen/STATEMENTS_R17_Noncompact.md`; audit `BGL/AUDIT
 
 ## Round 17 merge: net status after independent hostile audits
 Closed: joint time-measurability and `MarkovProcessBridge` for Feller kernels (circle, zonal S³); sharp Sobolev `k > m + d/2` (all `d`; chain shortening only for `d ≥ 3`); converse of (1.16.8) and relaxed completeness (`a_exh`/`g_exh`), hyperbolic plane with `Curv ρ ↔ ρ ≤ 1`.
-Partial: `Core2` for 1-D Gibbs with bounded `V',V'',V'''` — only `ρ ≤ 0` (hypotheses contradict for `ρ > 0`, ERRATA R17-M1); open for general `V`, `R^d`, and for `ρ > 0` beyond OU. Exact Chapman–Kolmogorov without Feller: countable times only.
+Partial: `Core2` for 1-D Gibbs with bounded `V',V'',V'''` — only `ρ ≤ 0` (hypotheses contradict for `ρ > 0`, ERRATA R17-M1); **Round 18 (stream A2) extends this to `|V''|,|V'''| ≤ C(1+|V'|)` (`GrowHess`), any `ρ`, including `ρ > 0` (`x²/2 + ½cos x`, `x⁴/4 + x²/2`), see below**; still open for `V` outside `GrowHess`, general smooth `V`, `R^d`. Exact Chapman–Kolmogorov without Feller: countable times only.
 NOT closed: non-compact finite-`n` CD instance (SphereOpen is cosmetic, ERRATA R17-M2/M3); non-compact Riesz–Markov extension; `ρ < 0` finite-`n` LSI (no such BGL theorem); multi-chart manifolds.
