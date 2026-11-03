@@ -10,8 +10,10 @@ semigroup-free axioms of an extended algebra (`gibbs_preFull : PreFull G.gibbsDi
 that the triple is complete (Def. 3.3.9, `gibbsDiff_isComplete`), and the pointwise curvature inequality
 `Γ₂ ≥ ρ Γ` on all of `𝒜` for `V'' ≥ ρ` (`gibbs_CD_pointwise`, the content of BGL Def. 3.3.14 for `n = ∞`).
 It then specialises the general Props. 3.3.10/3.3.11 (`FunctESA.lean`) to the Gibbs triple (`gibbsDiff_esaProp`,
-`gibbsDiff_ergodic`).  NOT proved, only named as hypotheses: weak hypo-ellipticity (`WeakHypo`, Def. 3.3.8) and
-F8 (`P_t 𝒜₀ ⊂ 𝒜`, Def. 3.3.1 (viii)).
+`gibbsDiff_ergodic`).  The two regularity statements weak hypo-ellipticity (`WeakHypo`, Def. 3.3.8) and F8
+(`P_t 𝒜₀ ⊂ 𝒜`, Def. 3.3.1 (viii)) are defined here as `Prop`s; they are PROVED for every `GibbsData` in
+`RegHypo.lean` (`GibbsData.weakHypo`) and `RegSemigroup.lean` (`GibbsData.f8`) (round 15), and the unconditional
+corollaries are in `RegMain.lean`.
 -/
 
 open MeasureTheory Filter Topology
@@ -60,12 +62,13 @@ lemma pos_detect_aux {f : ℝ → ℝ} (hf : Sm f)
 
 /-- **Weak hypo-ellipticity** (BGL Def. 3.3.8) of the Gibbs triple with `𝒜 = C^∞(ℝ)`: every `f ∈ 𝒟(L*)`
 with `L* f = λ f` (Def. 3.1.9), for any `λ ∈ ℝ`, belongs to `𝒜`.  This is classical elliptic regularity for
-`f'' - V' f' = λ f` which the book quotes (Sect. 1.12) and does not prove; it stays a named hypothesis. -/
+`f'' - V' f' = λ f` which the book quotes (Sect. 1.12) and does not prove; proved in `RegHypo.lean`
+(`GibbsData.weakHypo`), so it is no longer a hypothesis. -/
 def WeakHypo : Prop := G.gibbsDiff.WeakHypoElliptic Afull
 
 /-- **F8 for the Gibbs triple** (BGL Def. 3.3.1 (viii)): `P_t f ∈ 𝒜 = C^∞(ℝ)` (as an `L²`-class it has a smooth
 representative) for `f ∈ 𝒜₀`.  Regularity of the Friedrichs semigroup; quoted, not proved, by the book
-(hypo-elliptic case, Sect. 1.12, p. 49); it stays a named hypothesis. -/
+(hypo-elliptic case, Sect. 1.12, p. 49); proved in `RegSemigroup.lean` (`GibbsData.f8`). -/
 def F8 : Prop :=
   ∀ (t : ℝ≥0) (f : G.gibbsDiff.A₀), ∃ g ∈ Afull,
     (G.gibbsDiff.semigroup t (G.gibbsDiff.cls f) : ℝ → ℝ) =ᵐ[G.μ] g

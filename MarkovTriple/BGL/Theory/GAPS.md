@@ -137,7 +137,8 @@ Proved (standard axioms only), general (any Diffusion Triple, abstract `𝒜`): 
 no F8, no gradient bound), and `gibbsFull : FullTriple ℝ` (under `WeakHypo` and `GibbsData.F8`) with `gibbsFull_CD`,
 `gibbs_CD_pointwise`, `gibbsFull_poincare`.
 `gibbsFull_logSobolev`, `gibbsFull_gradient_bound` are conditional on `EntropyInterpolation` / `GradientInterpolation`.
-**Exact missing inputs:** (a) weak hypo-ellipticity (`GibbsData.WeakHypo`: elliptic regularity of `f'' - V' f' = λ f`, λ = 0, 1 used; the book
+**ROUND 15 UPDATE: (a) and (b) below are now PROVED for every `GibbsData` (`GibbsData.weakHypo`, `GibbsData.f8`; files `Instances/Gibbs/Reg*.lean`, statements in `STATEMENTS_R15_Reg.md`); unconditional corollaries `gibbsFull_unconditional`, `gibbsFull_CD_unconditional`, `gibbs_poincare_unconditional`, etc. in `RegMain.lean`. Only (c) remains open.**
+**Exact missing inputs (historical, before round 15):** (a) weak hypo-ellipticity (`GibbsData.WeakHypo`: elliptic regularity of `f'' - V' f' = λ f`, λ = 0, 1 used; the book
 cites Sect. 1.12 without proof); (b) F8 (smoothness of the Friedrichs semigroup, Def 3.3.1 (viii), also unproved in the
 book: "very often true"); (c) the non-compact discharge of `GradientInterpolation`/`EntropyInterpolation`
 (Lemmas 3.3.20–3.3.21 with Props 3.3.16 (iv)–(viii), 3.3.17), the open generic gap above.

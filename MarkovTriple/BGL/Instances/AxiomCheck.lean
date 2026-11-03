@@ -1,6 +1,7 @@
 import MarkovTriple.BGL.Instances.Discrete.Obstruction
 import MarkovTriple.BGL.Instances.Gibbs.Convex
 import MarkovTriple.BGL.Instances.Gibbs.FunctFull
+import MarkovTriple.BGL.Instances.Gibbs.RegMain
 
 /-! Axiom audit of `BGL/Instances/Discrete` and `BGL/Instances/Gibbs` (the build log must show only `propext`,
 `Classical.choice`, `Quot.sound`). -/
@@ -45,3 +46,26 @@ import MarkovTriple.BGL.Instances.Gibbs.FunctFull
 #print axioms MarkovTriple.BGL.DiffusionTriple.ergodic_of_weakHypo
 #print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbs_preFull
 #print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbs_CD_pointwise
+#print axioms MarkovTriple.BGL.Instances.Gibbs.exists_antideriv
+#print axioms MarkovTriple.BGL.Instances.Gibbs.du_bois_reymond
+#print axioms MarkovTriple.BGL.Instances.Gibbs.integral_mul_eq_neg_integral_primitive
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.reg_core
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.reg_core_smooth
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.weak_reg_C1
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.weak_reg_gain
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.weakHypo
+#print axioms MarkovTriple.BGL.DiffusionTriple.resolvent_weak
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.resolvent_gain
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.resolvent_pow_reg
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.f8
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsDiff_esaProp_unconditional
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsDiff_ergodic_unconditional
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsStandard_unconditional
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsFull_unconditional
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsFull_CD_unconditional
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsFull_poincare_unconditional
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbs_poincare_unconditional
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbs_spectralGap_unconditional
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbs_expDecay_unconditional
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.weakHypo_premise_satisfiable
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.afull_rep_unique
