@@ -1,6 +1,7 @@
 import MarkovTriple.BGL.Theory.Extension.ClosedDetect
 import MarkovTriple.BGL.Theory.Extension.Hessian
 import MarkovTriple.BGL.Theory.Extension.HessExt2
+import MarkovTriple.BGL.Theory.Extension.Ident
 
 /-! Axiom audit of the round-14 results (`Extension/STATEMENTS_R14.md`). -/
 
@@ -23,3 +24,7 @@ import MarkovTriple.BGL.Theory.Extension.HessExt2
 #print axioms MarkovTriple.BGL.FullTriple.hessE_tendsto
 #print axioms MarkovTriple.BGL.FullTriple.hessE_mulE
 #print axioms MarkovTriple.BGL.FullTriple.hessE_ineq
+#print axioms MarkovTriple.BGL.FullTriple.int_mul_Hess
+#print axioms MarkovTriple.BGL.FullTriple.hessE_eq_Hess
+#print axioms MarkovTriple.BGL.FullTriple.hessE_eq_Hess'
+#print axioms MarkovTriple.BGL.FullTriple.integrable_ΓA_of_domain
