@@ -142,3 +142,10 @@ no F8, no gradient bound), and `gibbsFull : FullTriple ℝ` (under `WeakHypo` an
 cites Sect. 1.12 without proof); (b) F8 (smoothness of the Friedrichs semigroup, Def 3.3.1 (viii), also unproved in the
 book: "very often true"); (c) the non-compact discharge of `GradientInterpolation`/`EntropyInterpolation`
 (Lemmas 3.3.20–3.3.21 with Props 3.3.16 (iv)–(viii), 3.3.17), the open generic gap above.
+
+## Round 15 (Core2): converse of Prop 3.3.17
+
+`FullTriple.mem_domain_of_Γ₂` (converse, p. 162) is conditional on `FullTriple.Core2` (ERRATA R15-1).  Status (`Extension/STATEMENTS_R15_Core2.md`,
+`BGL/AUDIT_R15_CORE2_SELF.md`): `core2_of_dense` reduces `Core2` to density of `(1−L)²𝒜₀` in `L²`; **unconditional converse** for
+compact triples (`CompactTriple.mem_domain_of_A`, trivial), OU (`ou_mem_domain_of_Γ₂`) and the Brownian triple (`lebesgue_mem_domain_of_Γ₂`).
+**Open (exact):** `Core2` for a general `FullTriple` and for the Gibbs triple (`gibbsFull_unconditional`).
