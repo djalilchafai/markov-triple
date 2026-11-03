@@ -368,6 +368,54 @@ theorem tendsto_integral_mul {k v : (Fin d → ℝ) → ℝ} {a : ℕ → (Fin d
   refine squeeze_zero (fun n => norm_nonneg _) hb ?_
   simpa using hconv.const_mul (N2 k)
 
+/-- a function that is `L²_loc` and cut to a compact set is `L²` -/
+lemma LocL2.memLp_indicator {f : (Fin d → ℝ) → ℝ} (hf : LocL2 f) {S : Set (Fin d → ℝ)} (hS : IsCompact S) :
+    MemLp (S.indicator f) 2 volume :=
+  (memLp_indicator_iff_restrict hS.measurableSet).2 (hf S hS)
+
+/-- the weak derivative of a function vanishing outside `T := tsupport v` vanishes a.e. outside `T` -/
+lemma weakDeriv_zero_off {v g : (Fin d → ℝ) → ℝ} {j : Fin d} (h : WeakDeriv v g j) :
+    ∀ᵐ x, x ∉ tsupport v → g x = 0 := by
+  have hU : IsOpen (tsupport v)ᶜ := (isClosed_tsupport v).isOpen_compl
+  have := hU.ae_eq_zero_of_integral_contDiff_smul_eq_zero (f := g) (μ := (volume : Measure (Fin d → ℝ)))
+    (h.2.1.locallyIntegrableOn _) (fun φ hφ hs hsub => by
+      have e := h.2.2 φ hφ hs
+      have h0 : ∫ x, v x * fderiv ℝ φ x (Pi.single j 1) = 0 := by
+        refine integral_eq_zero_of_ae (Eventually.of_forall fun x => ?_)
+        by_cases hx : x ∈ tsupport φ
+        · simp [image_eq_zero_of_notMem_tsupport (show x ∉ tsupport v from hsub hx)]
+        · have : fderiv ℝ φ x = 0 := by
+            by_contra hne; exact hx (support_fderiv_subset ℝ hne)
+          simp [this]
+      have : ∫ x, g x * φ x = 0 := by linarith
+      simpa [smul_eq_mul, mul_comm] using this)
+  filter_upwards [this] with x hx hxT using hx hxT
+
+section
+variable {ρ : ℕ → (Fin d → ℝ) → ℝ}
+
+/-- support of a mollification -/
+lemma moll_eq_zero_off (hρ : IsMollSeq ρ) (n : ℕ) {f : (Fin d → ℝ) → ℝ} {T : Set (Fin d → ℝ)}
+    (hf : ∀ᵐ y, y ∉ T → f y = 0) {x : Fin d → ℝ} (hx : x ∉ Metric.cthickening 1 T) :
+    moll (ρ n) f x = 0 := by
+  unfold moll
+  refine integral_eq_zero_of_ae ?_
+  have hae : ∀ᵐ t : Fin d → ℝ, (x - t) ∉ T → f (x - t) = 0 :=
+    (Measure.measurePreserving_sub_left (volume : Measure (Fin d → ℝ)) x).quasiMeasurePreserving.ae hf
+  filter_upwards [hae] with t ht
+  by_cases hρt : ρ n t = 0
+  · simp [hρt]
+  · have hlt := hρ.support n t hρt
+    have hmem : x - t ∉ T := by
+      intro hT
+      refine hx (Metric.mem_cthickening_of_dist_le x (x - t) 1 T hT ?_)
+      rw [dist_eq_norm, sub_sub_cancel]
+      refine hlt.le.trans ?_
+      rw [div_le_one (by positivity)]; linarith [Nat.cast_nonneg (α := ℝ) n]
+    simp [ht hmem]
+
+end
+
 end
 
 end MarkovTriple.BGL.Instances.GibbsRd.Elliptic
