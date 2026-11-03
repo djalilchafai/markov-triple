@@ -34,3 +34,12 @@ probability measure, `BddGamma`; Gibbs / OU corollaries.  FiniteDimInterpolation
 after E3.
 
 Out of scope here: rho<0; infinite mu.
+
+## Status (appended after the proofs; statements above unchanged, see ERRATA R16-E1..E3)
+* E1 PROVED: `FullTriple.entE_continuousOn`, `entI_continuousOn`, `hasDerivAt_entE` (`EntropyDeBruijn.lean`; finite `μ`, no `CD`).
+* E2 PROVED as analysis: `continuous_integral_div`, `hasDerivAt_integral_div`, `hasDerivAt_integral_smooth`, `continuous_integral_smooth`
+  (`EntropyQuot.lean`, `EntropyAnalysis.lean`).
+* E3 PROVED: `FullTriple.entropyInterpolation` (`EntropyMain.lean`), via `entI_eq_neg_pair`/`hasDerivAt_entI_pair` (`EntropyFisher.lean`),
+  `Γ₂_comp` (`EntropyChain.lean`), `fisher_alg` (`EntropyIdentity.lean`), `fisherHyp` (`EntropyMain.lean`).  `BddGamma` not needed (R16-E1).
+* E4: `logSobolev_unconditional`, `logSobolev_domain_unconditional`, `gibbsFull_logSobolev_unconditional` PROVED (`EntropyApplications.lean`);
+  `FiniteDimInterpolation.bdd` PROVED (`finiteDim_bdd`); `ext` NOT proved (reduction `finiteDimInterpolation_of_ext`, `logSobolev_dim_of_ext`).

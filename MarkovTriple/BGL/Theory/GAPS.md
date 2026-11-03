@@ -161,3 +161,11 @@ Statements: `Theory/Interp/STATEMENTS_R15_Interp.md`; self-audit: `BGL/AUDIT_R15
   it stays a hypothesis for non-compact triples.  The weak gradient bound (Cor. 3.3.19) for `ρ ≥ 0` would follow from `strong_gradient_bound_unconditional` + Jensen
   `(P_t w)² ≤ P_t(w²)` (sub-Markov `P_t`): the Jensen lemma is NOT yet in the library (see AUDIT §4), so `HasGradientBound` for general non-compact triples is still open.
 * **G3, G3'**: not attempted in this stage (see `AUDIT_R15_INTERP_SELF.md` §4 for the exact missing analytic content: `L¹`-differentiation of `I(s) = ∫Γ(g_s)/g_s` and `I' = -2J`).
+
+## Round 16 "Entropy": G3 discharged; G3' reduced to `ext` (files `Theory/Interp/Entropy*.lean`)
+Statements: `Theory/Interp/STATEMENTS_R16_Entropy.md`; audit: `BGL/AUDIT_R16_ENTROPY_SELF.md`; errata R16-E1..E3.
+* **G3 DISCHARGED**: `FullTriple.entropyInterpolation : T.CD ρ n → 0 ≤ ρ → [IsFiniteMeasure T.μ] → T.EntropyInterpolation` for every (non-compact) `FullTriple`.
+  Hence **unconditional LSI** `FullTriple.logSobolev_unconditional` (`LS(1/ρ,0)`, probability measure, `CD(ρ,n)`, `ρ>0`), `logSobolev_domain_unconditional`,
+  `GibbsData.gibbsFull_logSobolev_unconditional` (`V'' ≥ ρ > 0`).  Finite `μ` is necessary (otherwise `entE` is junk), `ρ ≥ 0` used for `Γ(P_tφ)` bounded.
+* **G3' (`FiniteDimInterpolation κ`)**: field `bdd` PROVED (`finiteDim_bdd`).  Field `ext` (BGL p. 272) still open; `finiteDimInterpolation_of_ext`, `logSobolev_dim_of_ext`
+  reduce Thm 5.7.4 for non-compact triples to that single statement.  Exact remainder: AUDIT_R16_ENTROPY_SELF.md §4.
