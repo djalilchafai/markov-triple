@@ -114,13 +114,17 @@ Audit (book statements, BGL ch. 3): Thm 3.3.18 / Cor 3.3.19 use a Diffusion Trip
 Prop 3.3.11 (completeness + connexity + weak hypo-ellipticity, Def 3.3.8).  Ergodicity S10: Prop 3.3.10.
 S11: finite μ + ESA (`conservative_of_esa`); Thm 3.3.23 is not needed.  Poincaré: only integrated Γ₂, ESA, S10.
 
-Proved (standard axioms only): `ibp_sm` (F7 on `C^∞`), `cutoff_ineq`/`cutoff_conclusion` (the cut-off computation of
-Prop 3.2.1), `gibbsDiff_esaProp` (needs `WeakHypoEllipticAt 1`), `gibbsDiff_ergodic` (needs `WeakHypoEllipticAt 0`),
-`gibbs_integral_Γ₂` (3.3.8), `gibbs_integrated_CD`, **`gibbs_poincare`** (`PI(1/ρ)`), `gibbs_spectralGap`,
-`gibbs_expDecay` (all under `WeakHypoEllipticAt 0/1` only, no F8, no gradient bound), and `gibbsFull : FullTriple ℝ`
-(under `WeakHypoEllipticAt 0/1` and `GibbsData.F8`) with `gibbsFull_CD`.
+Proved (standard axioms only), general (any Diffusion Triple, abstract `𝒜`): `PreFull` (the semigroup-free F1, F2, F4–F7, F9),
+`PreFull.cutoff_estimate`/`gradient_eq_zero` (the cut-off computation of Prop 3.2.1), `DiffusionTriple.ESAProp_of_weakHypo`
+(Prop 3.3.11), `DiffusionTriple.ergodic_of_weakHypo` (Prop 3.3.10).  **Deviation, Prop 3.3.10:** the book writes
+`0 = ∫ f Lf = -∫ Γ(f)` for `f ∈ 𝒟(L) ∩ 𝒜`, an integration by parts beyond F7 (`g ∈ 𝒜₀`); the library instead gets
+`Γ(f) = 0` from the Prop 3.2.1 cut-off computation (needs completeness).  Gibbs: `ibp_sm` (F7 on `C^∞`), `gibbs_preFull`,
+`gibbsDiff_esaProp`, `gibbsDiff_ergodic` (both need `WeakHypo`, Def 3.3.8), `gibbs_integral_Γ₂` (3.3.8),
+`gibbs_integrated_CD`, **`gibbs_poincare`** (`PI(1/ρ)`), `gibbs_spectralGap`, `gibbs_expDecay` (all under `WeakHypo` only,
+no F8, no gradient bound), and `gibbsFull : FullTriple ℝ` (under `WeakHypo` and `GibbsData.F8`) with `gibbsFull_CD`,
+`gibbs_CD_pointwise`, `gibbsFull_poincare`.
 `gibbsFull_logSobolev`, `gibbsFull_gradient_bound` are conditional on `EntropyInterpolation` / `GradientInterpolation`.
-**Exact missing inputs:** (a) weak hypo-ellipticity (elliptic regularity of `f'' - V' f' = λ f`, λ = 0, 1; the book
+**Exact missing inputs:** (a) weak hypo-ellipticity (`GibbsData.WeakHypo`: elliptic regularity of `f'' - V' f' = λ f`, λ = 0, 1 used; the book
 cites Sect. 1.12 without proof); (b) F8 (smoothness of the Friedrichs semigroup, Def 3.3.1 (viii), also unproved in the
 book: "very often true"); (c) the non-compact discharge of `GradientInterpolation`/`EntropyInterpolation`
 (Lemmas 3.3.20–3.3.21 with Props 3.3.16 (iv)–(viii), 3.3.17), the open generic gap above.

@@ -1,5 +1,5 @@
 import Mathlib
-import MarkovTriple.BGL.Instances.Gibbs.FunctESA
+import MarkovTriple.BGL.Instances.Gibbs.FunctAlgebra
 import MarkovTriple.BGL.Theory.Poincare
 
 /-!
@@ -16,7 +16,7 @@ BGL, Prop. 4.8.3 / Cor. 4.8.2 (route recorded in `Theory/Poincare.lean`): for a 
 Steps 1–2 are proved here for the Gibbs triple without any semigroup input (`gibbs_integrated_CD`).
 Step 3 needs F10 and S10, which the book obtains from weak hypo-ellipticity + completeness
 (`gibbsDiff_esaProp`, `gibbsDiff_ergodic`); hence the Poincaré theorem below is stated under the
-explicit hypotheses `WeakHypoEllipticAt 1`, `WeakHypoEllipticAt 0` (BGL Def. 3.3.8) and nothing else.
+explicit hypothesis `WeakHypo` (BGL Def. 3.3.8) and nothing else.
 It needs neither F8 (`P_t 𝒜₀ ⊂ 𝒜`) nor any gradient bound.
 -/
 
@@ -30,8 +30,6 @@ namespace MarkovTriple.BGL.Instances.Gibbs
 
 namespace GibbsData
 variable (G : GibbsData)
-
-instance : IsProbabilityMeasure G.gibbsDiff.μ := (inferInstance : IsProbabilityMeasure G.μ)
 
 /-- `Γ₂` of the Gibbs triple as the explicit combination of test functions. -/
 lemma gibbsDiff_Γ₂_eq_comb {f : ℝ → ℝ} (hf : f ∈ OA₀) :
@@ -105,13 +103,13 @@ theorem gibbs_integrated_CD_cls {ρ : ℝ} (hρ : ∀ x, ρ ≤ deriv (deriv G.V
 /-- **Poincaré inequality for the Gibbs measure `e^{-V}dx` with `V'' ≥ ρ > 0`**, constant `1/ρ`
 (spectral gap `ρ`): `Var_μ(f) ≤ ρ⁻¹ ∫ f'² dμ` for all `f ∈ C_c^∞(ℝ)`.  Book route (BGL Cor. 4.8.2,
 Prop. 4.8.3) from integrated `Γ₂`, `Γ₂ ≥ ρ Γ`, ESA and ergodicity.  The only analytic input not proved
-is the elliptic regularity `WeakHypoEllipticAt λ` (BGL Def. 3.3.8) for `λ = 1, 0`, through which the
+is the elliptic regularity `WeakHypo` (BGL Def. 3.3.8), through which the
 book obtains ESA (Prop. 3.2.1) and ergodicity (Prop. 3.3.10); no semigroup regularity is used. -/
 theorem gibbs_poincare {ρ : ℝ} (hρpos : 0 < ρ) (hρ : ∀ x, ρ ≤ deriv (deriv G.V) x)
-    (h1 : G.WeakHypoEllipticAt 1) (h0 : G.WeakHypoEllipticAt 0) :
+    (hH : G.WeakHypo) :
     G.gibbsDiff.PI (1 / ρ) := by
   refine ⟨(inferInstance : IsProbabilityMeasure G.gibbsDiff.μ), by positivity, fun f hf => ?_⟩
-  have h := DiffusionTriple.rho_var_le_of G.gibbsDiff (G.gibbsDiff_esaProp h1) (G.gibbsDiff_ergodic h0)
+  have h := DiffusionTriple.rho_var_le_of G.gibbsDiff (G.gibbsDiff_esaProp hH) (G.gibbsDiff_ergodic hH)
     (fun a => G.gibbs_integrated_CD_cls hρ a) hf
   show ProbabilityTheory.variance f G.gibbsDiff.μ ≤ 1 / ρ * ∫ x, G.gibbsDiff.Γ f f x ∂G.gibbsDiff.μ
   rw [one_div, inv_mul_eq_div, le_div_iff₀ hρpos]
@@ -119,18 +117,18 @@ theorem gibbs_poincare {ρ : ℝ} (hρpos : 0 < ρ) (hρ : ∀ x, ρ ≤ deriv (
 
 /-- **Spectral gap `ρ` of the Gibbs semigroup** (Hilbert form, from the Poincaré inequality). -/
 theorem gibbs_spectralGap {ρ : ℝ} (hρpos : 0 < ρ) (hρ : ∀ x, ρ ≤ deriv (deriv G.V) x)
-    (h1 : G.WeakHypoEllipticAt 1) (h0 : G.WeakHypoEllipticAt 0) :
+    (hH : G.WeakHypo) :
     (DiffusionTriple.formData G.gibbsDiff).HasSpectralGap ρ := by
-  have := DiffusionTriple.hasSpectralGap_of_PI G.gibbsDiff (G.gibbsDiff_esaProp h1)
-    (G.gibbs_poincare hρpos hρ h1 h0)
+  have := DiffusionTriple.hasSpectralGap_of_PI G.gibbsDiff (G.gibbsDiff_esaProp hH)
+    (G.gibbs_poincare hρpos hρ hH)
   simpa using this
 
 /-- **`L²` exponential decay** of the Friedrichs semigroup `‖P_t u‖ ≤ e^{-ρ t} ‖u‖` for `u ⟂ 1`. -/
 theorem gibbs_expDecay {ρ : ℝ} (hρpos : 0 < ρ) (hρ : ∀ x, ρ ≤ deriv (deriv G.V) x)
-    (h1 : G.WeakHypoEllipticAt 1) (h0 : G.WeakHypoEllipticAt 0) :
+    (hH : G.WeakHypo) :
     (DiffusionTriple.formData G.gibbsDiff).HasExpDecay ρ := by
-  have := DiffusionTriple.expDecay_of_PI G.gibbsDiff (G.gibbsDiff_esaProp h1)
-    (G.gibbs_poincare hρpos hρ h1 h0)
+  have := DiffusionTriple.expDecay_of_PI G.gibbsDiff (G.gibbsDiff_esaProp hH)
+    (G.gibbs_poincare hρpos hρ hH)
   simpa using this
 
 end GibbsData

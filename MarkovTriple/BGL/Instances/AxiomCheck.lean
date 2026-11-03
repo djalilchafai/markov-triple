@@ -22,10 +22,6 @@ import MarkovTriple.BGL.Instances.Gibbs.FunctFull
 
 -- Gibbs functional-inequality route (Funct*.lean)
 #print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.ibp_sm
-#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.Lg_eq_of_weak
-#print axioms MarkovTriple.BGL.Instances.Gibbs.zero_of_cutoff
-#print axioms MarkovTriple.BGL.Instances.Gibbs.cutoff_ineq
-#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.cutoff_conclusion
 #print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsDiff_esaProp
 #print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsDiff_ergodic
 #print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbs_integral_Γ₂
@@ -41,4 +37,11 @@ import MarkovTriple.BGL.Instances.Gibbs.FunctFull
 #print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsFull_poincare
 #print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsFull_logSobolev
 #print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbsFull_gradient_bound
-#print axioms MarkovTriple.BGL.DiffusionTriple.esaProp_of_orth
+#print axioms MarkovTriple.BGL.PreFull.cutoff_estimate
+#print axioms MarkovTriple.BGL.PreFull.gradient_eq_zero
+#print axioms MarkovTriple.BGL.PreFull.const_of_weak
+#print axioms MarkovTriple.BGL.DiffusionTriple.core_of_orth
+#print axioms MarkovTriple.BGL.DiffusionTriple.ESAProp_of_weakHypo
+#print axioms MarkovTriple.BGL.DiffusionTriple.ergodic_of_weakHypo
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbs_preFull
+#print axioms MarkovTriple.BGL.Instances.Gibbs.GibbsData.gibbs_CD_pointwise

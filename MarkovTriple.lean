@@ -175,8 +175,10 @@ import MarkovTriple.BGL.Instances.Gibbs.Calculus
 import MarkovTriple.BGL.Instances.Gibbs.Diffusion
 import MarkovTriple.BGL.Instances.Gibbs.Convex
 import MarkovTriple.BGL.Instances.Gibbs.FunctIBP
+import MarkovTriple.BGL.Instances.Gibbs.FunctPreFull
 import MarkovTriple.BGL.Instances.Gibbs.FunctCutoff
 import MarkovTriple.BGL.Instances.Gibbs.FunctESA
+import MarkovTriple.BGL.Instances.Gibbs.FunctAlgebra
 import MarkovTriple.BGL.Instances.Gibbs.FunctPI
 import MarkovTriple.BGL.Instances.Gibbs.FunctFull
 import MarkovTriple.BGL.Instances.AxiomCheck
