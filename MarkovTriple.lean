@@ -316,6 +316,7 @@ import MarkovTriple.BGL.Instances.Riemannian.BochnerCrit
 import MarkovTriple.BGL.Instances.Riemannian.BochnerChecks
 import MarkovTriple.BGL.Instances.Riemannian.BochnerExample
 import MarkovTriple.BGL.Instances.Riemannian.BochnerAxiomCheck
+
 import MarkovTriple.BGL.Theory.Interp.EntropyAnalysis
 import MarkovTriple.BGL.Theory.Interp.EntropyQuot
 import MarkovTriple.BGL.Theory.Interp.EntropyDeBruijn
@@ -329,3 +330,7 @@ import MarkovTriple.BGL.Theory.Interp.EntropyApplications
 import MarkovTriple.BGL.Theory.Interp.EntropyAxiomCheck
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticFriedrichsEll
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Friedrichs
+import MarkovTriple.BGL.Theory.Interp.ExtBdd
+import MarkovTriple.BGL.Theory.Interp.ExtChain
+import MarkovTriple.BGL.Theory.Interp.ExtMain
+import MarkovTriple.BGL.Theory.Interp.ExtAxiomCheck

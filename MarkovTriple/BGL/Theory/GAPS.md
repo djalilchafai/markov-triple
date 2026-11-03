@@ -168,10 +168,20 @@ Statements `Theory/Interp/STATEMENTS_R16_Jensen.md`; self-audit `BGL/AUDIT_R16_J
 * `jensen_sq` (generic positive sub-Markov `L^2` operator): `(P w)^2 <= P(w^2)`.  **`FullTriple.gradient_bound_unconditional` (Cor 3.3.19, `rho >= 0`) PROVED for every FullTriple with `CD(rho,n)`;**
   `hasGradientBound_unconditional`, `conservative_of_complete_unconditional` (Thm 3.3.23 for complete triples, no `GradientInterpolation`), Gibbs (R and R^d) corollaries.
 * Still open: `rho < 0` (strong form needs the eps error term); G1 `GradientInterpolation` (not a book statement); G3, G3'.
+
 ## Round 16 "Entropy": G3 discharged; G3' reduced to `ext` (files `Theory/Interp/Entropy*.lean`)
 Statements: `Theory/Interp/STATEMENTS_R16_Entropy.md`; audit: `BGL/AUDIT_R16_ENTROPY_SELF.md`; errata R16-E1..E3.
 * **G3 DISCHARGED**: `FullTriple.entropyInterpolation : T.CD ρ n → 0 ≤ ρ → [IsFiniteMeasure T.μ] → T.EntropyInterpolation` for every (non-compact) `FullTriple`.
   Hence **unconditional LSI** `FullTriple.logSobolev_unconditional` (`LS(1/ρ,0)`, probability measure, `CD(ρ,n)`, `ρ>0`), `logSobolev_domain_unconditional`,
   `GibbsData.gibbsFull_logSobolev_unconditional` (`V'' ≥ ρ > 0`).  Finite `μ` is necessary (otherwise `entE` is junk), `ρ ≥ 0` used for `Γ(P_tφ)` bounded.
-* **G3' (`FiniteDimInterpolation κ`)**: field `bdd` PROVED (`finiteDim_bdd`).  Field `ext` (BGL p. 272) still open; `finiteDimInterpolation_of_ext`, `logSobolev_dim_of_ext`
+* **G3' (`FiniteDimInterpolation κ`)**: field `bdd` PROVED (`finiteDim_bdd`).  Field `ext` (BGL p. 272) (superseded in round 16, R16-X1: now PROVED for finite-measure full triples, `Theory/Interp/Ext*.lean`); `finiteDimInterpolation_of_ext`, `logSobolev_dim_of_ext`
   reduce Thm 5.7.4 for non-compact triples to that single statement.  Exact remainder: AUDIT_R16_ENTROPY_SELF.md §4.
+
+## Round 16 "Ext": G3' discharged (files `Theory/Interp/Ext*.lean`)
+Statements `Theory/Interp/STATEMENTS_R16_Ext.md`; audit `BGL/AUDIT_R16_EXT_SELF.md`; errata R16-X1, X2.
+* **`FiniteDimInterpolation` field `ext` PROVED** (`FullTriple.finiteDimExt`): bounded `f in A` -> `[f] in D(L)` (Prop 3.3.6), `Gamma_2` integrable and
+  `int Gamma_2 = int (Lf)^2` (Prop 3.3.17), (5.7.7)-(5.7.12) redone for bounded `g in A` (`ibp_of_domain`; `Gamma(Gamma g) in L^1` by (3.3.6)).
+  Hence `FullTriple.finiteDimInterpolation_of_CD` and **unconditional Thm 5.7.4 for every FullTriple of finite measure**: `FullTriple.logSobolev_dim_unconditional`.
+* Still open: `rho < 0`, infinite `mu`, `n = 1`.
+
+**Scope note (audit R16-Ext).** `logSobolev_dim_unconditional` / `finiteDimInterpolation_of_CD` are unconditional for every finite-measure `FullTriple` with `CD ρ n`, `1 < n < ∞`, `ρ ≥ 0`, but every known witness of finite-n curvature in the library is on a COMPACT triple (`sphere_CD_two_three`); the non-compact instances (OU, Lebesgue, Gibbs) have `n = ∞` or infinite measure, so the new theorems have no non-compact application yet and their non-compact content is not exercised.
