@@ -343,3 +343,9 @@ import MarkovTriple.BGL.Instances.GibbsRd.EllRegProof
 import MarkovTriple.BGL.Instances.GibbsRd.Unconditional
 import MarkovTriple.BGL.Instances.Riemannian.Unconditional
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Glue
+import MarkovTriple.BGL.Instances.Gibbs.Core2Resolvent
+import MarkovTriple.BGL.Instances.Gibbs.Core2Calc
+import MarkovTriple.BGL.Instances.Gibbs.Core2Cut
+import MarkovTriple.BGL.Instances.Gibbs.Core2Main
+import MarkovTriple.BGL.Instances.Gibbs.Core2Example
+import MarkovTriple.BGL.Instances.Gibbs.AxiomCheckR17Core2
