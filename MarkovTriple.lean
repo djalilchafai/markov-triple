@@ -286,4 +286,11 @@ import MarkovTriple.BGL.Theory.Interp.AxiomCheck
 import MarkovTriple.BGL.Theory.Interp.EntropyAnalysis
 import MarkovTriple.BGL.Theory.Interp.EntropyQuot
 import MarkovTriple.BGL.Theory.Interp.EntropyDeBruijn
+import MarkovTriple.BGL.Theory.Interp.EntropyHelp
+import MarkovTriple.BGL.Theory.Interp.EntropyFisher
+import MarkovTriple.BGL.Theory.Interp.EntropyChain
+import MarkovTriple.BGL.Theory.Interp.EntropyLam
+import MarkovTriple.BGL.Theory.Interp.EntropyIdentity
+import MarkovTriple.BGL.Theory.Interp.EntropyMain
+import MarkovTriple.BGL.Theory.Interp.EntropyApplications
 import MarkovTriple.BGL.Theory.Interp.EntropyAxiomCheck
