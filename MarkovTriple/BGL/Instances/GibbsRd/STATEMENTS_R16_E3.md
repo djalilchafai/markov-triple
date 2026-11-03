@@ -25,3 +25,4 @@ PROVED (0 sorry, axioms propext/choice/Quot.sound, `AxiomCheckR16E3.lean`):
 * `EllData.sobolev_hprime`, E3.2 `EllData.interior_sobolev` (stated with `hu hg hgL hW hh`; `LocL2 h` is the `k = 0` part of `Sobolev k h`).
 * E3.3 `EllData.interior_regularity_all_orders`, `EllData.interior_smooth_rep` (`∃ φ, Sm φ ∧ u =ᵐ φ`), `sobolev_iff_hasSobL2`, `weakDeriv_iff_sob`
   (both `Iff.rfl`), `EllData.veryWeakSol_of_smooth`.
+* Note: the statement above wrote the compatibility lemma as `Sobolev_iff_HasSobL2`; the Lean name is `sobolev_iff_hasSobL2` (naming only, no mathematical change); `interior_sobolev` omits the redundant `LocL2 h` hypothesis (it is the `k=0` part of `Sobolev k h`).
