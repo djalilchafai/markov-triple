@@ -7,7 +7,7 @@ import MarkovTriple.BGL.Instances.Gibbs.RegBridge
 `GibbsData.weakHypo : G.WeakHypo` for every `G : GibbsData` (no convexity needed): a `u ∈ L²(μ)` with
 `∫ u L a dμ = λ ∫ u a dμ` for all `a ∈ C_c^∞` has a `C^∞` representative.
 
-**Classical theorem formalised**: interior elliptic regularity for `u'' - V' u' = λ u` (BGL Sect. 1.12, p. 157),
+**Classical theorem formalised**: interior elliptic regularity for `u'' - V' u' = λ u` (BGL Sect. 1.12, p. 49; used in Def. 3.3.8, p. 157),
 proved here in dimension one by du Bois-Reymond + bootstrapping (`RegCore.lean`): `u ∈ C^j ⇒ λ u ∈ C^j ⇒ u ∈ C^{j+2}`.
 -/
 
