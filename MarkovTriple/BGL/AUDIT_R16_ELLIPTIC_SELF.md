@@ -76,3 +76,41 @@ Notation `W(E,u,h) := ∀ a ∈ A₀ d, ∫ u · E.L a · E.w = ∫ h · a · E.
 6. A6: The title `interior_regularity_step` is NOT delivered (no Lean declaration of that name).
 7. A7: `MarkovTriple.lean` got four import lines (new modules only); no frozen file changed.
 8. A8: `ERRATA.md` section "Round 16 (elliptic half)" is appended; the other agent's appended section will need a trivial merge.
+
+## 9. Continuation (full-fix request): what was added, what remains (exact)
+
+Added and proved (all `0 sorry`, standard axioms): Q3 `eLpNorm_dq_le`; R2a `weakDeriv_of_local`, R2b `weakDeriv_of_local_dq` (localisation via
+`cut (N+1)`, gluing by uniqueness on balls); mollifiers `moll`, `pderiv_moll` (commutes with weak derivatives), `moll_memLp_norm_le`
+(Jensen + `integral_convolution`), `moll_tendsto` (density of `C_c` + uniform continuity: the L² convergence Mathlib lacks), `tendsto_integral_mul`;
+`weakForm_of_veryWeak` (very weak form ⇒ `∫ w Σ aᵢⱼ gᵢ ∂ⱼa = −∫ h a w` for `u ∈ H¹_loc`), `weakForm_extend` (same for compactly supported
+`v ∈ H¹`, via mollification); `weakDeriv_dq` (D1), `dq_ibp_L2`, `dq_local_bound` (D2); `locL2_of_memLp`, `local_ellipticity`, `exists_dens_lower` (glue).
+
+Self-attack on the new statements.
+* `weakForm_extend` needs `v ∈ L²`, compact support, weak derivatives `vⱼ ∈ L²` in EVERY direction; `vⱼ` vanishes a.e. off `tsupport v` (proved,
+  `weakDeriv_zero_off`).  Hypotheses `u ∈ LocL2`, `WeakDeriv u gᵢ i`, `gᵢ ∈ LocL2`, `h ∈ LocL2`.  `VeryWeakSol u h` is exactly the `EllReg`/`resolvent_weak`
+  equation with `Z⁻¹` removed.  Non-vacuity: smooth `u` with `L u = h` satisfies it (integration by parts, `EllData.ibp_master`).
+* `moll_tendsto` is stated for `IsMollSeq` (smooth, compactly supported, ≥ 0, `∫ = 1`, support in `B(0,1/(n+1))`), inhabited by `exists_mollSeq`.
+* `dq_local_bound` only for `|t| ≤ 1`; sequences `hₙ → 0` are eventually in range (used in `weakDeriv_of_local_dq`, which passes to a tail).
+* `local_ellipticity` for `d = 0` is vacuous (empty sums).  `locL2_of_memLp` is the only place the density `dens = w/Z` bounded below on compacts enters.
+
+Option (b) of the coordinator (form-domain information in `EllReg`) is NOT faithful for `WeakHypo` (erratum R16-E3).  Hence `L²_loc ⇒ H¹_loc` must be
+proved (option (a)) for `weakHypo_of_reg`; for `f8_of_reg` alone (b) would be faithful.
+
+REMAINING (in dependency order; every ingredient below the line is now available in Lean):
+* E1 weak Caccioppoli: `u ∈ H¹_loc`, `VeryWeakSol u h`, `ζ ∈ C_c^∞` ⇒ `∫ w ζ² Σ aᵢⱼ gᵢ gⱼ ≤ −2 ∫ h ζ² u w + 4 ∫ w u² Γ(ζ,ζ)`.
+  Proof: `weakForm_extend` with `v = ζ² u`, `vⱼ = ζ² gⱼ + 2ζ ∂ⱼζ u` (`WeakDeriv.smooth_mul`) and the pointwise Young bound of `EllData.Γ_young`
+  (vector form: `quad_nonneg` at `ζ g + 2u∇ζ`).  Needs `integrable` of `c · (gᵢ gⱼ)` for `c` continuous with compact support (`MemLp.integrable_mul` after cutting to `tsupport c`).
+* E2 (H²_loc), Evans Thm 1 Step 1, direction `k`, `|t| ≤ 1`, cutoff `ζ = 1` on `K`:
+  (F1) `Y = D_t u`, `Xⱼ = D_t gⱼ` (`weakDeriv_dq`);  (F2) `Φ = ζ² Y`, `Φⱼ = ζ² Xⱼ + 2ζ∂ⱼζ Y` (`smooth_mul`);  (F3) `v = D_{−t}Φ ∈ L²`, compact support,
+  weak derivatives `D_{−t}Φⱼ` (`weakDeriv_dq`, `memLp_dq`);  (F4) `weakForm_extend`: `Bf g (D_{−t}Φⱼ) = −∫ h v w`;
+  (F5) `dq_ibp_L2` with `F = wᵢⱼ… = w aᵢⱼ gᵢ`: `∫ w aᵢⱼ gᵢ D_{−t}Φⱼ = −∫ D_t(w aᵢⱼ gᵢ) Φⱼ`, `D_t(Ag) = A(·+t e)·D_t g + g·D_t A`;
+  (F6) `∫ ζ² Σ Aᵢⱼ(·+te) Xᵢ Xⱼ ≥ λ ∫ ζ²|X|²` (`local_ellipticity` on `cthickening 1 (tsupport ζ)`), the other four terms are absorbed by Young using `abs_dq_le`
+  (for `ζ̃·A`, `ζ̃` a cutoff) and `dq_local_bound` for `‖Y‖_{L²}`, and `‖D_{−t}Φ‖₂ ≤ ‖Φ_k‖₂` (`eLpNorm_dq_le`).  Result: `∫_K |D_t gᵢ|² ≤ C` for all `|t| ≤ 1`, all `i,k`;
+  then `weakDeriv_of_local_dq` gives `gᵢ ∈ H¹_loc`, i.e. `Sobolev 2 u`.  Statement: `u ∈ LocL2`, `WeakDeriv u gᵢ i`, `gᵢ ∈ LocL2`, `h ∈ LocL2`, `VeryWeakSol u h` ⇒ `Sobolev 2 u`.
+* E3 (higher regularity): differentiate the equation weakly: for `u' = ∂ₖu ∈ H¹_loc`, `h ∈ H¹_loc` the pair satisfies `VeryWeakSol`-type equation with right-hand side
+  `∂ₖh − (terms with ∂ₖ w, ∂ₖ a) ` in `L²_loc` (smooth coefficients; `Sobolev.smooth_mul`), apply E2 to `∂ₖ u`, induct `k → k+2`.  Needs the formula of the commuted equation:
+  `L(∂ₖu) = ∂ₖh + [L,∂ₖ]u` with `[L,∂ₖ]u` a second order operator with smooth coefficients applied to `u ∈ H²_loc`, i.e. an `L²_loc` function by E2.
+* L²_loc ⇒ H¹_loc for `VeryWeakSol u h`, `u, h ∈ LocL2` (Friedrichs): `uₙ = ρₙ * u` (now available) satisfies `L uₙ = ρₙ * h + Cₙ`, `‖Cₙ‖_{H^{-1}}` bounded
+  (first-order Friedrichs commutator `[w a ∂, ρₙ*]` bounded on `L²`, which needs `∫ |∇ρₙ(z)| |z| dz ≤ C` and Lipschitz coefficients — NOT proved); apply the smooth
+  Caccioppoli (`EllData.caccioppoli`) to `uₙ` and let `n → ∞`.
+* `interior_regularity_step` = E3 + the Friedrichs step; then glue: `locL2_of_memLp`, the Sobolev embedding (other agent), `EllReg`.

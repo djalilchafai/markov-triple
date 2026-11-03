@@ -6,6 +6,7 @@ import MarkovTriple.BGL.Instances.GibbsRd.EllipticLocal
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticMollify
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticWeakForm
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticE2Pre
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticLocalConst
 
 /-! Axiom audit of the R16 elliptic half (only `propext`, `Classical.choice`, `Quot.sound`). -/
 open MarkovTriple.BGL.Instances.GibbsRd
@@ -55,3 +56,6 @@ open MarkovTriple.BGL.Instances.GibbsRd
 #print axioms Elliptic.weakDeriv_dq
 #print axioms Elliptic.dq_ibp_L2
 #print axioms Elliptic.dq_local_bound
+#print axioms EllData.exists_dens_lower
+#print axioms EllData.locL2_of_memLp
+#print axioms EllData.local_ellipticity

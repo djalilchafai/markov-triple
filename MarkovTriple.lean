@@ -251,6 +251,7 @@ import MarkovTriple.BGL.Instances.GibbsRd.EllipticLocal
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticMollify
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticWeakForm
 import MarkovTriple.BGL.Instances.GibbsRd.EllipticE2Pre
+import MarkovTriple.BGL.Instances.GibbsRd.EllipticLocalConst
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Elliptic
 import MarkovTriple.BGL.Instances.Riemannian.Data
 import MarkovTriple.BGL.Instances.Riemannian.Main

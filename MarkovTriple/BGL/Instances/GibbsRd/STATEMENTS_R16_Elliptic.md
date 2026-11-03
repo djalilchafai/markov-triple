@@ -76,3 +76,14 @@ Batch 4 (`EllipticWeakForm.lean`): weak form on `H¹_c` test functions (R4).
  WF `EllData`, `u, gᵢ` with `WeakDeriv u gᵢ i` (`LocL2`), `h` `LocL2`, `W(E,u,h)`:
  (a) `weakForm_of_veryWeak`: `∀ a ∈ A₀, ∫ w Σᵢⱼ aᵢⱼ gᵢ ∂ⱼa = −∫ h a w`;
  (b) `weakForm_extend`: for `v` compactly supported, `MemLp v 2`, `WeakDeriv v vⱼ j`, `MemLp vⱼ 2`: `∫ w Σᵢⱼ aᵢⱼ gᵢ vⱼ = −∫ h v w`.
+
+Batch 5 (`EllipticE2Pre.lean`, `EllipticLocalConst.lean`): preliminaries of H² and glue items (targets fixed before proving).
+ D1 `weakDeriv_dq`: `WeakDeriv f g j → WeakDeriv (dq k t f) (dq k t g) j`.
+ D2 `dq_ibp_L2`: `LocL2 F, MemLp Ψ 2, cs Ψ → ∫ dq_h F · Ψ = −∫ F · dq_{−h} Ψ`;  `dq_local_bound`: `LocL2 f, LocL2 g, WeakDeriv f g i`, `K` compact ⇒ `∃ C, ∀ |t| ≤ 1, eLpNorm (dq i t f) 2 (vol.restrict K) ≤ ofReal C`.
+ G1 `EllData.locL2_of_memLp : MemLp f 2 E.μ → LocL2 f`;  G2 `EllData.local_ellipticity`: `K` compact ⇒ `∃ λ>0, ∀ x∈K, ∀ ξ, λ Σξᵢ² ≤ Σ aᵢⱼ ξᵢ ξⱼ`.
+
+## Status at end of the continuation (honest)
+PROVED additionally: Q3 (`eLpNorm_dq_le`), R2a/R2b (`weakDeriv_of_local`, `weakDeriv_of_local_dq`), M0-M4 (mollifiers incl. L² convergence),
+WF(a) `weakForm_of_veryWeak`, WF(b) `weakForm_extend` (weak form on compactly supported H¹ test functions), D1, D2, G1, G2.
+NOT DONE: E1 (weak Caccioppoli; only its smooth version), E2, E3, the L²_loc ⇒ H¹_loc step, `interior_regularity_step`.
+Exact plan and remaining statements: `AUDIT_R16_ELLIPTIC_SELF.md`, section 9.
