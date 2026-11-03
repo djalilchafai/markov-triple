@@ -191,3 +191,8 @@ import MarkovTriple.BGL.Instances.Gibbs.RegHypo
 import MarkovTriple.BGL.Instances.Gibbs.RegSemigroup
 import MarkovTriple.BGL.Instances.Gibbs.RegMain
 import MarkovTriple.BGL.Instances.AxiomCheck
+import MarkovTriple.BGL.Theory.LSToPI
+import MarkovTriple.BGL.Theory.LogSobolevDimOne
+import MarkovTriple.BGL.Instances.Sphere.LSOptimal
+import MarkovTriple.BGL.Instances.Circle.Poincare
+import MarkovTriple.BGL.Instances.Circle.LSOne
