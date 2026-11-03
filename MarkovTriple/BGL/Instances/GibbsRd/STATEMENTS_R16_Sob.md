@@ -21,7 +21,7 @@ S2 (mollification) `WeakDeriv h g i → ∂_i (h ⋆ ρ) = g ⋆ ρ` for `ρ ∈
 S3 (continuous representative, order `d`) `sob_continuous_rep`: `HasSobL1 d f → ∃ g, Continuous g ∧ f =ᵐ g`.
 S4 (`C^m`) `sob_contDiff_rep`: `HasSobL1 (m + d) f → ∃ g, ContDiff ℝ m g ∧ f =ᵐ g`; same for `HasSobL2`.
 S5 (CORE INTERFACE) `smooth_of_weak_all_orders`: `(∀ k, HasSobL2 k f) → ∃ g, ContDiff ℝ ∞ g ∧ f =ᵐ g`
-   (and `L1` form).  Also `sob_contDiff_rep` gives every `C^m` and `smooth_rep_unique`.
+   (and `L1` form).  Also `sob_contDiff_rep` gives every `C^m`.
 
 ## HONEST SCOPE (deviation from the task's sharp indices)
 The task asks for `k > d/2` (resp. `k ≥ m + ⌊d/2⌋ + 1`).  The route chosen (mixed-derivative/FTC telescoping, no Fourier
