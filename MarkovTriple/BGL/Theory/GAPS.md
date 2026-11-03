@@ -163,8 +163,18 @@ Statements: `Theory/Interp/STATEMENTS_R15_Interp.md`; self-audit: `BGL/AUDIT_R15
   `(P_t w)² ≤ P_t(w²)` (sub-Markov `P_t`): the Jensen lemma is NOT yet in the library (see AUDIT §4), so `HasGradientBound` for general non-compact triples is still open.
 * **G3, G3'**: not attempted in this stage (see `AUDIT_R15_INTERP_SELF.md` §4 for the exact missing analytic content: `L¹`-differentiation of `I(s) = ∫Γ(g_s)/g_s` and `I' = -2J`).
 
+<<<<<<< HEAD
 ## Round 16 "Jensen": weak gradient bound for every FullTriple (`Theory/Interp/Jensen*.lean`, `Instances/Gibbs/JensenMain.lean`)
 Statements `Theory/Interp/STATEMENTS_R16_Jensen.md`; self-audit `BGL/AUDIT_R16_JENSEN_SELF.md`.
 * `jensen_sq` (generic positive sub-Markov `L^2` operator): `(P w)^2 <= P(w^2)`.  **`FullTriple.gradient_bound_unconditional` (Cor 3.3.19, `rho >= 0`) PROVED for every FullTriple with `CD(rho,n)`;**
   `hasGradientBound_unconditional`, `conservative_of_complete_unconditional` (Thm 3.3.23 for complete triples, no `GradientInterpolation`), Gibbs (R and R^d) corollaries.
 * Still open: `rho < 0` (strong form needs the eps error term); G1 `GradientInterpolation` (not a book statement); G3, G3'.
+=======
+## Round 16 "Entropy": G3 discharged; G3' reduced to `ext` (files `Theory/Interp/Entropy*.lean`)
+Statements: `Theory/Interp/STATEMENTS_R16_Entropy.md`; audit: `BGL/AUDIT_R16_ENTROPY_SELF.md`; errata R16-E1..E3.
+* **G3 DISCHARGED**: `FullTriple.entropyInterpolation : T.CD ρ n → 0 ≤ ρ → [IsFiniteMeasure T.μ] → T.EntropyInterpolation` for every (non-compact) `FullTriple`.
+  Hence **unconditional LSI** `FullTriple.logSobolev_unconditional` (`LS(1/ρ,0)`, probability measure, `CD(ρ,n)`, `ρ>0`), `logSobolev_domain_unconditional`,
+  `GibbsData.gibbsFull_logSobolev_unconditional` (`V'' ≥ ρ > 0`).  Finite `μ` is necessary (otherwise `entE` is junk), `ρ ≥ 0` used for `Γ(P_tφ)` bounded.
+* **G3' (`FiniteDimInterpolation κ`)**: field `bdd` PROVED (`finiteDim_bdd`).  Field `ext` (BGL p. 272) still open; `finiteDimInterpolation_of_ext`, `logSobolev_dim_of_ext`
+  reduce Thm 5.7.4 for non-compact triples to that single statement.  Exact remainder: AUDIT_R16_ENTROPY_SELF.md §4.
+>>>>>>> worktree-agent-a9096bb6c809e7781

@@ -283,6 +283,7 @@ import MarkovTriple.BGL.Theory.Interp.Main
 import MarkovTriple.BGL.Instances.Gibbs.InterpMain
 import MarkovTriple.BGL.Instances.OU.InterpGeneric
 import MarkovTriple.BGL.Theory.Interp.AxiomCheck
+<<<<<<< HEAD
 import MarkovTriple.BGL.Theory.Interp.Jensen
 import MarkovTriple.BGL.Theory.Interp.JensenGrad
 import MarkovTriple.BGL.Instances.Gibbs.JensenMain
@@ -299,3 +300,16 @@ import MarkovTriple.BGL.Instances.Riemannian.BochnerCrit
 import MarkovTriple.BGL.Instances.Riemannian.BochnerChecks
 import MarkovTriple.BGL.Instances.Riemannian.BochnerExample
 import MarkovTriple.BGL.Instances.Riemannian.BochnerAxiomCheck
+=======
+import MarkovTriple.BGL.Theory.Interp.EntropyAnalysis
+import MarkovTriple.BGL.Theory.Interp.EntropyQuot
+import MarkovTriple.BGL.Theory.Interp.EntropyDeBruijn
+import MarkovTriple.BGL.Theory.Interp.EntropyHelp
+import MarkovTriple.BGL.Theory.Interp.EntropyFisher
+import MarkovTriple.BGL.Theory.Interp.EntropyChain
+import MarkovTriple.BGL.Theory.Interp.EntropyLam
+import MarkovTriple.BGL.Theory.Interp.EntropyIdentity
+import MarkovTriple.BGL.Theory.Interp.EntropyMain
+import MarkovTriple.BGL.Theory.Interp.EntropyApplications
+import MarkovTriple.BGL.Theory.Interp.EntropyAxiomCheck
+>>>>>>> worktree-agent-a9096bb6c809e7781
