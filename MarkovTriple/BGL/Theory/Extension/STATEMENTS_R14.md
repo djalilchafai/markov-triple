@@ -79,3 +79,19 @@ Setting for everything: `T : FullTriple E` (F1–F10: in particular `𝒜₀ ⊂
   `gammaE g g`; no named extended `Γ₂/Γ` on `𝒟(L)` as a function was introduced.
 * E3 (round 14, equivalent formulation).  `FormConv` is convergence in the Hilbert space `K` of `𝒟(ℰ)` (norm
   `(‖·‖₂² + ℰ)^{1/2}`), equivalent to "`cls a_k → u` in `L²` and `ℰ(u − a_k) → 0`".
+
+## Round 14b targets (closing the three open items; fixed before the proofs)
+* **T1 = 3.3.16 (v), `L²` part** (removes E1).  `CD(ρ,n)`, ESA.  For `g, h ∈ 𝒜₀` and `f ∈ 𝒟(L)`: there is `H₂ ∈ L²` with
+  `H(a_k)(g,h) → H₂` in `L²` for every graph-convergent `a_k → f`, and `H₂ = hessE f [g] h` a.e.  (`hess2_exists`, `hess2_eq_hessE`).
+* **T2 = 3.3.16 (vii).**  Bilinear `Γ₂` on `𝒟(L) × 𝒟(L)` into `L¹` (`gamma2E`, limit of `Γ₂(a_k,b_k)` along graph-convergent
+  sequences; polarisation of the quadratic form of 3.3.16 (i)–(iii)).  For `h ∈ 𝒜₀`, `f ∈ 𝒟(L)`: `h f ∈ 𝒟(L)` (`mulE h [f]`) and for `g ∈ 𝒟(L)`:
+  `Γ₂(hf,g) = h Γ₂(f,g) + f Γ₂(h,g) + 2 H(g)(f,h)` a.e.  (`mulE_mem_domain`, `gamma2E_mulE`).  Uses closedness of the generator (Prop. 3.3.16 (vii) proof "the change of variables formula goes to the limit").
+* **T3 = 3.3.17 converse** (ergodicity S10).  `f ∈ 𝒜 ∩ L²`, `Γ_𝒜(f), Γ₂^𝒜(f) ∈ L¹` ⇒ `[f] ∈ 𝒟(L)`.
+
+### Status of round 14b
+* T1: `hess2_exists` (`HessL2`) PROVED; E1 is withdrawn (the `L²` statement and its identification with `hessE` are now proved).
+* T2: `gamma2E_exists`/`gamma2E_tendsto` (`Gamma2E`), `mulE_mem_domain` (`MulDomain`), `gamma2E_mulE` (`Gamma2Mul`) PROVED.
+* T3 (converse): NOT proved.  Exact statement and what is missing: see `BGL/AUDIT_R14_SELF.md` §4.
+* Erratum E4: the book's `Γ₂` identification in Prop. 3.3.17 is "along the same lines" as for `H` (chain rule + IBP).  Our proof
+  (`Γ₂_ext_eq`) does not use the chain rule (vii); it uses the integrated identity `int_m_Γ₂` instead.  Recorded as a difference of route,
+  not of statement.

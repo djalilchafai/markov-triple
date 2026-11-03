@@ -1,7 +1,7 @@
 # Round 14 self-audit (author's attack on his own statements)
 
 Scope: `MarkovTriple/BGL/Theory/Extension/{ClosedBasic,ClosedGamma,ClosedProd,ClosedIdent,ClosedDetect,Hessian,HessLin,
-HessExt,HessExt2,IdentIBP,Ident,Gamma2Ident}.lean`.  Target statements: `Extension/STATEMENTS_R14.md` (written before the
+HessExt,HessExt2,IdentIBP,Ident,Gamma2Ident,HessL2,Gamma2E,MulDomain,Gamma2Mul}.lean`.  Target statements: `Extension/STATEMENTS_R14.md` (written before the
 proofs; deviations are logged there as E1–E3).  The files contain proofs, so they were NOT added to
 `frozen-manifest.json` (that mechanism is for statement-only files under `BGL/Frozen/`; `check_frozen.py` prints OK and no
 existing hash changed).
@@ -55,15 +55,17 @@ ESA in core form, a *field*), plus `T.CD ρ n` where a curvature condition is ne
 
 ## 4. What is NOT done (exact statements)
 
-* 3.3.16 (v), first bullet in `L²`: for `g,h ∈ 𝒜₀`, `a_k → f` in `𝒟(L)` ⇒ `H(a_k)(g,h)` converges in `L²`.  (Only the `L¹`
-  statement, jointly in `(f,g)`, is proved: `hessE_tendsto`.)
-* 3.3.16 (vii): `h ∈ 𝒜₀`, `f ∈ 𝒟(L)` ⇒ `hf ∈ 𝒟(L)` and `Γ₂(hf,g) = hΓ₂(f,g) + fΓ₂(h,g) + 2H(g)(f,h)`, `g ∈ 𝒟(L)`.  Needs the
-  bilinear extension of `Γ₂` to `𝒟(L) × 𝒟(L)` (by `bil_spec` with `|K(a,b)|` bounded by `√K(a)√K(b)`) and the closedness of the
-  generator (graph of `h a_k` is Cauchy since `L(h a) = hLa + aLh + 2Γ(h,a)`).
-* 3.3.17 converse: `f ∈ L² ∩ 𝒜`, `Γ₂(f), Γ(f) ∈ L¹`, ergodicity (S10) ⇒ `f ∈ 𝒟(L)`.  The book's proof is spectral
-  (`(L²+Id)^{-1}(L+ρId)`, density of `{Lh}` in `L²` under ESA + ergodicity); not formalized.
+* 3.3.17 converse (p. 162): `f ∈ L² ∩ 𝒜`, `Γ₂^𝒜(f), Γ_𝒜(f) ∈ L¹`, ergodicity (S10, a field of `FullTriple`) ⇒ `[f] ∈ 𝒟(L)`.  The book's
+  proof (i) reduces by 3.3.6 (i) to `Lf ∈ L²`; (ii) uses `{Lh : h ∈ 𝒜₀}` dense in `L²₀` (ESA + ergodicity); (iii) the form
+  `ℓ_f(h) = ∫(Lf + ρf) Lh = ∫K(f,h)`, `|ℓ_f(h)| ≤ C(f)‖h‖_{𝒟(L)}`, Riesz in `𝒟(L)`, and (iv) the *spectral* step
+  `g = Lk`, `k = (L²+Id)^{-1}(L+ρ Id) f` with the bounded operators `(L²+Id)^{-1}(L+ρId)`, `(L²+Id)^{-1}(L²+ρL)` to get
+  `|ℓ_f(h)| ≤ C‖Lh‖₂`.  Not formalized: step (iv) needs functional calculus of the self-adjoint generator (available only through
+  `cfcSemigroup` of the resolvent in `Analysis/Hilbert`), and the finite-measure adaptation of (ii) is not spelled out by the
+  book.  No other idea is needed; it is an unfinished formalization, not a gap in the book.
 * Prop. 3.3.5/3.3.6 statements are for classes `[f]` of functions of `𝒜 ∩ L²`; nothing is said about `f ∈ 𝒜` with `[f]`
   defined only up to a.e. (inevitable).
+* Route difference (E4): the book says the `Γ₂` identification "follows along the same lines" as for `H` (chain rule (3.3.4)
+  `Γ₂(kf,·)` + IBP); we proved it through the integrated identity `int_m_Γ₂` and an `L²`-Cauchy argument, not through (vii).
 
 ## 5. Attack surface for the independent audit (most likely misformalizations)
 

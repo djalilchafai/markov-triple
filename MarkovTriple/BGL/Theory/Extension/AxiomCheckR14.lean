@@ -3,6 +3,7 @@ import MarkovTriple.BGL.Theory.Extension.Hessian
 import MarkovTriple.BGL.Theory.Extension.HessExt2
 import MarkovTriple.BGL.Theory.Extension.Ident
 import MarkovTriple.BGL.Theory.Extension.Gamma2Ident
+import MarkovTriple.BGL.Theory.Extension.Gamma2Mul
 
 /-! Axiom audit of the round-14 results (`Extension/STATEMENTS_R14.md`). -/
 
@@ -35,3 +36,7 @@ import MarkovTriple.BGL.Theory.Extension.Gamma2Ident
 #print axioms MarkovTriple.BGL.FullTriple.generator_ae_L
 #print axioms MarkovTriple.BGL.FullTriple.integrable_Γ₂_of_domain
 #print axioms MarkovTriple.BGL.FullTriple.ibp_of_domain
+#print axioms MarkovTriple.BGL.FullTriple.hess2_exists
+#print axioms MarkovTriple.BGL.FullTriple.gamma2E_exists
+#print axioms MarkovTriple.BGL.FullTriple.mulE_mem_domain
+#print axioms MarkovTriple.BGL.FullTriple.gamma2E_mulE
