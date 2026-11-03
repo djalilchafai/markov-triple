@@ -244,3 +244,14 @@ import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheck
 import MarkovTriple.BGL.Instances.Riemannian.Data
 import MarkovTriple.BGL.Instances.Riemannian.Main
 import MarkovTriple.BGL.Instances.Riemannian.AxiomCheck
+import MarkovTriple.BGL.Instances.Riemannian.CurvSum
+import MarkovTriple.BGL.Instances.Riemannian.CurvInv
+import MarkovTriple.BGL.Instances.Riemannian.Curvature
+import MarkovTriple.BGL.Instances.Riemannian.CurvLap
+import MarkovTriple.BGL.Instances.Riemannian.CurvAlg
+import MarkovTriple.BGL.Instances.Riemannian.CurvCov
+import MarkovTriple.BGL.Instances.Riemannian.CurvRiem
+import MarkovTriple.BGL.Instances.Riemannian.BochnerRiem
+import MarkovTriple.BGL.Instances.Riemannian.BochnerCrit
+import MarkovTriple.BGL.Instances.Riemannian.BochnerChecks
+import MarkovTriple.BGL.Instances.Riemannian.BochnerAxiomCheck
