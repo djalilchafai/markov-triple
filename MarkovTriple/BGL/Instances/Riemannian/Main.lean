@@ -12,10 +12,11 @@ For `R : RiemData d` (`Riemannian/Data.lean`) the generic theory of `GibbsRd/Ell
 * under `WeakHypo` and the curvature hypothesis `Curv ρ` (Def. 3.3.14 with `n = ∞`, a pointwise inequality for the
   formula-defined `Γ₂`): Poincaré, spectral gap, `L²` decay; with `F8` additionally the Full triple and `CD(ρ,∞)`.
 
-NOT proved (see `STATEMENTS_R15_Riem.md`): the identification `Γ₂(f) = |∇∇f|² + (Ric_g + ∇∇W)(∇f,∇f)` (BGL (1.16.4),
-Thm C.3.3) for a variable co-metric, hence the equivalence of `Curv ρ` with `Ric_g + ∇∇W ≥ ρ g` (1.16.8).  Mathlib (this
+UPDATE (round 16, audit R16-Bochner): the identification `Γ₂(f) = |∇∇f|² + (Ric_g + ∇∇W)(∇f,∇f)` (BGL (1.16.4), Thm C.3.3) for a variable
+co-metric IS now proved (`riem_bochner`, `Riemannian/BochnerRiem.lean`) and gives the IMPLICATION `Ric_g + ∇∇W ≥ ρ g ⇒ Curv ρ`
+(`riem_curv_of_ricci`, (1.16.8) one direction); the converse `Curv ρ ⇒ Ric_g + ∇∇W ≥ ρ g` is NOT proved.  Mathlib (this
 version) has the Levi-Civita connection and the Riemannian distance on manifolds, but no Riemann/Ricci curvature
-tensor, no Hessian, no Laplace–Beltrami operator and no Riemannian volume measure.
+tensor, no Hessian, no Laplace–Beltrami operator and no Riemannian volume measure (our curvature objects are the book's coordinate formulas).
 -/
 
 open MeasureTheory Filter Topology

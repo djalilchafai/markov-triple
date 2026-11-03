@@ -99,6 +99,11 @@
       "path": "MarkovTriple/BGL/Instances/STATEMENTS_R15_Riem.md",
       "status": "proposed",
       "sha256": "57f7bb3eefa178f9c7fa2bef8d81402d26042abae4f9643970afe46840ed5ea6"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/Riemannian/STATEMENTS_R16_Bochner.md",
+      "status": "proposed",
+      "sha256": "02e98eb4c623ffde3f6a740c81a4c573b1c71634d4cf4265a94423e59c6d9114"
     }
   ],
   "fenced": [
