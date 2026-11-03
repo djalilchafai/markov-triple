@@ -122,7 +122,7 @@ theorem ibp_bdd {Gf k : E → ℝ} (hG : Gf ∈ T.A) (hG2 : MemLp Gf 2 T.μ)
     intro n
     have := T.toDiffusionTriple.comp_mem 1 (fun z => χ (z 0))
       (hχs.comp (contDiff_apply ℝ ℝ 0)) (by simpa using chiT_zero M') ![(b n).1]
-      (by intro i; fin_cases i; simpa using (b n).2)
+      (by intro i; fin_cases i; simp)
     simpa using this
   -- F7
   have hF7 : ∀ n, ∫ x, G T Gf (fun y => χ ((b n).1 y)) x ∂T.μ =
