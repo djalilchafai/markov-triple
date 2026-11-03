@@ -343,3 +343,11 @@ import MarkovTriple.BGL.Instances.GibbsRd.EllRegProof
 import MarkovTriple.BGL.Instances.GibbsRd.Unconditional
 import MarkovTriple.BGL.Instances.Riemannian.Unconditional
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR16Glue
+import MarkovTriple.BGL.Instances.SphereOpen.Basic
+import MarkovTriple.BGL.Instances.SphereOpen.LpTransport
+import MarkovTriple.BGL.Instances.SphereOpen.Triple
+import MarkovTriple.BGL.Instances.SphereOpen.Semi
+import MarkovTriple.BGL.Instances.SphereOpen.Full
+import MarkovTriple.BGL.Instances.SphereOpen.Support
+import MarkovTriple.BGL.Instances.SphereOpen.Main
+import MarkovTriple.BGL.Instances.SphereOpen.AxiomCheck

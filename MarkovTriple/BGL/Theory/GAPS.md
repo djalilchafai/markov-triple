@@ -188,3 +188,14 @@ Statements `Theory/Interp/STATEMENTS_R16_Ext.md`; audit `BGL/AUDIT_R16_EXT_SELF.
 
 ## Round 16: elliptic regularity chain and `EllReg` (audit R16-Glue)
 `EllData.EllReg` is PROVED for every `EllData d` (`GibbsRd/EllRegProof.lean`: MemLp ⇒ LocL2, Friedrichs L²_loc ⇒ H¹_loc, E3 `interior_sobolev`, Sobolev embedding of order m+d), hence `weakHypo_unconditional` and `f8_unconditional`, and the unconditional corollaries for Gibbs on ℝ^d and the weighted Riemannian chart (`GibbsRd/Unconditional.lean`, `Riemannian/Unconditional.lean`). The earlier remarks in this file and in `GibbsRd/*`, `Riemannian/*` that `WeakHypo`/`F8` are named hypotheses for d ≥ 1 are superseded (they remain correct as statements about those conditional theorems).  Still open: the Sobolev embedding is not sharp (order m+d instead of m+⌊d/2⌋+1); `Curv ρ` / `HessGe` remain hypotheses; the Riemannian chart is a single global chart with bounded co-metric.
+
+## Round 17 "Noncompact": finite-`n` CD on a non-compact state space (files `Instances/SphereOpen/*`)
+Statements `Instances/SphereOpen/STATEMENTS_R17_Noncompact.md`; audit `BGL/AUDIT_R17_NONCOMPACT.md`; errata R17-1..4.
+* **PROVED**: `SphereOpen.oFull : FullTriple ZonO` on the non-compact `ZonO = (-1,1)` (finite probability measure `μO`), F1-F10, S10, S11 all theorems;
+  `oFull_CD : CD 2 3`, `oFull_finiteDimInterpolation`, `oFull_LS : LS (1/3) 0` (Thm 5.7.4, `C=(n-1)/(ρn)`), `oFull_Γ_ne_zero`, `oFull_μ_pos_of_open`.
+  Axioms: `propext`, `Classical.choice`, `Quot.sound` only.  This updates the scope note of Round 16 "Ext" (there was no non-compact application).
+* **Caveat (read before citing)**: the instance is the zonal `S³` triple restricted to a dense conull open subset (`L²`, `R`, `P_t` transported unitarily;
+  `A = A₀`); non-compactness is topological only.  Nothing about essential self-adjointness of `C_c^∞(-1,1)` (true only for Gegenbauer dimension `n ≥ 4`)
+  or boundary regularity is proved.  Not built: other `n`, other Jacobi parameters, `C_c^∞` as test algebra.
+* **Obstruction (math remark, not formalized)**: `ρ>0`, `n<∞` ⇒ bounded intrinsic diameter (Bonnet-Myers), so no `d_Γ`-complete state space (all of
+  `EllData`/`RiemData`/`GibbsRdData`, Laguerre, OU, Student-type) can carry such a triple with finite measure; only Jacobi/Gegenbauer on `(-1,1)` remain.

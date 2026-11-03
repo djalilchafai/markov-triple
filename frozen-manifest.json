@@ -104,6 +104,11 @@
       "path": "MarkovTriple/BGL/Instances/Riemannian/STATEMENTS_R16_Bochner.md",
       "status": "proposed",
       "sha256": "02e98eb4c623ffde3f6a740c81a4c573b1c71634d4cf4265a94423e59c6d9114"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/SphereOpen/STATEMENTS_R17_Noncompact.md",
+      "status": "proposed",
+      "sha256": "1aafd4aa4db794702c50596e687d2875d7761903adca43d3f3f7dd7ba7857961"
     }
   ],
   "fenced": [
