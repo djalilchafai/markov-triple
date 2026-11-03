@@ -57,3 +57,10 @@ Batch 1 (`EllipticQ3.lean`), Evans §5.8.2 Thm 3(i):
  Q3b `weakDeriv_translate`: `WeakDeriv f g i`, φ ∈ C_c^∞, c: `∫ f z · ∂ᵢφ(z−c) = −∫ g z · φ(z−c)`.
  Q3c `norm_le_of_dual_bound`: `MemLp G 2`, `∀ φ ∈ C_c^∞, |∫ G φ| ≤ M ‖φ‖₂ → ‖G‖₂ ≤ M` (density `Lp.dense_hasCompactSupport_contDiff`).
  Q3  `eLpNorm_dq_le`: `MemLp f 2, MemLp g 2, WeakDeriv f g i → eLpNorm (dq i h f) 2 volume ≤ eLpNorm g 2 volume` (all `h`).
+(Batch 1 erratum-note: `norm_le_of_dual_bound` takes the extra hypothesis `0 ≤ M`; without it the statement is false for `M < 0`, `G = 0`.)
+
+Batch 2 (`EllipticLocal.lean`), localisation, Evans §5.8.2 proof of Thm 3(ii) + cut-off exhaustion:
+ R2a `weakDeriv_of_local`: `LocL2 f`, `(∀ N, ∃ g, LocL2 g ∧ WeakDeriv (cut(N+1)·f) g i)` ⇒ `∃ g, LocL2 g ∧ WeakDeriv f g i`
+     (`cut R` of `Cutoff.lean`: smooth, compact support, `= 1` on `{|x|² ≤ R²}`).
+ R2b `weakDeriv_of_local_dq`: `LocL2 f`, `hₙ → 0`, `hₙ ≠ 0`, `∀ K compact ∃ C, ∀ n, eLpNorm (dq i (hₙ n) f) 2 (vol.restrict K) ≤ ofReal C`
+     ⇒ `∃ g, LocL2 g ∧ WeakDeriv f g i`.
