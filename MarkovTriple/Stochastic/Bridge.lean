@@ -8,7 +8,7 @@ import MarkovTriple.Stochastic.KernelRep
 semigroup `(κ_t)_{t ≥ 0}` of `ProbabilityTheory.Kernel E E` with *exact* Chapman–Kolmogorov
 `κ_{s+t} = κ_t ∘ₖ κ_s` and `κ_0 = id`.  It is the shape an external development such as
 Armstrong's `MarkovProcess` (`SubMarkovKernelSemigroup`, Feller processes, Dynkin's formula) would
-be matched against; that library is **not** a dependency (it is not available locally).
+be matched against; that library is **not** a dependency (an untrusted source copy exists on the filesystem but is never imported; see `MarkovProcessInterface.lean`).
 
 `KernelBridge T` is the interface statement: a sub-Markov kernel semigroup that
 (i) realizes the `L²` semigroup of the triple `T` on bounded measurable `L²` functions

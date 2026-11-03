@@ -20,7 +20,7 @@ with Mathlib's `ProbabilityTheory.Kernel`.
   for `μ`-a.e. `x`, when the σ-algebra is countably generated.
 
 A bridge to a `MarkovProcess`-style `SubMarkovKernelSemigroup` would instantiate
-`KernelRepresentation` (see `MarkovTriple/Stochastic/Bridge.lean`).
+`KernelRepresentation` (see `MarkovTriple/Stochastic/Bridge.lean` and `MarkovProcessInterface.lean`; OU and circle bridges: `OUFull.lean`, `Circle.lean`).
 -/
 
 open MeasureTheory ProbabilityTheory

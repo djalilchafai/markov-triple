@@ -18,10 +18,9 @@ Fully proved here:
 * **identification with the `L²` semigroup on the test class**: for `f ∈ C_c^∞` (`OA₀`),
   `P_t [f] = (x ↦ ∫ f dκ_t(x,·))` `γ`-a.e. (from the Mehler formula `Pt_mehler`).
 
-What is *not* proved: the representation for all bounded measurable `L²` functions (the field
-`rep` of `KernelRepresentation`).  It follows from the above by `L²`-continuity of both sides and
-density of `OA₀`, but needs the `L²(γ)`-contractivity of `g ↦ κ_t g` (Jensen + invariance) and a
-monotone-class extension; see `ouKernel_rep_OA₀` for the exact statement that is available.
+The representation for ALL bounded measurable `L²` functions (the field `rep` of `KernelRepresentation`) is proved in
+`MarkovTriple/Stochastic/OUFull.lean` (`ou_rep_full`, `ouKernelBridge`) by `L²`-contractivity of `g ↦ κ_t g` and density of `OA₀`
+(audit R15-6: this header was stale).
 -/
 
 open MeasureTheory ProbabilityTheory
