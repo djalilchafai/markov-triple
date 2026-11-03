@@ -84,4 +84,30 @@ theorem hasDerivAt_pair {K1 K2 : ℝ} (hK1 : 0 ≤ K1) (hK2 : 0 ≤ K2)
   rw [hsum]
   exact hAd.add hB
 
+
+/-- continuity of `r ↦ ∫ k_r ψ(u_r)` (end points of `[0,t]` in the proof of Thm 3.3.18). -/
+theorem continuous_pair (hψm : Measurable ψ) (hψ0 : ψ 0 = 0)
+    (hH : ∀ a b : ℝ, 0 ≤ a → 0 ≤ b → (ψ b - ψ a) ^ 2 ≤ |b - a|)
+    {u : ℝ → Lp ℝ 1 μ} (hu : Continuous u) (hnn : ∀ r, 0 ≤ᵐ[μ] (u r : α → ℝ))
+    {k : ℝ → Lp ℝ 2 μ} (hk : Continuous k) :
+    Continuous (fun r => ∫ x, k r x * ψ (u r x) ∂μ) := by
+  have mΨ : ∀ r, MemLp (fun x => ψ (u r x)) 2 μ := fun r => memLp_two_comp hψm hψ0 hH (u r) (hnn r)
+  have hΨ : Continuous (fun r => psiCls hψm hψ0 hH (u r) (hnn r)) := by
+    rw [continuous_iff_continuousAt]
+    intro s
+    rw [ContinuousAt, tendsto_iff_norm_sub_tendsto_zero]
+    have h0 : Tendsto (fun r => ‖u r - u s‖) (𝓝 s) (𝓝 0) := by
+      simpa using tendsto_iff_norm_sub_tendsto_zero.1 (hu.tendsto s)
+    have h1 : Tendsto (fun r => Real.sqrt ‖u r - u s‖) (𝓝 s) (𝓝 0) := by
+      have := (Real.continuous_sqrt.tendsto 0).comp h0
+      simpa [Function.comp_def] using this
+    exact squeeze_zero (fun r => norm_nonneg _)
+      (fun r => norm_psiCls_sub_le hψm hψ0 hH (u r) (u s) (hnn r) (hnn s)) h1
+  have : (fun r => ∫ x, k r x * ψ (u r x) ∂μ) =
+      fun r => ⟪k r, psiCls hψm hψ0 hH (u r) (hnn r)⟫_ℝ := by
+    funext r
+    exact (inner_eq_integral (k r) (mΨ r)).symm
+  rw [this]
+  exact hk.inner hΨ
+
 end MarkovTriple.BGL
