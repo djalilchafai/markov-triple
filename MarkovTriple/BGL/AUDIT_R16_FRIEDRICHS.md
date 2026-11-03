@@ -1,0 +1,5 @@
+# Hostile audit: round 16, Friedrichs commutator: L²_loc ⇒ H¹_loc for very weak solutions (branch HEAD 825c897)
+
+Independent auditor. **Result: no soundness defect, misformalization or vacuity.** `EllData.sobolev_one_of_veryWeak` (u, h ∈ L²_loc, `VeryWeakSol u h` ⇒ `Sobolev 1 u`): `VeryWeakSol` agrees with the equation produced by `weakHypo_of_reg`/`resolvent_weak` up to the constant factor Z;
+the generic hypothesis is non-vacuous (the auditor proved in a scratch file that for any d and smooth u, with b = identity and F = Σ∂ᵢ∂ᵢu, the generic `veq` holds); `comm_formula`, `comm_bound` (∃C ∀ρ φ; only local Lipschitz bound on closedBall 0 (R₀+1)), `test_eq`, `energy_est` (C chosen before ρ, u, F), `cutoff_h1`, `bco_elliptic`, `Pop_bco` checked; every smoothness class is `∞` (not ω).
+Structural: frozen OK; 8 EllipticFriedrichs modules recompiled from scratch (0 errors/warnings); axioms standard. Findings: documentation only (ERRATA R16-Elliptic-audit). Not done in this stage: the `EllReg` instantiation.
