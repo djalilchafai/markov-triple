@@ -76,7 +76,18 @@ Proved (namespace `MarkovTriple.BGL.LebesgueRd`):
   Deviation from the Statements section: the sharpness theorem is stated as this iff (stronger than `bochner_Rd_sharp`), for real `n > 0`.
   This is the pointwise (ρ,n)-condition on `C^∞(ℝ^d)` for the diffusion triple's `Γ₂`; it is NOT `FullTriple.CD` (no `FullTriple` exists yet).
 
-NOT done (exact open items for `lebesgueRdFull`):
+### Update (continuation): stage S3a PROVED, `FullEasy.lean`
+`Lf_comp` (second-order chain rule `Δ(ψ∘f) = Σ ∂ⱼψ Δfⱼ + Σ ∂ₗ∂ⱼψ Γ(fⱼ,fₗ)`), `F1`, `F2` (bump function `bump`, positivity detection), `A_comp` (F3), `L_mem_A` (F4),
+`F5`, `F6Γ`, `F6L`, `ibp_L'`, `F7`, `F9` (connexity), all for `lebesgueRdDiffusion d hd` and `𝒜 = A d`; axioms: propext, Classical.choice, Quot.sound (`AxiomCheck.lean`).
+Still OPEN for `lebesgueRdFull` (the heat-kernel stage, route (a), was assessed and NOT attempted beyond that; nothing of it is claimed):
+  (i) Gaussian smoothing `heatRd a φ x = ∫ φ(x + a z) dγ_d(z)` on `C_c^∞(ℝ^d)`: smoothness, `∂ᵢ heat = heat ∂ᵢ`, L² membership (port of Lebesgue/Heat.lean lines 1–150, generic in d via `Measure.pi gaussianReal`);
+  (ii) strong L²-derivative `d/dt heatRd = Δ heatRd` (Heat.lean 150–559, Taylor remainder `rho`, ≈ 450 lines in 1-D; in ℝ^d the Taylor/remainder bounds need second derivatives in all directions);
+  (iii) Duhamel identification `semigroup_eq_heat` (Identify.lean) ⇒ F8 (`P_t f ∈ C^∞`) and S11 (`P_t u_n → 1` via `heatM_tendsto_one`);
+  (iv) S10 (ergodicity): 1-D uses du Bois-Reymond; in ℝ^d needs `∇u = 0` in the weak sense ⇒ constant (mollification or Fourier);
+  (v) F10 (ESA of Δ on C_c^∞): the 1-D proof (`ODE.lean`, `Core2*.lean`) uses the explicit ODE resolvent `v − v'' = ψ`, which has NO analogue in ℝ^d; needs elliptic regularity / Bessel potential (Fourier) — the hardest step, ≳ 1500 lines.
+Therefore `lebesgueRdFull` and `lebesgueRd_CD_iff` (as `FullTriple.CD`) are NOT stated as theorems.
+
+NOT done (exact open items for `lebesgueRdFull`; F1,F2,F3,F4,F5,F6,F7,F9 are now done, see Update above):
 * F1, F2, F3, F4, F5, F6, F7, F9: elementary, follow from the calculus above (port of `Lebesgue/FullEasy.lean`, ~250 lines; needs `Lf_mul`, `ibp_L` — already here; F6L needs the second-order chain rule `L(ψ∘f)` = Σ ∂ψ Lf + Σ ∂²ψ Γ, not proved in this round); F2 via bump functions.
 * S2/F8/S11/S10/F10 (heat semigroup identification `P_t f = e^{tΔ}f ∈ C^∞`, `P_t 1 = 1`, ergodicity, ESA of Δ on C_c^∞): this is the bulk.  Route estimate (see top): port of the 1-D `Heat/Identify/ODE/Cutoff/Core2*/Ergodic` ≈ 3500 lines in ℝ^d; Fourier route ≈ 2500 lines; tensorisation: needs a product theorem for `FullTriple` (not in the library), ≈ 3000 lines.  None attempted.
 * Consequently `lebesgueRd_CD_iff` (S4) is not stated as a Lean theorem about `FullTriple.CD`; its content (the Bochner range `ρ ≤ 0 ∧ d ≤ n`) is `bochner_Rd_iff`.  The conjunct `1 ≤ n` of `FullTriple.CD` is implied by `d ≤ n` for `d ≥ 1`.
@@ -84,5 +95,5 @@ NOT done (exact open items for `lebesgueRdFull`):
 Proposed ERRATA rows (not added): 
 | R23-R-1 | INFO | First `(ℝ^d, Lebesgue)`, d ≥ 1 piece: `lebesgueRdDiffusion d hd : DiffusionTriple (Fin d → ℝ)` with `𝒜₀ = C_c^∞`, `L = Δ`, `Γ = ∇f·∇g` (D1–D8 all proved), `Γ₂ = Σ (∂ᵢ∂ⱼf)²`, and `bochner_Rd_iff` (range `ρ ≤ 0 ∧ d ≤ n` of the Bochner inequality on `C^∞`). It is NOT a `FullTriple`: F6L, F8, F10, S10, S11 for `ℝ^d` remain open. |
 | R23-R-2 | INFO (scope) | R22-E4-1 'ℝ^d, d ≥ 2 not formalised as a FullTriple' remains true; only the DiffusionTriple and pointwise Γ₂ stage is now present. |
-Proposed import in `MarkovTriple.lean`: `MarkovTriple.BGL.Instances.LebesgueRd.{Basic,Gamma2,AxiomCheck}`.  Frozen manifest: no frozen file edited; no `proposed` entry added (new files only).
+Proposed import in `MarkovTriple.lean`: `MarkovTriple.BGL.Instances.LebesgueRd.{Basic,Gamma2,FullEasy,AxiomCheck}`.  Frozen manifest: this statements file is registered as a `proposed` entry; no existing entry changed.
 
