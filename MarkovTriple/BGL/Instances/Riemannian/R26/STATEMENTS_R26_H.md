@@ -73,3 +73,9 @@ theorem atlas_CD {ρ} (hρ : ρ ≤ 0) {n} (hn : 1 ≤ n) {f} (hf : f ∈ A₀) 
 ```
 Pre-announced fallback: if `H4` (change of variables) does not close, `atlasDiff` takes `μ := μ₀` directly and H4 is reported as not proved.
 (The measure of `atlasDiff` is `μ₀` in all cases; `atlasIntegral_eq` is the statement that this is the atlas-glued Riemannian volume.)
+
+## Status (delivered)
+All H1-H5 proved in the frozen names, files `R26/{ChartChange,Chart1,Atlas1,Measure,AtlasTriple}.lean`, axioms `[propext, Classical.choice, Quot.sound]`
+(`R26/AxiomCheckR26H.lean`), 0 warnings, full `lake build` OK.  Deviations (ERRATA R26-H-1): `atlasDiff_Γ`, `atlasDiff_L` stated for arguments in `𝒜₀`
+(total-function equality is false); `integral_north/south` have an unused hypothesis `_hF` (true without it); `ρN = (1+cC)/2`, `ρS = (1-cC)/2`;
+extra theorems `north_total`, `atlasDiff_μ`, `atlasDiff_ΓA`, `stereoAtlas_glueΓ/_glueL`, `glueL_indep`.  The sphere `S²` and `L`-invariance for `d ≥ 2` were not attempted (ERRATA R26-H-2).
