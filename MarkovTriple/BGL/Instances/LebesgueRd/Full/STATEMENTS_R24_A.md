@@ -76,3 +76,13 @@ Also (finite-measure counterpart, wrappers only): `gaussRdFull d : FullTriple (F
 
 ## Status (to be updated at the end of the round)
 (see the end of this file)
+
+## Status (end of Round 24, stream A): ALL STATEMENTS ABOVE PROVED
+`lake build` (9455 jobs) clean: no `sorry`, no `set_option`, 0 warnings from stream A files; `AxiomCheckR24A.lean`: every main theorem depends only on
+propext, Classical.choice, Quot.sound.  Frozen statements unchanged; no ERRATA needed for them.
+* `lebesgueRdFull d hd : FullTriple (Fin d → ℝ)` for Lebesgue measure, d ≥ 1 (all of F1–F10, S10, S11), `lebesgueRdFull_CD_iff : CD ρ n ↔ ρ ≤ 0 ∧ d ≤ n`.
+* Heat flow: `HeatAPI`/`HeatAux` (smoothness, L², symmetry, contraction, decay, S11 limit), `HeatDeriv*` (strong L² derivative), `DomainAPI/DomainAux`
+  (completeness, PreFull, cut-offs, domain), `EsaCut/Esa/Ergodic/Identify/Main` (F10, S10, Duhamel `semigroup_eq_heatRd`, S11, F8, assembly).
+* `GaussFinite.lean`: `gaussRdFull d` (finite-measure Gaussian FullTriple, CD 1 ∞, PI, LS) = `GibbsRd` result renamed.
+Proof route differs from BGL (Section 1): F10/S10 via heat-flow ODE trick instead of Weyl's lemma / hypoellipticity.  No obstruction exists (FullTriple allows infinite μ).
+Limitations: `d ≥ 1` only; the `EllData` elliptic-regularity machinery is for probability measures and was not reused.

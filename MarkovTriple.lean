@@ -487,6 +487,11 @@ import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatAPI
 import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatDeriv
 import MarkovTriple.BGL.Instances.LebesgueRd.Full.DomainAPI
 import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatAux
+import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatDerivAux1
+import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatDerivAux2
+import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatDerivAux3
+import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatDerivAux4
+import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatDerivAux5
 import MarkovTriple.BGL.Instances.LebesgueRd.Full.DomainAux
 import MarkovTriple.BGL.Instances.LebesgueRd.Full.EsaCut
 import MarkovTriple.BGL.Instances.LebesgueRd.Full.Esa

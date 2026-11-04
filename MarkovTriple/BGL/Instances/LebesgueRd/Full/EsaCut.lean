@@ -17,7 +17,7 @@ namespace MarkovTriple.BGL.LebesgueRd
 variable {d : ℕ}
 
 /-- `‖[g]‖² = ∫ g²`. -/
-lemma norm_toLp_sq' {g : (Fin d → ℝ) → ℝ} (hg : MemLp g 2 volume) :
+lemma norm_toLp_sq_E {g : (Fin d → ℝ) → ℝ} (hg : MemLp g 2 volume) :
     ‖hg.toLp g‖ ^ 2 = ∫ x, (g x) ^ 2 := by
   rw [← real_inner_self_eq_norm_sq, MeasureTheory.L2.inner_def]
   refine integral_congr_ae ?_
@@ -35,7 +35,7 @@ lemma tendsto_toLp_of_integral_sq' {G : ℕ → (Fin d → ℝ) → ℝ} {F : (F
     have hd : MemLp (fun x => G n x - F x) 2 volume := (hG n).sub hF
     have h1 : (hG n).toLp (G n) - hF.toLp F = hd.toLp (fun x => G n x - F x) := by
       rw [← MemLp.toLp_sub]; rfl
-    rw [h1, ← Real.sqrt_sq (norm_nonneg _), norm_toLp_sq' hd]
+    rw [h1, ← Real.sqrt_sq (norm_nonneg _), norm_toLp_sq_E hd]
   simp only [e]
   have := (Real.continuous_sqrt.tendsto 0).comp h
   rw [Real.sqrt_zero] at this
@@ -62,7 +62,7 @@ lemma sq_mul_integrable' {m w : (Fin d → ℝ) → ℝ} (hm : Measurable m) {c 
 
 /-! ### Scaling of the profile -/
 
-lemma dd_scale {f : (Fin d → ℝ) → ℝ} (hf : Sm f) (c : ℝ) (i : Fin d) :
+lemma dd_scale_E {f : (Fin d → ℝ) → ℝ} (hf : Sm f) (c : ℝ) (i : Fin d) :
     dd i (fun x => f (c • x)) = fun x => c * dd i f (c • x) := by
   funext x
   unfold dd
@@ -77,21 +77,21 @@ lemma dd_const_mul {f : (Fin d → ℝ) → ℝ} (hf : Sm f) (c : ℝ) (i : Fin 
   have := congrFun (dd_smul c hf i) x
   exact this
 
-lemma sq_smul (c : ℝ) (x : Fin d → ℝ) : sq (c • x) = c ^ 2 * sq x := by
+lemma sq_smul_E (c : ℝ) (x : Fin d → ℝ) : sq (c • x) = c ^ 2 * sq x := by
   unfold sq
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => by simp [mul_pow]
 
-lemma cut_eq_scale (n : ℕ) :
+lemma cut_eq_scale_E (n : ℕ) :
     (cut n : (Fin d → ℝ) → ℝ) = fun x => (cut 0 : (Fin d → ℝ) → ℝ) ((((n : ℝ) + 1)⁻¹) • x) := by
   funext x
   unfold cut
-  rw [sq_smul]
+  rw [sq_smul_E]
   simp [div_eq_mul_inv, mul_comm, inv_pow]
 
 lemma dd_cut (n : ℕ) (i : Fin d) (x : Fin d → ℝ) :
     dd i (cut n : (Fin d → ℝ) → ℝ) x = ((n : ℝ) + 1)⁻¹ * dd i (cut 0 : (Fin d → ℝ) → ℝ) ((((n : ℝ) + 1)⁻¹) • x) := by
-  rw [cut_eq_scale n, dd_scale (cut_smooth 0)]
+  rw [cut_eq_scale_E n, dd_scale_E (cut_smooth 0)]
 
 lemma dd_dd_cut (n : ℕ) (i : Fin d) (x : Fin d → ℝ) :
     dd i (dd i (cut n : (Fin d → ℝ) → ℝ)) x =
@@ -100,7 +100,7 @@ lemma dd_dd_cut (n : ℕ) (i : Fin d) (x : Fin d → ℝ) :
       fun x => ((n : ℝ) + 1)⁻¹ * dd i (cut 0 : (Fin d → ℝ) → ℝ) ((((n : ℝ) + 1)⁻¹) • x) :=
     funext (dd_cut n i)
   rw [e, dd_const_mul (f := fun x => dd i (cut 0 : (Fin d → ℝ) → ℝ) ((((n : ℝ) + 1)⁻¹) • x))
-    (((cut_smooth 0).dd i).comp (contDiff_const_smul _)) , dd_scale ((cut_smooth 0).dd i)]
+    (((cut_smooth 0).dd i).comp (contDiff_const_smul _)) , dd_scale_E ((cut_smooth 0).dd i)]
   ring
 
 lemma bound_of_A₀ {f : (Fin d → ℝ) → ℝ} (hf : f ∈ A₀ d) : ∃ C, 0 ≤ C ∧ ∀ x, |f x| ≤ C := by

@@ -19,7 +19,7 @@ lemma exists_bound {f : (Fin d → ℝ) → ℝ} (hf : f ∈ A₀ d) : ∃ C, 0 
     rw [Real.norm_eq_abs] at this
     exact this.trans (le_max_left _ _)⟩
 
-lemma integrable_comp_gam {f : (Fin d → ℝ) → ℝ} (hf : f ∈ A₀ d) (a : ℝ) (x : Fin d → ℝ) :
+lemma integrable_comp_gam_A0 {f : (Fin d → ℝ) → ℝ} (hf : f ∈ A₀ d) (a : ℝ) (x : Fin d → ℝ) :
     Integrable (fun z => f (x - a • z)) (gam d) := by
   obtain ⟨C, -, hC⟩ := exists_bound hf
   exact Integrable.of_bound (C := C) ((smooth hf).continuous.comp (by fun_prop)).aestronglyMeasurable
@@ -56,8 +56,8 @@ lemma gam_ibp_dd (hφ : φ ∈ A₀ d) (a : ℝ) (x : Fin d → ℝ) (i : Fin d)
 lemma integral_rhoD (hφ : φ ∈ A₀ d) (a : ℝ) {h : ℝ} (x : Fin d → ℝ) :
     ∫ z, rhoD φ a h x z ∂(gam d) =
       (heatRd (a + h) φ x - heatRd a φ x) / h - a * heatRd a (Lf φ) x := by
-  have i1 := integrable_comp_gam hφ (a + h) x
-  have i2 := integrable_comp_gam hφ a x
+  have i1 := integrable_comp_gam_A0 hφ (a + h) x
+  have i2 := integrable_comp_gam_A0 hφ a x
   have hi : ∀ i : Fin d, Integrable (fun z : Fin d → ℝ => z i * dd i φ (x - a • z)) (gam d) := fun i => by
     obtain ⟨B, -, hB⟩ := exists_bound (dd_mem hφ i)
     have hid : Integrable (fun z : Fin d → ℝ => z i) (gam d) :=
@@ -73,7 +73,7 @@ lemma integral_rhoD (hφ : φ ∈ A₀ d) (a : ℝ) {h : ℝ} (x : Fin d → ℝ
     (i1.sub i2).div_const h
   have hL : ∫ z, Lf φ (x - a • z) ∂(gam d) = ∑ i, ∫ z, dd i (dd i φ) (x - a • z) ∂(gam d) := by
     unfold Lf
-    exact integral_finsetSum _ fun i _ => integrable_comp_gam (dd_mem (dd_mem hφ i) i) a x
+    exact integral_finsetSum _ fun i _ => integrable_comp_gam_A0 (dd_mem (dd_mem hφ i) i) a x
   have hS : ∫ z, fderiv ℝ φ (x - a • z) z ∂(gam d) = -a * ∫ z, Lf φ (x - a • z) ∂(gam d) := by
     simp_rw [fderiv_eq_sum]
     rw [integral_finsetSum _ fun i _ => hi i, hL, Finset.mul_sum]

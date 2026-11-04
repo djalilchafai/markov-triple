@@ -11,7 +11,7 @@ import MarkovTriple.BGL.Frozen.Complete
 /-!
 # Completeness, `PreFull`, cut-off approximation and domain membership for `(ℝ^d, Lebesgue)` (Round 24, stream A, part B-a)
 
-STUB (statements fixed; proofs `sorry` until stream B-a delivers).
+Proved (stream B-a); statements as frozen in STATEMENTS_R24_A.md.
 -/
 
 open MeasureTheory Filter Topology

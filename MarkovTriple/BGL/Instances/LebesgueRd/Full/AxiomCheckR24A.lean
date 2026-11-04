@@ -1,7 +1,5 @@
 import MarkovTriple.BGL.Instances.LebesgueRd.Full.Main
 
--- NOTE: until the other parts of Round 24 stream A (HeatAPI, HeatDeriv, DomainAPI) are merged, `sorryAx`
--- appears below through their stubs; part B-b's own declarations add nothing beyond the stubs.
 #print axioms MarkovTriple.BGL.LebesgueRd.cutoff_graph
 #print axioms MarkovTriple.BGL.LebesgueRd.heat_graph
 #print axioms MarkovTriple.BGL.LebesgueRd.zero_of_ode_bdd
