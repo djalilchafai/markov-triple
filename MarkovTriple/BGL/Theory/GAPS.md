@@ -160,6 +160,15 @@ including uniformly convex non-Gaussian: `GibbsData.gibbsFull_core2_of_growHess`
 (equivalent to e.s.a. of `L²` on `C_c^∞`, possibly false), and for `EllData`/`GibbsRdData` on `ℝ^d` (needs `∇²v ∈ L²(μ)` by a cut-off Bochner estimate and the
 `d`-dimensional commutators of `L²` with cut-offs).
 
+**Round 18-19 update (`ℝ^d`, `EllData`, `RiemData`).**  R18-A3 proved `Core2` for `GibbsRdData` under `BddHess3` (`Instances/GibbsRd/Core2Rd*.lean`).
+**Round 19 (Stream A6, `Instances/GibbsRd/Core2Ell*.lean`, `Instances/Riemannian/Core2Riem*.lean`, `STATEMENTS_R19_Core2Ell.md`, `BGL/AUDIT_R19_CORE2ELL.md`, ERRATA R19-Ell-*):**
+`Core2` and the UNCONDITIONAL converse of 3.3.17 are PROVED for every `EllData d` and `RiemData d` under (i) `Curv ρ` (some `ρ ∈ ℝ`) and (ii) `CoreCut`, a cut-off family with
+uniformly bounded `Γχ_n, Lχ_n, L²χ_n, Γ(Lχ_n), Γ₂(χ_n)` (`EllData.ell_core2`, `ell_mem_domain_of_Γ₂`, `RiemData.riem_core2`, `riem_mem_domain_of_Γ₂`).  Gibbs `BddHess3` is recovered;
+sufficient condition `RadialJets` (T6); non-vacuous with `ρ>0` including the non-flat variable-metric conformal plane `confRiem` (`confRiem_core2`, `Curv 2`).
+**Still open (exact):** `CoreCut` for general coordinate data (no theorem from bounds on `∂a, ∂²a, ∂³a, ∇log w`; only radial-in-`ψ` data and flat Gibbs are derived);
+the hyperbolic plane `hypRiem` (`W = 2cosh d`) provably has NO `CutFamily` (by-hand Mills-ratio argument in the audit), so `Core2` for it is open; the 1-D/radial quartic Gibbs
+has no `CutFamily` either (its `Core2` is R18-A2's different route; the `ℝ^d` quartic is open); arbitrary smooth data remains open.
+
 ## Round 15 "Interp": the non-compact discharge of `StrongInterpolation` (files `Theory/Interp/*`, `Instances/Gibbs/InterpMain`, `Instances/OU/InterpGeneric`)
 Statements: `Theory/Interp/STATEMENTS_R15_Interp.md`; self-audit: `BGL/AUDIT_R15_INTERP_SELF.md`.
 * **G1' DISCHARGED for every `FullTriple`**: `FullTriple.strongInterpolation : T.CD ρ n → T.StrongInterpolation` (any `ρ`, `n`; no compactness, no converse of 3.3.17),

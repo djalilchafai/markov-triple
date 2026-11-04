@@ -50,4 +50,10 @@ The whole argument is written in the `L, Γ, Γ₂` calculus (no coordinates of 
   and `CoreCut` with radial cut-offs FAIL; neither `Core2` nor its negation is claimed for `hypRiem`.
 
 ## Status
-(filled at the end of the round)
+T1, T2, T3, T4, T5 (Gibbs `ρ=1,1/2`, and `confRiem`, `Curv 2`), T6 PROVED as stated; the statement section is unchanged except the following clarifications (logged ERRATA R19-Ell-*):
+* names as proved: `EllData.exists_resolvent_smooth_ell`, `integrable_Γ_resolvent`, `integrable_G2'_resolvent`, `cutoff_ZL_ell`, `core2_of_ZL_ell`, `fullU_CD`, `GibbsRdData.BddHess3.coreCut`,
+  `gibbsRd_core2_via_ell`, `gaussData_ell_core2`, `cosData_ell_core2`, `ofGibbs_core2`, `RiemData.riem_core2`, `confRiem_core2`, `confRiem_mem_domain_of_Γ₂`;
+* T6 is `RadialJets E ψ α β` with `Lψ = α∘ψ`, `Γψ = β∘ψ` (radial structure) — the unconditional "no radial structure" jet criterion listed in T6 as `JetExh` was NOT proved (R19-Ell-4);
+* T7 (hypRiem): decided by a by-hand argument (not formalised): NO `CutFamily` exists (`AUDIT_R19_CORE2ELL.md` §6, R19-Ell-2).
+Files: `GibbsRd/Core2Ell{Calc,Resolvent,Energy,ZL,Main,Gibbs,RadialCalc,RadialCut,RadialScalar,Radial,RadialMain}.lean`, `Riemannian/Core2Riem{Main,Conf}.lean`,
+`Riemannian/AxiomCheckR19Core2Ell.lean` (only `propext`, `Classical.choice`, `Quot.sound`).
