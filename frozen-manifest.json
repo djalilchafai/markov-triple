@@ -221,11 +221,6 @@
       "sha256": "54c18a544c9c7657f93e062b1d29626d8715a2f2f849ae8fce1f182cfb892aab"
     },
     {
-      "path": "MarkovTriple/BGL/Instances/Riemannian/R22/STATEMENTS_R22_E4.md",
-      "status": "proposed",
-      "sha256": "099e37f90395490d158e75ec8b1bde59ec6e8b19f1120d38bd9ef6274589894c"
-    },
-    {
       "path": "MarkovTriple/Stochastic/R24/STATEMENTS_R24_C.md",
       "status": "proposed",
       "sha256": "e58e42760ff4a3a9c37f73d99b099e4fd899b040970cb9714738a04d24dd48a5"
@@ -234,6 +229,11 @@
       "path": "MarkovTriple/BGL/Instances/Riemannian/R24/STATEMENTS_R24_D.md",
       "status": "proposed",
       "sha256": "b63851be0821f7cf2585d6562dce6b80272edcd273e48215c027419680514097"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/GegenbauerOpen/Converse/STATEMENTS_R24_B.md",
+      "status": "proposed",
+      "sha256": "16d1a34a31ffd07eed5b02e36046d4ac896fd3a71ef5c2d42914691037039c86"
     }
   ],
   "fenced": [
