@@ -277,3 +277,6 @@ PROVED (axioms `propext`, `Classical.choice`, `Quot.sound`): `GibbsData.gibbs_me
 **`Core2` is not needed** for the converse of 3.3.17 for Gibbs triples; the `Core2*` results remain as independent facts.  This closes the "R19-Rd-2: `HessGe V ρ` only NOT achieved" item FOR THE CONVERSE.
 **Still open (exact):** `Core2` itself for general smooth `V` (ESA of `L²` on `C_c^∞`); the converse of 3.3.17 for `EllData`/`RiemData` beyond `Curv ρ`+`CoreCut` (variable metric: the Hessian bound for the
 cross term is not abstracted), and for a general `FullTriple` (still conditional on `Core2`, `FullTriple.mem_domain_of_Γ₂`).
+
+## Round 20 final merge: converse of Prop 3.3.17 (ERRATA R20-M1, R20-M3)
+The converse of BGL Prop 3.3.17 holds WITHOUT `Core2` and without growth conditions for: every complete `FullTriple` with `CD ρ n`; every `EllData d`/`RiemData d` with `Curv ρ` (hyperbolic plane included); 1-D `GibbsData` with `V'' ≥ ρ`; `GibbsRdData d` with `HessGe V ρ`. Each proof DIFFERS FROM BGL (cut-off Γ₂ identity + ESA of `L`, not the L²-core step). The Round 17-19 `Core2` classes (`GrowHess`, `PolyHess`, `GrowHess3`, `CoreCut`) are independent facts about essential self-adjointness of `L²`. OPEN: `Core2` for general `V`; converse for non-complete abstract triples.
