@@ -139,6 +139,11 @@
       "path": "MarkovTriple/BGL/Instances/Gibbs/STATEMENTS_R18_Core2.md",
       "status": "proposed",
       "sha256": "a6bcbb716e2de8ad0cc6f9fcd00cb9a41c1f9fc59fb12bfe4eeea682b39911d1"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/GibbsRd/STATEMENTS_R19_Core2Ell.md",
+      "status": "proposed",
+      "sha256": "3c47e64f80e8d3d6fc1b316a26543621786dc55790e0619d86387c1744a986a7"
     }
   ],
   "fenced": [
