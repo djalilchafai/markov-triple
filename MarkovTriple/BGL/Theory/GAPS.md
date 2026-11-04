@@ -249,3 +249,14 @@ Non-vacuous `ρ = 1 > 0` witness OUTSIDE `BddHess3`: `quarData d`, `V = Σ xᵢ�
 ## Round 19 merge: net status of `Core2` (see ERRATA R19-M1)
 PROVED (each with a nonvacuous ρ>0 witness and an independent hostile audit): 1-D Gibbs under `PolyHess`; `ℝ^d` Gibbs under `HessGe V ρ` + `GrowHess3`; `EllData`/`RiemData` under `Curv ρ` + `CoreCut` (`confRiem`).
 OPEN: `Core2` for general smooth `V` with `V'' ≥ ρ` only (e.s.a. of `L²` on `C_c^∞`); 1-D `V'''` not polynomially dominated by `V'` or `V''` not `o(V'²)`; the hyperbolic plane (`hypRiem` has no `CoreCut`; `Core2` open); a general jet criterion for `CoreCut` (only `RadialJets` proved).
+
+## Round 20, Stream D1: converse of Prop 3.3.17 for Gibbs WITHOUT `Core2` (see ERRATA R20-D1-*, `Instances/Gibbs/STATEMENTS_R20_Direct.md`, `BGL/AUDIT_R20_DIRECT.md`)
+
+**DIFFERENCE FROM BGL.**  BGL's converse proof needs `𝒜₀` a core for `L²` (`Core2`, ERRATA R15-1).  New route (not the book's): essential self-adjointness of `L` (F10; BGL Prop. 3.3.6 (i),
+`FullTriple.mem_domain_of_ESA`) + a cut-off Caccioppoli estimate on `Γ₂` (technique of BGL Prop. 3.2.1) showing `Lf ∈ L²` from `Γ(f), Γ₂(f) ∈ L¹` and `V'' ≥ ρ`.
+PROVED (axioms `propext`, `Classical.choice`, `Quot.sound`): `GibbsData.gibbs_mem_domain_of_Γ₂_direct` (1-D, hypothesis `∀x, ρ ≤ V''` only) and
+`GibbsRdData.gibbsRd_mem_domain_of_Γ₂_direct` (`ℝ^d`, `HessGe V ρ` only), same conclusion shape as the `Core2`-based theorems; no growth condition on `V`.  Witnesses with `ρ>0` outside
+`BddJet`/`GrowHess`/`PolyHess` (1-D `spikyGibbs`) and outside `GrowHess3`/`BddHess3` (`ℝ^d` `spikyData`).
+**`Core2` is not needed** for the converse of 3.3.17 for Gibbs triples; the `Core2*` results remain as independent facts.  This closes the "R19-Rd-2: `HessGe V ρ` only NOT achieved" item FOR THE CONVERSE.
+**Still open (exact):** `Core2` itself for general smooth `V` (ESA of `L²` on `C_c^∞`); the converse of 3.3.17 for `EllData`/`RiemData` beyond `Curv ρ`+`CoreCut` (variable metric: the Hessian bound for the
+cross term is not abstracted), and for a general `FullTriple` (still conditional on `Core2`, `FullTriple.mem_domain_of_Γ₂`).

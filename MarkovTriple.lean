@@ -381,6 +381,10 @@ import MarkovTriple.BGL.Instances.Gibbs.Core2PolyCut
 import MarkovTriple.BGL.Instances.Gibbs.Core2PolyMain
 import MarkovTriple.BGL.Instances.Gibbs.Core2PolyExample
 import MarkovTriple.BGL.Instances.Gibbs.AxiomCheckR19Core2
+import MarkovTriple.BGL.Instances.Gibbs.DirectCore
+import MarkovTriple.BGL.Instances.Gibbs.DirectMain
+import MarkovTriple.BGL.Instances.Gibbs.DirectExample
+import MarkovTriple.BGL.Instances.Gibbs.DirectOld
 import MarkovTriple.BGL.Instances.Riemannian.BochnerConverse
 import MarkovTriple.BGL.Instances.Riemannian.HypExample
 import MarkovTriple.BGL.Instances.Riemannian.HypUnconditional
@@ -404,6 +408,10 @@ import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWCut
 import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWMain
 import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWExample
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR19Core2Rd
+import MarkovTriple.BGL.Instances.GibbsRd.DirectCore
+import MarkovTriple.BGL.Instances.GibbsRd.DirectMain
+import MarkovTriple.BGL.Instances.GibbsRd.DirectExample
+import MarkovTriple.BGL.Instances.Gibbs.AxiomCheckR20Direct
 import MarkovTriple.BGL.Instances.GibbsRd.Core2EllCalc
 import MarkovTriple.BGL.Instances.GibbsRd.Core2EllResolvent
 import MarkovTriple.BGL.Instances.GibbsRd.Core2EllEnergy
