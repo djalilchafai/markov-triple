@@ -190,6 +190,9 @@ import MarkovTriple.BGL.Theory.Extension.HessExtLin
 import MarkovTriple.BGL.Theory.Extension.Gamma2ELin
 import MarkovTriple.BGL.Theory.Extension.GammaELin
 import MarkovTriple.BGL.Theory.Extension.Converse
+import MarkovTriple.BGL.Theory.Extension.ConverseDirect
+import MarkovTriple.BGL.Theory.Extension.ConverseDirectInst
+import MarkovTriple.BGL.Theory.Extension.ConverseDirectAxioms
 import MarkovTriple.BGL.Theory.Extension.Core2Reduce
 import MarkovTriple.BGL.Instances.OU.Core2Tail
 import MarkovTriple.BGL.Instances.OU.Core2Cut

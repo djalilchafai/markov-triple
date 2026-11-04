@@ -249,3 +249,11 @@ Non-vacuous `ρ = 1 > 0` witness OUTSIDE `BddHess3`: `quarData d`, `V = Σ xᵢ�
 ## Round 19 merge: net status of `Core2` (see ERRATA R19-M1)
 PROVED (each with a nonvacuous ρ>0 witness and an independent hostile audit): 1-D Gibbs under `PolyHess`; `ℝ^d` Gibbs under `HessGe V ρ` + `GrowHess3`; `EllData`/`RiemData` under `Curv ρ` + `CoreCut` (`confRiem`).
 OPEN: `Core2` for general smooth `V` with `V'' ≥ ρ` only (e.s.a. of `L²` on `C_c^∞`); 1-D `V'''` not polynomially dominated by `V'` or `V''` not `o(V'²)`; the hyperbolic plane (`hypRiem` has no `CoreCut`; `Core2` open); a general jet criterion for `CoreCut` (only `RadialJets` proved).
+
+## Round 20, Stream D3: converse of Prop 3.3.17 WITHOUT `Core2` (abstract)
+## DIFFERENCE FROM BGL
+BGL's converse uses the tacit `L²`-core step (`Core2`, ERRATA R15-1).  `FullTriple.mem_domain_of_Γ₂_direct` (`Extension/ConverseDirect.lean`) does not: it shows `Lf ∈ L²` for
+`f ∈ 𝒜`, `Γ(f), Γ₂(f) ∈ L¹` by the BGL Prop. 3.2.1 cut-off technique applied to `Γ₂` (identity `cutoff_Γ₂_identity`; cross term by `hessCS`, from BGL (3.3.7); Fatou), then ESA (`mem_domain_of_maximal`).
+Hypotheses: ESA (F10), completeness (Def 3.3.9), `CD(ρ,n)`; no `Core2`, no ergodicity, no growth/`CoreCut`; no extra hypothesis `HessCS`.  PROVED unconditionally in the abstract framework.
+Applied (`ConverseDirectInst.lean`): OU (incl. concrete `f = id`), circle, Lebesgue, and EVERY `EllData d`/`RiemData d` with `Curv ρ` (no `CoreCut`).  See `AUDIT_R20_CONVERSEDIRECT.md`, ERRATA R20-D3-*.
+**Still open:** `Core2` itself (e.s.a. of `L²` on `𝒜₀`) is NOT obtained and not needed for the converse; any statement that needs `Core2` (e.g. other uses of `core2_of_dense`) is unchanged.  The direct theorem needs `CD(ρ,n)` on all of `𝒜` and completeness; for abstract triples that are not complete the converse is still conditional on `Core2`.
