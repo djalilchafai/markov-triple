@@ -156,8 +156,11 @@ compact triples (`CompactTriple.mem_domain_of_A`, trivial), OU (`ou_mem_domain_o
 `GibbsData.gibbs_mem_domain_of_Γ₂`; non-vacuous: `V = √(1+x²)`, `sqrtGibbs_bddJet`).  **Round 18 (Stream A2, `Instances/Gibbs/Core2W*.lean`, `STATEMENTS_R18_Core2.md`, `BGL/AUDIT_R18_CORE2.md`):** the cut-off Bochner/Hardy estimates
 `memLp_of_BE`, `memLp_of_hardy` give `Core2` and the UNCONDITIONAL converse of 3.3.17 for 1-D Gibbs with `|V''|,|V'''| ≤ C(1+|V'|)` (`GrowHess`; `V'` arbitrary, any `ρ`,
 including uniformly convex non-Gaussian: `GibbsData.gibbsFull_core2_of_growHess`, `gibbs_mem_domain_of_Γ₂_growHess`; witnesses `cosGibbs`, `quarGibbs`).
-**Still open (exact):** `Core2` for 1-D Gibbs outside `GrowHess` (e.g. `V''/|V'|` unbounded, as `e^{x²}`-type), for arbitrary smooth `V`
-(equivalent to e.s.a. of `L²` on `C_c^∞`, possibly false), and for `EllData`/`GibbsRdData` on `ℝ^d` (needs `∇²v ∈ L²(μ)` by a cut-off Bochner estimate and the
+**Round 19 (Stream A4, `Instances/Gibbs/Core2Poly*.lean`, `STATEMENTS_R19_Core2.md`, `BGL/AUDIT_R19_CORE2.md`):** `GrowHess` is replaced by the strictly weaker
+`PolyHess` (`V'' ≥ -Cw(1+|V'|)` [implied by `V'' ≥ ρ`], `V'' = o(V'²)`, `|V'''| ≤ C(1+|V'|^N)`): `GibbsData.gibbsFull_core2_of_polyHess`, `gibbs_mem_domain_of_Γ₂_polyHess`
+(and `_convex`), via the weighted cascade `V'^n v, V'^n v' ∈ L²` (`resolvent_pow_L2`; BE-w + Hardy-w).  Witness outside `GrowHess` with `ρ = 2 > 0`: `V = e^{x²}` (`expGibbs_*`).
+**Still open (exact):** `Core2` for 1-D Gibbs when `V'''` is not polynomially dominated by `V'` or `V''` is not `o(V'²)` (the cut-off proof needs `V'''v, V'V''v ∈ L²`, which no `Γ₂`-integrated estimate gives), for arbitrary smooth `V`
+(equivalent to e.s.a. of `L²` on `C_c^∞`, neither proved nor refuted; e.s.a. of `L` itself holds for every `V`, Gaffney/BGL 3.2.1), and for `EllData`/`GibbsRdData` on `ℝ^d` (needs `∇²v ∈ L²(μ)` by a cut-off Bochner estimate and the
 `d`-dimensional commutators of `L²` with cut-offs).
 
 ## Round 15 "Interp": the non-compact discharge of `StrongInterpolation` (files `Theory/Interp/*`, `Instances/Gibbs/InterpMain`, `Instances/OU/InterpGeneric`)
