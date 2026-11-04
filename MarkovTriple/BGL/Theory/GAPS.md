@@ -257,3 +257,10 @@ BGL's converse uses the tacit `L²`-core step (`Core2`, ERRATA R15-1).  `FullTri
 Hypotheses: ESA (F10), completeness (Def 3.3.9), `CD(ρ,n)`; no `Core2`, no ergodicity, no growth/`CoreCut`; no extra hypothesis `HessCS`.  PROVED unconditionally in the abstract framework.
 Applied (`ConverseDirectInst.lean`): OU (incl. concrete `f = id`), circle, Lebesgue, and EVERY `EllData d`/`RiemData d` with `Curv ρ` (no `CoreCut`).  See `AUDIT_R20_CONVERSEDIRECT.md`, ERRATA R20-D3-*.
 **Still open:** `Core2` itself (e.s.a. of `L²` on `𝒜₀`) is NOT obtained and not needed for the converse; any statement that needs `Core2` (e.g. other uses of `core2_of_dense`) is unchanged.  The direct theorem needs `CD(ρ,n)` on all of `𝒜` and completeness; for abstract triples that are not complete the converse is still conditional on `Core2`.
+## Round 20, Stream D2: the converse of Prop 3.3.17 for `EllData`/`RiemData` WITHOUT `Core2`/`CoreCut`
+DIFFERENCE FROM BGL: BGL (p. 161-162) proves the converse through `Core2` (density of `(L²+Id)𝒜₀`, silently used, ERRATA R15-1; R19: only under `Curv ρ` + `CoreCut`).  Here (`Instances/GibbsRd/DirectEll*.lean`,
+`Instances/Riemannian/DirectRiem*.lean`, `STATEMENTS_R20_DirectEll.md`, `AUDIT_R20_DIRECTELL.md`) the converse is proved under `Curv ρ` ONLY: `Lf ∈ L²` by the cut-off identity
+`∫χ²(Lf)² = ∫χ²Γ₂(f) + ∫χΓ(χ,Γf) − 2∫χLfΓ(χ,f)` (BGL Prop 3.2.1 style, completeness cut-offs `Γχ ≤ 1`, no `Lχ`, `Γ₂(χ)`), the cross term by the Hessian Cauchy–Schwarz
+`Γ(u,Γf)² ≤ 4Γ(u)Γ(f)(Γ₂(f) − ρΓ(f))` (Bochner + `Ric + ∇∇W ≥ ρ g`), then the existing `FullTriple.mem_domain_of_ESA` (F10).
+PROVED: `EllData.ell_mem_domain_of_Γ₂_direct`, `RiemData.riem_mem_domain_of_Γ₂_direct`, `hypRiem_mem_domain_of_Γ₂_direct` (the hyperbolic plane, `Curv 1`, no `CoreCut`; first converse of 3.3.17 on it), `confRiem_mem_domain_of_Γ₂_direct`.
+STILL OPEN: `Core2` itself for `hypRiem` and for general smooth `V` (the direct route does not give it); the abstract converse for a general Full triple (conditional on `Core2`, or on `Lf ∈ L²` via `mem_domain_of_ESA`); the Gibbs 1-D / `ℝ^d` direct versions (other stream).

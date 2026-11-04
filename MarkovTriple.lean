@@ -421,3 +421,10 @@ import MarkovTriple.BGL.Instances.GibbsRd.Core2EllRadialMain
 import MarkovTriple.BGL.Instances.Riemannian.Core2RiemMain
 import MarkovTriple.BGL.Instances.Riemannian.Core2RiemConf
 import MarkovTriple.BGL.Instances.Riemannian.AxiomCheckR19Core2Ell
+import MarkovTriple.BGL.Instances.GibbsRd.DirectEllCut
+import MarkovTriple.BGL.Instances.GibbsRd.DirectEllCore
+import MarkovTriple.BGL.Instances.Riemannian.DirectRiemHess
+import MarkovTriple.BGL.Instances.Riemannian.DirectRiemTransport
+import MarkovTriple.BGL.Instances.GibbsRd.DirectEllMain
+import MarkovTriple.BGL.Instances.Riemannian.DirectRiemMain
+import MarkovTriple.BGL.Instances.Riemannian.AxiomCheckR20DirectEll
