@@ -100,7 +100,7 @@ theorem measurable_Qop_time (f : C_c(X, ℝ)) (x : X) : Measurable fun t : ℝ�
 /-- `(t, x) ↦ Q_t f (x)` is jointly measurable -/
 theorem measurable_Qop_joint (f : C_c(X, ℝ)) :
     Measurable fun p : ℝ≥0 × X => Qop hF p.1 f p.2 := by
-  haveI : TopologicalSpace.MetrizableSpace X := TopologicalSpace.metrizableSpace_of_t3_secondCountable X
+  have : TopologicalSpace.MetrizableSpace X := TopologicalSpace.metrizableSpace_of_t3_secondCountable X
   have h : Measurable (Function.uncurry fun (x : X) (t : ℝ≥0) => Qop hF t f x) :=
     measurable_uncurry_of_continuous_of_measurable (ι := X) (α := ℝ≥0) (β := ℝ)
       (u := fun (x : X) (t : ℝ≥0) => Qop hF t f x)
