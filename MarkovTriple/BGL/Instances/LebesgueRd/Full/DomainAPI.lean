@@ -135,5 +135,3 @@ theorem heatL2_mem_domain (hd : 1 ≤ d) {φ : (Fin d → ℝ) → ℝ} (hφ : �
   exact Subtype.ext e1
 
 end MarkovTriple.BGL.LebesgueRd
-
-#print axioms isComplete_lebesgueRd
