@@ -376,6 +376,11 @@ import MarkovTriple.BGL.Instances.Gibbs.Core2WCut
 import MarkovTriple.BGL.Instances.Gibbs.Core2WMain
 import MarkovTriple.BGL.Instances.Gibbs.Core2WExample
 import MarkovTriple.BGL.Instances.Gibbs.AxiomCheckR18Core2
+import MarkovTriple.BGL.Instances.Gibbs.Core2PolyW
+import MarkovTriple.BGL.Instances.Gibbs.Core2PolyCut
+import MarkovTriple.BGL.Instances.Gibbs.Core2PolyMain
+import MarkovTriple.BGL.Instances.Gibbs.Core2PolyExample
+import MarkovTriple.BGL.Instances.Gibbs.AxiomCheckR19Core2
 import MarkovTriple.BGL.Instances.Riemannian.BochnerConverse
 import MarkovTriple.BGL.Instances.Riemannian.HypExample
 import MarkovTriple.BGL.Instances.Riemannian.HypUnconditional
