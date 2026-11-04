@@ -214,6 +214,11 @@
       "path": "MarkovTriple/BGL/Instances/LebesgueRd/STATEMENTS_R23_R.md",
       "status": "proposed",
       "sha256": "a0c40207619cb92d0539988547b747ac00dc4521a47c6fead0f673997862e955"
+    },
+    {
+      "path": "MarkovTriple/Stochastic/R24/STATEMENTS_R24_C.md",
+      "status": "proposed",
+      "sha256": "b37a25493a8cf3331d9c767e8fc3200587d20db15b83360cfe88588556678b63"
     }
   ],
   "fenced": [
