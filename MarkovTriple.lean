@@ -404,3 +404,17 @@ import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWCut
 import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWMain
 import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWExample
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR19Core2Rd
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllCalc
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllResolvent
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllEnergy
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllZL
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllMain
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllGibbs
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllRadialCalc
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllRadialCut
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllRadialScalar
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllRadial
+import MarkovTriple.BGL.Instances.GibbsRd.Core2EllRadialMain
+import MarkovTriple.BGL.Instances.Riemannian.Core2RiemMain
+import MarkovTriple.BGL.Instances.Riemannian.Core2RiemConf
+import MarkovTriple.BGL.Instances.Riemannian.AxiomCheckR19Core2Ell
