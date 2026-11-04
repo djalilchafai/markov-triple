@@ -244,6 +244,11 @@
       "path": "MarkovTriple/Stochastic/R25/STATEMENTS_R25_E.md",
       "status": "proposed",
       "sha256": "f3aa073dabd3e2745375c8b7b7cb704f7d2d037ba151d10542edd95df607369e"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/Riemannian/R26/STATEMENTS_R26_H.md",
+      "status": "proposed",
+      "sha256": "45d5444ecccc23218c9311286b2418c393aaebdab538e6e622e1c3ac4c3a83ef"
     }
   ],
   "fenced": [
