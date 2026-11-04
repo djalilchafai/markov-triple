@@ -234,6 +234,11 @@
       "path": "MarkovTriple/BGL/Instances/GegenbauerOpen/Converse/STATEMENTS_R24_B.md",
       "status": "proposed",
       "sha256": "16d1a34a31ffd07eed5b02e36046d4ac896fd3a71ef5c2d42914691037039c86"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/LebesgueRd/Core2/STATEMENTS_R25_F.md",
+      "status": "proposed",
+      "sha256": "30006659ef4ca624f95c9d6e879b305a137eb91cf2b5bc133077aad551825680"
     }
   ],
   "fenced": [
