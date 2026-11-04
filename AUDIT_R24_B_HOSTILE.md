@@ -1,0 +1,20 @@
+# R24 Stream B hostile audit (commit c3fa701 on base 6bff800)
+
+Verdict: ACCEPT the mathematics and Lean; the freeze-protocol claim is NOT met (MEDIUM process finding). Doc-level notes below.
+
+## Verified
+* `lake build` (full repo): success, 9440 jobs; the three new files build with no warning or error lines. No `sorry`, no `set_option`, no `axiom` in `Converse/*.lean`.
+* `#print axioms` (run myself) for `memLp_L_of_Γ₂_finite`, `mem_domain_of_Γ₂_finite`, `goFullTriple_mem_domain_of_Γ₂`: only propext, Classical.choice, Quot.sound.
+* `python3 scripts/check_frozen.py`: OK.
+* Mathematics of the step: `FullTriple.CD` (Frozen/CD.lean) is `1 ≤ n ∧ ∀ f ∈ A, ∀ᵐ x, ρ ΓA f f x + (n⁻¹).toReal (L f x)² ≤ Γ₂ f f x`; `Γ₂ f f : E → ℝ` is a pointwise function (not 𝒜-valued), and CD is an a.e. statement, so `(Lf)² ≤ n.toReal (Γ₂ f f − ρ Γ f f)` a.e. is exactly right (n.toReal ≥ 1 > 0 from `1 ≤ n ≠ ∞`; `ENNReal.toReal_inv`). The right side is integrable by the hypotheses Γf, Γ₂f ∈ L¹; `Lf` is measurable (`A_measurable`, `L_memA`); `hint.mono'` gives (Lf)² integrable, hence Lf ∈ L². The remaining step is the pre-existing R20 lemma `mem_domain_of_maximal` (ESA field F10). So "R20 completeness is not needed for finite n" is correct: in R20 completeness was used only to get Lf ∈ L² via cut-offs, which for n < ∞ is an elementary pointwise bound. The proof is a legitimate ~20 lines, not a trick.
+* Statements are non-vacuous and the conclusion is the real domain statement (`∃ hF : [f] ∈ generator.domain, L̄[f] =ᵐ Lf`), identical to `mem_domain_of_Γ₂_direct` minus `IsComplete` and with `n ≠ ∞`. S3 is S2 specialised through `goFullTriple_CD` (n = 4), checked in Main.lean line 64.
+
+## Findings
+1. MEDIUM (process). There is NO frozen-manifest entry for `STATEMENTS_R24_B.md` (nor for Statements.lean). The commit's only manifest change adds a DUPLICATE entry for `STATEMENTS_R22_E4.md` (same path, same hash, lines 208 and 218), evidently a wrong path. And the whole round is a single commit (statements, proofs, docs together), so git history cannot show statements predating proofs. Claim (2) is unsupported; `check_frozen.py` is "OK" only because nothing for R24-B is listed. Not fixed (manifest hash must be added by the drafter protocol and cannot honestly predate proofs now); recommend removing the duplicate R22_E4 entry and adding R24-B as status "proposed" with an explicit note that it was hashed post-proof.
+2. LOW (honesty of hypotheses). The hypotheses "f ∈ 𝒜, f ∈ L², Γ(f) ∈ L¹, Γ₂(f) ∈ L¹" are the R20 ones, not BGL's Prop 3.3.17 verbatim (BGL has ESA/ergodicity, CD(ρ,∞), and tacitly Core2). Γ₂(f) ∈ L¹ is the load-bearing extra assumption here; for the conclusion it is needed (it supplies the bound). The doc says this only implicitly. Also nothing in Lean shows that a non-trivial f (non-zero, in 𝒜) satisfies all hypotheses in `goFullTriple`; satisfiability is plausible (polynomials-type functions on the Gegenbauer instance, finite measure) but not exhibited, so S3 is not shown non-empty beyond f = 0.
+3. LOW (accuracy of "n=∞ still open"). Correct as "not decided in this repository": with n = ∞ the pointwise bound disappears, and neither this proof nor R20 (needs completeness) covers it. No counterexample or proof is claimed. "No gap in BGL's hypotheses is exposed" is accurate since the converse holds for goFullTriple. STATEMENTS "BGL's hypotheses are not wrong but ... stronger than needed in finite dimension" is a fair reading, but BGL's Prop 3.3.17 is for n = ∞, so for finite n this is an extension, not a correction.
+4. LOW (docs). GAPS line ~297 ("converse for non-complete triples ... genuine question for goFullTriple") in the Round 23 OPEN list is now superseded by the Round 24 CLOSED entry; the Round 23 text is left unedited (historical, acceptable; noted). ERRATA R24-B-1 is accurate; it should also say "Γ(f) ∈ L¹ and Γ₂(f) ∈ L¹ are assumed" (it does, in the formula) and the manifest issue of finding 1.
+5. INFO: `MarkovTriple.lean` imports the three new files; fine.
+
+## Verdict
+ACCEPT (math, Lean, ERRATA/GAPS accurate), conditional on fixing finding 1 (manifest) before merge.
