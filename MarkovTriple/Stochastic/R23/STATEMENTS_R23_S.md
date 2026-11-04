@@ -87,4 +87,56 @@ Representation on `C_0 cap L^2`: `1_{K_n} f -> f` in `L^2` so `P(1_{K_n} f) -> P
 Sub-invariance from `hsa`: `int_{K_n} P f = <f, P 1_{K_n}> <= int f`, then compact sets (Urysohn + outer regularity) and inner regularity.
 
 ## Status
-(to be filled after the proofs)
+Files (all in `MarkovTriple/Stochastic/R23/`): `AEKernel.lean`, `Exhaustion.lean`, `SubInv.lean`, `Triple.lean`, `Markov.lean`,
+`Lebesgue.lean`, `AxiomCheck.lean`.  Build: 0 warnings, no `sorry`, no `set_option`, no new axiom; `#print axioms` of every theorem
+below = only propext, Classical.choice, Quot.sound.  No existing file edited (R22 files are imported, not modified).
+
+PROVED (all statements above, none weakened):
+* S1: `R23.exists_kernel_of_aeLinear` (compact lemma), `R23.exists_kernel_of_posContraction_locFinite` (`Exhaustion.lean`),
+  `R23.exists_kernel_of_posContraction_locFinite_subInv` (`SubInv.lean`; the sub-invariance part is `R23.bind_le_of_rep`,
+  with `R23.lintegral_P_le`: `int^- P u <= int u` for `0 <= u in L^2 cap L^1`, `P` symmetric).  Auxiliary: `abs_le_norm_of_aeLinear`
+  (stated for `F : C(Y,R) -> Z -> R`, slightly more general than needed), `tendsto_tr` (`1_{K_n} f -> u` in `L^2`), `rr_tendsto_ae`.
+* S2: `R23.ncKernelRepInf : KernelRepresentation T`, `ncKernelRepInf_subInvariant`, `ncKernelRepInf_C0`, `cc_dense`
+  (`C_c` dense in `L^2` for `mu` finite on compacts).  `KernelRepresentation` is NOT modified and needs no generalisation:
+  `kernelRep_of_dense` was already finiteness-free.  NOT generalised (reported): `KernelRepresentation.ck_integral`, `ck_ae`
+  (assume `[IsFiniteMeasure T.mu]` to make bounded `g` an `L^2` function; for infinite `mu` they need `g in L^2 cap L^inf`) and
+  `exists_exact_ck`/`nc_exists_exact_ck` (the whole `ExactCK.lean` variable block carries `[IsFiniteMeasure T.mu]`).  So: NO
+  Chapman-Kolmogorov (a.e. or exact) is claimed for the infinite-`mu` kernels.
+* S3: `R23.lebesgueKernelRep : KernelRepresentation lebesgueFull.toDiffusionTriple`, `lebesgueKernelRep_subInvariant`
+  (`volume.bind kappa_t <= volume`), `lebesgue_locFin` (instance), and `example : lebesgueFull.mu univ = infty` (genuinely infinite).
+  Also `example : KernelRepresentation ouDiff := ncKernelRepInf ouDiff` in `AxiomCheck.lean` (the infinite construction contains the
+  finite case; unlike R22 it needs no `hmass`).
+* S4 (cheap, done): `R23.ncKernelRepInf_univ_ae` (`kappa_t(x,X)=1` a.e. for a `StandardTriple`), `R23.exists_markovRep`
+  (`IsMarkovRep` everywhere after Dirac modification on a null set), `R23.lebesgue_exists_markovRep`.
+
+Deviations from the statement text (log, no weakening): (a) names in S3: `lebesgueKernelRep(_subInvariant)` and
+`lebesgueFull.toDiffusionTriple` instead of `ncKernelRepInf lebesgueDiffusion` (same triple: defeq, checked by the type checker);
+(b) `exists_kernel_of_posContraction_locFinite_subInv` is in `SubInv.lean`, not `Exhaustion.lean`; (c) the S4 Markov kernels
+`K` of `exists_markovRep` come with `IsMarkovRep` and the representation, but their sub-invariance is not stated (it holds, null-set
+modification; not formalised); (d) hypotheses used: `IsFiniteMeasureOnCompacts mu`, `hpos`, `hle`, and `hsa` only for sub-invariance,
+exactly as announced; `u <= 1 => P u <= 1` is the correct `L^infty` hypothesis (the finite-`mu` `hmass` is dropped).
+Hypotheses are satisfied by the semigroup of any `DiffusionTriple` (`semigroup_nonneg/le_one/isSelfAdjoint`, proved with no finiteness).
+
+Limits of the result (honest scope):
+* Representation holds a.e. and for each fixed `t` (Riesz-Markov per `t`), as in R22; no exact all-times CK, no Feller property,
+  no `MarkovProcessBridge` (R22-E3-2 obstruction still applies).
+* On `C_0 cap L^2(mu)` (resp. bounded measurable `L^2` functions for triples), not on all of `C_0` (`C_0 notin L^2(mu)` for infinite `mu`).
+* Kernels are only sub-Markov in S1/S2 (mass lost at infinity); conservativity of the semigroup in the sense of `StandardTriple.conservative`
+  (monotone limits along exhaustion sequences; the only meaning of `P_t 1 = 1` for infinite `mu`) gives Markov kernels (S4).
+  A stand-alone `DiffusionTriple` with conservative semigroup but no `StandardTriple` structure (ergodicity field) is not treated
+  (the proof only uses `conservative`; one could factor it out).
+* No Gibbs-type infinite-measure instance was built (only `lebesgueFull`); any `DiffusionTriple` on a locally compact second countable
+  Borel space with `mu` finite on compacts now has `ncKernelRepInf`.
+* Mathlib input used: `CompactExhaustion.choice`, `measurable_limit_of_tendsto_metrizable_ae`, Urysohn (`exists_continuous_one_zero_of_isCompact`),
+  regularity of Radon measures on second countable locally compact T2 spaces, plus R15 `exists_posFunctional`/`exists_measure_of_pos`
+  (Hahn-Banach/RMK) and R22 `OnePoint` second countability.  The one-point compactification is used only for the compact RMK step.
+
+Proposed ERRATA rows (do not edit `ERRATA.md`):
+| R23-S-1 | INFO (scope; supersedes R22-E3-1 "finite `mu` only") | Non-compact Riesz-Markov kernel representation now for `mu` finite on compacts (infinite allowed): `R23.exists_kernel_of_posContraction_locFinite(_subInv)`, hypotheses positivity + `L^infty`-contractivity (+ symmetry for sub-invariance); on `C_0 cap L^2`. The R22 finite theorem is unchanged and still valid. | `Stochastic/R23/Exhaustion.lean`, `SubInv.lean` |
+| R23-S-2 | INFO (route, DIFFERS FROM BGL and from R22) | No weight `h = R_1 g`, no diagonal argument: `F f = lim_n P(1_{K_n} f)` on `C(X^+)` plus the R15 RMK argument with sup-norm bound (`exists_kernel_of_aeLinear`). | `Stochastic/R23/AEKernel.lean` |
+| R23-S-3 | INFO | `KernelRepresentation` for `DiffusionTriple` with infinite `mu`: `ncKernelRepInf`; `lebesgueKernelRep` for `lebesgueFull` (`volume`); structure unchanged. | `R23/Triple.lean`, `R23/Lebesgue.lean` |
+| R23-S-4 | INFO (scope, limit) | `ck_integral`, `ck_ae`, `exists_exact_ck` still assume finite `T.mu`; no CK is claimed for the infinite-`mu` kernels. | `KernelRep.lean`, `ExactCK.lean` (unchanged) |
+| R23-S-5 | INFO | Conservative `StandardTriple` on infinite `mu` => a.e. mass-one kernels and `IsMarkovRep` representation (`exists_markovRep`, `lebesgue_exists_markovRep`). | `R23/Markov.lean` |
+Proposed `MarkovTriple.lean` imports: `MarkovTriple.Stochastic.R23.Lebesgue`, `MarkovTriple.Stochastic.R23.AxiomCheck`
+(the others are imported transitively).  Proposed GAPS update: Round 17 item (2) Riesz-Markov kernel representation: closed for `mu` finite
+on compacts (infinite included); Feller extension, CK/Markov-process bridge for non-compact (infinite) case still OPEN.
