@@ -62,4 +62,23 @@ B is a counterexample in the library's framework showing the tacit step is not a
 the book's converse proof of Prop. 3.3.17 is incomplete for non-complete triples (it is rescued by completeness, R20).
 
 ## Status
-(filled at the end)
+All targets A1, A2, B1, B2, B3, B4, C1 PROVED as stated (statement section unchanged; the `[ATTEMPT]` tags of B2-B4 were resolved positively).
+Names as proved (axioms: only propext, Classical.choice, Quot.sound; `AxiomCheckR24D.lean`; no sorry, no set_option, 0 warnings):
+`MarkovTriple.BGL.FullTriple.{core2_orth, core2_iff_dense}` (`Core2Criterion.lean`, plus helpers `inner_cls_f, inner_Lcls_f, inner_LL_f`);
+`MarkovTriple.BGL.Instances.GegenbauerOpen.{go_not_core2_of_pair, go_deficiency_pair, goFullTriple_not_core2, exists_fullTriple_cd_not_core2}`
+(`GoCore2.lean`, `GoPair.lean`; helpers in `...GegenbauerOpen.R24` : power-series calculus `GoSeries.lean` (`hasDerivAt_P`, `contDiffOn_P`, `ode_series`),
+`holder`, `g_bound`, `memLp_go`, `s_log_sq_le`); `MarkovTriple.BGL.Instances.Riemannian.hyp_core2_route_status` (`HypStatus.lean`).
+Extra (not in the statement list, logged as a deviation): `hyp_core2_of_coreCut : hypRiem.toEll.CoreCut → hypRiem.riemFull_unconditional.Core2` (a one-line instance of R19 `riem_core2`).
+
+### The counterexample, mathematically (B2/B3)
+`goFullTriple` = zonal Gegenbauer `λ = 3/2` on `(-1,1)`, `L = (1-x²)∂² - 4x∂`, `μ = (3/4)(1-x²)dx`, `𝒜₀ = C_c^∞((-1,1))` (non-complete, `CD(3,4)`, F1-F10).
+`w = Σ aa_n xⁿ` solves `L w = w` (`aa_0 = 1, aa_1 = 0, aa_{n+2} = aa_n (1 - 1/((n+1)(n+2)))`, so `w` is even, `w(0) = 1`);
+`(1-x²) w = A(x) = Σ dd_n xⁿ`, `|A(x) - Λ| ≤ C₀ √(1-x²)` (`dd_n = O(n⁻²)`), `Λ = A(±1)`; `h = (Λ/4) log(1-x²)` has `L h = (Λ/4)(6x²-2)/(1-x²)`,
+so `g = w - L h` satisfies `(1-x²) g² ≤ (C₀ + 6|Λ|/4)²` (bounded), hence `g, h ∈ L²(μ)`.  The functional `ℓ(c) = ⟨c,g⟩ + ⟨Lc,h⟩` vanishes on `(1-L)𝒜₀` (integration by parts,
+`Lw = w`) and equals `∫ a w dμ` on `a ∈ 𝒜₀`; it is `L`-graph-continuous, so `Core2` (`(1-L)𝒜₀` is graph-dense, i.e. `(1-L)b_n → a`, `L(1-L)b_n → La`) would force `∫ a w = 0` for all `a ∈ 𝒜₀`,
+contradicting `w ≢ 0`.  This is the classical "borderline" mechanism: the singular solution `(1-x)^{-1}` of `L u = su` is not in `L²(μ)` (so `L` is e.s.a., F10) but the
+combination `w - L h` (a difference of two singular solutions at different spectral parameters, with `log` corrections) is, so the deficiency space of `L²` is non-trivial.
+
+## Proposed ERRATA rows (applied in ERRATA.md)
+R24-D-1 .. R24-D-4 (see ERRATA.md).
+

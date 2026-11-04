@@ -489,3 +489,9 @@ import MarkovTriple.Stochastic.R23.Triple
 import MarkovTriple.Stochastic.R23.Markov
 import MarkovTriple.Stochastic.R23.Lebesgue
 import MarkovTriple.Stochastic.R23.AxiomCheck
+import MarkovTriple.BGL.Instances.Riemannian.R24.Core2Criterion
+import MarkovTriple.BGL.Instances.Riemannian.R24.GoCore2
+import MarkovTriple.BGL.Instances.Riemannian.R24.GoSeries
+import MarkovTriple.BGL.Instances.Riemannian.R24.GoPair
+import MarkovTriple.BGL.Instances.Riemannian.R24.HypStatus
+import MarkovTriple.BGL.Instances.Riemannian.R24.AxiomCheckR24D
