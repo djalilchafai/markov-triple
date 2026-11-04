@@ -436,3 +436,8 @@ import MarkovTriple.BGL.Instances.Riemannian.DirectRiemTransport
 import MarkovTriple.BGL.Instances.GibbsRd.DirectEllMain
 import MarkovTriple.BGL.Instances.Riemannian.DirectRiemMain
 import MarkovTriple.BGL.Instances.Riemannian.AxiomCheckR20DirectEll
+import MarkovTriple.BGL.Instances.Interval.Basic
+import MarkovTriple.BGL.Instances.Interval.Diffusion
+import MarkovTriple.BGL.Instances.Interval.NotComplete
+import MarkovTriple.BGL.Instances.Interval.NotESA
+import MarkovTriple.BGL.Instances.Interval.AxiomCheckR21

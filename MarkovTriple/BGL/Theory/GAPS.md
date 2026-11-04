@@ -280,3 +280,7 @@ cross term is not abstracted), and for a general `FullTriple` (still conditional
 
 ## Round 20 final merge: converse of Prop 3.3.17 (ERRATA R20-M1, R20-M3)
 The converse of BGL Prop 3.3.17 holds WITHOUT `Core2` and without growth conditions for: every complete `FullTriple` with `CD ρ n`; every `EllData d`/`RiemData d` with `Curv ρ` (hyperbolic plane included); 1-D `GibbsData` with `V'' ≥ ρ`; `GibbsRdData d` with `HessGe V ρ`. Each proof DIFFERS FROM BGL (cut-off Γ₂ identity + ESA of `L`, not the L²-core step). The Round 17-19 `Core2` classes (`GrowHess`, `PolyHess`, `GrowHess3`, `CoreCut`) are independent facts about essential self-adjointness of `L²`. OPEN: `Core2` for general `V`; converse for non-complete abstract triples.
+
+## Round 21: non-complete triples (ERRATA R21-1..R21-4)
+* PROVED (`Instances/Interval`): `ivDiff`, `Γ₂ = (Lf)²`, `iv_not_complete`, `iv_not_esaProp`, `iv_no_fullTriple`. This is a non-complete `DiffusionTriple`, NOT a `FullTriple`.
+* OPEN: a non-complete `FullTriple` with CD (the zonal Gegenbauer triple on `(-1,1)` with `C_c^∞`, `λ ≥ 3/2`: needs the weighted triple and ESA on `C_c^∞`; high effort), bounded `(a,b)` and general bounded `Ω ⊂ ℝ` (affine transport / larger).

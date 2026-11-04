@@ -128,10 +128,10 @@ Candidate: zonal Gegenbauer on `(-1,1)`, `L = (1-x²) f'' - (2λ+1) x f'`, `Γ(f
 ### Proposed ERRATA rows (for the maintainer; ERRATA.md/GAPS.md NOT edited)
 | id | severity | finding | resolution |
 |---|---|---|---|
-| R21-1 | INFO (scope) | Completeness (Def. 3.3.9) is a genuine hypothesis at the `DiffusionTriple` level: `((0,1), Lebesgue, C_c^∞((0,1)))` is a `DiffusionTriple` with `Γ₂ f = (f'')² ≥ (Lf)²/n` for all smooth `f` (`ivDiff_CD`) but `¬ IsComplete` (`iv_not_complete`). | `Instances/Interval/*` |
+| R21-1 | INFO (scope) | Completeness (Def. 3.3.9) is a genuine hypothesis at the `DiffusionTriple` level: `((0,1), Lebesgue, C_c^∞((0,1)))` is a `DiffusionTriple` with `Γ₂ f = (f'')² = (Lf)²` (EQUALITY, so `Γ₂ ≥ (Lf)²/n` for every `n ≥ 1`; `ivDiff_CD` is therefore cheap and is not CD in the sense of the book's Def. 3.3.x, audit L3/L5) but `¬ IsComplete` (`iv_not_complete`). | `Instances/Interval/*` |
 | R21-2 | INFO (correction) | The interval triple is NOT a `FullTriple`: F10 fails (`iv_not_esaProp`, `iv_no_fullTriple`; deficiency vector `exp`). So it does not show that completeness is needed inside the hypotheses of `FullTriple.mem_domain_of_Γ₂_direct` (R20-M1); whether a non-complete `FullTriple` with CD exists is OPEN (I6). | `NotESA.lean`; GAPS: non-complete `FullTriple` open |
 | R21-3 | LOW (doc) | `FullTriple.CD` exists only for `FullTriple`s, so CD cannot be stated for the interval triple; `IvCD` (same body, pointwise, all smooth `f`) is used. | `Diffusion.lean` |
-| R21-4 | INFO (correction) | Gegenbauer without poles: F10 can hold only for `λ ≥ 3/2` (`n ≥ 4`), by hand computation, not `λ ≥ 1/2`. | I6 above, unverified |
+| R21-4 | INFO (correction) | Gegenbauer without poles: F10 can hold only for `λ ≥ 3/2` (`n ≥ 4`), by hand computation, not `λ ≥ 1/2`. | I6 above; verified independently by the hostile audit (L1): endpoints limit-circle for `λ < 3/2`, limit-point iff `λ ≥ 3/2`; the earlier `λ ≥ 1/2` conjecture was wrong |
 
 ### Import lines for `MarkovTriple.lean` (not edited by me)
 ```
