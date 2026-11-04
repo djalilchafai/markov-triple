@@ -294,3 +294,15 @@ The converse of BGL Prop 3.3.17 holds WITHOUT `Core2` and without growth conditi
 * CLOSED: a non-complete `FullTriple` with CD exists (`goFullTriple`, zonal Gegenbauer `λ = 3/2`; ERRATA R23-F-1); F10 for it (`go_esaProp`); non-compact Riesz–Markov kernel representation for infinite `μ` finite on compacts (per-`t`, a.e., sub-Markov; Markov kernels for `StandardTriple`s; instance `lebesgueFull`), without Feller / Chapman–Kolmogorov / `MarkovProcessBridge`.
 * PARTIAL: `(ℝ^d, Lebesgue)` is a `DiffusionTriple` with exact pointwise Bochner range `ρ ≤ 0 ∧ d ≤ n` and fields F1–F7, F9; missing F8, F10, S10, S11 to be a `FullTriple`.
 * OPEN: `FullTriple` on `ℝ^d`; Feller extension, Chapman–Kolmogorov and a `MarkovProcessBridge` for infinite `μ`; exact all-time semigroup for abstract compact triples; `Core2` for general smooth `V` (R23-F-1 suggests it is not a consequence of F1–F10 + CD, not formalised); `CoreCut`/`Core2` for the hyperbolic plane; atlas gluing; converse of Prop 3.3.17 for non-complete triples (now known to be a genuine question for `goFullTriple`: completeness-free converse, `mem_domain_of_Γ₂` needs `Core2`).
+
+## Round 24, stream C (stochastic layer; see `Stochastic/R24/STATEMENTS_R24_C.md`)
+* CLOSED (conditional on the Feller hypothesis): for `T` with `μ` finite on compacts (infinite allowed), full support and `IsFellerC0 T`
+  (`P_t` maps `C_c` into `C_0`): everywhere-defined kernels `fellerKernelInf` with exact Chapman–Kolmogorov (all `s,t,x`), `κ_0 = id`,
+  `μ.bind κ_t ≤ μ`, representation on bounded measurable `L²`, joint measurability in `(t,x)`, `MarkovProcessSemigroupData`, and
+  (under pointwise `κ_t(x,X)=1`) `MarkovProcessBridge`.  Instances: every `IsFeller` compact triple (circle, zonal `S³`; agrees with R16
+  kernels), OU on `ℝ` (non-compact, finite `γ`).
+* CLOSED (characterisation): for compact full-support triples, exact all-time CK for a kernel representation holds iff it is weakly
+  continuous (= Feller): `isFeller_iff_exists_continuous_kernel`, `weakFeller_add`; with R22-E3-2 this pins down the extra hypothesis.
+* OPEN: an infinite-`μ` instance of `IsFellerC0` (heat semigroup of `lebesgueFull`: needs heat-kernel identification); deriving
+  `κ_t(x,X)=1` for every `x` from conservativity; non-full-support `μ`; whether a non-Feller `P_t` can have an exact all-time kernel
+  semigroup (neither proved nor refuted); Feller itself from the triple axioms.

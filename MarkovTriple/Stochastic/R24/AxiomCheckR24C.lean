@@ -30,3 +30,5 @@ import MarkovTriple.Stochastic.R24.Instances
 #print axioms MarkovTriple.Stochastic.R24.circle_fellerKernelInf_eq
 #print axioms MarkovTriple.Stochastic.R24.sphere_isFellerC0
 #print axioms MarkovTriple.Stochastic.R24.ou_isFellerC0
+#print axioms MarkovTriple.Stochastic.R24.ou_fellerKernelInf_eq
+#print axioms MarkovTriple.Stochastic.R24.ouMarkovProcessBridgeInf

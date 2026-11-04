@@ -65,3 +65,46 @@ NOT claimed.
 ## DIFFERENCE FROM BGL
 BGL (Sect. 1.2, Remark after Def. 1.2.1) assumes a kernel/Feller regularity and does not spell out the regularisation; here it is
 the Riesz-Markov-Kakutani route on `C_c(X)` with `C_0`-Feller input and uniqueness of continuous representatives.  Not a new method.
+
+## Status (end of round; statements above NOT weakened)
+Files: `Operator, Cutoff, Feller, Extend, Exact, Measurable, Bridge, Compact, Instances, OU, AxiomCheckR24C` (`Stochastic/R24/`).  No `sorry`,
+no `set_option`, 0 warnings, axioms only `propext, Classical.choice, Quot.sound`.  Full `lake build` green; `check_frozen.py` OK.
+
+PROVED, with the exact statements above (names as listed, in `MarkovTriple.Stochastic.R24`): `IsFellerC0`, `fellerKernelInf`,
+`fellerKernelInf_subMarkov`, `_integral_cc`, `_zero`, `_add` (EXACT CK, all `s,t,x`), `_bind_le`, `_rep`, `fellerKernelRepInf`,
+`fellerSemigroupInf`, `fellerKernelInf_unique`, `fellerKernelInf_measurable_joint`, `fellerMarkovProcessDataInf`,
+`fellerKernelInf_bind`, `fellerMarkovProcessBridgeInf`, `isFeller_iff_exists_continuous_kernel`, `ou_isFellerC0`.
+Route: `Qop` (continuous `C_0` representative, unique by full support) -> `RealRMK.rieszMeasure` on `C_c` (Mathlib) ->
+extension of the representation to `C_0 cap L^2` by cut-offs `chi_n h -> h` in `L^2` (`fellerKernelInf_rep_C0`) -> continuity of
+`x |-> int h dkappa_s(x)` for `h in C_0` (uniform limit) -> exact CK by comparing two continuous functions equal a.e.
+(`Qop_add_time`) -> sub-invariance by R23 `bind_le_of_rep` -> joint measurability: for fixed `x`, `t |-> Q_t f (x)` is a pointwise limit
+of the `L^2`-continuous `t |-> <P_t f, psi_k>` (bumps `psi_k` at `x`), then Caratheodory (`measurable_uncurry_of_continuous_of_measurable`)
+-> bridge: reversibility on compact sets + `B = K_n up X` gives `mu.bind kappa_t = mu` when every `kappa_t(x,X) = 1`.
+
+Deviations / additions (log, no weakening):
+(a) C3 `feller_exact_ck_unique` is realised as `weakFeller_kernel_unique`, `weakFeller_zero`, `weakFeller_add` (for the predicate
+    `IsWeakFellerRep`): every weakly continuous representing family has exact CK and `kappa_0 = id` and is unique pointwise.
+(b) extra, not in the frozen list: `isFellerC0_iff_exists_C0_kernel` (C_0 analogue of the iff), `isFellerC0_of_isFeller` (compact `IsFeller` =>
+    `IsFellerC0`), `fellerKernelInf_eq_fellerKernel` (agrees with R16 kernels), `circle_isFellerC0`, `sphere_isFellerC0`,
+    `circle_fellerKernelInf_eq`, `ou_fellerKernelInf_eq`, `ouMarkovProcessBridgeInf`, `fellerKernelInf_reversible`.
+(c) the hypotheses `[IsFiniteMeasureOnCompacts T.mu]`, `[T.mu.IsOpenPosMeasure]`, `IsFellerC0 T` are all genuinely used; `hM` only for the bridge.
+
+NOT done / honest limits:
+* **No infinite-`mu` instance of `IsFellerC0`.**  The theory of C1-C2 is only proved conditional on `IsFellerC0 T`; the only non-compact
+  instance is OU (finite `gamma`).  `IsFellerC0 lebesgueFull.toDiffusionTriple` (heat semigroup on `R` with infinite `volume`) is OPEN:
+  it needs the identification of the abstract semigroup with Gaussian convolution (F8 / heat-kernel identification, R23-R).  So "Feller
+  extension for infinite `mu`" is closed as a CONDITIONAL theorem, not for a named infinite example.
+* `MarkovProcessBridge` for infinite `mu` needs pointwise `kappa_t(x,X) = 1` (`hM`) because the structure demands `mu.bind kappa_t = mu`.
+  Conservativity of the semigroup gives it only a.e. (R23 S4); passage a.e. -> every `x` is NOT proved (lower semicontinuity of
+  `x |-> kappa_t(x,X)` goes the wrong way).  Without `hM` one has `fellerMarkovProcessDataInf` (sub-Markov, sub-invariant).
+* Full support `mu` is assumed (continuous representatives unique); the general case (restriction to `supp mu`) is not done.
+* Exact all-time semigroup for abstract compact triples: the answer proved is "exactly under Feller" (C3).  NOT proved, NOT refuted: that
+  a non-Feller `P_t` has no exact all-time kernel semigroup (Kuznetsov/right-process type question).  Feller itself is a hypothesis, not
+  derived from the triple axioms (open since R17).
+
+Proposed ERRATA rows (do not edit `ERRATA.md`):
+| R24-C-1 | INFO (scope) | Exact Feller kernels, exact CK, sub-invariance, `KernelRepresentation`, joint measurability and `MarkovProcessSemigroupData` for `T` with `mu` finite on compacts (infinite allowed), full support, `IsFellerC0 T`: `R24.fellerKernelInf`, `fellerKernelInf_add`, `fellerKernelInf_measurable_joint`. CONDITIONAL on `IsFellerC0`; only non-compact instance OU (finite `gamma`); no infinite-`mu` instance (Lebesgue open). | `Stochastic/R24/*` |
+| R24-C-2 | INFO (scope) | `fellerMarkovProcessBridgeInf` needs the explicit pointwise hypothesis `hM : kappa_t(x,X)=1`; a.e. mass one is not enough for equality invariance in this construction. | `R24/Bridge.lean` |
+| R24-C-3 | INFO (characterisation) | `isFeller_iff_exists_continuous_kernel`, `weakFeller_add`, `weakFeller_zero`: for compact full-support triples, a kernel representation is weak-Feller iff `P_t` is Feller, and then exact CK holds and the kernels are unique at every point; complements the R22-E3-2 obstruction (without continuity exact CK can fail). Existence of an exact semigroup for a non-Feller `P_t` remains open. | `R24/Compact.lean` |
+Proposed `MarkovTriple.lean` imports: already added (`Stochastic.R24.Operator ... AxiomCheckR24C`).
+Proposed GAPS update: see the "Round 24 stream C" paragraph appended to `BGL/Theory/GAPS.md`.

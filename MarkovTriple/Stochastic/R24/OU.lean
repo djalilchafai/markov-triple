@@ -1,5 +1,6 @@
 import Mathlib
 import MarkovTriple.Stochastic.R24.Instances
+import MarkovTriple.Stochastic.R24.Bridge
 import MarkovTriple.Stochastic.OUFull
 
 /-!
@@ -88,5 +89,30 @@ theorem ou_isFellerC0 : IsFellerC0 ouDiff := by
   filter_upwards [ou_rep_full t f f.continuous.measurable hb hL] with x hx
   rw [hg x]
   exact hx
+
+instance : IsFiniteMeasureOnCompacts ouDiff.μ := inferInstanceAs (IsFiniteMeasureOnCompacts γ)
+
+instance : ouDiff.μ.IsOpenPosMeasure := inferInstanceAs γ.IsOpenPosMeasure
+
+/-- the R24 kernels of OU are the Mehler kernels, at every point -/
+theorem ou_fellerKernelInf_eq (t : ℝ≥0) (x : ℝ) : fellerKernelInf ou_isFellerC0 t x = ouKernel t x := by
+  refine (fellerKernelInf_unique ou_isFellerC0 t (ouKernel t) ?_ ?_ x).symm
+  · intro f
+    obtain ⟨g, hg⟩ := ou_C0 t f
+    have : (fun x => ∫ y, f y ∂(ouKernel t x)) = ⇑g := funext fun x => (hg x).symm
+    rw [this]; exact g.continuous
+  · intro f u hu
+    obtain ⟨C, hC⟩ := f.hasCompactSupport.exists_bound_of_continuous f.continuous
+    have hb : ∃ C, ∀ x, |f x| ≤ C := ⟨C, fun y => by simpa [Real.norm_eq_abs] using hC y⟩
+    have hL : MemLp f 2 ouDiff.μ := cc_memLp (T := ouDiff) f
+    have e : u = hL.toLp f := Lp.ext (hu.trans hL.coeFn_toLp.symm)
+    rw [e]
+    exact ou_rep_full t f f.continuous.measurable hb hL
+
+/-- **A `MarkovProcessBridge` for OU on `ℝ` produced by the R24 (non-compact) machinery** (finite `γ`; the infinite-`μ`
+theory applied to a non-compact space). -/
+noncomputable def ouMarkovProcessBridgeInf : MarkovProcessBridge ouDiff :=
+  fellerMarkovProcessBridgeInf ou_isFellerC0 (fun t x => by
+    rw [ou_fellerKernelInf_eq]; exact measure_univ (μ := ouKernel t x))
 
 end MarkovTriple.Stochastic.R24
