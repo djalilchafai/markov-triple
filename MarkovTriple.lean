@@ -545,3 +545,9 @@ import MarkovTriple.BGL.Instances.Riemannian.R26.Atlas1
 import MarkovTriple.BGL.Instances.Riemannian.R26.Measure
 import MarkovTriple.BGL.Instances.Riemannian.R26.AtlasTriple
 import MarkovTriple.BGL.Instances.Riemannian.R26.AxiomCheckR26H
+import MarkovTriple.Stochastic.R27.Mass
+import MarkovTriple.Stochastic.R27.GoAlg
+import MarkovTriple.Stochastic.R27.GoPoly
+import MarkovTriple.Stochastic.R27.GoSem
+import MarkovTriple.Stochastic.R27.GoFeller
+import MarkovTriple.Stochastic.R27.AxiomCheckR27K
