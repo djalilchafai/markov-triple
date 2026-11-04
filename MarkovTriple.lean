@@ -392,3 +392,10 @@ import MarkovTriple.BGL.Instances.GibbsRd.Core2RdMain
 import MarkovTriple.BGL.Instances.GibbsRd.Core2RdExample
 import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWitness
 import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR18Core2Rd
+import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWDefs
+import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWHess
+import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWHardy
+import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWCut
+import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWMain
+import MarkovTriple.BGL.Instances.GibbsRd.Core2RdWExample
+import MarkovTriple.BGL.Instances.GibbsRd.AxiomCheckR19Core2Rd

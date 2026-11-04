@@ -226,3 +226,10 @@ PROVED (`Instances/GibbsRd/Core2Rd*.lean`, `STATEMENTS_R18_Core2Rd.md`, `BGL/AUD
 Proof: smooth resolvent solution via `ellReg`; `∇v, ∇²v ∈ L²` by cut-off Caccioppoli / cut-off Bochner (only `Hess V ≥ ρ` and `|Lχ_n| ≤ K` used); commutator expansions `L(χv)`, `L²(χv)` with uniformly bounded coefficients (scaling of `cut` + linear growth of `∇V`).
 **Still open (exact):** `Core2` for `GibbsRdData` with unbounded `Hess V` or `∇³V` (e.g. `V = |x|⁴`); for arbitrary `EllData d` / `RiemData d` (commutators involve `∂a` and `a` itself; not attempted); for arbitrary smooth `V` (≡ e.s.a. of `L²` on `C_c^∞`).  The 1-D case without `BddJet` is Stream A2's (not touched here).
 
+
+## Round 19, Stream A5: `Core2` and the unconditional converse of Prop 3.3.17 on `ℝ^d` WITHOUT bounded `∇²V`, `∇³V`
+PROVED (`Instances/GibbsRd/Core2RdW*.lean`, `STATEMENTS_R19_Core2Rd.md`, `BGL/AUDIT_R19_CORE2RD.md`): for `G : GibbsRdData d` with `HessGe G.V ρ` (any `ρ`) and `G.GrowHess3`
+(`|∂ᵢ∂ⱼV|, |∂ᵢ∂ⱼ∂ₖV| ≤ C(1 + Σ|∂ₗV|)`): `GibbsRdData.gibbsRd_core2_w`, `gibbsRd_mem_domain_of_Γ₂_w` (supersedes `BddHess3` of R18, which implies `GrowHess3`).
+Route (BGL §3.2 Caccioppoli cut-offs, Prop 3.3.17): `Hess v ∈ L²` by cut-off Bochner without `Lχ` (`memLp_hess_resolvent_free`), weighted jets `∂ₖV v`, `∂ₖV ∂ᵢv`, `∂ⱼV∂ₖV v ∈ L²` by the `d`-dim. Hardy estimate (`memLp_V_mul_of_hardy`), commutators `Lχ_n`, `∂Lχ_n`, `LLχ_n` handled as `Good × weighted jet` (`ZL_Lchi`, `ZL_dLchi`, `ZL_LLchi`, `cutoff_ZL_w`).
+Non-vacuous `ρ = 1 > 0` witness OUTSIDE `BddHess3`: `quarData d`, `V = Σ xᵢ⁴/4 + xᵢ²/2` (`quarData_witness`, `quarData_core2`, `quarData_mem_domain_of_Γ₂`).
+**Still open (exact):** `Core2` for `GibbsRdData` with only `HessGe V ρ` (no growth control of `∇²V`, `∇³V` by `∇V`; e.g. `V` convex with `∂²V/|∇V|` unbounded, `e^{|x|²}`-type), neither proved nor refuted; arbitrary smooth `V`; `EllData d`/`RiemData d`.  The radial quartic `|x|⁴/4+|x|²/2` satisfies `GrowHess3` (hand check) but is not formalised (the formal witness is the separable `Σxᵢ⁴/4+xᵢ²/2`).
