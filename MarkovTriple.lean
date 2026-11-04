@@ -527,3 +527,6 @@ import MarkovTriple.BGL.Instances.Riemannian.R24.GoSeries
 import MarkovTriple.BGL.Instances.Riemannian.R24.GoPair
 import MarkovTriple.BGL.Instances.Riemannian.R24.HypStatus
 import MarkovTriple.BGL.Instances.Riemannian.R24.AxiomCheckR24D
+import MarkovTriple.BGL.Instances.LebesgueRd.Core2.Cut4
+import MarkovTriple.BGL.Instances.LebesgueRd.Core2.Main
+import MarkovTriple.BGL.Instances.LebesgueRd.Core2.AxiomCheckR25F

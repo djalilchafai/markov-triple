@@ -30,3 +30,13 @@ This is the heat-flow ODE argument of R24-A F10 pushed one order up; it replaces
 ## Part 2 (abstract; no theorem claimed)
 No theorem "complete + `CD(ρ,∞)` ⇒ `Core2`" is known to us or in BGL (`Γ₂ ≥ ρΓ` gives no bound on `Lχ_n`, which the 4th-order cut-off needs, cf. R24 `hyp_core2_route_status`).
 No formal statement is attempted beyond what R24 D has; `hypRiem`: nothing claimed.  Documented in `GAPS.md`.
+
+## Status (end of Round 25, stream F): F1, F2, F3 PROVED as stated (statement section unchanged)
+Files: `Core2/Cut4.lean` (rescaled profiles `Sc`, `SmallFam`, `Qf`, `abs_Lf_mul_le`, `cutoff4_graph_aux`: the fourth-order cut-off), `Core2/Main.lean`
+(`heat_graph4`, `inner_heat_orth4`, `ode_all_zero`, `eq_zero_of_orth4`, `dense_Ψ_lebesgueRd`, `lebesgueRdFull_core2`, `gaussRdFull_core2`,
+`lebesgueRdFull_mem_domain_of_Γ₂`), `Core2/AxiomCheckR25F.lean` (all: propext, Classical.choice, Quot.sound only).  No sorry, no set_option, 0 warnings.
+Deviation from the plan text: none in the statements; the ODE step is implemented as `H = G₁ - G₀`, `H' = aH` (then `G₀' = aG₀`), exactly as in the route.
+`gaussRdFull_core2` is a rename of R18 `gaussData_core2` (`BddHess3` route), no new analysis.
+Part 2 (abstract): no theorem claimed.  The route above used, for `(ℝ^d, Lebesgue)`, the explicit structure `Δ(χ_n v) = χ_n Δ v + 2Γ(χ_n,v) + vΔχ_n` with
+`|∂^kχ_n| ≤ C n^{-k}` and `v` with `L²` jets up to order 4 (`heatRd a φ`); for a general complete triple with `CD(ρ,∞)` the available hypotheses (`Γ₂ ≥ ρΓ`,
+`Γχ ≤ 1`) bound no `Lχ_n`, `Γ(χ_n, Γ(χ_n,·))`, `LLχ_n`, so the same step is unavailable; hypRiem: nothing claimed.
