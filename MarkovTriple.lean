@@ -536,3 +536,6 @@ import MarkovTriple.Stochastic.R25.Kernel
 import MarkovTriple.Stochastic.R25.Mass
 import MarkovTriple.Stochastic.R25.Converse
 import MarkovTriple.Stochastic.R25.AxiomCheckR25E
+import MarkovTriple.BGL.Theory.Extension.R26.Core2Eigen
+import MarkovTriple.BGL.Instances.Sphere.R26Core2
+import MarkovTriple.BGL.Theory.Extension.R26.AxiomCheckR26I

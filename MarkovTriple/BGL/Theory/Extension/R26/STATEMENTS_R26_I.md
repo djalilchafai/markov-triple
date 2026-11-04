@@ -27,3 +27,17 @@ proves `Core2` for triples whose test algebra contains an eigenbasis, applied to
 
 BGL (p. 161-162) uses `Core2` tacitly (ERRATA R15-1).  I2/I3 are new, elementary, not in the book: when `A_0` contains a
 complete eigensystem `(1-L)^2` acts diagonally by `(1+c)^2` and its range contains every eigenvector.
+
+## Status (after proof)
+
+I1 `FullTriple.core2_iff_orth`, I2 `FullTriple.core2_of_eigen`, I3 `sFull_core2` (`Instances/Sphere/R26Core2.lean`) PROVED as
+stated; axioms `propext, Classical.choice, Quot.sound` (`AxiomCheckR26I.lean`).  Additive, not in the frozen text:
+`FullTriple.core2_of_eigen'` (same as I2 with the eigenvalue existentially quantified; used for I3).  Deviation: I1 uses
+`core2_iff_dense` from `Instances/Riemannian/R24/Core2Criterion.lean` (import only).  No claim about `hypRiem`.
+
+NOT proved (analysis only, unformalised, hence labelled heuristic): for the zonal Gegenbauer family with `A_0 = C_c^infty((-1,1))`
+a Frobenius count of the four-dimensional solution space of `(1-L)^2 u = 0` near an endpoint (exponents `0`, `1/2-lambda`
+of `(1-L)u=0`, plus `3/2-lambda` from the inhomogeneous equation) suggests `Core2` fails for `3/2 <= lambda < 7/2` (consistent with
+`goFullTriple_not_core2` at `lambda = 3/2`) and holds for `lambda >= 7/2`.  This is NOT proved; the repository has only `lambda = 3/2`.
+Every `C_c^infty((-1,1))` Gegenbauer triple fails `IsComplete` (Gamma-bounded functions are bounded), so completeness
+does not apply to this family.
