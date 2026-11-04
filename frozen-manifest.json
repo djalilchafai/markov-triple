@@ -164,6 +164,11 @@
       "path": "MarkovTriple/BGL/Instances/GibbsRd/STATEMENTS_R20_DirectEll.md",
       "status": "proposed",
       "sha256": "1e2374400e302e8c28552f89cc07e1c2cb59022714261fd9f87b54c6a9c03cb7"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/Gibbs/STATEMENTS_R20_Direct.md",
+      "status": "proposed",
+      "sha256": "c041fabfc0de9b1d794fba61e1f8e04198477dc5f97974c239685d8fdaa90217"
     }
   ],
   "fenced": [
