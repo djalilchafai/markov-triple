@@ -551,3 +551,13 @@ import MarkovTriple.Stochastic.R27.GoPoly
 import MarkovTriple.Stochastic.R27.GoSem
 import MarkovTriple.Stochastic.R27.GoFeller
 import MarkovTriple.Stochastic.R27.AxiomCheckR27K
+import MarkovTriple.BGL.Instances.Riemannian.R27.Basic
+import MarkovTriple.BGL.Instances.Riemannian.R27.Piola
+import MarkovTriple.BGL.Instances.Riemannian.R27.LChange
+import MarkovTriple.BGL.Instances.Riemannian.R27.Atlas
+import MarkovTriple.BGL.Instances.Riemannian.R27.Sphere2Calc
+import MarkovTriple.BGL.Instances.Riemannian.R27.Sphere2Lap
+import MarkovTriple.BGL.Instances.Riemannian.R27.Sphere2Chart
+import MarkovTriple.BGL.Instances.Riemannian.R27.Sphere2
+import MarkovTriple.BGL.Instances.Riemannian.R27.Sphere2Coord
+import MarkovTriple.BGL.Instances.Riemannian.R27.AxiomCheckR27J
