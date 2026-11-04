@@ -527,3 +527,9 @@ import MarkovTriple.BGL.Instances.Riemannian.R24.GoSeries
 import MarkovTriple.BGL.Instances.Riemannian.R24.GoPair
 import MarkovTriple.BGL.Instances.Riemannian.R24.HypStatus
 import MarkovTriple.BGL.Instances.Riemannian.R24.AxiomCheckR24D
+import MarkovTriple.Stochastic.R25.HeatKernel
+import MarkovTriple.Stochastic.R25.Feller
+import MarkovTriple.Stochastic.R25.Kernel
+import MarkovTriple.Stochastic.R25.Mass
+import MarkovTriple.Stochastic.R25.Converse
+import MarkovTriple.Stochastic.R25.AxiomCheckR25E

@@ -75,4 +75,21 @@ on `C_c^infty` (R24 A) -> extension to `C_c` by self-adjointness and symmetry of
 Not a new method.  The general mass statement (E4) has no BGL counterpart (BGL takes Markov kernels as given).
 
 ## Status
-(appended at the end of the round)
+End of round.  Files: `HeatKernel, Feller, Kernel, Mass, Converse, AxiomCheckR25E` (`Stochastic/R25/`).  No `sorry`, no `set_option`, 0 new warnings,
+axioms only `propext, Classical.choice, Quot.sound`; full `lake build` green.  Statements above NOT weakened.
+
+PROVED, with the statements above (namespace `MarkovTriple.Stochastic.R25`): `heatKernelRd`, `heatKernelRd_apply_pi`, probability instances,
+`integral_heatKernelRd`, `lebesgueRd_isFellerC0`, `lebesgueRd_semigroup_cc`, `fellerKernelInf_lebesgueRd` (EVERY `x`), `lebesgueRd_hM`, `heatKernelRd_zero`,
+`heatKernelRd_add`, `heatKernelRd_bind`, `brownianBridgeRd`, `brownianBridgeRd_kernel`, `fellerKernelInf_univ_ae`, `fellerKernelInf_univ_lsc`,
+`fellerKernelInf_deficit_closed`, `fellerKernelInf_deficit_null_Fsigma`, `fellerKernelInf_univ_eq_one_of_continuous`,
+`fellerMarkovProcessBridgeInf_of_continuous`, `lebesgueRdFull_mem_domain_of_Γ₂_finite`.
+
+Log of small deviations (no weakening):
+(a) `heatKernelRd_add` and `heatKernelRd_bind` take the hypothesis `hd : 1 <= d` (they are obtained through `lebesgueRdFull d hd`); `d = 0` is not covered.
+(b) `integral_heatKernelRd` needs only `Continuous g` (no boundedness): `heatRd` is defined by a Bochner integral.
+(c) CK route: the abstract exact `fellerKernelInf_add` transported along `fellerKernelInf_lebesgueRd`.  A direct Gaussian-convolution proof (charFunDual of the
+    bind measure or `Measure.pi_eq` with `gaussianReal_conv_gaussianReal`) was NOT done.
+(d) the instances `IsFiniteMeasureOnCompacts`, `IsOpenPosMeasure` for `(lebesgueRdFull d hd).toDiffusionTriple.mu` are provided in `Feller.lean`.
+
+NOT done / honest limits: whether S11 + `IsFellerC0` alone gives pointwise mass one is neither proved nor refuted (only the lsc / F_sigma-null description and the
+continuity hypothesis that closes it); infinite-`mu` instances other than `(R^d, Lebesgue)`.
