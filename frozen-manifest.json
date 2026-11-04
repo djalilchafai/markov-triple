@@ -191,6 +191,11 @@
       "sha256": "4482ccdccb13e6f9e3ecc7e76f5c0c17dee3aa9f5e008c09ab28bf936a53482b"
     },
     {
+      "path": "MarkovTriple/BGL/Instances/GegenbauerOpen/Full/STATEMENTS_R23_G2.md",
+      "status": "proposed",
+      "sha256": "bd260b0ceb5b1ddc5640ce7cbd66bb2ee7542f21b028135e970b13478efafa4e"
+    },
+    {
       "path": "MarkovTriple/BGL/Instances/Riemannian/R22/STATEMENTS_R22_E4.md",
       "status": "proposed",
       "sha256": "099e37f90395490d158e75ec8b1bde59ec6e8b19f1120d38bd9ef6274589894c"

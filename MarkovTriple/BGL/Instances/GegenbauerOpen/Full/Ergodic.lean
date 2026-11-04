@@ -2,6 +2,7 @@ import Mathlib
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Full.RegLocal
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Full.NotL2
 import MarkovTriple.BGL.SemigroupLemmas
+import MarkovTriple.BGL.Semigroup.Mass
 import MarkovTriple.BGL.Theory.Conservation.Hilbert
 
 /-!
