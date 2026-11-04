@@ -92,3 +92,16 @@ theorem sphere_CD12_coord_eq (a) (p) :
 ## FALLBACKS (pre-announced)
 If the general-`d` Piola identity does not close, `piola_identity`/`Lch_chart_change` are delivered for `d = 2` only (explicit 2×2 adjugate), with the general case reported as not proved.
 If `sphere_glueΓ₂_coord` does not close, only `sphere_glueL_coord`/`sphere_glueΓ_coord` are delivered.
+
+## Status (delivered)
+ALL of J0-J3 proved with the frozen names and (up to the notes below) the frozen signatures; files `R27/{Basic,Piola,LChange,Atlas,Sphere2Calc,Sphere2Lap,Sphere2Chart,Sphere2,Sphere2Coord}.lean`,
+axioms `[propext, Classical.choice, Quot.sound]` for every delivered theorem (`R27/AxiomCheckR27J.lean`), 0 warnings, full `lake build` OK; no fallback was needed
+(the general-`d` Piola identity closed; `sphere_glueΓ₂_coord` closed).
+Proof idea of `piola_identity`: `adj(J)_{ki} = det(J with row i replaced by eₖ)`, Jacobi's formula `pderiv_det` (via `detRowAlternating` as a continuous multilinear map),
+and the antisymmetry of the determinant against the symmetry of the Hessian (`antisym_sum`).
+Notes / deviations (also ERRATA R27-J-*):
+* `Lch_chart_change`: the hypotheses `hga`, `hwa` (`C¹` of `g_a`, `w_a` at `x`) are NOT used by the proof (the field `W_a` is identified with `sgn(det J) adj(J)(V_b∘τ)` on a neighbourhood and only `V_b`, `adj J` are differentiated); they are kept as frozen (named `_hga`, `_hwa`).
+* `sphereAtlas_τ`: the hypothesis `x ≠ 0` is not used (the formula also holds at `0` since `0/0 = 0` in Lean); kept as frozen (`_hx`).
+* `sphere_glueΓ_coord` uses binder names `(a a')`; supplementary theorems: `Atlas.glueΓ_smooth`, `glueL_smooth`, `Lch_Fc`, `Gch_Fc`, `Lch_one_sub_sq`, `sphereAtlas` charts `sph`, transition `τS`, `det_jac_invS`.
+* `Atlas.contDiffOn_pderiv`, `Gch_contDiffOn`, `Lch_contDiffOn` live in namespace `Atlas` (naming only).
+* `g` in the task text for `S²` is the metric `4/(1+|y|²)²δ`; the file uses the CO-metric `((1+|y|²)/2)²δ` and `w = 4/(1+|y|²)²` as in BGL.
