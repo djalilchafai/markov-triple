@@ -214,6 +214,11 @@
       "path": "MarkovTriple/BGL/Instances/LebesgueRd/STATEMENTS_R23_R.md",
       "status": "proposed",
       "sha256": "a0c40207619cb92d0539988547b747ac00dc4521a47c6fead0f673997862e955"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/LebesgueRd/Full/STATEMENTS_R24_A.md",
+      "status": "proposed",
+      "sha256": "2ae2cdacb08a2dcab4f895b3bc4bc278e8da1311ee72e0d16475767d8d6c92dd"
     }
   ],
   "fenced": [

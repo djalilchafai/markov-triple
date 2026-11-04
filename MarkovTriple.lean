@@ -482,6 +482,10 @@ import MarkovTriple.BGL.Instances.LebesgueRd.Basic
 import MarkovTriple.BGL.Instances.LebesgueRd.Gamma2
 import MarkovTriple.BGL.Instances.LebesgueRd.FullEasy
 import MarkovTriple.BGL.Instances.LebesgueRd.AxiomCheck
+import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatDefs
+import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatAPI
+import MarkovTriple.BGL.Instances.LebesgueRd.Full.HeatDeriv
+import MarkovTriple.BGL.Instances.LebesgueRd.Full.DomainAPI
 import MarkovTriple.Stochastic.R23.AEKernel
 import MarkovTriple.Stochastic.R23.Exhaustion
 import MarkovTriple.Stochastic.R23.SubInv
