@@ -111,6 +111,11 @@
       "sha256": "26a7f0189fdcf80001701908514af4ccd83f0ed28b57b1d527260b096a8598d1"
     },
     {
+      "path": "MarkovTriple/Stochastic/R22/STATEMENTS_R22_E3.md",
+      "status": "proposed",
+      "sha256": "ea514e1f6f22d9194e01c9c47ef1f93c3385eda66061bf7bf792a8c19343b300"
+    },
+    {
       "path": "MarkovTriple/BGL/Instances/GibbsRd/STATEMENTS_R17_SobSharp.md",
       "status": "proposed",
       "sha256": "b8dd37757d3e6af13c637ced50f23989020999fcc53cb68a98945323ad85a63b"
