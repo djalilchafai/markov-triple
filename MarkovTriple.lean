@@ -530,3 +530,9 @@ import MarkovTriple.BGL.Instances.Riemannian.R24.AxiomCheckR24D
 import MarkovTriple.BGL.Instances.LebesgueRd.Core2.Cut4
 import MarkovTriple.BGL.Instances.LebesgueRd.Core2.Main
 import MarkovTriple.BGL.Instances.LebesgueRd.Core2.AxiomCheckR25F
+import MarkovTriple.Stochastic.R25.HeatKernel
+import MarkovTriple.Stochastic.R25.Feller
+import MarkovTriple.Stochastic.R25.Kernel
+import MarkovTriple.Stochastic.R25.Mass
+import MarkovTriple.Stochastic.R25.Converse
+import MarkovTriple.Stochastic.R25.AxiomCheckR25E
