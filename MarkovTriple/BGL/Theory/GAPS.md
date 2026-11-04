@@ -264,3 +264,6 @@ DIFFERENCE FROM BGL: BGL (p. 161-162) proves the converse through `Core2` (densi
 `Γ(u,Γf)² ≤ 4Γ(u)Γ(f)(Γ₂(f) − ρΓ(f))` (Bochner + `Ric + ∇∇W ≥ ρ g`), then the existing `FullTriple.mem_domain_of_ESA` (F10).
 PROVED: `EllData.ell_mem_domain_of_Γ₂_direct`, `RiemData.riem_mem_domain_of_Γ₂_direct`, `hypRiem_mem_domain_of_Γ₂_direct` (the hyperbolic plane, `Curv 1`, no `CoreCut`; first converse of 3.3.17 on it), `confRiem_mem_domain_of_Γ₂_direct`.
 STILL OPEN: `Core2` itself for `hypRiem` and for general smooth `V` (the direct route does not give it); the abstract converse for a general Full triple (conditional on `Core2`, or on `Lf ∈ L²` via `mem_domain_of_ESA`); the Gibbs 1-D / `ℝ^d` direct versions (other stream).
+
+## Round 20 merge: the converse of Prop 3.3.17 no longer needs `Core2` for complete triples (ERRATA R20-M1)
+PROVED: `FullTriple.mem_domain_of_Γ₂_direct` (abstract, completeness + `CD ρ n`), `EllData`/`RiemData` under `Curv ρ` (hyperbolic plane included). DIFFERENT FROM BGL's proof (see each file's `## DIFFERENCE FROM BGL`). All earlier statements in this file saying the converse is 'open' / 'conditional on `Core2`' are SUPERSEDED for complete triples. STILL OPEN: `Core2` itself for general `V`; converse for non-complete abstract triples.
