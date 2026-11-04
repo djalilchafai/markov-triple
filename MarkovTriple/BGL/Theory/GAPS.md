@@ -249,3 +249,11 @@ Non-vacuous `ρ = 1 > 0` witness OUTSIDE `BddHess3`: `quarData d`, `V = Σ xᵢ�
 ## Round 19 merge: net status of `Core2` (see ERRATA R19-M1)
 PROVED (each with a nonvacuous ρ>0 witness and an independent hostile audit): 1-D Gibbs under `PolyHess`; `ℝ^d` Gibbs under `HessGe V ρ` + `GrowHess3`; `EllData`/`RiemData` under `Curv ρ` + `CoreCut` (`confRiem`).
 OPEN: `Core2` for general smooth `V` with `V'' ≥ ρ` only (e.s.a. of `L²` on `C_c^∞`); 1-D `V'''` not polynomially dominated by `V'` or `V''` not `o(V'²)`; the hyperbolic plane (`hypRiem` has no `CoreCut`; `Core2` open); a general jet criterion for `CoreCut` (only `RadialJets` proved).
+
+## Round 20, Stream D2: the converse of Prop 3.3.17 for `EllData`/`RiemData` WITHOUT `Core2`/`CoreCut`
+DIFFERENCE FROM BGL: BGL (p. 161-162) proves the converse through `Core2` (density of `(L²+Id)𝒜₀`, silently used, ERRATA R15-1; R19: only under `Curv ρ` + `CoreCut`).  Here (`Instances/GibbsRd/DirectEll*.lean`,
+`Instances/Riemannian/DirectRiem*.lean`, `STATEMENTS_R20_DirectEll.md`, `AUDIT_R20_DIRECTELL.md`) the converse is proved under `Curv ρ` ONLY: `Lf ∈ L²` by the cut-off identity
+`∫χ²(Lf)² = ∫χ²Γ₂(f) + ∫χΓ(χ,Γf) − 2∫χLfΓ(χ,f)` (BGL Prop 3.2.1 style, completeness cut-offs `Γχ ≤ 1`, no `Lχ`, `Γ₂(χ)`), the cross term by the Hessian Cauchy–Schwarz
+`Γ(u,Γf)² ≤ 4Γ(u)Γ(f)(Γ₂(f) − ρΓ(f))` (Bochner + `Ric + ∇∇W ≥ ρ g`), then the existing `FullTriple.mem_domain_of_ESA` (F10).
+PROVED: `EllData.ell_mem_domain_of_Γ₂_direct`, `RiemData.riem_mem_domain_of_Γ₂_direct`, `hypRiem_mem_domain_of_Γ₂_direct` (the hyperbolic plane, `Curv 1`, no `CoreCut`; first converse of 3.3.17 on it), `confRiem_mem_domain_of_Γ₂_direct`.
+STILL OPEN: `Core2` itself for `hypRiem` and for general smooth `V` (the direct route does not give it); the abstract converse for a general Full triple (conditional on `Core2`, or on `Lf ∈ L²` via `mem_domain_of_ESA`); the Gibbs 1-D / `ℝ^d` direct versions (other stream).
