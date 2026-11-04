@@ -245,3 +245,7 @@ PROVED (`Instances/GibbsRd/Core2RdW*.lean`, `STATEMENTS_R19_Core2Rd.md`, `BGL/AU
 Route (BGL §3.2 Caccioppoli cut-offs, Prop 3.3.17): `Hess v ∈ L²` by cut-off Bochner without `Lχ` (`memLp_hess_resolvent_free`), weighted jets `∂ₖV v`, `∂ₖV ∂ᵢv`, `∂ⱼV∂ₖV v ∈ L²` by the `d`-dim. Hardy estimate (`memLp_V_mul_of_hardy`), commutators `Lχ_n`, `∂Lχ_n`, `LLχ_n` handled as `Good × weighted jet` (`ZL_Lchi`, `ZL_dLchi`, `ZL_LLchi`, `cutoff_ZL_w`).
 Non-vacuous `ρ = 1 > 0` witness OUTSIDE `BddHess3`: `quarData d`, `V = Σ xᵢ⁴/4 + xᵢ²/2` (`quarData_witness`, `quarData_core2`, `quarData_mem_domain_of_Γ₂`).
 **Still open (exact):** `Core2` for `GibbsRdData` with only `HessGe V ρ` (no growth control of `∇²V`, `∇³V` by `∇V`; e.g. `V` convex with `∂²V/|∇V|` unbounded, `e^{|x|²}`-type), neither proved nor refuted; arbitrary smooth `V`; `EllData d`/`RiemData d`.  The radial quartic `|x|⁴/4+|x|²/2` satisfies `GrowHess3` (hand check) but is not formalised (the formal witness is the separable `Σxᵢ⁴/4+xᵢ²/2`).
+
+## Round 19 merge: net status of `Core2` (see ERRATA R19-M1)
+PROVED (each with a nonvacuous ρ>0 witness and an independent hostile audit): 1-D Gibbs under `PolyHess`; `ℝ^d` Gibbs under `HessGe V ρ` + `GrowHess3`; `EllData`/`RiemData` under `Curv ρ` + `CoreCut` (`confRiem`).
+OPEN: `Core2` for general smooth `V` with `V'' ≥ ρ` only (e.s.a. of `L²` on `C_c^∞`); 1-D `V'''` not polynomially dominated by `V'` or `V''` not `o(V'²)`; the hyperbolic plane (`hypRiem` has no `CoreCut`; `Core2` open); a general jet criterion for `CoreCut` (only `RadialJets` proved).
