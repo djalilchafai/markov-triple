@@ -297,3 +297,8 @@ The converse of BGL Prop 3.3.17 holds WITHOUT `Core2` and without growth conditi
 
 ## Round 24, Stream A: `FullTriple` on `(ℝ^d, Lebesgue)` CLOSED (d ≥ 1)
 `lebesgueRdFull d hd : FullTriple (Fin d → ℝ)` (`Instances/LebesgueRd/Full/Main.lean`), F8/F10/S10/S11 proved via the Gaussian heat flow (strong L² derivative, Duhamel identification `semigroup_eq_heatRd`); `lebesgueRdFull_CD_iff : CD ρ n ↔ ρ ≤ 0 ∧ d ≤ n`; finite-measure counterpart `gaussRdFull` (CD 1 ∞). DIFFERENCE FROM BGL: F10/S10 by a heat-flow ODE argument, not Weyl's lemma (the `EllData` regularity chain is for probability measures). Still open: converse of Prop 3.3.17/Core2 not examined for this triple; `d = 0` excluded (point space).
+* PARTIAL: `(ℝ^d, Lebesgue)` is a `DiffusionTriple` with exact pointwise Bochner range `ρ ≤ 0 ∧ d ≤ n` and fields F1–F7, F9; missing F8, F10, S10, S11 to be a `FullTriple`.
+* OPEN: `FullTriple` on `ℝ^d`; Feller extension, Chapman–Kolmogorov and a `MarkovProcessBridge` for infinite `μ`; exact all-time semigroup for abstract compact triples; `Core2` for general smooth `V` (R23-F-1 suggests it is not a consequence of F1–F10 + CD, not formalised); `CoreCut`/`Core2` for the hyperbolic plane; atlas gluing; converse of Prop 3.3.17 for non-complete triples (now known to be a genuine question for `goFullTriple`: completeness-free converse, `mem_domain_of_Γ₂` needs `Core2`).
+
+## Round 24 (stream B)
+* CLOSED: converse of Prop 3.3.17 for `goFullTriple` and every `FullTriple` with `CD(ρ,n)`, `n<∞` (ERRATA R24-B-1), no completeness/Core2.  STILL OPEN: `n=∞` without completeness (and without Core2).
