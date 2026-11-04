@@ -70,7 +70,7 @@ Deviations from the statements as first written (nothing weakened while proving)
 1. `GoCD ρ n` first drafted as "`ρ ≤ 3`, `1 ≤ n ≤ 4`": wrong direction (the `(1/n)(Lf)²` term only gets easier for larger `n`);
    corrected BEFORE proving to `4 ≤ n`.  CD(3,n) for `n < 4` is not claimed (expected to fail since `n = 4 = dim S⁴` is the sharp dimension; not checked in Lean).
 2. `GoCD` is pointwise on `x ∈ (-1,1)` (not all of `ℝ`, unlike `IvCD`): `ρ Γ ≤ 3 Γ` needs `Γ = (1-x²)f'² ≥ 0`.  `CD(3,4)` itself holds on all of `ℝ`
-   (the proof uses only `Γ₂ - 3Γ - L²/4 = (3/4)(a-b)² ≥ 0`), but the library CD is a.e. so only `(-1,1)` matters.
+   (the proof uses only `Γ₂ - 3Γ - L²/4 = (3/4)((1-x²)f'')² ≥ 0`), but the library CD is a.e. so only `(-1,1)` matters.
 3. `Γ₂` closed form in the statement block: the first draft already had the Bochner form; proved verbatim.
 
 ### Why `λ = 3/2` and not general `λ`
@@ -95,7 +95,7 @@ at the endpoints; unital).  Status of each field:
   (A) capacity route with the polynomial `FullTriple` of `Instances/Sphere`: show that the `Lcls`-graph closure of `C_c^∞(-1,1)` contains the
   polynomials.  Need cut-offs `ζ_k ∈ C_c^∞(-1,1)`, `ζ_k → 1` with `‖Γ(ζ_k)‖_{L^1(μ)}`-type bounds AND `‖(Lζ_k) p‖_{L²(μ)} → 0` for polynomials `p`:
   `L ζ_k = (1-x²)ζ_k'' - 4xζ_k'`, `∫ (Lζ_k)² dμ = (3/4)∫ ((1-x²)... )`; with log-type cut-offs `ζ_k` near `±1` this tends to `0` because the
-  endpoints have zero capacity for `n ≥ 4` (`∫ (1-x)^{-?}` diverges for the Hardy weight).  This needs the explicit cut-off estimates
+  endpoints have zero capacity for `n ≥ 4` (a Hardy-type weight integral diverges; exact exponent not worked out).  This needs the explicit cut-off estimates
   (est. 300 lines) plus the identification of the Friedrichs domain with the closure of the polynomial algebra (the Sphere triple's own F10
   gives that polynomials are a core for the SPHERE generator, whose underlying measure is the same `goμ` on the zonal part; but the Sphere
   triple lives on `S⁴`, not on `(-1,1)`, so a zonal reduction (transfer of `generator`) is a further ~500 lines).

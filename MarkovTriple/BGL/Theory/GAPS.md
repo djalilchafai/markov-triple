@@ -284,3 +284,8 @@ The converse of BGL Prop 3.3.17 holds WITHOUT `Core2` and without growth conditi
 ## Round 21: non-complete triples (ERRATA R21-1..R21-4)
 * PROVED (`Instances/Interval`): `ivDiff`, `Γ₂ = (Lf)²`, `iv_not_complete`, `iv_not_esaProp`, `iv_no_fullTriple`. This is a non-complete `DiffusionTriple`, NOT a `FullTriple`.
 * OPEN: a non-complete `FullTriple` with CD (the zonal Gegenbauer triple on `(-1,1)` with `C_c^∞`, `λ ≥ 3/2`: needs the weighted triple and ESA on `C_c^∞`; high effort), bounded `(a,b)` and general bounded `Ω ⊂ ℝ` (affine transport / larger).
+
+## Round 22: net status (ERRATA R22-*)
+* CLOSED: bounded open `Ω ⊂ ℝ` non-complete/non-ESA `DiffusionTriple`s (R21 `I5`); non-compact Riesz–Markov kernel representation for FINITE `μ` (sub-Markov kernels); a non-compact finite-`n` CD `FullTriple` exists (`lebesgueFull`, `ρ ≤ 0`); the two Round 20 witness leftovers (weak, bounded `f`).
+* OBSTRUCTIONS (formal, not goals reached): `RadialJets` fails for `V`, `log(1+V)` on the hyperbolic plane; `KernelRepresentation` + sub-invariance does not imply exact CK.
+* OPEN: a non-complete `FullTriple` with CD (Gegenbauer `λ ≥ 3/2`: `goDiff` built, F8/F10 and the remaining fields missing); Riesz–Markov for infinite `μ`, Markov (conservative) kernels, Feller extension, and an exact all-time semigroup for abstract compact triples; `CoreCut`/`Core2` for the hyperbolic plane (by hand false for the radial route, not formalised); atlas gluing (≈2500–4000 lines); `(ℝ^d, Lebesgue)`, `d ≥ 2`, as a `FullTriple`; `Core2` for general smooth `V`.
