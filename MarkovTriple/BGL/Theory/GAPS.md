@@ -294,3 +294,6 @@ The converse of BGL Prop 3.3.17 holds WITHOUT `Core2` and without growth conditi
 * CLOSED: a non-complete `FullTriple` with CD exists (`goFullTriple`, zonal Gegenbauer `λ = 3/2`; ERRATA R23-F-1); F10 for it (`go_esaProp`); non-compact Riesz–Markov kernel representation for infinite `μ` finite on compacts (per-`t`, a.e., sub-Markov; Markov kernels for `StandardTriple`s; instance `lebesgueFull`), without Feller / Chapman–Kolmogorov / `MarkovProcessBridge`.
 * PARTIAL: `(ℝ^d, Lebesgue)` is a `DiffusionTriple` with exact pointwise Bochner range `ρ ≤ 0 ∧ d ≤ n` and fields F1–F7, F9; missing F8, F10, S10, S11 to be a `FullTriple`.
 * OPEN: `FullTriple` on `ℝ^d`; Feller extension, Chapman–Kolmogorov and a `MarkovProcessBridge` for infinite `μ`; exact all-time semigroup for abstract compact triples; `Core2` for general smooth `V` (R23-F-1 suggests it is not a consequence of F1–F10 + CD, not formalised); `CoreCut`/`Core2` for the hyperbolic plane; atlas gluing; converse of Prop 3.3.17 for non-complete triples (now known to be a genuine question for `goFullTriple`: completeness-free converse, `mem_domain_of_Γ₂` needs `Core2`).
+
+## Round 24 (stream B)
+* CLOSED: converse of Prop 3.3.17 for `goFullTriple` and every `FullTriple` with `CD(ρ,n)`, `n<∞` (ERRATA R24-B-1), no completeness/Core2.  STILL OPEN: `n=∞` without completeness (and without Core2).

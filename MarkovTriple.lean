@@ -489,3 +489,6 @@ import MarkovTriple.Stochastic.R23.Triple
 import MarkovTriple.Stochastic.R23.Markov
 import MarkovTriple.Stochastic.R23.Lebesgue
 import MarkovTriple.Stochastic.R23.AxiomCheck
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Converse.Statements
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Converse.Main
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Converse.AxiomCheckR24B
