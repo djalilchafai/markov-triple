@@ -145,7 +145,7 @@ variable (S : StandardTriple X) [IsFiniteMeasureOnCompacts S.μ] [S.μ.IsOpenPos
   (hF : IsFellerC0 S.toDiffusionTriple)
 
 /-- The exceptional set `{κ_t(·, X) < 1}` is an `F_σ` `μ`-null set (so its complement is a dense `G_δ`); S11 alone
-does not make it empty. -/
+does not obviously make it empty; no proof or counterexample that it is non-empty is given here (open). -/
 theorem fellerKernelInf_deficit_null_Fsigma (t : ℝ≥0) :
     ∃ F : ℕ → Set X, (∀ n, IsClosed (F n)) ∧ (∀ n, S.μ (F n) = 0) ∧
       {x | fellerKernelInf hF t x Set.univ < 1} = ⋃ n, F n := by
