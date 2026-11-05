@@ -42,6 +42,22 @@ So `goMarkovProcessBridge` is a `MarkovProcessBridge` for the ORIGINAL `goFullTr
 The table of every `StandardTriple`/`FullTriple`/`CompactTriple` instance with/without `MarkovProcessBridge` is delivered in `GAPS.md`.
 Closures attempted after M1-M2 are frozen below only if cheap (see Status).
 
+## M4. Cheap closures from the survey (files `R28/OUB.lean`, `R28/Survey.lean`), frozen before proof
+```
+namespace MarkovTriple.Stochastic.R28
+noncomputable def ouBMarkovProcessBridge : MarkovProcessBridge MarkovTriple.BGL.Instances.OUCompact.ouB    -- Mehler kernels again
+-- one named bridge per library instance that has one (existing constructions, stated against the Standard/Full/Compact triple):
+def ouStandard_bridge  : MarkovProcessBridge ouStandard.toDiffusionTriple      def ouFull_bridge : MarkovProcessBridge ouFull.toDiffusionTriple
+def ouBStandard_bridge : MarkovProcessBridge ouBStandard.toDiffusionTriple     def ouBFull_bridge : MarkovProcessBridge ouBFull.toDiffusionTriple
+def ouBCompact_bridge  : MarkovProcessBridge ouBCompact.toDiffusionTriple
+def circleStandard_bridge, circleFull_bridge, circleCompact_bridge             -- cT = circleDiffusion
+def sStandard_bridge, sFull_bridge, sCompact_bridge                            -- zonal S^3, sT
+def lebesgueRdFull_bridge (d) (hd : 1 <= d) : MarkovProcessBridge (lebesgueRdFull d hd).toDiffusionTriple
+def goFull_bridge : MarkovProcessBridge goFullTriple.toDiffusionTriple := goMarkovProcessBridge
+```
+Not attempted (honest reasons in the GAPS table): `oStandard`/`oFull` (open zonal sphere; needs `kappa_t(x,{+-1}) = 0` pointwise for exact CK),
+`lebesgueFull` on `R`, `gibbs*`, `riem*`, `trivialCompact`.
+
 ## DIFFERENCE FROM BGL
 BGL takes Markov kernels as given (Prop. 1.2.3 / Sect. 1.2).  Route here: Feller regularisation (Riesz-Markov + continuity of `x -> P_t f(x)`), as in R16/R24,
 carried out on the compact interval because `goMu` has no full support on `R`.  The R16 compact Feller layer is stated for `T : DiffusionTriple X`; it only uses
