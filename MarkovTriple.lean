@@ -591,3 +591,9 @@ import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.AxiomCheckR29Q
 import MarkovTriple.Stochastic.R29P.Tight
 import MarkovTriple.Stochastic.R29P.OneD
 import MarkovTriple.Stochastic.R29P.AxiomCheckR29P
+import MarkovTriple.BGL.Instances.SphereN.Full.Fischer
+import MarkovTriple.BGL.Instances.SphereN.Full.Harm
+import MarkovTriple.BGL.Instances.SphereN.Full.Density
+import MarkovTriple.BGL.Instances.SphereN.Full.Spectral
+import MarkovTriple.BGL.Instances.SphereN.Full.Full
+import MarkovTriple.BGL.Instances.SphereN.Full.AxiomCheckR29N
