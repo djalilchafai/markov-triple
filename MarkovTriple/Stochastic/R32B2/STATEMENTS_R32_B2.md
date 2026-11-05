@@ -34,3 +34,10 @@ theorem reverse_poincare_pointwise {E : Type*} [MeasurableSpace E] (T : FullTrip
 ## DIFFERENCE FROM BGL
 None in the statement (BGL states it pointwise).  The proof deviates only in how monotonicity is passed from the square-root form to the `Gamma` form
 (Jensen for `P_s` plus `L^2` positivity detection), recorded here because the book simply says "by Jensen".
+
+## Status
+Files (`Stochastic/R32B2/`): `Detect.lean` (B1), `Weak.lean` (`sqrt_form`, `weak_mono`), `Main.lean` (`reverse_integrated`, B2), `AxiomCheckR32B2.lean`.  No `sorry`, no `set_option`, 0 warnings, axioms only `propext, Classical.choice, Quot.sound`; full `lake build` green.
+ALL frozen statements PROVED with the frozen names and hypotheses, not weakened: `pos_detect_L2` (B1), `reverse_poincare_pointwise` (B2).
+Delivered beyond the frozen text: `phiE`, `selfadj_int`, `selfadj_test` (symmetry of `P_s` on `L^2` classes), `sqrt_form` (`int h sqrt(Gamma(P_t f)) <= int P_s h sqrt(Gamma(P_{t-s} f))`), `weak_mono` (`int h Gamma(P_t f) <= int P_s h Gamma(P_{t-s} f)`, `0<s<t`), `reverse_integrated`.
+NOT attempted (as announced in the freeze): `CD(rho,inf)` with `rho < 0`, the 1-D `gibbsFull`, non-finite `mu`; consequently `rd_kernel_ac` (R31U) is not extended.
+Remark: the hypothesis `0 < t` is not needed by the proof of `reverse_integrated`; it is kept in B2 as frozen.

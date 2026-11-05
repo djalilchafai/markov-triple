@@ -645,3 +645,7 @@ import MarkovTriple.Stochastic.R31U.Lip
 import MarkovTriple.Stochastic.R31U.Kernel
 import MarkovTriple.Stochastic.R31U.Instances
 import MarkovTriple.Stochastic.R31U.AxiomCheckR31U
+import MarkovTriple.Stochastic.R32B2.Detect
+import MarkovTriple.Stochastic.R32B2.Weak
+import MarkovTriple.Stochastic.R32B2.Main
+import MarkovTriple.Stochastic.R32B2.AxiomCheckR32B2

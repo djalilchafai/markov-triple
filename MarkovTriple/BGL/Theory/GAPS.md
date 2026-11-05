@@ -498,6 +498,13 @@ PROVED (axioms `propext, Classical.choice, Quot.sound`, 0 warnings, no `sorry`, 
 * `Instances.lean`, **U4**: `gibbsRdFull_kernel_ac`, `fullU_kernel_ac`, `riemFull_kernel_ac` and the bridges `gibbsRdFull_bridge_of_feller_U` (`Hess V >= 0`), `fullU_bridge_of_feller_U` (`E.Curv 0`), `riemFull_bridge_of_feller_U` (`R.Curv 0`): `MarkovProcessBridge` for the three triples under the SINGLE analytic hypothesis `IsFellerC0` (item (a), decay at infinity, NOT proved here; (c) and (d) are theorems).
 NOT done / open (honest list):
 * (a) `IsFellerC0` (decay at infinity) is still a hypothesis: no unconditional `MarkovProcessBridge` for `gibbsRdFull`, `fullU`, `riemFull` (Stream X of Round 31 addresses (a) separately).
-* the full POINTWISE reverse Poincare inequality `2t Gamma(P_t f) <= P_t(f^2) - (P_t f)^2` a.e. is NOT proved (only the sup-form, which is what (c) needs); its proof needs positivity detection for `L^2` classes (`P_s Gamma(P_{t-s} f)` has no `A`-representative), cf. ERRATA R31-U-1.
+* the full POINTWISE reverse Poincare inequality `2t Gamma(P_t f) <= P_t(f^2) - (P_t f)^2` a.e. is NOT proved (only the sup-form, which is what (c) needs); its proof needs positivity detection for `L^2` classes (`P_s Gamma(P_{t-s} f)` has no `A`-representative), cf. ERRATA R31-U-1. [ANNOTATION R32-B2: now PROVED, see 'Round 32, Stream B2' below.]
 * finite `mu` is assumed (the Green formulas `ibp_bdd`/`Bdd.domain` of the library are for finite `mu`); `CD(0,inf)` only (convex `V`, `Curv 0`); the 1-d `gibbsFull : FullTriple R` is not covered.
 
+
+## Round 32, Stream B2: pointwise reverse Poincare inequality (ERRATA R32-B2-*; `Stochastic/R32B2/STATEMENTS_R32_B2.md`)
+PROVED (axioms `propext, Classical.choice, Quot.sound`, 0 warnings, no `sorry`, full `lake build` green; files `Stochastic/R32B2/{Detect,Weak,Main,AxiomCheckR32B2}.lean`):
+* `pos_detect_L2` (any `DiffusionTriple`): `u in L^2` with `int g u >= 0` for all `0 <= g in A_0` implies `u >= 0` a.e. (density D2 of `A_0` in `L^2`, `comp_mem` with `sqrt(y^2+e^2)-e`, dominated convergence).
+* `weak_mono`: `int h Gamma(P_t f) <= int P_s h Gamma(P_{t-s} f)` for `0 <= h in A_0`, `0<s<t` (finite `mu`, `CD(0,inf)`), via `sqrt_form` (`e -> 0` in the library `strong_mono`), `pos_detect_L2`, Jensen `jensen_sq` for `P_s`, and symmetry of `P_s`.
+* `reverse_poincare_pointwise`: `2t Gamma(P_t f) <= P_t(f^2) - (P_t f)^2` a.e. for `f in A_0`, finite `mu`, `CD(0,inf)`, generic `FullTriple`.
+NOT done: `CD(rho,inf)`, `rho < 0` (the weak monotonicity then needs the `e^{-2 rho t}` weights of the strong interpolation, which the library proves only for `rho >= 0`, `strong_integrated`), hence no extension of `rd_kernel_ac` to negative curvature; the 1-D `gibbsFull` kernel absolute continuity; non-finite `mu` (`ibp_bdd`, `Bdd.domain` need finite `mu`). Item (a) `IsFellerC0` is untouched by this stream.
