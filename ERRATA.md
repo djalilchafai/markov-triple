@@ -406,3 +406,10 @@ DIFFERENCE FROM BGL (for all rows below): BGL's proof of the converse of Prop. 3
 | R32-Z-2 | INFO (scope, NOT a `FullTriple` statement) | As R31-W-2: `Core2L (5/2)` is the transcription of `FullTriple.Core2`; no `FullTriple` exists for `lam = 5/2`. | As stated. |
 | R32-Z-3 | INFO (annotation) | R31-W GAPS/ERRATA predicted a logarithmic Frobenius construction at `lam = 5/2`; not needed: `Σ n|cc_n| < ∞` makes `A` Lipschitz at `±1`.  Helper `cc` is bounded by `3/2` (not `1`: `cc_2 = -3/2`) and `cc_decay` holds from `n ≥ 3`. | Proved as stated. |
 | R32-Z-4 | INFO (open) | Positive half `lam ≥ 7/2`, the other `lam` in `(3/2,7/2)`, and the hyperbolic plane NOT attempted in Stream Z. | OPEN. |
+
+## Round 32, Stream B2 (`Stochastic/R32B2/STATEMENTS_R32_B2.md`)
+| ID | Severity | Description | Resolution |
+|---|---|---|---|
+| R32-B2-1 | INFO (new result; annotates R31-U-1) | The full POINTWISE reverse Poincare inequality `2t Gamma(P_t f) <= P_t(f^2) - (P_t f)^2` a.e. is PROVED for every `FullTriple` with finite `mu` and `CD(0,inf)`, `f in A_0`: `R32B2.reverse_poincare_pointwise` (B2). The Round 31 obstacle (no `A`-representative for `P_s Gamma(P_{t-s} f)`) is bypassed by `R32B2.pos_detect_L2` (B1: positivity detection for `L^2` functions from density D2 + `comp_mem`), used only inside `weak_mono`; `P_t(f^2)` is `T.Pt t (f^2)` since `f^2 in A_0`. | PROVED, axioms `propext, Classical.choice, Quot.sound`, 0 warnings. |
+| R32-B2-2 | INFO (frozen text vs delivered) | B1, B2 delivered with exactly the frozen statements; extra: `phiE`, `selfadj_int`, `selfadj_test`, `sqrt_form`, `weak_mono`, `reverse_integrated`. The hypothesis `0 < t` of B2 is unused by the proof (kept as frozen). | Delivered, not weakened. |
+| R32-B2-3 | INFO (open, not attempted) | `CD(rho,inf)` with `rho < 0` (and the resulting extension of `rd_kernel_ac`), the 1-D `gibbsFull` kernel absolute continuity, and non-finite `mu` were NOT attempted. | OPEN. |

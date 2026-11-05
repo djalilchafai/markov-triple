@@ -334,6 +334,11 @@
       "path": "MarkovTriple/BGL/Instances/GegenbauerOpen/Core2/Z/STATEMENTS_R32_Z.md",
       "status": "proposed",
       "sha256": "65a6f3757ed64e250876c846356cc480fb761eacfdac3d1d7d257e834703915b"
+    },
+    {
+      "path": "MarkovTriple/Stochastic/R32B2/STATEMENTS_R32_B2.md",
+      "status": "proposed",
+      "sha256": "1d113e2b5f801479572dbea664bd872a5c7fe9b82f9506917c80d05491a1fcc9"
     }
   ],
   "fenced": [
