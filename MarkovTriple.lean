@@ -600,3 +600,15 @@ import MarkovTriple.BGL.Instances.SphereN.Full.AxiomCheckR29N
 import MarkovTriple.Stochastic.R29.AxiomCheckR29O
 import MarkovTriple.Stochastic.R29.GaussRd
 import MarkovTriple.Stochastic.R29.Conditional
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Chart3
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Chart3Ops
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Glue
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Norm
+import MarkovTriple.BGL.Instances.SphereN.Atlas.CircleOps
+import MarkovTriple.BGL.Instances.SphereN.Atlas.CircleInt
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Vol1
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Vol2
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Vol3
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Volume
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Zonal
+import MarkovTriple.BGL.Instances.SphereN.Atlas.AxiomCheckR29R
