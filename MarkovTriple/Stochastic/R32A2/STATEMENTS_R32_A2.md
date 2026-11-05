@@ -52,3 +52,12 @@ In particular, `HessGe V rho` (`rho > 0`) together with bounded Hessian gives an
 BGL does not treat the `C_0`-Feller property.  The Lyapunov comparison `L h <= lam h => P_t h <= e^{lam t} h` is the standard
 sub-solution / maximum-principle argument for Markov semigroups (positivity, BGL Sect. 1.2); the extra step (cut-off
 approximation, since `h` is not in `A_0`) is a standard truncation.
+
+## Status
+PROVED with the frozen names (no sorry, no set_option, 0 warnings, axioms `propext, Classical.choice, Quot.sound`, full `lake build` green):
+`semigroup_comparison` (`Comp.lean`), `rd_isFellerC0_of_lyapunov` (`Lyap.lean`), `gibbsRdFull_isFellerC0_of_linGrowth`, `gibbsRdFull_isFellerC0_of_hessBdd`,
+`gibbsRdFull_bridge_of_linGrowth` (`Gibbs.lean`).  Helpers: `Hfun.lean` (`h`, `Lr_hL_le`, `abs_pderiv_hL`), `Cut.lean` (`cut_bounds_lin`, `cut_vanish'`),
+`Gibbs.lean` (`Lr_cutmul_le`, `hL_tendsto`, `linGrowth_of_hessBdd`).  Extras: `gibbsRdFull_bridge_of_hessBdd`, `cosData_isFellerC0`, `gaussData_isFellerC0`, `cosData_bridge`.
+Deviation (ERRATA R32-A2-1): in `rd_isFellerC0_of_lyapunov` the binder is `∀ (n : ℕ) y, ‖y‖ ≤ n → ...` (the frozen text's `∀ n y` does not elaborate with `n : ℕ`).
+Not delivered (as announced under 'Not claimed'): `fullU`, `riemFull_unconditional`, the `d=1` counter-model.
+
