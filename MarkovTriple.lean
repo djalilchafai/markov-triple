@@ -628,3 +628,10 @@ import MarkovTriple.Stochastic.R30T.Init
 import MarkovTriple.Stochastic.R30T.Regularity
 import MarkovTriple.Stochastic.R30T.Ellip
 import MarkovTriple.Stochastic.R30T.AxiomCheckR30T
+import MarkovTriple.Stochastic.R31U.Tri
+import MarkovTriple.Stochastic.R31U.Theta
+import MarkovTriple.Stochastic.R31U.Reverse
+import MarkovTriple.Stochastic.R31U.Lip
+import MarkovTriple.Stochastic.R31U.Kernel
+import MarkovTriple.Stochastic.R31U.Instances
+import MarkovTriple.Stochastic.R31U.AxiomCheckR31U

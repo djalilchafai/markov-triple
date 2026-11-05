@@ -57,3 +57,9 @@ noncomputable def riemFull_bridge_of_feller_U (R : Riemannian.RiemData d) (hC : 
 ## DIFFERENCE FROM BGL
 The book states the reverse Poincare inequality pointwise (BGL Thm 4.7.2-type); here only its sup-form is a frozen target, see Decisions.
 The step "`kappa_s(x,.) << mu` at every `x` from local equi-Lipschitz bounds" (Riesz measure, Chebyshev on a ball, inner regularity) is standard measure theory, not in BGL.
+
+## Status
+Files (`Stochastic/R31U/`): `Tri.lean`, `Theta.lean`, `Reverse.lean` (U1), `Lip.lean` (U2), `Kernel.lean` (U3), `Instances.lean` (U4), `AxiomCheckR31U.lean`.  No `sorry`, no `set_option`, 0 warnings, axioms only `propext, Classical.choice, Quot.sound`; full `lake build` green.
+ALL frozen statements PROVED with the frozen names, not weakened: `reverse_poincare_sup` (U1), `rd_smoothing_lip` (U2), `rd_kernel_ac` (U3), `gibbsRdFull_bridge_of_feller_U`, `fullU_bridge_of_feller_U`, `riemFull_bridge_of_feller_U`, `gibbsRdFull_kernel_ac`, `fullU_kernel_ac`, `riemFull_kernel_ac` (U4).  Hypotheses: U2/U3 carry `hA hA₀ hCD hell` explicitly; the instance `*_kernel_ac` carry the convexity hypothesis `hV`/`hC` and `hF` (ERRATA R31-U-3).
+Delivered beyond the frozen text: `int3_le`, `tri_continuous`, `hasDerivAt_int3`, `theta_continuous`, `theta_hasDerivAt`, `Pt_bdd`, `ibp_sq`, `strong_mono`, `reverse_aux`, `lip_smooth`, `kernel_null_compact`.
+NOT proved: `IsFellerC0` (item (a)), the pointwise reverse Poincare inequality (only the sup-form), non-finite `mu`, `CD(rho,inf)` with `rho < 0` (ERRATA R31-U-1, R31-U-2, R31-U-4).
