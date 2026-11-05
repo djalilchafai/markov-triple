@@ -1,6 +1,8 @@
 import Mathlib
 import MarkovTriple.Stochastic.R29.Lebesgue1
 import MarkovTriple.Stochastic.R29.OpenSphere
+import MarkovTriple.Stochastic.R29.GaussRd
+import MarkovTriple.Stochastic.R29.Conditional
 
 open MarkovTriple.Stochastic.R29
 
@@ -24,3 +26,13 @@ open MarkovTriple.Stochastic.R29
 #print axioms oMarkovProcessBridge
 #print axioms oStandard_bridge
 #print axioms oFull_bridge
+#print axioms mehlerKernelRd_apply_pi
+#print axioms mehlerKernelRd_zero
+#print axioms mehlerKernelRd_add
+#print axioms mehlerKernelRd_bind
+#print axioms mehlerKernelRd_measurable_joint
+#print axioms gaussRdFull_bridge_of_rep
+#print axioms gibbsFull_bridge_of_feller
+#print axioms gibbsRdFull_bridge_of_feller
+#print axioms fullU_bridge_of_feller
+#print axioms riemFull_bridge_of_feller

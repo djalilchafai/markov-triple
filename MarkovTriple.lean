@@ -587,3 +587,5 @@ import MarkovTriple.BGL.Instances.SphereN.Extrinsic
 import MarkovTriple.BGL.Instances.SphereN.ExtrinsicL
 import MarkovTriple.BGL.Instances.SphereN.AxiomCheckR28L
 import MarkovTriple.Stochastic.R29.AxiomCheckR29O
+import MarkovTriple.Stochastic.R29.GaussRd
+import MarkovTriple.Stochastic.R29.Conditional

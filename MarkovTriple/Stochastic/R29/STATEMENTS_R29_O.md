@@ -57,3 +57,9 @@ noncomputable def gibbsFull_bridge_of_feller (hF : IsFellerC0 G.gibbsFull_uncond
 ```
 These are specialisations of the R27 theorem, NOT unconditional bridges: (a), (c), (d) are not established in the library for non-Gaussian `V`
 or non-constant elliptic data and are recorded as the missing hypotheses in GAPS.
+
+## Status (appended after the proofs; hash re-registered for this file only)
+* O1 DELIVERED as frozen (`R29/Lebesgue1.lean`): `lebesgue_isFellerC0`, `heatKernel1`, `fellerKernelInf_lebesgue`, `lebesgue_hM`, `lebesgueFull_bridge`, `lebesgueFull_bridge_kernel` (plus `heatKernel1_add`, `heatKernel1_bind`).
+* O2 DELIVERED as frozen (`R29/PoleNull.lean`, `R29/OpenSphere.lean`): `sphere_pole_null`, `sphere_kernel_pole_null`, `oMarkovProcessBridge`, `oStandard_bridge`, `oFull_bridge`, `oMarkovProcessBridge_kernel`, `oMarkovProcessBridge_isMarkov`; extra `smoothing_sup`, `sphere_kernel_bound`, `sphere_kernel_compact_null`, `sphere_kernel_ac`.
+* O3 PARTIAL (`R29/GaussRd.lean`): `mehlerKernelRd`, `_zero`, `_add`, the invariance theorem under the name `mehlerKernelRd_bind` (frozen name `mehlerKernelRd_invariant`), `_apply_pi`, `_measurable_joint`; the frozen UNCONDITIONAL `gaussRdFull_bridge` is NOT proved, only `gaussRdFull_bridge_of_rep` (ERRATA R29-O-1).
+* O4 DELIVERED as frozen (`R29/Conditional.lean`): the four `*_bridge_of_feller` and the measure instances; unconditional bridges are NOT obtained (ERRATA R29-O-4).
