@@ -628,3 +628,5 @@ import MarkovTriple.Stochastic.R30T.Init
 import MarkovTriple.Stochastic.R30T.Regularity
 import MarkovTriple.Stochastic.R30T.Ellip
 import MarkovTriple.Stochastic.R30T.AxiomCheckR30T
+import MarkovTriple.BGL.Instances.SphereN.Full.F8
+import MarkovTriple.BGL.Instances.SphereN.Full.AxiomCheckR31V

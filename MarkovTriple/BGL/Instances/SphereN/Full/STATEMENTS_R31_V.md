@@ -25,3 +25,8 @@ theorem sphereF8_of_span (hn : 2 ≤ n) (t : ℝ≥0) {u : Lp ℝ 2 (σ n)}
 
 ## Not claimed
 `SphereF8 n hn` for all `f`, and unconditional `sphereFull`, unless a Status section appended in the proof commit says so.
+
+## Status (proof commit)
+PROVED exactly as frozen (axioms `propext, Classical.choice, Quot.sound`, 0 warnings, `Full/AxiomCheckR31V.lean`):
+`sphereF8_zero`, `sphereF8_iff`, `sphereF8_of_span` in `Full/F8.lean`.  No deviation from the frozen text.
+`SphereF8 n hn` in general is NOT proved; `sphereFull` remains conditional.  See GAPS "Round 31, Stream V".
