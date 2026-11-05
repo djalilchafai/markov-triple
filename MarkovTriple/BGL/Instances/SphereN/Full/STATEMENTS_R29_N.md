@@ -64,4 +64,18 @@ theorem sphereFull_core2 (hn) (h8) : (sphereFull hn h8).Core2
 Mathlib and not formalised here).  No unconditional `FullTriple` instance, no Feller/bridge statement, no Poincaré inequality for all of `L²`.
 
 ## Status (after the proofs)
-(to be filled after the proofs; deviations from the frozen text will be listed here and in ERRATA `R29-N-*`)
+Delivered (all axioms `propext, Classical.choice, Quot.sound`; 0 warnings; no `sorry`; `Full/AxiomCheckR29N.lean`; about 750 lines in 5 files):
+* N2: `fischer` (`Full/Fischer.lean`, purely algebraic on `MvPolynomial (Fin n) ℝ`, via `Δ(|x|²q) = (2n+4 deg q) q + |x|² Δq`), `restr_mem`, `restr_rsq_mul`,
+  `LS_restr_harm` (`Full/Harm.lean`), `restr_mem_span_harm`, `dense_span_harm` (`Full/Density.lean`; Stone-Weierstrass for the polynomial subalgebra
+  `restrA.range` of `C(S^{n-1})`).
+* N3 (`Full/Spectral.lean`): `sphere_semigroup_harm`, `sphere_esa` (F10, via the new generic `DiffusionTriple.core_of_dense_range`: `(1-L)𝒜₀` dense suffices),
+  `sphere_ergodic` (S10), `sphere_semigroup_one` (S11 content), `sphereStandard : StandardTriple (Sph n)`, `sphere_semigroup_poly_mem`.
+* N4 (`Full/Full.lean`): `SphereF8`, `sphereFull hn h8`, `sphereFull_CD : CD (n-2) (n-1)`, `sphereFull_core2`; helper theorems `A₀S_comp`, `ΓS_comp_gen`,
+  `LS_comp_gen` (chain rules for ALL smooth `ψ`, not only `ψ 0 = 0`), `pos_detect_S`.
+NOT delivered: `SphereF8` itself (hypothesis of `sphereFull`).  So there is NO unconditional `FullTriple` on `S^{n-1}`; `sphereStandard` (S10, S11) and
+`sphere_esa` (F10) ARE unconditional.  No Poincaré inequality on all of `L²`, no Obata/Lichnerowicz.
+Deviations from the frozen text (also ERRATA R29-N-1, R29-N-2):
+* `fischer` has the signature `fischer (hn : 0 < n) : ∀ (d : ℕ) {p : Pn n}, p.IsHomogeneous d → p ∈ Wsp n d`, where `Wsp n d` is DEFINITIONALLY the frozen
+  span `Submodule.span ℝ {q | ∃ j k h, IsHarm k h ∧ k + 2*j = d ∧ q = rsq^j * h}`.
+* `sphere_esa` has `u hu` as explicit binders (the frozen text elided them); `sphere_semigroup_one` is stated for `cls ⟨1, (A₀S n).one_mem⟩` (the frozen
+  text wrote `P_t 1 = 1` informally); `sphere_ergodic` takes `hn` explicitly.

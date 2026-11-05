@@ -586,3 +586,9 @@ import MarkovTriple.BGL.Instances.SphereN.Curv2
 import MarkovTriple.BGL.Instances.SphereN.Extrinsic
 import MarkovTriple.BGL.Instances.SphereN.ExtrinsicL
 import MarkovTriple.BGL.Instances.SphereN.AxiomCheckR28L
+import MarkovTriple.BGL.Instances.SphereN.Full.Fischer
+import MarkovTriple.BGL.Instances.SphereN.Full.Harm
+import MarkovTriple.BGL.Instances.SphereN.Full.Density
+import MarkovTriple.BGL.Instances.SphereN.Full.Spectral
+import MarkovTriple.BGL.Instances.SphereN.Full.Full
+import MarkovTriple.BGL.Instances.SphereN.Full.AxiomCheckR29N
