@@ -597,3 +597,6 @@ import MarkovTriple.BGL.Instances.SphereN.Full.Density
 import MarkovTriple.BGL.Instances.SphereN.Full.Spectral
 import MarkovTriple.BGL.Instances.SphereN.Full.Full
 import MarkovTriple.BGL.Instances.SphereN.Full.AxiomCheckR29N
+import MarkovTriple.Stochastic.R29.AxiomCheckR29O
+import MarkovTriple.Stochastic.R29.GaussRd
+import MarkovTriple.Stochastic.R29.Conditional
