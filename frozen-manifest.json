@@ -319,6 +319,11 @@
       "path": "MarkovTriple/BGL/Instances/SphereN/Full/STATEMENTS_R31_V.md",
       "status": "proposed",
       "sha256": "65f01de360c4b89a87e77d3b71df4cefc30ab395e83a68a3ed32c70237cad711"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/GegenbauerOpen/Core2/W/STATEMENTS_R31_W.md",
+      "status": "proposed",
+      "sha256": "85902d0cac990abbbae313f9895442526252be7ecf4783d514dab6e95483d3ec"
     }
   ],
   "fenced": [
