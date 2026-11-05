@@ -633,6 +633,11 @@ import MarkovTriple.Stochastic.R31X.AxiomCheckR31X
 import MarkovTriple.BGL.Instances.SphereN.Full.F8
 import MarkovTriple.BGL.Instances.SphereN.Full.Orth
 import MarkovTriple.BGL.Instances.SphereN.Full.AxiomCheckR31V
+import MarkovTriple.BGL.Instances.SphereN.Full.Sup
+import MarkovTriple.BGL.Instances.SphereN.Full.Series
+import MarkovTriple.BGL.Instances.SphereN.Full.Expand
+import MarkovTriple.BGL.Instances.SphereN.Full.F8U
+import MarkovTriple.BGL.Instances.SphereN.Full.AxiomCheckR32Y
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Series
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Reduce
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Pair

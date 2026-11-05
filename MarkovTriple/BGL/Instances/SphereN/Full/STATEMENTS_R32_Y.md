@@ -35,3 +35,10 @@ theorem sphereFullU_core2 (hn : 2 ≤ n) : (sphereFullU hn).Core2
 ## Not claimed
 Anything beyond the statements above.  If the proofs are not completed, the Status section appended in the proof commit lists
 exactly which of them are proved; statements are never weakened silently (ERRATA row `R32-Y-n`).
+
+## Status (proof commit)
+ALL frozen statements PROVED exactly as frozen (axioms `propext, Classical.choice, Quot.sound`, 0 warnings, no `sorry`,
+`Full/AxiomCheckR32Y.lean`): `harm_grad_L2`, `harm_sup` (`Full/Sup.lean`), `sphereF8_pos`, `sphereF8`, `sphereFullU`,
+`sphereFullU_CD`, `sphereFullU_core2` (`Full/F8U.lean`).  No deviation from the frozen text.  Supporting results
+(`Full/Series.lean`: `contDiff_top_Fs`; `Full/Expand.lean`: `exists_expansion`) as described in the plan.  See GAPS "Round 32, Stream Y".
+
