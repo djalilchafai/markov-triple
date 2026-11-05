@@ -1,0 +1,10 @@
+import MarkovTriple.Stochastic.R29P.Tight
+import MarkovTriple.Stochastic.R29P.OneD
+
+#print axioms MarkovTriple.Stochastic.R29P.fellerKernelInf_tight_of_univ_eq_one
+#print axioms MarkovTriple.Stochastic.R29P.fellerKernelInf_univ_eq_one_of_tight
+#print axioms MarkovTriple.Stochastic.R29P.fellerKernelInf_univ_eq_one_iff_tight
+#print axioms MarkovTriple.Stochastic.R29P.fellerKernelInf_univ_eq_one_of_compactSpace
+#print axioms MarkovTriple.Stochastic.R29P.fellerKernelInf_deficit_noncompact
+#print axioms MarkovTriple.Stochastic.R29P.oneD_boundary_identity
+#print axioms MarkovTriple.Stochastic.R29P.oneD_boundary_bound

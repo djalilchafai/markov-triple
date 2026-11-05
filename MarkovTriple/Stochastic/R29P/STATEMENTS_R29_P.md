@@ -53,3 +53,14 @@ theorem oneD_boundary_bound
 
 ## DIFFERENCE FROM BGL
 None for P1-P4 (BGL takes kernels as given; the argument is Feller continuity + Urysohn + inner regularity).  P5/P6 are a by-hand 1-D computation, not BGL's method; they are not used to prove a `FullTriple` statement.
+
+## Status
+End of round.  Files: `Tight.lean`, `OneD.lean`, `AxiomCheckR29P.lean` (`Stochastic/R29P/`).  No `sorry`, no `set_option`, 0 warnings, axioms only `propext, Classical.choice, Quot.sound`; full `lake build` green.
+All of P1-P6 PROVED with the frozen names and hypotheses, not weakened:
+`fellerKernelInf_tight_of_univ_eq_one` (P1), `fellerKernelInf_univ_eq_one_of_tight` (P2), `fellerKernelInf_univ_eq_one_iff_tight` (P3),
+`fellerKernelInf_univ_eq_one_of_compactSpace`, `fellerKernelInf_deficit_noncompact` (P4), `oneD_boundary_identity` (P5), `oneD_boundary_bound` (P6).
+Supporting: `tight_real_of_univ_eq_one`, `le_univ_of_tight_real` (real-valued cores), `exists_delta`, `sub_ofReal_eq`.
+Clarifications (no deviation): (a) in P5/P6 the frozen plain-text integrals are read as `(int (u'+V1u/2)^2) - (boundary) + int V2 u^2`, i.e. the integral binds only the square, as Lean needs explicit parentheses;
+(b) P2 as proved uses only open positivity of `mu` (no S11) plus `IsFellerC0`; it is stated with `S : StandardTriple X` as frozen; S11 enters only in P4 (through `fellerKernelInf_univ_ae`).
+RESULT on the two questions: neither settled.  (1) pointwise mass one is equivalent to local tightness of the kernels (P3); a deficit point needs non-compact `X` (P4); no counterexample or proof of mass one.
+(2) `n = infinity` converse without completeness/Core2: no counterexample, no proof; P5/P6 formalise the 1-D computation (not tied to a `FullTriple`).

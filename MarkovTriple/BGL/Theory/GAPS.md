@@ -396,3 +396,11 @@ NOT done / obstructions (precise):
 * No theorem identifies `sphereDiffusion 2` with `circleDiffusion` or the zonal `Sphere` through the height function (comparison of the genuine and zonal spheres, plan (c) of R27-J): OPEN.
 * No `MarkovProcessBridge`/Feller statement for `S^{n-1}` (needs the semigroup).
 * The measure is Mathlib's `toSphere` (cone construction); that it coincides with the Hausdorff/Riemannian measure is not proved (not needed: `ibp_sphere` is the intrinsic characterisation of `L` against `σ`).
+
+## Round 29, Stream P: pointwise mass one and the `n = ∞` converse (ERRATA R29-P-*; `Stochastic/R29P/STATEMENTS_R29_P.md`)
+PROVED (`Stochastic/R29P/Tight.lean`): for a `C_0`-Feller triple (`IsFellerC0`, `μ` finite on compacts, open positive), `κ_t(x₀, X) = 1` holds iff the Feller kernels are tight near `x₀`
+(`fellerKernelInf_univ_eq_one_iff_tight`: for every `ε` there are a compact `K` and a neighbourhood `U` of `x₀` with `κ_t(y, K) ≥ 1 − ε` for μ-a.e. `y ∈ U`; equivalently for every `y ∈ U`, `fellerKernelInf_tight_of_univ_eq_one`);
+on a compact space the mass is one everywhere (S11), so a deficit point needs `X` non-compact (`fellerKernelInf_deficit_noncompact`).  So a counterexample to pointwise mass one must lose mass AT INFINITY for starting points converging to `x₀`.
+Annotates (does not replace) R25-E-2 / R27-K-1 "OPEN": the question is still neither proved nor refuted; it is now the exact tightness question.  Hand heuristic only (no theorem): 1-D diffusions reduce to `Γ = f'²` in the intrinsic coordinate, where mass loss at a single null point is not expected.
+`n = ∞` converse without completeness/Core2 (R24-B-1): STILL OPEN, no counterexample and no proof.  By hand (not formalised): in 1-D `Γ = f'²`, `L = ∂² − V'∂`, `V'' ≥ ρ`, the boundary term has the favourable sign (`V' − ρx` monotone; `V'` bounded at a finite end is a regular end, expected to violate ESA), so 1-D gives no counterexample;
+formalised ingredient `oneD_boundary_identity`/`oneD_boundary_bound` (`Stochastic/R29P/OneD.lean`, pure real analysis, not tied to a `FullTriple`).  The abstract route still stops at the `(1−L)𝒜₀` vs `𝒜₀` test-function mismatch (the Core2 gap, ERRATA R15-1).
