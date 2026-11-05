@@ -588,3 +588,6 @@ import MarkovTriple.BGL.Instances.SphereN.ExtrinsicL
 import MarkovTriple.BGL.Instances.SphereN.AxiomCheckR28L
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.Frobenius
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.AxiomCheckR29Q
+import MarkovTriple.Stochastic.R29P.Tight
+import MarkovTriple.Stochastic.R29P.OneD
+import MarkovTriple.Stochastic.R29P.AxiomCheckR29P
