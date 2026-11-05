@@ -63,3 +63,17 @@ BGL takes Markov kernels as given (Prop. 1.2.3 / Sect. 1.2).  Route here: Feller
 carried out on the compact interval because `goMu` has no full support on `R`.  The R16 compact Feller layer is stated for `T : DiffusionTriple X`; it only uses
 the semigroup (`nonneg`, sub-Markov, self-adjoint, `P_0 = 1`, `P_{s+t} = P_s P_t`, strong continuity), so it is re-stated for an abstract `SemigroupData`
 (`R28/SGData.lean`, `R28/FellerSG.lean`, `R28/FellerSGMeasurable.lean`); no new mathematics.
+
+## Status
+End of stream.  Files (`Stochastic/R28/`): `SGData, FellerSG, FellerSGMeasurable, Transport, GoCompact, GoBridge, OUB, Survey, AxiomCheckR28M`.  No `sorry`, no `set_option`,
+0 warnings, axioms only `propext, Classical.choice, Quot.sound` (`AxiomCheckR28M.lean`).  Statements M1, M2, M4 delivered; ONE frozen line was wrong and is corrected (ERRATA R28-M-1):
+
+* DEVIATION (R28-M-1): `goMarkovProcessBridge_kernel (t) (x : R) : kernel t x = (goKernelI t (goRetr x)).map val` is FALSE for `|x| > 1` (`kernel_zero` forces `kernel 0 x = dirac x`).
+  Delivered: `goMarkovProcessBridge_kernel_of_mem` (`x in [-1,1]`), `goMarkovProcessBridge_kernel_of_not_mem` (`dirac x`), `goMarkovProcessBridge_support`, `goMarkovProcessBridge_isMarkov`.
+* Names (R28-M-2): `goMu -> goμ`, `goMuI -> goμI`; `goSemigroupI_one` is `goSG_one` (statement about `goSG.one2`); `goI_isFeller : IsFellerSG goSG`.
+
+PROVED (namespace `MarkovTriple.Stochastic.R28`): M1 `goμI` probability + `IsOpenPosMeasure` (instances), `goRestr` (linear isometry equiv), `goSemigroupI`, `goSemigroupI_restr`, `goSG` (`SGData GI`),
+`goSG_one`, `goI_isFeller`; M2 `goKernelI`, `goKernelI_isMarkov/_zero/_add/_bind/_measurable/_rep`, `goKernel`, `goKernel_isMarkov/_zero/_add/_measurable/_rep/_bind`, `goMarkovProcessBridge`
+(`MarkovProcessBridge goFullTriple.toDiffusionTriple`), `goMarkovProcessBridge_isMarkov`, `_support`; M3 survey table in GAPS; M4 `ouBMarkovProcessBridge` and the named `*_bridge` defs
+(`ouStandard/ouFull/ouBStandard/ouBFull/ouBCompact/circle*/s*/lebesgueRdFull/goFull`).  Supporting: the R16 compact Feller layer restated for `SGData` (`sgOp`, `sgKernel`, ..., names prefixed `sg`).
+NOT done: bridges for `oFull`, `lebesgueFull`, Gibbs, Riemannian (reasons in GAPS table, ERRATA R28-M-4); a `DiffusionTriple` on `[-1,1]` (only the semigroup is transported).
