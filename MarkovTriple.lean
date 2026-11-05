@@ -586,3 +586,15 @@ import MarkovTriple.BGL.Instances.SphereN.Curv2
 import MarkovTriple.BGL.Instances.SphereN.Extrinsic
 import MarkovTriple.BGL.Instances.SphereN.ExtrinsicL
 import MarkovTriple.BGL.Instances.SphereN.AxiomCheckR28L
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Chart3
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Chart3Ops
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Glue
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Norm
+import MarkovTriple.BGL.Instances.SphereN.Atlas.CircleOps
+import MarkovTriple.BGL.Instances.SphereN.Atlas.CircleInt
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Vol1
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Vol2
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Vol3
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Volume
+import MarkovTriple.BGL.Instances.SphereN.Atlas.Zonal
+import MarkovTriple.BGL.Instances.SphereN.Atlas.AxiomCheckR29R

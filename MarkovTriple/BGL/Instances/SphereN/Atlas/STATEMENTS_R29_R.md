@@ -63,3 +63,11 @@ theorem zonal_Γ {n} {φ ψ : ℝ → ℝ} (hφ : ContDiff ℝ ⊤ φ) (hψ : Co
     ΓS (fun z : Sph n => φ (cv z 0)) ... = (1 - x₀²) deriv φ x₀ * deriv ψ x₀           -- n ≥ 1
 theorem zonal_L (hφ) : LS (fun z => φ (z 0)) x = (1 - x₀²) deriv (deriv φ) x₀ - (n - 1) x₀ deriv φ x₀
 ```
+
+## Status (delivered)
+R1, R2, R3, R4 ALL proved (R4 beyond the frozen sketch: library tie `zonal_lib`); R5 not attempted.  Files `Atlas/{Chart3,Chart3Ops,Glue,Norm,CircleOps,CircleInt,Vol1,Vol2,Vol3,Volume,Zonal}.lean`,
+`AxiomCheckR29R.lean` (24 declarations, all `[propext, Classical.choice, Quot.sound]`), 0 warnings, full `lake build` OK.
+Theorem names as frozen: `eS2`, `eS2_coord`, `chart_Γ_eq`, `chart_L_eq`, `smooth_of_A₀S`, `glueΓ_eq_ΓS`, `glueL_eq_LS`, `glue_eq_sphereDiffusion`, `chart_integral`, `κ`, `κ_injective`, `κ_surjective`, `circle_A₀`, `circle_Γ`, `circle_L`, `circle_atlasDiff`, `circle_integral`, `zonal_Γ`, `zonal_L`.
+Supplements: `chart_polar`, `integral_wS` (`∫ w_S = 4π`), `σ0_three`, `circle_polar`, `GZ_zonal`, `LZ_zonal`, `zonal_lib`.
+Deviations (also ERRATA R29-R-1..5): unused hypotheses named `_hf`; schematic zonal statements made explicit with `cv`, `[NeZero n]`; `(2π)²` normalisation of the circle; the library `sFull` is the zonal reduction of `Sph 4` (`n = 4`).
+
