@@ -264,6 +264,11 @@
       "path": "MarkovTriple/BGL/Instances/Riemannian/R27/STATEMENTS_R27_J.md",
       "status": "proposed",
       "sha256": "27f108899bbc3ad2510906eadcd8eb652610e5b81913269078163e1a3025ffd6"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/SphereN/STATEMENTS_R28_L.md",
+      "status": "proposed",
+      "sha256": "db5cf6c9d8c6f5c5a92e3d7be1bee47316c53512f3537b85ef7b4db52d8f36b5"
     }
   ],
   "fenced": [
