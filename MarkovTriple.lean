@@ -586,3 +586,5 @@ import MarkovTriple.BGL.Instances.SphereN.Curv2
 import MarkovTriple.BGL.Instances.SphereN.Extrinsic
 import MarkovTriple.BGL.Instances.SphereN.ExtrinsicL
 import MarkovTriple.BGL.Instances.SphereN.AxiomCheckR28L
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.Frobenius
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.AxiomCheckR29Q

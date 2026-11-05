@@ -33,3 +33,8 @@ factor `L` and the `L²` criterion are claimed formally, NOT the Frobenius theor
 ## NOT claimed (remains the R26-I heuristic, unproved)
 `Core2` fails for `3/2 <= lam < 7/2` and holds for `lam >= 7/2`.  No `FullTriple` for `lam ≠ 3/2` is constructed; no deficiency pair for
 `lam ≠ 3/2`; nothing for `hypRiem` or abstract complete triples.
+
+## Status (after proof)
+All seven Q1 theorems delivered in `Core2/Frobenius.lean` with the frozen names and statements (no deviation; `Core2Q.gL`, `Core2Q.gρ`),
+axioms `propext, Classical.choice, Quot.sound` only (`Core2/AxiomCheckR29Q.lean`), no `sorry`.  The positive (`lam >= 7/2`) and negative
+(`3/2 <= lam < 7/2`) halves of the `Core2` threshold were NOT proved: see GAPS "Round 29, Stream Q".
