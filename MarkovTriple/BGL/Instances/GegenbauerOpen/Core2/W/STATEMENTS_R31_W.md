@@ -56,3 +56,13 @@ theorem not_core2L_two : ¬ Core2L 2
 ## NOT claimed
 `Core2L lam` for any other `lam` (the heuristic `3/2 ≤ lam < 7/2` stays unproved except `lam = 2`, and `lam = 3/2` through R24-D on the genuine `FullTriple`);
 no `FullTriple` for `lam = 2`; no ESA of `L_2`; nothing for the hyperbolic plane or other complete triples (see GAPS for the outcome).
+
+## Status (after proof)
+All four targets W1-W4 PROVED with the frozen names and statements, no deviation (`Core2W.muL`, `Core2W.Core2L`, `Core2W.not_core2L_of_pair`,
+`Core2W.deficiency_pair_two`, `Core2W.not_core2L_two`).  Axioms `propext, Classical.choice, Quot.sound` only (`AxiomCheckR31W.lean`), no `sorry`, no `set_option`, 0 warnings.
+Files: `Series.lean` (`cc`, `abs_cc_le_inv`, `lipschitz : |A x - Lam| <= C1 (1-x^2)`, `ode_series_cc`), `Reduce.lean` (`muL`, `Core2L`, `integral_muL`, `ibp_aux`/`sym_A₀L`
+(symmetry of `L_lam` on `goA₀` for every real `lam`), `key`, `exists_test`, `abs_integral_mul_le`), `Pair.lean` (`wf = s^(-3/2) A`, `hf`, `wf_L`, `hf_L`, `g_bound`, `h_bound`),
+`Main.lean` (`memLp_muL`, W2, W3, W4).  The weighted bounds are sharper than the frozen sketch needs: `(w - L_2 h)^2 rho_2 <= (C1 + 3|Lam|/2)^2` (bounded), because the
+series `A` is Lipschitz at `+-1` (coefficients `O(n^{-5/2})`, proved through `cc_decay`: `cc_{n+2}^2 (n+3)^5 <= cc_n^2 (n+1)^5` for `n >= 2`).
+Caveat recorded plainly: `Core2L` is a transcription of `FullTriple.Core2`; it is NOT `FullTriple.Core2` of a `FullTriple` (none exists for `lam = 2`).
+No theorem here identifies `Core2L (3/2)` with `goFullTriple.Core2` (the measures differ by the constant `3/4`; not proved).

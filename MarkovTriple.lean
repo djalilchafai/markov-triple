@@ -628,3 +628,8 @@ import MarkovTriple.Stochastic.R30T.Init
 import MarkovTriple.Stochastic.R30T.Regularity
 import MarkovTriple.Stochastic.R30T.Ellip
 import MarkovTriple.Stochastic.R30T.AxiomCheckR30T
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Series
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Reduce
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Pair
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Main
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.AxiomCheckR31W
