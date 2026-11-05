@@ -66,3 +66,11 @@ theorem sphere_CD {n} (hn : 2 ≤ n) {f : Sph n → ℝ} (hf : f ∈ A₀S n) (x
 
 ## Not claimed
 No semigroup, `FullTriple`, `Core2`/ESA, Feller or heat-kernel statement is made unless L4 is delivered and listed in the Status section below.
+
+## Status (after the proofs)
+Delivered (all axioms `propext, Classical.choice, Quot.sound`, 0 warnings, no `sorry`; `AxiomCheckR28L.lean`):
+L1: `A₀S`, `A₀S_of_contDiff`, `ΓS_mem`, `LS_mem` (`Ops.lean`), `ΓS_extrinsic` (`Extrinsic.lean`), `LS_extrinsic` (`ExtrinsicL.lean`).
+L2: `σ_isProbabilityMeasure` (`Meas.lean`), `polar` (`Polar.lean`), `ibp_σ0`, `ibp_sphere` (`Ibp.lean`), `sphereDiffusion`, `sphereDiffusion_μ/Γ/L` (`Triple.lean`).
+L3: `LS_mul`, `ΓA_eq_ΓS` (`Curv1.lean`), `hess_ineq` (`Hess.lean`), `Γ₂_formula`, `sphere_CD` (`Curv2.lean`).
+Deviations from the frozen text (also ERRATA R28-L-1, R28-L-2): coordinate map `cv` in the extrinsic statements and in `A₀S_of_contDiff` (the frozen text was ill-typed), the added hypotheses `hn` listed above.
+L4 (`FullTriple`/`StandardTriple`): NOT attempted beyond the `DiffusionTriple`; obstructions in GAPS "Round 28, Stream L".

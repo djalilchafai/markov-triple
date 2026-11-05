@@ -1,4 +1,5 @@
 import MarkovTriple.BGL.Instances.SphereN.Curv2
+import MarkovTriple.BGL.Instances.SphereN.ExtrinsicL
 
 open MarkovTriple.BGL.SphereN
 
@@ -15,3 +16,7 @@ open MarkovTriple.BGL.SphereN
 #print axioms hess_ineq
 #print axioms Γ₂_formula
 #print axioms sphere_CD
+#print axioms ΓS_extrinsic
+#print axioms LS_extrinsic
+#print axioms sphereDiffusion_L
+#print axioms dense_Lp

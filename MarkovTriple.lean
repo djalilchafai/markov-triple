@@ -574,4 +574,6 @@ import MarkovTriple.BGL.Instances.SphereN.Hess
 import MarkovTriple.BGL.Instances.SphereN.Curv1
 import MarkovTriple.BGL.Instances.SphereN.Curv
 import MarkovTriple.BGL.Instances.SphereN.Curv2
+import MarkovTriple.BGL.Instances.SphereN.Extrinsic
+import MarkovTriple.BGL.Instances.SphereN.ExtrinsicL
 import MarkovTriple.BGL.Instances.SphereN.AxiomCheckR28L
