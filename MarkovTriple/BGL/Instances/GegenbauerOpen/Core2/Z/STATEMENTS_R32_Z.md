@@ -35,3 +35,9 @@ theorem not_core2L_five_halves : ¬ Core2W.Core2L (5 / 2)
 ## NOT claimed
 `Core2L lam` for other `lam` (heuristic: `Core2L lam` fails for `3/2 < lam < 7/2` at least; only `lam = 2, 5/2` proved here and in R31-W);
 no `FullTriple` for `lam = 5/2`; nothing for `lam ≥ 7/2` or for the hyperbolic plane.
+
+## Status (after proof)
+Z1 and Z2 PROVED with the frozen names and statements, no deviation (`Core2Z.deficiency_pair_five_halves`, `Core2Z.not_core2L_five_halves`).
+Axioms `propext, Classical.choice, Quot.sound` only (`AxiomCheckR32Z.lean`), no `sorry`, no `set_option`, 0 warnings.
+Files: `Series.lean` (`cc`, `cc_decay` for `n ≥ 3`, `abs_cc_le_inv`, `lipschitz`, `ode_series_cc`), `Pair.lean` (`gL_five_mul_sp`, `wf`, `hf`, `wf_L`, `hf_L`, `g_bound`, `h_bound`), `Main.lean`.
+Detail relative to the sketch: the logarithm is never constructed (`Σ n|cc_n| < ∞` suffices); `|cc_n| ≤ 3/2`.  Same caveat: `Core2L` is a transcription, no `FullTriple` for `lam = 5/2`.

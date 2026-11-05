@@ -638,6 +638,10 @@ import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Reduce
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Pair
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.Main
 import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.W.AxiomCheckR31W
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.Z.Series
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.Z.Pair
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.Z.Main
+import MarkovTriple.BGL.Instances.GegenbauerOpen.Core2.Z.AxiomCheckR32Z
 import MarkovTriple.Stochastic.R31U.Tri
 import MarkovTriple.Stochastic.R31U.Theta
 import MarkovTriple.Stochastic.R31U.Reverse
