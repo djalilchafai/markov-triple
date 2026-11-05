@@ -26,3 +26,7 @@ Instance corollaries (by `rfl` for `hA, hA0`): `gibbsRdFull_isFellerC0_iff_cutof
 
 ## DIFFERENCE FROM BGL
 None: BGL does not discuss this property.  The statement is positivity + squeeze for the Markov semigroup (BGL Section 1.2.1, positivity / Markov property).
+
+## Status
+Files: `Stochastic/R31X/Cutoff.lean`, `AxiomCheckR31X.lean`.  The frozen statement `rd_isFellerC0_iff_cutoff` and the three instance corollaries are PROVED with the frozen names and hypotheses (not weakened); axioms `propext, Classical.choice, Quot.sound`; no `sorry`, no `set_option`, 0 warnings.
+Helper: `cutoffCc R` (explicit `C_c` cut-off).  NOT proved: decay at infinity itself (see ERRATA R31-X-1; the obstruction is informal, not formalised).
