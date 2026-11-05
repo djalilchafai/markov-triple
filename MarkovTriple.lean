@@ -612,3 +612,10 @@ import MarkovTriple.BGL.Instances.SphereN.Atlas.Vol3
 import MarkovTriple.BGL.Instances.SphereN.Atlas.Volume
 import MarkovTriple.BGL.Instances.SphereN.Atlas.Zonal
 import MarkovTriple.BGL.Instances.SphereN.Atlas.AxiomCheckR29R
+import MarkovTriple.Stochastic.R30T.Approx
+import MarkovTriple.Stochastic.R30T.Continuity
+import MarkovTriple.Stochastic.R30T.Lip
+import MarkovTriple.Stochastic.R30T.Init
+import MarkovTriple.Stochastic.R30T.Regularity
+import MarkovTriple.Stochastic.R30T.Ellip
+import MarkovTriple.Stochastic.R30T.AxiomCheckR30T

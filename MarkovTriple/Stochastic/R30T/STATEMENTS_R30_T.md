@@ -53,3 +53,9 @@ G1, G2 apply (by `rfl` equalities) to `gibbsRdFull_unconditional`, `fullU`, `rie
 
 ## DIFFERENCE FROM BGL
 None for G3 (BGL Cor. 3.3.19 gradient bound + strong continuity).  G1's continuity argument (smooth representative + uniform approximation) is standard real analysis, not in BGL.
+
+## Status
+Files (`Stochastic/R30T/`): `Approx.lean`, `Continuity.lean` (G1, G2), `Lip.lean`, `Init.lean` (G3), `Regularity.lean` (Gibbs instance), `Ellip.lean`, `AxiomCheckR30T.lean`.  No `sorry`, no `set_option`, 0 warnings, axioms only `propext, Classical.choice, Quot.sound`; full `lake build` green.
+ALL frozen statements PROVED with the frozen names and hypotheses, not weakened: `rd_semigroup_cc_exists_cont` (G1), `rd_isFellerC0_iff_decay` (G2), `rd_initial_condition` (G3), `gibbsRdFull_isFellerC0_iff_decay`, `gibbsRdFull_hinit`, `gibbsRdFull_bridge_of_feller_ac`.
+Delivered beyond the frozen text: `exists_A₀_approx`, `lip_bound`, `init_A₀`, `semigroup_close`, `ellData_local_ell`, `ellData_hell`, `gibbsRdFull_semigroup_cc_exists_cont`, `fullU_`/`riemFull_semigroup_cc_exists_cont`, `fullU_`/`riemFull_isFellerC0_iff_decay`, `fullU_hinit`, `riemFull_hinit`, `fullU_bridge_of_feller_ac`, `riemFull_bridge_of_feller_ac` (ERRATA R30-T-3).
+NOT proved (ERRATA R30-T-1): decay at infinity (a), `kappa_s(x,.) << mu` at every `x` (c); hence no unconditional `MarkovProcessBridge` for `gibbsRdFull`, `fullU`, `riemFull`, `gibbsFull`.
