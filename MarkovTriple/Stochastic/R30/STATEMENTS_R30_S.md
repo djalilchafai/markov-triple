@@ -30,3 +30,10 @@ theorem gaussRdFull_bridge_isMarkov (hd) (t) (x) : (gaussRdFull_bridge hd).kerne
 (The bridge is `R29.gaussRdFull_bridge_of_rep (gaussRdFull_mu d) (gaussRdFull_isTestClassRep hd)`.)
 
 Whatever is not delivered is reported in the Status section (to be appended in the proof commit), GAPS and ERRATA, not silently dropped.
+
+## Status (appended in the proof commit)
+All of S1-S3 DELIVERED, no `sorry`, axioms `propext, Classical.choice, Quot.sound` (`AxiomCheckR30S.lean`), 0 warnings.
+* S1 `gaussRdFull_mu` (`R30/GaussMeasure.lean`), exactly as frozen.
+* S2 `gaussRdFull_isTestClassRep (hd : 1 <= d)` and the hypothesis-free `gaussRdFull_isTestClassRep_all` (`R30/GaussBridge.lean`); engine: `gaussRdFull_semigroup_eq_Q` (`R30/GaussIdentify.lean`), `duhamel_unique` (`R30/Duhamel.lean`), `hasDerivAt_Qcls`/`continuous_Qcls` (`R30/MehlerL2.lean`), `hasDerivAt_Mh_time` (`R30/MehlerTime.lean`), `hasDerivAt_toLp`/`continuousAt_toLp` (`R30/L2Deriv.lean`), `Lou_Mh` (`R30/MehlerBasic.lean`).
+* S3 `gaussRdFull_bridge (_hd : 1 <= d)`, `gaussRdFull_bridge_kernel`, `gaussRdFull_bridge_isMarkov`, and the hypothesis-free `gaussRdFull_bridge_all`.  Extras: `gaussRdFull_rep`, `gaussRdFull_bridge_invariant`, `gaussData_bridge`.
+Deviation: `1 <= d` unnecessary (ERRATA R30-S-2).  Route: Green identity from the core property rather than `Q_t phi in D(L)` (ERRATA R30-S-3).
