@@ -30,3 +30,9 @@ theorem sphereF8_of_span (hn : 2 ≤ n) (t : ℝ≥0) {u : Lp ℝ 2 (σ n)}
 PROVED exactly as frozen (axioms `propext, Classical.choice, Quot.sound`, 0 warnings, `Full/AxiomCheckR31V.lean`):
 `sphereF8_zero`, `sphereF8_iff`, `sphereF8_of_span` in `Full/F8.lean`.  No deviation from the frozen text.
 `SphereF8 n hn` in general is NOT proved; `sphereFull` remains conditional.  See GAPS "Round 31, Stream V".
+
+## Status addendum (second proof commit, beyond the frozen text; frozen statements unchanged)
+Additional PROVED lemmas in `Full/Orth.lean` (same axioms, 0 warnings): `LS_symm` (symmetry of `L_S` on `𝒜₀S`), `lamS_strictMono`,
+`harm_orth` (steps 2: harmonic restrictions of different degrees are `L²(σ)`-orthogonal), `coeff_step`, `coeff_pow`
+(step 3: `λ_k^m ∫ f h = (-1)^m ∫ (L^m f) h`, `L^m f ∈ 𝒜₀S`; the exact identity behind `L²` decay of the components of `f`).
+Steps 1 (sup/`C^m` bounds on harmonic polynomials) and 4 (series identification, closedness) are NOT done.
