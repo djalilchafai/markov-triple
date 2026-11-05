@@ -658,3 +658,9 @@ import MarkovTriple.Stochastic.R32B2.Detect
 import MarkovTriple.Stochastic.R32B2.Weak
 import MarkovTriple.Stochastic.R32B2.Main
 import MarkovTriple.Stochastic.R32B2.AxiomCheckR32B2
+import MarkovTriple.Stochastic.R32A2.Comp
+import MarkovTriple.Stochastic.R32A2.Lyap
+import MarkovTriple.Stochastic.R32A2.Hfun
+import MarkovTriple.Stochastic.R32A2.Cut
+import MarkovTriple.Stochastic.R32A2.Gibbs
+import MarkovTriple.Stochastic.R32A2.AxiomCheckR32A2

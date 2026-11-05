@@ -344,6 +344,11 @@
       "path": "MarkovTriple/BGL/Instances/SphereN/Full/STATEMENTS_R32_Y.md",
       "status": "proposed",
       "sha256": "67f623e416215d2e9d44c166a45b7fcf66a24c03b8f0d057afc7398170d3ba14"
+    },
+    {
+      "path": "MarkovTriple/Stochastic/R32A2/STATEMENTS_R32_A2.md",
+      "status": "proposed",
+      "sha256": "8e86089d47576b77ae50468926d32d73749cda34abdff1eae46622cc0dcc6dc0"
     }
   ],
   "fenced": [
