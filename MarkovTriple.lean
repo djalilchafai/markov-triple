@@ -561,3 +561,17 @@ import MarkovTriple.BGL.Instances.Riemannian.R27.Sphere2Chart
 import MarkovTriple.BGL.Instances.Riemannian.R27.Sphere2
 import MarkovTriple.BGL.Instances.Riemannian.R27.Sphere2Coord
 import MarkovTriple.BGL.Instances.Riemannian.R27.AxiomCheckR27J
+import MarkovTriple.BGL.Instances.SphereN.Basic
+import MarkovTriple.BGL.Instances.SphereN.Smooth
+import MarkovTriple.BGL.Instances.SphereN.Homog
+import MarkovTriple.BGL.Instances.SphereN.Ops
+import MarkovTriple.BGL.Instances.SphereN.Diff
+import MarkovTriple.BGL.Instances.SphereN.Meas
+import MarkovTriple.BGL.Instances.SphereN.Polar
+import MarkovTriple.BGL.Instances.SphereN.Ibp
+import MarkovTriple.BGL.Instances.SphereN.Triple
+import MarkovTriple.BGL.Instances.SphereN.Hess
+import MarkovTriple.BGL.Instances.SphereN.Curv1
+import MarkovTriple.BGL.Instances.SphereN.Curv
+import MarkovTriple.BGL.Instances.SphereN.Curv2
+import MarkovTriple.BGL.Instances.SphereN.AxiomCheckR28L
