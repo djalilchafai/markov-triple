@@ -309,6 +309,11 @@
       "path": "MarkovTriple/Stochastic/R30T/STATEMENTS_R30_T.md",
       "status": "proposed",
       "sha256": "8a1d952c647b67f23f0c98a51d88558ce380d2a35aa965054195b768348c6c50"
+    },
+    {
+      "path": "MarkovTriple/BGL/Instances/GegenbauerOpen/Core2/W/STATEMENTS_R31_W.md",
+      "status": "proposed",
+      "sha256": "0644e61255eee73c6c6bf8fb9692ffff7bc1499bf6fa1359eac07c88ee2fa87b"
     }
   ],
   "fenced": [
