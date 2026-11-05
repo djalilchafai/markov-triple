@@ -621,3 +621,10 @@ import MarkovTriple.Stochastic.R30.Duhamel
 import MarkovTriple.Stochastic.R30.GaussIdentify
 import MarkovTriple.Stochastic.R30.GaussBridge
 import MarkovTriple.Stochastic.R30.AxiomCheckR30S
+import MarkovTriple.Stochastic.R30T.Approx
+import MarkovTriple.Stochastic.R30T.Continuity
+import MarkovTriple.Stochastic.R30T.Lip
+import MarkovTriple.Stochastic.R30T.Init
+import MarkovTriple.Stochastic.R30T.Regularity
+import MarkovTriple.Stochastic.R30T.Ellip
+import MarkovTriple.Stochastic.R30T.AxiomCheckR30T

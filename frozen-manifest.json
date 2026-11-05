@@ -304,6 +304,11 @@
       "path": "MarkovTriple/Stochastic/R30/STATEMENTS_R30_S.md",
       "status": "proposed",
       "sha256": "77a5559b8f98063be8167c1810981f8bbafa47ce31142575bb21f2f7283e5dde"
+    },
+    {
+      "path": "MarkovTriple/Stochastic/R30T/STATEMENTS_R30_T.md",
+      "status": "proposed",
+      "sha256": "8a1d952c647b67f23f0c98a51d88558ce380d2a35aa965054195b768348c6c50"
     }
   ],
   "fenced": [
